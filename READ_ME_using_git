@@ -1,0 +1,50 @@
+# This document will give you info about how to use git on the command
+# line!
+#
+# NOTE: at any point if you are prompted to "Enter passphrase for key"
+# just type empty. No letter will appear on the screen but the machine
+# will know you are typing something!
+
+###############################
+# UPDATE YOUR LOCAL REPOSITORY
+###############################
+# ALWAYS DO THIS BEFORE YOU START ANYTHING!
+# First thing you do when you start working is pull! This will make
+# sure that you have the most up to date info. So if I made changes,
+# you will have them! Type this into the command line:
+git pull
+
+###############################
+# ADD YOUR CHANGES
+###############################
+# Every time you make a change, you need to 'add' it so git can keep
+# track of the change. Type this into the command line:
+git add INSERT_YOUR_FILE_NAME(S)_HERE
+
+###############################
+# COMMENT ON YOUR CHANGES
+###############################
+# Once you are done making changes, you need to add an informative
+# comment about what changes you made. Type this into the command
+# line:
+git commit
+# this will then open a VIM file that will show you what file(s) you
+# added and what changes you made. Then you just need to add in your
+# comment (if you forget how to edit things in VIM ask me or do a
+# quick bit of googling!). For example you can type "I added a new R
+# code that reads in my files". Make it short but informative so we
+# can find it later on if we need to! This also makes it super easy
+# and great when you need to go back and edit code (which I do all the
+# time)
+# Then you save and exit your VIM file and it should also save the
+# commit!
+
+###############################
+# PUSH TO ONLINE REPOSITORY
+###############################
+# DO THIS BEFORE YOU SIGN OFF OF THE MACHINES OR STOP WORKING!
+# Once you are done making all your changes you need up update them on
+# the online repository. This way everyone has access to the most
+# updated files! Type this into the command line:
+git push
+
