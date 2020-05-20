@@ -1,0 +1,90 @@
+List of things to do!
+
+############
+Queenie:
+############
+
+-------------------------------------------------------------------------
+1.
+Put all code and data (raw, normalized..etc) onto the machines and make
+sure it can run! (to run an R script and save the output you type the following into the command
+line:
+Rscript NAME_OF_R_SCRIPT.R NAME_OF_INPUT_FILES_AND_PATH_IF_YOU_HAVE_THIS --save > out
+) If you are confused about how to run an R script on the command line please
+let me know! NOTE you will need to be on one of the big machines for this to
+work (info115, info114, or info113)
+-------------------------------------------------------------------------
+3.
+So, at the end of this you should have one file for each of the bacterial
+strains that has the normalized gene expression data, as well as the start and
+end positions of each gene.
+-------------------------------------------------------------------------
+4.
+Find out to see if there are any gene names that are the same between each
+bacterial strain. So you can pairwise compair the gene names in each of the
+bacterial strains (using your complete data frames from step 3). Please
+provide me a list (or data frame or whatever) with this information!
+-------------------------------------------------------------------------
+5.
+This will be a bit complicated to explain over text. Here is where we will add
+another few columns to our big data frame for each strain (in step 3). There
+is a file /home/dlato/Queenie_2019_2020/inversion_block_info_all.txt which has
+information about the whole genome alignment of ALL the strains. I used
+PARSNP which splits the alignment into block that can be at any position in
+the genome. This block information is found in the first column of the file
+(/home/dlato/Queenie_2019_2020/inversion_block_info_all.txt). The rest of the
+file has other info about each of the blocks in the alignment. What you are
+going to do, is for each gene in each of the data frames (from step 3), add on
+information about which block that gene is located in. So you will have to
+match the taxa ID (second column) to the strain you are looking at, and then
+add in the other columns (block, block_start, block_end, rev_comp, and
+inversion) to the dataframe.
+If you have any questions about this please let me know!
+-------------------------------------------------------------------------
+6.
+Graph of inversions! Take your new dataframe (from step 4) and create a new
+datafram for this inversion stuff. This will be based on each block. So you
+will look at each block and we will assume that the genes in each block are
+homologous (in order). So you will again do this pairwise (so looking at all
+possible pairs of strains) and plot the locations. So the location of that
+gene (in the same block) in one strain will be the x-coordinate, and the
+location of that same gene in the other strain will be the y-coordinate. then
+you just plot each of these dots and we see what we get! Again, do this for
+each pair of strains.
+-------------------------------------------------------------------------
+
+############
+Daniella:
+############
+
+1. Check over Queenie's normalization script
+
+2. create Blast database 
+
+3. blast test commands?
+
+
+
+
+###########################################################################
+# Done Tasks
+###########################################################################
+
+-------------------------------------------------------------------------
+May 15, 2020
+I also looked into the BW25113 strain and even in the new annotation there are no gene names with the format "b####". B125113 and K-12 MG1655 are very similar, and K-12 MG1655 has gene names with "b####". So what I would like you to do is to use the gene name columns (i.e. gbk_gene_id, gbk_locus_tag...etc)  in the Ecoli_K12_MG1655_chrom_U00096*_gene_info.txt files and use these to find the correct gene name for each of the "b####" genes in the Ecoli_BW25113_NZ_CP009273*_gene_info.txt files. BUT I want you to retain the genomic position from the Ecoli_BW25113_NZ_CP009273*_gene_info.txt files. For example, gene b0001 is also called thrL according to the Ecoli_K12_MG1655_chrom_U00096_gene_info.txt file. So you would add a new column to the Ecoli_BW25113_NZ_CP009273*_gene_info.txt files that has this new gene name (thrL) associated with the rows that have b0001. Notice that you are JUST ADDING THE NAME and not changing the positions!
+-------------------------------------------------------------------------
+May 15, 2020
+Combine files in /home/dlato/Queenie_2019_2020/Genomes/*_gene_info.txt with
+your normalized gene expression files. These *_gene_info.txt files have column names:
+start	end	midpoint(of start and end positions)	gene_name	strand(0=leading, 1=lagging)
+so you want to add the columns of the *_gene_info.txt files to your normalized
+gene expression, just make sure you are matching it with the gene names! If
+there are already gene start and end position columns in your normalized gene
+expression file, MAKE SURE THAT THEY ARE THE SAME as the positions in the
+*_gene_info.txt files. To clarify, make sure that you are only combining the
+*_gene_info.txt files to EACH RESPECTIVE normalized gene expression file. So
+only combine the Ecoli_K12_MG1655_chrom_U00096_gene_info.txt with the
+Ecoli_K12_MG1655_chrom_U00096 normalized gene expression dataframe file, and
+no other strains.
+-------------------------------------------------------------------------
