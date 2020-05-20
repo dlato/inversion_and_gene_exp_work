@@ -1,0 +1,16 @@
+#run first blast on each genome against the db
+foreach x (../Proteomes/*.fasta)
+/usr/bin/time -f "\t%E Elapsed Real Time (format)" blastp -query $x -db ../Proteomes/db/Ecol_proteomes_db_15May20 -out `basename $x .fasta`_blast_out_15May20 -num_threads 25
+end
+
+
+
+
+
+
+
+
+#TEST blast one genome to see how long it takes
+/usr/bin/time -f "\t%E Elapsed Real Time (format)" blastp -query *.fasta -db ../Proteomes/db/Ecol_proteomes_db_15May20 -out TEST_blast_out -outfmt 5 -num_threads  10
+/usr/bin/time -f "\t%E Elapsed Real Time (format)" blastp -query *.fasta -db ../Proteomes/db/Ecol_proteomes_db_15May20 -out TEST_blast_out -outfmt 5 -num_threads  20
+/usr/bin/time -f "\t%E Elapsed Real Time (format)" blastp -query *.fasta -db ../Proteomes/db/Ecol_proteomes_db_15May20 -out TEST_blast_out -outfmt 5 -num_threads  25

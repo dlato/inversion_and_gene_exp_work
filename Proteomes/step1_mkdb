@@ -1,0 +1,4 @@
+cat *.fasta > Ecoli_all_proteomes_15May20.fasta
+
+#make blast db
+ makeblastdb -in Ecoli_all_proteomes_15May20.fasta -dbtype prot -out Ecol_proteomes_db_15May20
