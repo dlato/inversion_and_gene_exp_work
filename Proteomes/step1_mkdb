@@ -1,4 +1,15 @@
 cat *.fasta > Ecoli_all_proteomes_15May20.fasta
 
-#make blast db
- makeblastdb -in Ecoli_all_proteomes_15May20.fasta -dbtype prot -out Ecol_proteomes_db_15May20
+#make blast db for each combo
+#MG1655 vs All
+cat Ecoli_ATCC_25922_NZ_CP009072_UP000001410.fasta Ecoli_BW25113_NZ_CP009273_UP000029103.fasta Ecoli_K12_DH10B_NC_010473_UP000001689.fasta > Ecoli_NOT_K12_MG1655_25May20.fasta
+ makeblastdb -in Ecoli_NOT_K12_MG1655_25May20.fasta -dbtype prot -out Ecol_proteomes_db_NOT_K12_MG1655_25May20
+#ATCC vs All
+cat Ecoli_BW25113_NZ_CP009273_UP000029103.fasta Ecoli_K12_DH10B_NC_010473_UP000001689.fasta Ecoli_K12_MG1655_chrom_U00096_UP000000625_83333.fasta > Ecoli_NOT_ATCC_25May20.fasta
+ makeblastdb -in Ecoli_NOT_ATCC_25May20.fasta -dbtype prot -out Ecol_proteomes_db_NOT_ATCC_25May20
+#BW125113 vs All
+cat Ecoli_ATCC_25922_NZ_CP009072_UP000001410.fasta Ecoli_K12_DH10B_NC_010473_UP000001689.fasta Ecoli_K12_MG1655_chrom_U00096_UP000000625_83333.fasta > Ecoli_NOT_BW25113_25May20.fasta
+ makeblastdb -in Ecoli_NOT_BW25113_25May20.fasta -dbtype prot -out Ecol_proteomes_db_NOT_BW25113_25May20
+#DH10B vs All
+cat Ecoli_ATCC_25922_NZ_CP009072_UP000001410.fasta Ecoli_BW25113_NZ_CP009273_UP000029103.fasta Ecoli_K12_MG1655_chrom_U00096_UP000000625_83333.fasta > Ecoli_NOT_K12_DH10B_25May20.fasta
+ makeblastdb -in Ecoli_NOT_K12_DH10B_25May20.fasta -dbtype prot -out Ecol_proteomes_db_NOT_K12_DH10B_25May20
