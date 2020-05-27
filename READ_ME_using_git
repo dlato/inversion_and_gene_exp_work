@@ -48,3 +48,36 @@ git commit
 # updated files! Type this into the command line:
 git push
 
+
+##############################################################################
+# setting up git for the first time
+# #########################################################################
+# CLUSTER
+# ##################
+When you have a chance, I want you to follow these instructions (https://kbroman.org/github_tutorial/pages/first_time.html) for adding an SSH to your GitHub. Do this ON THE LAB MACHINES! NOTE: when you specify your editor you should type git config --global core.editor vim When it says to copy the public key, type this instead (because the lab machines are not apple):  cat ~/.ssh/id_rsa.pubThen copy and paste that key into your git (follow the rest of the instructions like normal)!
+  There is a chance that this won't work because we might have to set up the repository differently. So just let me know and we can work through it together!  
+
+To test if you can make a commit, please do the following on the lab machines (and your laptop if you want to use git on the command line on your laptop):
+1. create a test file with some words in it
+2. type into the command line: git add YOUR_FILE_NAME3. type into the command line: git commitThis should bring you to a vim file where you can write a comment about the "changes" you made to your test file
+4. save and exit vim (or whatever editor you have on your mac)5. type into the command line: git pushYou will be prompted to "Enter passphrase for key blahblahblah", just type: empty (note the letters will not show up but the computer will be recognizing/storing what you type!)This SHOULD push your change to the repository. You can double check this online by refreshing the page and seeing if your file appears!
+
+Please make sure that you have git (https://git-scm.com/downloads) on your laptop! If you are comfortable with the command line for using git, then great! If not, you can download GitHub Desktop (https://desktop.github.com/) which I usually use and find really easy! You can also access git right in Rstudio, (so you might not even need GitHub Desktop) which I will go through in a second.
+# ##############
+# RSTUDIO
+# ##############
+To get git working with Rstudio on your laptop:
+1. Open Rstudio
+2.  click the new project icon (top right)
+3. click version control (bottom)
+4. click git
+5. enter this info:
+Repository URL: https://github.com/dlato/inversion_and_gene_exp_work.gitProject 
+directory name: inversion_and_gene_exp_work
+Create project as subdirectory of: click browse and choose the folder where you want to put this repository on your laptop
+6. You should now see a little "Git" tab in your "Environment" window on your Rstudio. click it
+7. you should see a list of the files that you just "changed". Click on the commit button. This will show you the files that you changed, the changes, and a little box where you can type your comments about the changes (commit message). click the "x" to close this
+8. Add an Rscript to your new git folder.
+9. open this script in Rstudio. ***make sure that it is under your git project!***
+10. click the commit button, write a comment about this new file, click "push". The first time you do this you will likely get a popup window and will have to sign into GitHub.
+11. You just made a commit and pushed it on Rstudio! Yay! Go to your github in a web browser and double check that this worked!
