@@ -1,0 +1,13 @@
+# get the gene positions and strand information 
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_ATCC_25922_NZ_CP009072.gbk Ecoli_ATCC_25922_NZ_CP009072_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_BW25113_NZ_CP009273.gbk Ecoli_BW25113_NZ_CP009273_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_K12_DH10B_NC_010473.gbk Ecoli_K12_DH10B_NC_010473_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_K12_MG1655_chrom_U00096.gbk Ecoli_K12_MG1655_chrom_U00096_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_0157H7_chrom_Sakai_BA000007.gbk Ecoli_0157H7_chrom_Sakai_BA000007_gene_info.txt
+# get the gene positions and strand information but for NEW versions
+# of genomes
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_0157H7_chrom_Sakai_NC_002695_3Mar20_.gbk Ecoli_0157H7_chrom_Sakai_NC_002695_3Mar20_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_ATCC_25922_NZ_CP009072_13May20.gbk Ecoli_ATCC_25922_NZ_CP009072_13May20_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_BW25113_NZ_CP009273_13May20.gbk Ecoli_BW25113_NZ_CP009273_13May20_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_K12_DH10B_NC_010473_13May20.gbk Ecoli_K12_DH10B_NC_010473_13May20_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_K12_MG1655_chrom_U00096_13May20.gbk Ecoli_K12_MG1655_chrom_U00096_13May20_gene_info.txt
