@@ -28,8 +28,6 @@ ATCC_GSE94978 %<>% cbind(norm) %>% group_by(gene_id) %>%
   mutate(count = median(c(norm1, norm2)),
          ATCC_GSE94978 = 1) %>% select(-c(V13))
 
-quit()
-
 
 #BW25113 simplying df----------------
 #BW25113_GSE73673
