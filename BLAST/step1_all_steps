@@ -10,6 +10,10 @@ parallel -j 10 < 1e6_qcov95_blast_parallel
 parallel -j 10 < sensitive_1e6_qcov95_diamond_parallel
 parallel -j 10 < more_sensitive_1e6_qcov95_diamond_parallel
 #
+# remove duplicated rows
+foreach x (Blast*.tab)
+cat $x | uniq > `basename $x .tab`_uniq.tab
+end
 #-------------------------------------------------------------------
 #
 #####################################################################
