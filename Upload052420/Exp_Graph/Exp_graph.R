@@ -203,9 +203,13 @@ K12MG1655_graph %<>% group_by(unique_id) %>%
 
 K12plot <- ggplot(data = K12MG1655_graph, 
        mapping = aes(x=unique_id, y=exp,color=Dataset)) + 
-  geom_point(shape=1) +
-  labs(title=expression(~italic(Ecoli)~' K12_MG1655'),
-       x="Gene id", y = "log10(|expression - median expression|)") 
+  geom_point(alpha=0.5, shape=1) +
+  ggtitle(expression(~italic(Ecoli)~' K12_MG1655')) +
+  xlab("Genes") + 
+  ylab("|CPM - Mean CPM| (log10)") + 
+  labs(color = "GEO Dataset") +
+  theme(axis.text.x=element_blank())
+    
 ggsave("../Exp_Graph/K12MG_graph.pdf", K12plot)
 
 
