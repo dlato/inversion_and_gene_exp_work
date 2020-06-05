@@ -8,11 +8,10 @@ library(ggplot2)
 
 options(scipen = 999)
 
-setwd("/home/dlato/Queenie_2019_2020/Upload052420/Gene_expression_data")
+#Setting working directory to access all the to-be-used files 
+setwd("../Gene_expression_data")
 
-getwd()
-
-##just housekeeping
+#store all the files in the directory in a list
 files <- list.files()
 
 #ATCC_GSE94978 simpliying df-------------------
@@ -372,15 +371,15 @@ H7_GSE46120 %<>% group_by(gene_id) %>%
 
 ## adding info using the gene_info files-------
 ATCC_info <- read.delim("../Genomes/Ecoli_ATCC_25922_NZ_CP009072_gene_info.txt")
-ATCC_info_old <- read.delim("../Genomes/Ecoli_ATCC_25922_NZ_CP009072_13May20_gene_info.txt")
+#ATCC_info_old <- read.delim("../Genomes/Ecoli_ATCC_25922_NZ_CP009072_13May20_gene_info.txt")
 BW_info <- read.delim("../Genomes/Ecoli_BW25113_NZ_CP009273_gene_info.txt")
-BW_info_old <- read.delim("../Genomes/Ecoli_BW25113_NZ_CP009273_13May20_gene_info.txt")
+#BW_info_old <- read.delim("../Genomes/Ecoli_BW25113_NZ_CP009273_13May20_gene_info.txt")
 H7_info <- read.delim("../Genomes/Ecoli_0157H7_chrom_Sakai_BA000007_gene_info.txt")
-H7_info_old <- read.delim("../Genomes/Ecoli_0157H7_chrom_Sakai_NC_002695_3Mar20_gene_info.txt")
+#H7_info_old <- read.delim("../Genomes/Ecoli_0157H7_chrom_Sakai_NC_002695_3Mar20_gene_info.txt")
 K12_DH_info <- read.delim("../Genomes/Ecoli_K12_DH10B_NC_010473_gene_info.txt")
-K12_DH_info_old <- read.delim("../Genomes/Ecoli_K12_DH10B_NC_010473_13May20_gene_info.txt")
+#K12_DH_info_old <- read.delim("../Genomes/Ecoli_K12_DH10B_NC_010473_13May20_gene_info.txt")
 K12_MG_info <- read.delim("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt")
-K12_MG_info_old <- read.delim("../Genomes/Ecoli_K12_MG1655_chrom_U00096_13May20_gene_info.txt")
+#K12_MG_info_old <- read.delim("../Genomes/Ecoli_K12_MG1655_chrom_U00096_13May20_gene_info.txt")
 
 
 ##ATCC info--------------------------
@@ -562,7 +561,3 @@ print("code finished running")
 # length(intersect(BW25113[["gene_id"]], K12MG1655[["gene_id"]]))
 # #4277 from 4507, 4898
 # View(BW25113[K12MG1655[["gene_id"]] %in% BW25113[["gene_id"]],])
-
-
-
-
