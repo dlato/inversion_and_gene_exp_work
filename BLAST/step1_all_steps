@@ -14,6 +14,13 @@ parallel -j 10 < more_sensitive_1e6_qcov95_diamond_parallel
 foreach x (Blast*.tab)
 cat $x | uniq > `basename $x .tab`_uniq.tab
 end
+#
+# get reciprocal best blast hits
+l -1 *reversed*uniq.tab > RBBH_parallel
+#edit that file so it looks like:
+#/usr/local/bin/python3 ~/CODE/extract_recip_best_blast_hits.py -a
+#NOT_REVERSED_FILE -b REVERSED_FILE -o OUT_FILE_NAME
+parallel -j 10 < RBBH_parallel
 #-------------------------------------------------------------------
 #
 #####################################################################
