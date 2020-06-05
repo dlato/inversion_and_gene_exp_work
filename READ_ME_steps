@@ -1,0 +1,8 @@
+#this will eventually be filled with steps on how to run everything
+
+
+#fixing inconsistent taxa ids
+perl -p -i.bak -e "s/\tCP009273/NZ_CP009273/g" inversion_block_info_all.txt
+perl -p -i.bak -e "s/\tCP009072/NZ_CP009072/g" inversion_block_info_all.txt
+
+
