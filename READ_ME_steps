@@ -2,7 +2,7 @@
 
 
 #fixing inconsistent taxa ids
-perl -p -i.bak -e "s/\tCP009273/NZ_CP009273/g" inversion_block_info_all.txt
-perl -p -i.bak -e "s/\tCP009072/NZ_CP009072/g" inversion_block_info_all.txt
+perl -p -i.bak -e "s/\tCP009273/\tNZ_CP009273/g" inversion_block_info_all.txt
+perl -p -i.bak -e "s/\tCP009072/\tNZ_CP009072/g" inversion_block_info_all.txt
 
 
