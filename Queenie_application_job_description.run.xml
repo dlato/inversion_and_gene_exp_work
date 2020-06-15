@@ -84,7 +84,7 @@
       <file>Queenie_application_job_description-blx.bib</file>
     </requires>
     <requires type="editable">
-      <file>C:/Users/synch/Documents/Bib/ALL_papers2.bib</file>
+      <file>./ALL_papers2.bib</file>
     </requires>
     <requires type="static">
       <file>biblatex.bst</file>
