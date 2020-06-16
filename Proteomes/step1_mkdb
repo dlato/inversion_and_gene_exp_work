@@ -8,9 +8,9 @@ makeblastdb -in Ecoli_ATCC_25922_NZCP009072_UP000001410.fasta -dbtype prot -out 
 makeblastdb -in Ecoli_K12_DH10B_NC010473_UP000000318.fasta -dbtype prot -out Ecoli_K12_DH10B_blast_db
 
 ##make diamond db for each strain
-diamond makedb --in Ecoli_K12_MG1655_U00096_UP000000625_83333.fasta  -d Ecol_K12_MG1655_diamond_db
-diamond makedb --in Ecoli_ATCC_25922_NZCP009072_UP000001410.fasta  -d Ecoli_ATCC_25922_diamond_db
-diamond makedb --in Ecoli_K12_DH10B_NC010473_UP000000318.fasta  -d Ecoli_K12_DH10B_diamond_db
+/usr/local/diamond/diamond makedb --in Ecoli_K12_MG1655_U00096_UP000000625_83333.fasta  -d Ecol_K12_MG1655_diamond_db
+/usr/local/diamond/diamond makedb --in Ecoli_ATCC_25922_NZCP009072_UP000001410.fasta  -d Ecoli_ATCC_25922_diamond_db
+/usr/local/diamond/diamond makedb --in Ecoli_K12_DH10B_NC010473_UP000000318.fasta  -d Ecoli_K12_DH10B_diamond_db
 
 
 
