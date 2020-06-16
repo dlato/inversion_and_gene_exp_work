@@ -18,6 +18,7 @@ end
 # get reciprocal best blast hits
 l -1 Blast_MG1655*uniq.tab > RBBH_parallel
 #edit that file so it looks like:
+#/usr/local/bin/python3 ~/CODE/extract_recip_best_blast_hits.py -a Blast_MG1655_DH10B_default_uniq.tab -b Blast_DH10B_MG1655_default_uniq.tab -c ../Proteomes/Ecoli_K12_MG1655_U00096_UP000000625_83333.fasta -d ../Proteomes/Ecoli_K12_DH10B_NC010473_UP000000318.fasta -e ../Genomes/Ecoli_K12_MG1655_chrom_U00096.gbk -f ../Genomes/Ecoli_K12_W3110_NC_007779.gbk -o TEST_out
 #/usr/local/bin/python3 ~/CODE/extract_recip_best_blast_hits.py -a
 #NOT_REVERSED_FILE -b REVERSED_FILE -o OUT_FILE_NAME -c
 #NOT_REVERSED.fasta -d REVERSED.fasta
