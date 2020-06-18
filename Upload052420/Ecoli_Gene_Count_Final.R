@@ -1,5 +1,5 @@
 
-
+#load library
 library(data.table)
 library(edgeR)
 library(magrittr)
@@ -8,10 +8,11 @@ library(ggplot2)
 
 options(scipen = 999)
 
-#Setting working directory to access all the to-be-used files 
-setwd("../Gene_expression_data")
+setwd("/home/dlato/Queenie_2019_2020/Upload052420/Gene_expression_data")
 
-#store all the files in the directory in a list
+getwd()
+
+##just housekeeping
 files <- list.files()
 
 #ATCC_GSE94978 simpliying df-------------------
@@ -115,7 +116,6 @@ BW25113 %<>%
 #K12_DH10B  simplying df-------------
 #K12_DH10B_GSE98890
 #4362-4237 = 125 dups nrow(K12_DH10B_GSE98890)-length(unique(K12_DH10B_GSE98890$gene_name))
-K12_DH10B_GSE98890 <- read.delim(files[6])
 
 K12_DH10B_GSE98890 %<>% group_by(gene_name) %>%
   mutate(temp=length(unlist(strsplit(gene_name,"_"))),
@@ -481,6 +481,7 @@ BW25113_final %<>% select(gene_id, Locus_tag, gbk_start, gbk_end, gbk_midpoint, 
 
 K12_DH10B_final <- K12_DH10B_GSE98890 %>% merge(K12_DH_info, by.x="locus_tag", 
                                                by.y="gbk_old_locus_tag") %>%
+                                               by.y="gbk_old_locus_tag") %>%
   select(locus_tag, gene_id, gbk_start, gbk_end, gbk_midpoint, gbk_gene_id, gbk_locus_tag,
                 norm_exp=norm_count)
 #115 not found in gbk
@@ -561,3 +562,7 @@ print("code finished running")
 # length(intersect(BW25113[["gene_id"]], K12MG1655[["gene_id"]]))
 # #4277 from 4507, 4898
 # View(BW25113[K12MG1655[["gene_id"]] %in% BW25113[["gene_id"]],])
+
+
+
+
