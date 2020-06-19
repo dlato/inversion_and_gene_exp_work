@@ -1,0 +1,9 @@
+blastp -num_threads 2 -query ../Proteomes/Ecoli_ATCC_25922_NZCP009072_UP000001410.fasta  -db ../Proteomes/Ecoli_K12_DH10B_blast_db -out Blast_ATCC_DN10B_default.tab -outfmt "6" 
+blastp -num_threads 2 -query ../Proteomes/Ecoli_ATCC_25922_NZCP009072_UP000001410.fasta  -db ../Proteomes/Ecol_K12_MG1655_blast_db -out Blast_ATCC_MG1655_default.tab -outfmt "6" 
+
+blastp -num_threads 2 -query ../Proteomes/Ecoli_K12_DH10B_NC010473_UP000000318.fasta  -db ../Proteomes/Ecoli_ATCC_25922_blast_db -out Blast_DH10B_ATCC_default.tab -outfmt "6" 
+blastp -num_threads 2 -query ../Proteomes/Ecoli_K12_DH10B_NC010473_UP000000318.fasta  -db ../Proteomes/Ecol_K12_MG1655_blast_db -out Blast_DH10B_MG1655_default.tab -outfmt "6" 
+
+blastp -num_threads 2 -query ../Proteomes/Ecoli_K12_MG1655_U00096_UP000000625_83333.fasta  -db ../Proteomes/Ecoli_ATCC_25922_blast_db -out Blast_MG1655_ATCC_default.tab -outfmt "6" 
+blastp -num_threads 2 -query ../Proteomes/Ecoli_K12_MG1655_U00096_UP000000625_83333.fasta  -db ../Proteomes/Ecoli_K12_DH10B_blast_db -out Blast_MG1655_DH10B_default.tab -outfmt "6" 
+
