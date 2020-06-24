@@ -1,0 +1,1108 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nyt/global//global/global}
+  \entry{alokam2002inversions}{article}{}
+    \name{author}{4}{}{%
+      {{hash=AS}{%
+         family={Alokam},
+         familyi={A\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=LSL}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={S-L},
+         giveni={S\bibinithyphendelim L\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Said},
+         familyi={S\bibinitperiod},
+         given={K},
+         giveni={K},
+      }}%
+      {{hash=SKE}{%
+         family={Sanderson},
+         familyi={S\bibinitperiod},
+         given={K\bibnamedelima E},
+         giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Am Soc Microbiol}%
+    }
+    \strng{namehash}{AS+1}
+    \strng{fullhash}{ASLSLSKSKE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2002}
+    \field{labeldatesource}{}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{number}{22}
+    \field{pages}{6190\bibrangedash 6197}
+    \field{title}{{Inversions over the terminus region in Salmonella and
+  Escherichia coli: IS200s as the sites of homologous recombination inverting
+  the chromosome of Salmonella enterica serovar typhi}}
+    \field{volume}{184}
+    \field{journaltitle}{J Bacteriol}
+    \field{year}{2002}
+  \endentry
+
+  \entry{belda2005genome}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BE}{%
+         family={Belda},
+         familyi={B\bibinitperiod},
+         given={Eugeni},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Moya},
+         familyi={M\bibinitperiod},
+         given={Andres},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SFJ}{%
+         family={Silva},
+         familyi={S\bibinitperiod},
+         given={Francisco\bibnamedelima J},
+         giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{BE+1}
+    \strng{fullhash}{BEMASFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{6}
+    \field{pages}{1456\bibrangedash 1467}
+    \field{title}{{Genome rearrangement distances and gene order phylogeny in
+  gamma-proteobacteria}}
+    \field{volume}{22}
+    \field{journaltitle}{Mol Bio Evol}
+    \field{year}{2005}
+  \endentry
+
+  \entry{borst1987programmed}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BP}{%
+         family={Borst},
+         familyi={B\bibinitperiod},
+         given={P},
+         giveni={P},
+      }}%
+      {{hash=GDR}{%
+         family={Greaves},
+         familyi={G\bibinitperiod},
+         given={D\bibnamedelima R},
+         giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Association for the Advancement of Science}%
+    }
+    \strng{namehash}{BPGDR1}
+    \strng{fullhash}{BPGDR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1987}
+    \field{labeldatesource}{}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{number}{4789}
+    \field{pages}{658\bibrangedash 667}
+    \field{title}{{Programmed gene rearrangements altering gene expression}}
+    \field{volume}{235}
+    \field{journaltitle}{Science}
+    \field{year}{1987}
+  \endentry
+
+  \entry{cerdeno2005}{article}{}
+    \name{author}{10}{}{%
+      {{hash=CTAM}{%
+         family={Cerde{\~{n}}o-T{\'{a}}rraga},
+         familyi={C\bibinithyphendelim T\bibinitperiod},
+         given={A\bibnamedelima M},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Patrick},
+         familyi={P\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=CLC}{%
+         family={Crossman},
+         familyi={C\bibinitperiod},
+         given={L\bibnamedelima C},
+         giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=BG}{%
+         family={Blakely},
+         familyi={B\bibinitperiod},
+         given={G},
+         giveni={G},
+      }}%
+      {{hash=AV}{%
+         family={Abratt},
+         familyi={A\bibinitperiod},
+         given={V},
+         giveni={V},
+      }}%
+      {{hash=LN}{%
+         family={Lennard},
+         familyi={L\bibinitperiod},
+         given={N},
+         giveni={N},
+      }}%
+      {{hash=PI}{%
+         family={Poxton},
+         familyi={P\bibinitperiod},
+         given={I},
+         giveni={I},
+      }}%
+      {{hash=DB}{%
+         family={Duerden},
+         familyi={D\bibinitperiod},
+         given={B},
+         giveni={B},
+      }}%
+      {{hash=HB}{%
+         family={Harris},
+         familyi={H\bibinitperiod},
+         given={B},
+         giveni={B},
+      }}%
+      {{hash=QMA}{%
+         family={Quail},
+         familyi={Q\bibinitperiod},
+         given={M\bibnamedelima A},
+         giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Association for the Advancement of Science}%
+    }
+    \strng{namehash}{CTAM+1}
+    \strng{fullhash}{CTAMPSCLCBGAVLNPIDBHBQMA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2005}
+    \field{labeldatesource}{}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{number}{5714}
+    \field{pages}{1463\bibrangedash 1465}
+    \field{title}{{Extensive DNA inversions in the \textit{B. fragilis} genome
+  control variable gene expression}}
+    \field{volume}{307}
+    \field{journaltitle}{Science}
+    \field{year}{2005}
+  \endentry
+
+  \entry{cui2012}{article}{}
+    \name{author}{4}{}{%
+      {{hash=CL}{%
+         family={Cui},
+         familyi={C\bibinitperiod},
+         given={L},
+         giveni={L},
+      }}%
+      {{hash=NH}{%
+         family={Neoh},
+         familyi={N\bibinitperiod},
+         given={H},
+         giveni={H},
+      }}%
+      {{hash=IA}{%
+         family={Iwamoto},
+         familyi={I\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+      {{hash=HK}{%
+         family={Hiramatsu},
+         familyi={H\bibinitperiod},
+         given={K},
+         giveni={K},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {National Acad Sciences}%
+    }
+    \strng{namehash}{CL+1}
+    \strng{fullhash}{CLNHIAHK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{number}{25}
+    \field{pages}{E1647\bibrangedash E1656}
+    \field{title}{{Coordinated phenotype switching with large-scale chromosome
+  flip-flop inversion observed in bacteria}}
+    \field{volume}{109}
+    \field{journaltitle}{Proc Natl Acad Sci}
+    \field{year}{2012}
+  \endentry
+
+  \entry{furuta2011}{article}{}
+    \name{author}{10}{}{%
+      {{hash=FY}{%
+         family={Furuta},
+         familyi={F\bibinitperiod},
+         given={Y},
+         giveni={Y},
+      }}%
+      {{hash=KM}{%
+         family={Kawai},
+         familyi={K\bibinitperiod},
+         given={M},
+         giveni={M},
+      }}%
+      {{hash=YK}{%
+         family={Yahara},
+         familyi={Y\bibinitperiod},
+         given={K},
+         giveni={K},
+      }}%
+      {{hash=TN}{%
+         family={Takahashi},
+         familyi={T\bibinitperiod},
+         given={N},
+         giveni={N},
+      }}%
+      {{hash=HN}{%
+         family={Handa},
+         familyi={H\bibinitperiod},
+         given={N},
+         giveni={N},
+      }}%
+      {{hash=TT}{%
+         family={Tsuru},
+         familyi={T\bibinitperiod},
+         given={T},
+         giveni={T},
+      }}%
+      {{hash=OK}{%
+         family={Oshima},
+         familyi={O\bibinitperiod},
+         given={K},
+         giveni={K},
+      }}%
+      {{hash=YM}{%
+         family={Yoshida},
+         familyi={Y\bibinitperiod},
+         given={M},
+         giveni={M},
+      }}%
+      {{hash=AT}{%
+         family={Azuma},
+         familyi={A\bibinitperiod},
+         given={T},
+         giveni={T},
+      }}%
+      {{hash=HM}{%
+         family={Hattori},
+         familyi={H\bibinitperiod},
+         given={M},
+         giveni={M},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {National Acad Sciences}%
+    }
+    \strng{namehash}{FY+1}
+    \strng{fullhash}{FYKMYKTNHNTTOKYMATHM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2011}
+    \field{labeldatesource}{}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{number}{4}
+    \field{pages}{1501\bibrangedash 1506}
+    \field{title}{{Birth and death of genes linked to chromosomal inversion}}
+    \field{volume}{108}
+    \field{journaltitle}{Proc of Natl Acad Sci}
+    \field{year}{2011}
+  \endentry
+
+  \entry{hanage2016not}{article}{}
+    \name{author}{1}{}{%
+      {{hash=HWP}{%
+         family={Hanage},
+         familyi={H\bibinitperiod},
+         given={W\bibnamedelima P},
+         giveni={W\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cold Spring Harbor Lab}%
+    }
+    \strng{namehash}{HWP1}
+    \strng{fullhash}{HWP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{pages}{a018069}
+    \field{title}{{Not so simple after all: bacteria, their population
+  genetics, and recombination}}
+    \field{journaltitle}{Cold Spring Harbor perspectives in biology}
+    \field{year}{2016}
+  \endentry
+
+  \entry{hill1988}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HCW}{%
+         family={Hill},
+         familyi={H\bibinitperiod},
+         given={C\bibnamedelima W},
+         giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=GJA}{%
+         family={Gray},
+         familyi={G\bibinitperiod},
+         given={J\bibnamedelima A},
+         giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Genetics Soc America}%
+    }
+    \strng{namehash}{HCWGJA1}
+    \strng{fullhash}{HCWGJA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1988}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{4}
+    \field{pages}{771\bibrangedash 778}
+    \field{title}{{Effects of chromosomal inversion on cell fitness in
+  \textit{Escherichia coli K-12}.}}
+    \field{volume}{119}
+    \field{journaltitle}{Genetics}
+    \field{year}{1988}
+  \endentry
+
+  \entry{hughes2000functional}{article}{}
+    \name{author}{11}{}{%
+      {{hash=HTR}{%
+         family={Hughes},
+         familyi={H\bibinitperiod},
+         given={Timothy\bibnamedelima R},
+         giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=MMJ}{%
+         family={Marton},
+         familyi={M\bibinitperiod},
+         given={Matthew\bibnamedelima J},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=JAR}{%
+         family={Jones},
+         familyi={J\bibinitperiod},
+         given={Allan\bibnamedelima R},
+         giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=RCJ}{%
+         family={Roberts},
+         familyi={R\bibinitperiod},
+         given={Christopher\bibnamedelima J},
+         giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Stoughton},
+         familyi={S\bibinitperiod},
+         given={Roland},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=ACD}{%
+         family={Armour},
+         familyi={A\bibinitperiod},
+         given={Christopher\bibnamedelima D},
+         giveni={C\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=BHA}{%
+         family={Bennett},
+         familyi={B\bibinitperiod},
+         given={Holly\bibnamedelima A},
+         giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=CE}{%
+         family={Coffey},
+         familyi={C\bibinitperiod},
+         given={Ernest},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=DH}{%
+         family={Dai},
+         familyi={D\bibinitperiod},
+         given={Hongyue},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=HYD}{%
+         family={He},
+         familyi={H\bibinitperiod},
+         given={Yudong\bibnamedelima D},
+         giveni={Y\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=O}{%
+         family={Others},
+         familyi={O\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{HTR+1}
+    \strng{fullhash}{HTRMMJJARRCJSRACDBHACEDHHYDO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2000}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{1}
+    \field{pages}{109\bibrangedash 126}
+    \field{title}{{Functional discovery via a compendium of expression
+  profiles}}
+    \field{volume}{102}
+    \field{journaltitle}{Cell}
+    \field{year}{2000}
+  \endentry
+
+  \entry{Huyn:01}{article}{}
+    \name{author}{3}{}{%
+      {{hash=HMA}{%
+         family={Huynen},
+         familyi={H\bibinitperiod},
+         given={M\bibnamedelima A},
+         giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=SB}{%
+         family={Snel},
+         familyi={S\bibinitperiod},
+         given={B},
+         giveni={B},
+      }}%
+      {{hash=BP}{%
+         family={Bork},
+         familyi={B\bibinitperiod},
+         given={P},
+         giveni={P},
+      }}%
+    }
+    \strng{namehash}{HMA+1}
+    \strng{fullhash}{HMASBBP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2001}
+    \field{labeldatesource}{}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    Comparisons of the gene order in closely related genomes reveal a major
+  role for inversions in the genome shuffling process. In contrast to
+  prokaryotes, where the inversions are predominantly large, half of the
+  inversions between Saccharomyces cerevisiae and Candida albicans appear to be
+  small, often encompassing only a single gene. Overall the genome
+  rearrangement rate appears higher in eukaryotes than in prokaryotes, and the
+  current genome data do not indicate that functional constraints on the
+  co-expression of neighboring genes have a large role in conserving eukaryotic
+  gene order. Nevertheless, qualitatively interesting examples of conservation
+  of gene order in eukaryotes can be observed.%
+    }
+    \verb{doi}
+    \verb 10.1016/s0168-9525(01)02302-2
+    \endverb
+    \field{pages}{304\bibrangedash 306}
+    \field{title}{{Inversions and the dynamics of eukaryotic gene order}}
+    \field{volume}{17}
+    \field{journaltitle}{Trends Genet}
+    \field{year}{2001}
+  \endentry
+
+  \entry{kresse2003}{article}{}
+    \name{author}{4}{}{%
+      {{hash=KAU}{%
+         family={Kresse},
+         familyi={K\bibinitperiod},
+         given={A\bibnamedelima U},
+         giveni={A\bibinitperiod\bibinitdelim U\bibinitperiod},
+      }}%
+      {{hash=DSD}{%
+         family={Dinesh},
+         familyi={D\bibinitperiod},
+         given={S\bibnamedelima D},
+         giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Larbig},
+         familyi={L\bibinitperiod},
+         given={K},
+         giveni={K},
+      }}%
+      {{hash=RU}{%
+         family={R{\"{o}}mling},
+         familyi={R\bibinitperiod},
+         given={U},
+         giveni={U},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Wiley Online Library}%
+    }
+    \strng{namehash}{KAU+1}
+    \strng{fullhash}{KAUDSDLKRU1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2003}
+    \field{labeldatesource}{}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{1}
+    \field{pages}{145\bibrangedash 158}
+    \field{title}{{Impact of large chromosomal inversions on the adaptation and
+  evolution of Pseudomonas aeruginosa chronically colonizing cystic fibrosis
+  lungs}}
+    \field{volume}{47}
+    \field{journaltitle}{Mol Microbiol}
+    \field{year}{2003}
+  \endentry
+
+  \entry{LiJ:19}{article}{}
+    \name{author}{5}{}{%
+      {{hash=LJW}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={J\bibnamedelima W},
+         giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+      {{hash=WJ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+      {{hash=LC}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={C},
+         giveni={C},
+      }}%
+      {{hash=ZJR}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={J\bibnamedelima R},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LJW+1}
+    \strng{fullhash}{LJWLJWJLCZJR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2019}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    Streptococcus pneumoniae (pneumococcus), a major human pathogen, is well
+  known for its adaptation to various host environments. Multiple DNA
+  inversions in the three DNA methyltransferase hsdS genes (hsdS A, hsdS B, and
+  hsdS C) of the colony opacity determinant (cod) locus generate extensive
+  epigenetic and phenotypic diversity. However, it is unclear whether all three
+  hsdS genes are functional and how the inversions mechanistically occur. In
+  this work, our transcriptional analysis revealed active expression of hsdS A
+  but not hsdS B and hsdS C, indicating that hsdS B and hsdS C do not produce
+  functional proteins and instead act as sources for altering the sequence of
+  hsdS A by DNA inversions. Consistent with our previous finding that the hsdS
+  inversions are mediated by three pairs of inverted repeats (IR1, IR2, and
+  IR3), this study showed that the 15-bp IR1 and its upstream sequence are
+  strictly required for the inversion between hsdS A and hsdS B Furthermore, a
+  single tyrosine recombinase PsrA catalyzes the inversions mediated by IR1,
+  IR2, and IR3, based on the dramatic loss of these inversions in the psrA
+  mutant. Surprisingly, PsrA-independent inversions were also detected in the
+  hsdS sequences flanked by the IR2 (298 bp) and IR3 (85 bp) long inverted
+  repeats, which appear to occur spontaneously in the absence of site-specific
+  or RecA-mediated recombination. Because the HsdS subunit is responsible for
+  the sequence specificity of type I restriction modification DNA
+  methyltransferase, these results have revealed that S. pneumoniae varies the
+  methylation patterns of the genome DNA (epigenetic status) by employing
+  multiple mechanisms of DNA inversion in the cod locus.IMPORTANCE
+  Streptococcus pneumoniae is a major pathogen of human infections with the
+  capacity for adaptation to host environments, but the molecular mechanisms
+  behind this phenomenon remain unclear. Previous studies reveal that
+  pneumococcus extends epigenetic and phenotypic diversity by DNA inversions in
+  three methyltransferase hsdS genes of the cod locus. This work revealed that
+  only the hsdS gene that is in the same orientation as hsdM is actively
+  transcribed, but the other two are silent, serving as DNA sources for
+  inversions. While most of the hsdS inversions are catalyzed by PsrA
+  recombinase, the sequences bound by long inverted repeats also undergo
+  inversions via an unknown mechanism. Our results revealed that S. pneumoniae
+  switches the methylation patterns of the genome (epigenetics) by employing
+  multiple mechanisms of DNA inversion.%
+    }
+    \verb{doi}
+    \verb 10.1128/JB.00581-18
+    \endverb
+    \field{title}{{Molecular Mechanisms of hsdS Inversions in the cod Locus of
+  Streptococcus pneumoniae}}
+    \field{volume}{201}
+    \field{journaltitle}{J Bacteriol}
+    \field{year}{2019}
+  \endentry
+
+  \entry{louarn1985}{article}{}
+    \name{author}{5}{}{%
+      {{hash=LJM}{%
+         family={Louarn},
+         familyi={L\bibinitperiod},
+         given={J\bibnamedelima M},
+         giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=BJP}{%
+         family={Bouche},
+         familyi={B\bibinitperiod},
+         given={J\bibnamedelima P},
+         giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=LF}{%
+         family={Legendre},
+         familyi={L\bibinitperiod},
+         given={F},
+         giveni={F},
+      }}%
+      {{hash=LJ}{%
+         family={Louarn},
+         familyi={L\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+      {{hash=PJ}{%
+         family={Patte},
+         familyi={P\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{LJM+1}
+    \strng{fullhash}{LJMBJPLFLJPJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1985}
+    \field{labeldatesource}{}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{3}
+    \field{pages}{467\bibrangedash 476}
+    \field{title}{{Characterization and properties of very large inversions of
+  the E. coli chromosome along the origin-to-terminus axis}}
+    \field{volume}{201}
+    \field{journaltitle}{Mol Gen Genet MGG}
+    \field{year}{1985}
+  \endentry
+
+  \entry{naseeb2016}{article}{}
+    \name{author}{6}{}{%
+      {{hash=NS}{%
+         family={Naseeb},
+         familyi={N\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=CZ}{%
+         family={Carter},
+         familyi={C\bibinitperiod},
+         given={Z},
+         giveni={Z},
+      }}%
+      {{hash=MD}{%
+         family={Minnis},
+         familyi={M\bibinitperiod},
+         given={D},
+         giveni={D},
+      }}%
+      {{hash=DI}{%
+         family={Donaldson},
+         familyi={D\bibinitperiod},
+         given={I},
+         giveni={I},
+      }}%
+      {{hash=ZL}{%
+         family={Zeef},
+         familyi={Z\bibinitperiod},
+         given={L},
+         giveni={L},
+      }}%
+      {{hash=DD}{%
+         family={Delneri},
+         familyi={D\bibinitperiod},
+         given={D},
+         giveni={D},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Oxford University Press}%
+    }
+    \strng{namehash}{NS+1}
+    \strng{fullhash}{NSCZMDDIZLDD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2016}
+    \field{labeldatesource}{}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{number}{7}
+    \field{pages}{1679\bibrangedash 1696}
+    \field{title}{{Widespread impact of chromosomal inversions on gene
+  expression uncovers robustness via phenotypic buffering}}
+    \field{volume}{33}
+    \field{journaltitle}{Mol Biol Evol}
+    \field{year}{2016}
+  \endentry
+
+  \entry{raeside2014}{article}{}
+    \name{author}{10}{}{%
+      {{hash=RC}{%
+         family={Raeside},
+         familyi={R\bibinitperiod},
+         given={C},
+         giveni={C},
+      }}%
+      {{hash=GJ}{%
+         family={Gaff{\'{e}}},
+         familyi={G\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+      {{hash=DDE}{%
+         family={Deatherage},
+         familyi={D\bibinitperiod},
+         given={D\bibnamedelima E},
+         giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=TO}{%
+         family={Tenaillon},
+         familyi={T\bibinitperiod},
+         given={O},
+         giveni={O},
+      }}%
+      {{hash=BM}{%
+         family={Briska},
+         familyi={B\bibinitperiod},
+         given={M},
+         giveni={M},
+      }}%
+      {{hash=PRN}{%
+         family={Ptashkin},
+         familyi={P\bibinitperiod},
+         given={R\bibnamedelima N},
+         giveni={R\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Cruveiller},
+         familyi={C\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=MC}{%
+         family={M{\'{e}}digue},
+         familyi={M\bibinitperiod},
+         given={C},
+         giveni={C},
+      }}%
+      {{hash=LRE}{%
+         family={Lenski},
+         familyi={L\bibinitperiod},
+         given={R\bibnamedelima E},
+         giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=BJE}{%
+         family={Barrick},
+         familyi={B\bibinitperiod},
+         given={J\bibnamedelima E},
+         giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Am Soc Microbiol}%
+    }
+    \strng{namehash}{RC+1}
+    \strng{fullhash}{RCGJDDETOBMPRNCSMCLREBJE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2014}
+    \field{labeldatesource}{}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{number}{5}
+    \field{pages}{e01377\bibrangedash 14}
+    \field{title}{{Large chromosomal rearrangements during a long-term
+  evolution experiment with \textit{Escherichia coli}}}
+    \field{volume}{5}
+    \field{journaltitle}{MBio}
+    \field{year}{2014}
+  \endentry
+
+  \entry{rocha2004order}{article}{}
+    \name{author}{1}{}{%
+      {{hash=REPC}{%
+         family={Rocha},
+         familyi={R\bibinitperiod},
+         given={E\bibnamedelima P\bibnamedelima C},
+         giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim
+  C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{REPC1}
+    \strng{fullhash}{REPC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2004}
+    \field{labeldatesource}{}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{number}{5}
+    \field{pages}{519\bibrangedash 527}
+    \field{title}{{Order and disorder in bacterial genomes}}
+    \field{volume}{7}
+    \field{journaltitle}{Curr Opin Microbiol}
+    \field{year}{2004}
+  \endentry
+
+  \entry{segall1988}{article}{}
+    \name{author}{3}{}{%
+      {{hash=SA}{%
+         family={Segall},
+         familyi={S\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+      {{hash=MMJ}{%
+         family={Mahan},
+         familyi={M\bibinitperiod},
+         given={M\bibnamedelima J},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=RJR}{%
+         family={Roth},
+         familyi={R\bibinitperiod},
+         given={J\bibnamedelima R},
+         giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Association for the Advancement of Science}%
+    }
+    \strng{namehash}{SA+1}
+    \strng{fullhash}{SAMMJRJR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1988}
+    \field{labeldatesource}{}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{4871}
+    \field{pages}{1314\bibrangedash 1318}
+    \field{title}{{Rearrangement of the bacterial chromosome: forbidden
+  inversions}}
+    \field{volume}{241}
+    \field{journaltitle}{Science}
+    \field{year}{1988}
+  \endentry
+
+  \entry{sekulovic2018}{article}{}
+    \name{author}{6}{}{%
+      {{hash=SO}{%
+         family={Sekulovic},
+         familyi={S\bibinitperiod},
+         given={O},
+         giveni={O},
+      }}%
+      {{hash=GEM}{%
+         family={Garrett},
+         familyi={G\bibinitperiod},
+         given={E\bibnamedelima M},
+         giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=BJ}{%
+         family={Bourgeois},
+         familyi={B\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+      {{hash=TR}{%
+         family={Tamayo},
+         familyi={T\bibinitperiod},
+         given={R},
+         giveni={R},
+      }}%
+      {{hash=SA}{%
+         family={Shen},
+         familyi={S\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+      {{hash=CA}{%
+         family={Camilli},
+         familyi={C\bibinitperiod},
+         given={A},
+         giveni={A},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Public Library of Science}%
+    }
+    \strng{namehash}{SO+1}
+    \strng{fullhash}{SOGEMBJTRSACA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2018}
+    \field{labeldatesource}{}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{4}
+    \field{pages}{e1007332}
+    \field{title}{{Genome-wide detection of conservative site-specific
+  recombination in bacteria}}
+    \field{volume}{14}
+    \field{journaltitle}{PLoS Genet}
+    \field{year}{2018}
+  \endentry
+
+  \entry{sun2012}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SS}{%
+         family={Sun},
+         familyi={S\bibinitperiod},
+         given={S},
+         giveni={S},
+      }}%
+      {{hash=KR}{%
+         family={Ke},
+         familyi={K\bibinitperiod},
+         given={R},
+         giveni={R},
+      }}%
+      {{hash=HD}{%
+         family={Hughes},
+         familyi={H\bibinitperiod},
+         given={D},
+         giveni={D},
+      }}%
+      {{hash=NM}{%
+         family={Nilsson},
+         familyi={N\bibinitperiod},
+         given={M},
+         giveni={M},
+      }}%
+      {{hash=ADI}{%
+         family={Andersson},
+         familyi={A\bibinitperiod},
+         given={D\bibnamedelima I},
+         giveni={D\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Public Library of Science}%
+    }
+    \strng{namehash}{SS+1}
+    \strng{fullhash}{SSKRHDNMADI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2012}
+    \field{labeldatesource}{}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{8}
+    \field{pages}{e42639}
+    \field{title}{{Genome-wide detection of spontaneous chromosomal
+  rearrangements in bacteria}}
+    \field{volume}{7}
+    \field{journaltitle}{PloS one}
+    \field{year}{2012}
+  \endentry
+
+  \entry{zieg1978}{article}{}
+    \name{author}{3}{}{%
+      {{hash=ZJ}{%
+         family={Zieg},
+         familyi={Z\bibinitperiod},
+         given={J},
+         giveni={J},
+      }}%
+      {{hash=HM}{%
+         family={Hilmen},
+         familyi={H\bibinitperiod},
+         given={M},
+         giveni={M},
+      }}%
+      {{hash=SM}{%
+         family={Simon},
+         familyi={S\bibinitperiod},
+         given={M},
+         giveni={M},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{ZJ+1}
+    \strng{fullhash}{ZJHMSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{1978}
+    \field{labeldatesource}{}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{number}{1}
+    \field{pages}{237\bibrangedash 244}
+    \field{title}{{Regulation of gene expression by site-specific inversion}}
+    \field{volume}{15}
+    \field{journaltitle}{Cell}
+    \field{year}{1978}
+  \endentry
+\enddatalist
+\endinput

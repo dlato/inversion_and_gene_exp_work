@@ -1,0 +1,16 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Queenie_application_job_description.aux
+The style file: biblatex.bst
+Database file #1: Queenie_application_job_description-blx.bib
+Database file #2: ./ALL_papers2.bib
+I was expecting a `,' or a `}'---line 212 of file ./ALL_papers2.bib
+ : 
+ : @article{Wicker2016,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 681 of file ./ALL_papers2.bib
+ : 
+ : @article{foster2018determinants,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Biblatex version: 3.13
+(There were 2 error messages)

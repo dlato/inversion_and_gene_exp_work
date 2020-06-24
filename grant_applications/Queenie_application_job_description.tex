@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+\usepackage{scrtime} % for \thistime (this package MUST be listed first!)
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xspace}
+%\usepackage{underscore}
+\usepackage{pdfpages}
+\usepackage{xcolor,colortbl}%for changing cell colour
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\pagestyle{fancy}
+\setlength{\headheight}{15.2pt}
+\setlength{\headsep}{13 pt}
+\setlength{\parindent}{28 pt}
+\setlength{\parskip}{12 pt}
+\pagestyle{fancyplain}
+\usepackage[T1]{fontenc}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage[normalem]{ulem} %to strikeout text
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc, arrows}
+\usepackage{lscape} %to make the page landscape
+\usepackage{color,amsmath,amssymb,amsthm,mathrsfs,amsfonts,dsfont}
+\usepackage{indentfirst} % to indent the first paragraph
+\rhead{\fancyplain{}{Science Employment Grant 2020: Project Description \hfill Queenie Zeng}}
+%\rhead{\fancyplain{}{Thesis Update April 8, 2019 \hfill Daniella Lato}}
+\title{Sinorhizobium Update}
+\author{Daniella Lato}
+\date{\today}
+\renewcommand\headrulewidth{0.5mm}
+\newcommand{\cc}{\cellcolor{black!16}}
+\newcommand{\s}{\textit{Sinorhizobium}\xspace}
+\newcommand{\smel}{\textit{S.\,meliloti}\xspace}
+\newcommand{\smed}{\textit{S.\,medicae}\xspace}
+\newcommand{\sfred}{\textit{S.\,fredii}\xspace}
+\newcommand{\ssah}{\textit{S.\,saheli}\xspace}
+\newcommand{\ster}{\textit{S.\,terangae}\xspace}
+\newcommand{\agro}{\textit{A.\,tumefaciens}\xspace}
+\newcommand{\escoli}{\textit{Escherichia coli}\xspace}
+\newcommand{\bur}{\textit{Burkholderia}\xspace}
+\newcommand{\vib}{\textit{Vibrio}\xspace}
+\newcommand{\sul}{\textit{Sulfolobus}\xspace}
+\newcommand{\ent}{\textit{Enterobacteria}\xspace}
+\newcommand{\p}{progressiveMauve\xspace}
+\newcommand{\bas}{\textit{Bacillus subtilis}\xspace}
+\newcommand{\strep}{\textit{Streptomyces}\xspace}
+\newcommand{\bass}{\textit{B.\,subtilis}\xspace}
+\newcommand{\ecol}{\textit{E.\,coli}\xspace}
+\newcommand{\ecoli}{\textit{Escherichia coli}\xspace}
+\newcommand{\tub}{\textit{Mycobacterium tuberculosis}\xspace}
+\newcommand{\sal}{\textit{Salmonella}\xspace}
+\newcommand{\pa}{pSymA\xspace}
+\newcommand{\pb}{pSymB\xspace}
+\newcommand{\snat}{\textit{S.\,natalensis}\xspace}
+\newcommand{\scoe}{\textit{S.\,coelicolor}\xspace}
+\newcommand{\borrb}{\textit{Borrelia burgdorferi}\xspace}
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\newcommand{\ch}{$\checkmark$}
+\newcommand{\dn}{\textit{dN}\xspace}
+\newcommand{\ds}{\textit{dS}\xspace}
+\newcommand{\sven}{\textit{S.\,venezuelae}\xspace}
+%\newcommand{\scoe}{\textit{S.\,coelicolor}\xspace}
+\newcommand{\sliv}{\textit{S.\,lividans}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAPHY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[backend=bibtex, giveninits=true, doi=false, isbn=false, natbib=true, url=false, eprint=false, style=authoryear, sorting=nyt, maxcitenames=2, maxbibnames=10, minbibnames = 10, uniquename=false, uniquelist=false, dashed=false]{biblatex} % can change the maxbibnames to cut long author lists to specified length followed by et al., currently set to 99.
+%% bibliography for each chapter...
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{#1\isdot} % removes quotes around title
+\renewbibmacro*{volume+number+eid}{%
+	\printfield{volume}%
+	%  \setunit*{\adddot}% DELETED
+	\printfield{number}%
+	\setunit{\space}%
+	\printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+%\renewcommand*{\newunitpunct}{\space} % remove period after date, but I like it. 
+\renewbibmacro{in:}{\ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}} % this remove the "In: Journal Name" from articles in the bibliography, which happens with the ynt 
+\renewbibmacro*{note+pages}{%
+	\printfield{note}%
+	\setunit{,\space}% could add punctuation here for after volume
+	\printfield{pages}%
+	\newunit}    
+\DefineBibliographyStrings{english}{% clears the pp from pages
+	page = {\ifbibliography{}{\adddot}},
+	pages = {\ifbibliography{}{\adddot}},
+} 
+\DeclareFieldFormat{journaltitle}{#1\isdot}
+\renewcommand*{\revsdnamepunct}{}%remove comma between last name and first name
+\DeclareNameAlias{sortname}{last-first}
+\renewcommand*{\nameyeardelim}{\addspace} % remove comma in text between name and date
+\addbibresource{./ALL_papers2.bib} % The filename of the bibliography
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+\renewrobustcmd*{\bibinitperiod}{}
+% you'll have to play with the citation styles to resemble the standard in your field, or just leave them as is here. 
+% or, if there is a bst file you like, just get rid of all this biblatex stuff and go back to bibtex. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+Bacteria utilize genomic reorganization, such as rearrangements and inversions, to create genetic diversity  \citep{hughes2000functional,belda2005genome} and assist in speciation and adaptation \citep{kresse2003}.
+This reorganization can help with adaptation strategies \citep{rocha2004order, hanage2016not} and gene conversion \citep{hanage2016not}.
+Inversions are one particular type of genomic reorganization that can promote spontaneous genome rearrangements \citep{sun2012}.
+There has been evidence that inversions are non-random and provide specific functions in bacterial genome evolution \citep{kresse2003}.
+In some cases, inversions are the only source of rearrangement in bacteria. %\citep{romling1997}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ramifications of inversions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Inversions can have a number of effects on a variety of molecular trends.
+For example, inversions can impact gene gain and loss \citep{furuta2011}, outer membrane proteins \citep{furuta2011}, gene orientation% \citep{huynen2001}
+, and intracellular signalling \citep{sekulovic2018}.
+These can all impact the conservation of a gene or how genes are co-regulated depending on their orientation \citep{Huyn:01}.
+Since inversions can promote recombination \citep{segall1988}, there is a potential for inversions to promote the introduction of genes with novel function. %\citep{korneev2002}.
+%%%% Inversions impacting physical structure of chromosome
+%There have also been examples of inversions disrupting the macro- and micro-domains of the folded chromosomes \citep{segall1988,raeside2014,naseeb2016}, which could be extremely harmful for the growth and well being of the bacteria.
+
+%%%% Inversions as control switches
+One interesting role that inversions can play is the role of a control switch.
+These, ``switches'' can impact, for example, antibiotic resistance and turn it ``on/off'' \citep{cui2012}.
+Some inversions have the ability to revert or reverse \citep{hill1988,louarn1985,cui2012}. %okinaka2011,,cuiet2012
+This switching appears to be random, but maintaining an inverted or reverted state is organized \citep{cui2012,sekulovic2018}.
+These inversions allow the bacteria to switch between various states \citep{borst1987programmed} such as having a flagella or not \citep{LiJ:19}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Inversions and gene expression
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+As mentioned previously, inversions provide a way for bacteria to epigenetically alter their gene expression \citep{zieg1978,sekulovic2018,LiJ:19}.%zieg1977,
+In some cases inversions can bring a silent gene to the expression site, ``turning on'' expression for that gene \citep{cerdeno2005}.
+Other times the gene expression alteration is non-specific and the inversions causes genes in areas close to the inversion to become deferentially expressed \citep{cerdeno2005,naseeb2016,sekulovic2018}. %wong2005,
+This again depends on the organism and inversions, as there have been cases where inversions do not alter expression of nearby genes, %\citep{Mead:10}, 
+or the organism is so robust that inversions which should alter gene expression, have no impact \citep{alokam2002inversions}.
+
+%This activation of gene expression is usually linked to moving genes closer to promoters or enhances through inversions \citep{borst1987programmed}.
+%Conversely, the removal of a promoter due to an inversion can cause inactivation of gene expression \citep{borst1987programmed}.
+%There have been cases where short sequences flanking inversions are recognized by sequence specific recombinases which can allow the cell to determine which genes are available to the enzymes \citep{Zieg:77,borst1987programmed}.%zieg1977,
+%However, like any genomic reorganization, there are errors which could negatively impact gene expression control \citep{borst1987programmed}.
+%\citet{borst1987programmed} gives an overview of some predominant examples of how rearrangements can influence gene expression in a number of organisms ranging from bacteria to chicken.
+
+%%%%%%%%%%%%%%
+% what others have done
+%%%%%%%%%%%%%%
+Previous studies investigating the impacts inversions have on bacterial gene expression have largely focused on a single inversion \citep{zieg1978,sekulovic2018}, or the impact inversions have on the expression of a few genes \citep{LiJ:19}. %Zieg:77, 
+The few studies that have taken a more whole genome approach to analyzing inversions and their impact on gene expression, have concluded that there is differential gene expression between inverted and non-inverted segments \citep{alokam2002inversions,naseeb2016}. %Wong:05, 
+Although, there appears to be no pattern of genes being completely up- or down- regulated in inverted or non-inverted segments \citep{alokam2002inversions,naseeb2016}. %Wong:05,
+Most of these whole genome analysis are focused on yeast \citep{naseeb2016}%Wong:05,
+, with only one looking at genome wide inversions in bacteria \citep{alokam2002inversions}.
+\citet{alokam2002inversions} focus on comparing inversions between the distantly related species \sal and \ecol.
+%%%%%%%%%%%%%%
+% why I am better
+%%%%%%%%%%%%%%
+In this work, we aim to explore differences in gene expression due to inversions between closely related strains of \ecol.
+Although there has been work done to identify inversions between closely related strains \citep{sun2012}, to our knowledge, an in-depth analysis of gene expression and inversions in the same strain of bacteria has not been investigated.
+Most inversions have an unknown function \citep{raeside2014}, including how they impact gene expression.
+
+\newpage
+\pagestyle{empty}
+
+\printbibliography[heading=bibintoc]
+\end{document}
