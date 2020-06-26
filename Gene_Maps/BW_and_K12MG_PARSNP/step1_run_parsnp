@@ -1,0 +1,2 @@
+#run PARSNP on K12 MG1655 and BW25113
+parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ./Genomes/ -c
