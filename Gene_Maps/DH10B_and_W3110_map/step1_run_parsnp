@@ -1,0 +1,5 @@
+#make fasta files
+gbk2fasta ../../Genomes/Ecoli_K12_W3110_NC_007779.gbk > ./genomes/Ecoli_K12_W3110_NC_007779.fasta
+#gbk2fasta ../../Genomes/Ecoli_CFT073_NC_004431.gbk > ../../Genomes/Ecoli_CFT073_NC_004431.fasta
+#run PARSNP on K12 DH10B and W3110
+parsnp -g ../../Genomes/Ecoli_K12_DH10B_NC_010473.gbk -d ./genomes/ -c

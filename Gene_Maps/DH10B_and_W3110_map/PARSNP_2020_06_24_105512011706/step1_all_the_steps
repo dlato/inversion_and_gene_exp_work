@@ -1,0 +1,93 @@
+# cut the alignment into blocks
+grep "[=>]" *.xmfa > ecoli_ref_genomes.txt
+#get fasta files
+gbk2fasta ../../../Genomes/Ecoli_K12_DH10B_NC_010473.gbk > ./Ecoli_K12_DH10B_NC_010473.fasta
+cp ../genomes/* .
+perl -p -i.bak -e "s/> />/g" *.fasta
+
+#commands to cut blocks
+cut_blocks.pl > run_samtools
+sh run_samtools
+
+
+#put back the missing headers
+l -1 B*_rev_comp*.fasta > miss_head
+#get into format:
+#perl -p -i.bak -e "s/>/>TAXA_NAME:/g" *.fasta
+parallel -j 10 < miss_head
+
+
+move the duplicated rev comp stuff
+mkdir Duplicated_rev_comp/
+#get below into the format:
+#mv Block*rev_comp*.fasta Duplicated_rev_comp/
+l -1 Block*rev_comp*.fasta > rev_comp_move
+parallel -j 10 < rev_comp_move
+mv *.bak Duplicated_rev_comp/
+
+#get below in the format: (remove the rev_comp)
+#mv Block*rev_comp*.fasta Block*.fasta
+l -1 Block*rev_comp*.fasta > rev_comp_switch
+parallel -j 10 < rev_comp_switch
+
+#combine all the taxa blocks into one
+#cat tax1 tax2 tax3 tax4 > Block*
+l -1 Block*.fasta > cat_blocks
+parallel -j 10 < cat_blocks
+
+#check if all taxa are present in each block
+mkdir BadBlocks/
+touch mv_good_blocks
+foreach x (Block*.fasta)
+if (`grep ">" $x | wc -l` != 2) then
+echo $x >> mv_good_blocks
+endif
+end
+#get mv_good_blocks in format
+#mv * BadBlocks/
+parallel -j 10 < mv_good_blocks
+
+#run MAFFT on each block
+l -1 Block*.fasta > mafft_commands
+#get in format:
+#~wilson/bin/mafft --auto Block86.fasta  > `basename Block86.fasta
+.fasta`.mafft
+parallel -j 10 < mafft_commands
+
+awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_K12_DH10B_NC_010473_gene_info.txt > NC_010473_coding_start_end.txt
+awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_K12_W3110_NC_007779_gene_info.txt > NC_007779_coding_start_end.txt
+sed -i '1d' NC_007779_coding_start_end.txt
+sed -i '1d' NC_010473_coding_start_end.txt
+
+perl -p -i.bak -e "s/>//g" *_coding_start_end.txt
+perl -p -i.bak -e "s/<//g" *_coding_start_end.txt
+
+
+edit the mafft files so they have the correct taxa names
+foreach x (*.mafft)
+perl -p -i.bak -e "s/ /\:/g" $x
+end
+#list all mafft files and then edit so it is in the format:
+#(python3 /home/dlato/CODE/gene_mapping.py *.mafft 0 4686137 >
+*.mafft_out) >& *.err
+l -1 *.mafft > get_gene_mapping_commands
+#split the blocks up into coding and non-coding parts
+parallel -j 10 < get_gene_mapping_commands
+
+
+cat *.err > ALL_stderr.txt
+grep "^T" ALL_stderr.txt
+
+
+# remove duplicated rows
+foreach x (Block*_mapping.txt)
+cat $x | uniq | grep -v -P "\tx\t|\t0\t" > `basename $x .txt`_uniq.txt
+end
+
+#combine
+cat *_uniq* > DH10B_and_W3110_gene_map.txt
+perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
+perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
+cp *_gene_map.txt ../../
+
+
