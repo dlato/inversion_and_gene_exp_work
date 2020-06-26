@@ -4,6 +4,8 @@ python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_BW2511
 python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_K12_DH10B_NC_010473.gbk Ecoli_K12_DH10B_NC_010473_gene_info.txt
 python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_K12_MG1655_chrom_U00096.gbk Ecoli_K12_MG1655_chrom_U00096_gene_info.txt
 python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_0157H7_chrom_Sakai_BA000007.gbk Ecoli_0157H7_chrom_Sakai_BA000007_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_K12_W3110_NC_007779.gbk Ecoli_K12_W3110_NC_007779_gene_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_CFT073_NC_004431.gbk Ecoli_CFT073_NC_004431_gene_info.txt
 # get the gene positions and strand information but for NEW versions
 # of genomes
 python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../Genomes/Ecoli_0157H7_chrom_Sakai_NC_002695_3Mar20_.gbk Ecoli_0157H7_chrom_Sakai_NC_002695_3Mar20_gene_info.txt
