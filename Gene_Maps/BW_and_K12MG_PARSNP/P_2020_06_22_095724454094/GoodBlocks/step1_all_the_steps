@@ -60,7 +60,7 @@ perl -p -i.bak -e "s/NZ_CP009273/CP009273/g" $x
 perl -p -i.bak -e "s/ /\:/g" $x
 end
 #list all mafft files and then edit so it is in the format:
-#(python3 /home/dlato/CODE/gene_mapping.py *.mafft 1 4641652 > *.mafft_out) >& *.err
+#(python3 /home/dlato/CODE/gene_mapping.py *.mafft 0 4641652 > *.mafft_out) >& *.err
 l -1 *.mafft > get_gene_mapping_commands
 #split the blocks up into coding and non-coding parts
 parallel -j 10 < get_gene_mapping_commands
