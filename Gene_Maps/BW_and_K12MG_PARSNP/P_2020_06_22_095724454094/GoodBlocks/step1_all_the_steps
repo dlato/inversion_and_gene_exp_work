@@ -71,7 +71,7 @@ grep "^T" ALL_stderr.txt
 
 # remove duplicated rows
 foreach x (Block*_mapping.txt)
-cat $x | uniq | grep -v -P "\tx\t|\t0\t" > `basename $x .txt`_uniq.txt
+cat $x | uniq | grep -v -P "\tx\t|\t0\t" | uniq > `basename $x .txt`_uniq.txt
 end
 
 #combine
