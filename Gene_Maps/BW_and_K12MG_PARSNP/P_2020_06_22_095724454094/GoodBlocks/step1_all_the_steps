@@ -75,7 +75,7 @@ cat $x | uniq | grep -v -P "\tx\t|\t0\t" | uniq > `basename $x .txt`_uniq.txt
 end
 
 #combine
-cat *_uniq* > BW25113_and_K12_MG1655_gene_map.txt
+cat *_uniq* | uniq > BW25113_and_K12_MG1655_gene_map.txt
 perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
 perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
 cp *_gene_map.txt ../../../
