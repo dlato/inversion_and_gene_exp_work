@@ -81,11 +81,11 @@ grep "^T" ALL_stderr.txt
 
 # remove duplicated rows
 foreach x (Block*_mapping.txt)
-cat $x | uniq | grep -v -P "\tx\t|\t0\t" > `basename $x .txt`_uniq.txt
+cat $x | uniq | grep -v -P "\tx\t|\t0\t" | uniq > `basename $x .txt`_uniq.txt
 end
 
 #combine
-cat *_uniq* > DH10B_and_W3110_gene_map.txt
+cat *_uniq* | uniq > DH10B_and_W3110_gene_map.txt
 perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
 perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
 cp *_gene_map.txt ../../
