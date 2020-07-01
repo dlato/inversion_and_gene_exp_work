@@ -21,35 +21,54 @@ t.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$invers
 ############
 # by block inversions
 ############
-block_w_pvalue <- c()
-block_t_pvalue <- c()
-block_t_stat <- c()
-block_t_confinf <- c()
+uniq_block_w_pvalue <- c()
+uniq_block_t_pvalue <- c()
+uniq_block_t_stat <- c()
+uniq_block_t_confinf <- c()
 for (i in unique(gei_dat$block)) {
   tmp_df <- gei_dat[which(gei_dat$block == i),]
   if (length(unique(tmp_df$rev_comp)) > 1) {
     #wilcox test
     wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
-    block_w_pvalue <- c(block_w_pvalue,wilcox_test$p.value)
+    uniq_block_w_pvalue <- c(uniq_block_w_pvalue,wilcox_test$p.value)
     #t test
     if (length(which(tmp_df$rev_comp == 1)) > 1 & length(which(tmp_df$rev_comp == 0)) > 1){
       t_test <- t.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
-      block_t_pvalue <- c(block_t_pvalue,t_test$pvalue)
-      block_t_stat <- c(block_t_stat,t_test$statistic)
-      block_t_confinf <- c(block_t_confinf,t_test$conf.inf)
+      uniq_block_t_pvalue <- c(uniq_block_t_pvalue,t_test$pvalue)
+      uniq_block_t_stat <- c(uniq_block_t_stat,t_test$statistic)
+      uniq_block_t_confinf <- c(uniq_block_t_confinf,t_test$conf.inf)
     } else {
-      block_t_pvalue <- c(block_t_pvalue,"NA")
-      block_t_stat <- c(block_t_stat,"NA")
-      block_t_confinf <- c(block_t_confinf,"NA")
+      uniq_block_t_pvalue <- c(uniq_block_t_pvalue,"NA")
+      uniq_block_t_stat <- c(uniq_block_t_stat,"NA")
+      uniq_block_t_confinf <- c(uniq_block_t_confinf,"NA")
     }
   } else {
     #not able to do tests
-    block_w_pvalue <- c(block_w_pvalue,"NA")
-    block_t_pvalue <- c(block_t_pvalue,"NA")
-    block_t_stat <- c(block_t_stat,"NA")
-    block_t_confinf <- c(block_t_confinf,"NA")
+    uniq_block_w_pvalue <- c(uniq_block_w_pvalue,"NA")
+    uniq_block_t_pvalue <- c(uniq_block_t_pvalue,"NA")
+    uniq_block_t_stat <- c(uniq_block_t_stat,"NA")
+    uniq_block_t_confinf <- c(uniq_block_t_confinf,"NA")
   }
 }
+
+#add test results to df
+count = 1
+block_w_pvalue <- vector(mode='numeric', length = length(gei_dat$block))
+block_t_pvalue <- vector(mode='numeric', length = length(gei_dat$block))
+block_t_stat <- vector(mode='numeric', length = length(gei_dat$block))
+block_t_coninf <- vector(mode='numeric', length = length(gei_dat$block))
+for (b in unique(gei_dat$block)) {
+  bloc_loc <- which(gei_dat$block == b)
+  block_w_pvalue[bloc_loc] <- uniq_block_w_pvalue[count] 
+  block_t_pvalue[bloc_loc] <- uniq_block_t_pvalue[count] 
+  block_t_stat[bloc_loc] <- uniq_block_t_stat[count] 
+  block_t_coninf[bloc_loc] <- uniq_block_t_confinf[count] 
+  count <- count + 1
+}
+gei_dat['block_w_pvalue'] <- block_w_pvalue
+gei_dat['block_t_pvalue'] <- block_t_pvalue
+gei_dat['block_t_stat'] <- block_t_stat
+gei_dat['block_t_confinf'] <- block_t_coninf
 
 
 
