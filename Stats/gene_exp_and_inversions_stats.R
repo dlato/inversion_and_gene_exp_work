@@ -43,39 +43,42 @@ for (i in unique(gei_dat$block)) {
       block_t_confinf <- c(block_t_confinf,"NA")
     }
   } else {
-    #not able to do wilcox test
+    #not able to do tests
     block_w_pvalue <- c(block_w_pvalue,"NA")
+    block_t_pvalue <- c(block_t_pvalue,"NA")
+    block_t_stat <- c(block_t_stat,"NA")
+    block_t_confinf <- c(block_t_confinf,"NA")
   }
 }
-levels(gei_dat$rev_comp)
 
 
 
 
 
-'t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
-
-test_inver <- gei_dat %>% filter(inversion == 1)
-test_revcomp <- gei_dat %>% filter(rev_comp == 1)
-
-gei_dat %>% filter(block == "Block800") %>%
-  filter(rev_comp == 1)
-gei_dat %>% filter(block == "Block800") %>%
-  filter(rev_comp == 0)
-
-gei_dat %>% select(block, inversion, rev_comp, norm_exp) %>%
-  group_by(block, rev_comp)
-
-gei_dat %>%
-  select(filter(rev_comp == 1),block, norm_exp, inversion)
-
-
-gei_dat %>%
-  filter(block == "Block800" && block == "Block799") %>%
-  group_by(block) %>%
-  do(tidy(t.test(norm_exp ~ rev_comp, data = .)))
-
-#inverted rows we want
-gei_dat[gei_dat$block %in% gei_dat$block[gei_dat$rev_comp == 1],]
-gei_dat %>%
-  filter(rev_comp == 1)
+#t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
+#
+#test_inver <- gei_dat %>% filter(inversion == 1)
+#test_revcomp <- gei_dat %>% filter(rev_comp == 1)
+#
+#gei_dat %>% filter(block == "Block800") %>%
+#  filter(rev_comp == 1)
+#gei_dat %>% filter(block == "Block800") %>%
+#  filter(rev_comp == 0)
+#
+#gei_dat %>% select(block, inversion, rev_comp, norm_exp) %>%
+#  group_by(block, rev_comp)
+#
+#gei_dat %>%
+#  select(filter(rev_comp == 1),block, norm_exp, inversion)
+#
+#
+#gei_dat %>%
+#  filter(block == "Block800" && block == "Block799") %>%
+#  group_by(block) %>%
+#  do(tidy(t.test(norm_exp ~ rev_comp, data = .)))
+#
+##inverted rows we want
+#gei_dat[gei_dat$block %in% gei_dat$block[gei_dat$rev_comp == 1],]
+#gei_dat %>%
+#  filter(rev_comp == 1)
+#
