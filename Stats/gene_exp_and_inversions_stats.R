@@ -22,15 +22,28 @@ t.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$invers
 # by block inversions
 ############
 block_w_pvalue <- c()
+block_t_pvalue <- c()
+block_t_stat <- c()
+block_t_confinf <- c()
 for (i in unique(gei_dat$block)) {
   tmp_df <- gei_dat[which(gei_dat$block == i),]
   if (length(unique(tmp_df$rev_comp)) > 1) {
+    #wilcox test
     wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
-    print(wilcox_test$p.value)
     block_w_pvalue <- c(block_w_pvalue,wilcox_test$p.value)
-#    t.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
-    print(wilcox_test)
+    #t test
+    if (length(which(tmp_df$rev_comp == 1)) > 1 & length(which(tmp_df$rev_comp == 0)) > 1){
+      t_test <- t.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
+      block_t_pvalue <- c(block_t_pvalue,t_test$pvalue)
+      block_t_stat <- c(block_t_stat,t_test$statistic)
+      block_t_confinf <- c(block_t_confinf,t_test$conf.inf)
+    } else {
+      block_t_pvalue <- c(block_t_pvalue,"NA")
+      block_t_stat <- c(block_t_stat,"NA")
+      block_t_confinf <- c(block_t_confinf,"NA")
+    }
   } else {
+    #not able to do wilcox test
     block_w_pvalue <- c(block_w_pvalue,"NA")
   }
 }
