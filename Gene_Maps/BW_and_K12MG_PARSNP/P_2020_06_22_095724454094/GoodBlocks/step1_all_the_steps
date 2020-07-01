@@ -42,8 +42,10 @@ perl -p -i.bak -e "s/>U00096 CP009273/>CP009273/g" $x
 perl -p -i.bak -e "s/>CP009273/>NZ_CP009273/g" $x
 end
 
+python3 /home/dlato/CODE/get_gene_pos_name_inversions.py ../../../../Genomes/Ecoli_K12_MG1655_chrom_U00096.gbk ./Ecoli_K12_MG1655_chrom_U00096_gene_info.txt
+
 awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_BW25113_NZ_CP009273_gene_info.txt > CP009273_coding_start_end.txt
-awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt > U00096000_coding_start_end.txt
+awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' Ecoli_K12_MG1655_chrom_U00096_gene_info.txt > U00096000_coding_start_end.txt
 sed -i '1d' U00096000_coding_start_end.txt
 sed -i '1d' CP009273_coding_start_end.txt
 
