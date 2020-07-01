@@ -3,6 +3,8 @@ library(tidyverse)
 library(dplyr)
 library(tidyr)
 library(broom)
+library(rstatix)
+library(ggpubr)
 
 #read in the data
 gei_dat <- read.csv("Sample_final_df.csv", header = TRUE)
@@ -19,7 +21,26 @@ t.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$invers
 ############
 # by block inversions
 ############
-t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
+block_w_pvalue <- c()
+for (i in unique(gei_dat$block)) {
+  tmp_df <- gei_dat[which(gei_dat$block == i),]
+  if (length(unique(tmp_df$rev_comp)) > 1) {
+    wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
+    print(wilcox_test$p.value)
+    block_w_pvalue <- c(block_w_pvalue,wilcox_test$p.value)
+#    t.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
+    print(wilcox_test)
+  } else {
+    block_w_pvalue <- c(block_w_pvalue,"NA")
+  }
+}
+levels(gei_dat$rev_comp)
+
+
+
+
+
+'t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
 
 test_inver <- gei_dat %>% filter(inversion == 1)
 test_revcomp <- gei_dat %>% filter(rev_comp == 1)
