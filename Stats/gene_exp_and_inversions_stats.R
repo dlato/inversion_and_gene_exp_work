@@ -5,6 +5,9 @@ library(tidyr)
 library(broom)
 library(rstatix)
 library(ggpubr)
+library(DESeq2)
+library("RColorBrewer")
+library("gplots")
 
 #read in the data
 gei_dat <- read.csv("Sample_final_df.csv", header = TRUE)
@@ -70,7 +73,45 @@ gei_dat['block_t_pvalue'] <- block_t_pvalue
 gei_dat['block_t_stat'] <- block_t_stat
 gei_dat['block_t_confinf'] <- block_t_coninf
 
+############
+# DESeq expression comparison
+############
+#set up df
+#this will need to be changed once the real data comes in
+#********************
+tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
+DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
+DH <- DH[!duplicated(DH[ , c("gene_id")]),]
+MG <- MG[!duplicated(MG[ , c("gene_id")]),]
+dim(DH)
+MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
+gene_names <- unique(MG$gene_id)
+DH <- unique(DH[which(DH$gene_id %in% gene_names),])
+exp_df <- rbind(DH,MG)
+exp_df <- spread(exp_df, strain, norm_exp)
+rownames(exp_df) <- exp_df$gene_id
+exp_df <- exp_df[,-1]
+inversions_col <- exp_df$inversion
+exp_df <- exp_df[,-1]
+#********************
 
+
+
+# set up experimental design
+experimental_design = data.frame(
+#  sample_names = col_names_counts,  # sample name
+  individual = factor(colnames(exp_df)), # each individual strain
+  treatment = factor(inversions_col),  # inversion = 1 or no inversion = 0
+#  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
+)
+
+DESeq_data <- DESeqDataSetFromMatrix(gei_dat, design = formula(~ inversion))
+
+
+
+############
+# ALL inversions
+############
 
 
 
