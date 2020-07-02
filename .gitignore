@@ -26,6 +26,15 @@
 ./Genomes/E*
 ./Proteomes/E*
 ./Proteomes/old*/
+./PARSNP_16May19/Genomes/*
+./PARSNP_16May19/Genomes_with_outgroup/*
+./PARSNP_16May19/ref/*
+./PARSNP_16May19/P_2019_05_16_ref_genomes/Ecoli*
+./PARSNP_16May19/P_2019_05_16_ref_genomes/p*
+./PARSNP_16May19/P_2019_05_16_ref_genomes/BadBlocks/*
+./PARSNP_16May19/P_2019_05_16_ref_genomes/Duplicated_rev_comp/*
+./PARSNP_16May19/P_2019_05_16_ref_genomes/InversionBlocks/Block*
+./PARSNP_16May19/P_2019_05_16_ref_genomes/NonInversionBlocks/Block*
 .Rproj.user
 .Rhistory
 .RData
