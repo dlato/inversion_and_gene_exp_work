@@ -1,0 +1,17 @@
+foreach x (*.mafft)
+perl -p -i.bak -e "s/ /:/g" $x
+end
+
+#list all mafft files and get in format:
+#(python3 /home/dlato/CODE/inversions_block_info.py *.mafft) >& *.err
+l -1 *.mafft > mafft_info_commands
+
+# MAKE SURE TO CHANGE THE CODE SO IT PUTS A 0 FOR INVERSIONS!!!
+
+parallel -j 10 < mafft_info_commands
+
+cat *.err > ALL_stderr.txt
+grep "^T" ALL_stderr.txt
+
+cat B*_info.txt > noninversion_block_info.txt
+
