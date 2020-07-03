@@ -97,18 +97,31 @@ exp_df <- exp_df[,-1]
 #inversions_col <- exp_df$inversion
 exp_df <- exp_df[,-1]
 #********************
+t_count = 1
+t <- vector(mode='character', length = length(colnames(exp_df)))
+for (l in colnames(exp_df)) {
+  tmp_vec <- strsplit(l, "_")
+  tmp_l <- length(unlist(tmp_vec))
+  if (tmp_l > 1){
+    t[t_count] <- "inversion"
+  } else {
+    t[t_count] <- "none"
+  }
+  t_count <- t_count +1
+}
+#deal with NA values
+exp_df <- exp_df %>% replace(is.na(.), 0)
 
-
-
+print(t)
 # set up experimental design
 experimental_design = data.frame(
-#  sample_names = col_names_counts,  # sample name
-  individual = factor(colnames(exp_df)), # each individual strain
-  treatment = factor(inversions_col),  # inversion = 1 or no inversion = 0
+  sample_names = colnames(exp_df),  # sample name
+#  individual = factor(colnames(exp_df)), # each individual strain
+  treatment = factor(t)  # inversion = 1 or no inversion = 0
 #  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
 )
 
-DESeq_data <- DESeqDataSetFromMatrix(gei_dat, design = formula(~ inversion))
+DESeq_data <- DESeqDataSetFromMatrix(exp_df, experimental_design, design = formula(~ treatment))
 
 
 
