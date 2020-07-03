@@ -81,17 +81,20 @@ gei_dat['block_t_confinf'] <- block_t_coninf
 #********************
 tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
 DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
-DH <- DH[!duplicated(DH[ , c("gene_id")]),]
-MG <- MG[!duplicated(MG[ , c("gene_id")]),]
-dim(DH)
 MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
+DH <- data.frame(DH[!duplicated(DH[ , c("gene_id")]),])
+levels(DH$strain) <- c(levels(DH$strain), "K12DH_i")
+DH$strain[DH$inversion == 1] <- "K12DH_i"
+MG <- data.frame(MG[!duplicated(MG[ , c("gene_id")]),])
+levels(MG$strain) <- c(levels(MG$strain), "K12MG_i")
+MG$strain[MG$inversion == 1] <- "K12MG_i"
 gene_names <- unique(MG$gene_id)
 DH <- unique(DH[which(DH$gene_id %in% gene_names),])
 exp_df <- rbind(DH,MG)
 exp_df <- spread(exp_df, strain, norm_exp)
 rownames(exp_df) <- exp_df$gene_id
 exp_df <- exp_df[,-1]
-inversions_col <- exp_df$inversion
+#inversions_col <- exp_df$inversion
 exp_df <- exp_df[,-1]
 #********************
 
