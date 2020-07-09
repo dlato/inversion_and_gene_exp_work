@@ -1,0 +1,55 @@
+#get fasta files
+gbk2fasta ../../Genomes/Ecoli_ATCC_25922_NZ_CP009072.gbk > ../../Genomes/Ecoli_ATCC_25922_NZ_CP009072.fasta
+gbk2fasta ../../Genomes/Ecoli_BW25113_NZ_CP009273.gbk > ../../Genomes/Ecoli_BW25113_NZ_CP009273.fasta
+gbk2fasta ../../Genomes/Ecoli_K12_DH10B_NC_010473.gbk > ../../Genomes/Ecoli_K12_DH10B_NC_010473.fasta
+gbk2fasta ../../Genomes/Ecoli_K12_MG1655_chrom_U00096.gbk > ../../Genomes/Ecoli_K12_MG1655_chrom_U00096.fasta
+cp ../../Genomes/*.fasta .
+perl -p -i.bak -e "s/> />/g" *.fasta
+
+#copy the mafft files from original parsnp to here
+cp ../../PARSNP_16May19/P_2019_05_16_ref_genomes/InversionBlocks/*.mafft .
+cp ../../PARSNP_16May19/P_2019_05_16_ref_genomes/NonInversionBlocks/*.mafft .
+#
+#get gene info files
+awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_ATCC_25922_NZ_CP009072_gene_info.txt > CP009072_coding_start_end.txt
+awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_BW25113_NZ_CP009273_gene_info.txt > NZ_CP009273_coding_start_end.txt
+awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_K12_DH10B_NC_010473_gene_info.txt > NC_010473_coding_start_end.txt
+awk -F"\t" '{print $1 "\t" $2 "\t" $3 "\t" $5 "\t" $7;}' /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt > U00096000_coding_start_end.txt
+
+sed -i '1d' *_coding_start_end.txt
+perl -p -i.bak -e "s/>//g" *_coding_start_end.txt
+perl -p -i.bak -e "s/<//g" *_coding_start_end.txt
+
+
+
+
+#edit the mafft files so they have the correct taxa names
+foreach x (*.mafft)
+perl -p -i.bak -e "s/NZ_CP009072/CP009072/g" $x
+perl -p -i.bak -e "s/NZ_CP009273/CP009273/g" $x
+perl -p -i.bak -e "s/U00096 /U00096000 /g" $x
+perl -p -i.bak -e "s/U00096\:/U00096000\:/g" $x
+perl -p -i.bak -e "s/ /\:/g" $x
+end
+#list all mafft files and then edit so it is in the format:
+#(python3 /home/dlato/CODE/gene_mapping.py *.mafft 3 5130767 > *.mafft_out) >& *.err
+l -1 *.mafft > get_gene_mapping_commands
+#split the blocks up into coding and non-coding parts
+parallel -j 10 < get_gene_mapping_commands
+
+
+cat *.err > ALL_stderr.txt
+grep "^T" ALL_stderr.txt
+
+# remove duplicated rows
+foreach x (Block*_mapping.txt)
+cat $x | uniq | grep -v -P "\tx\t|\t0\t" | uniq > `basename $x .txt`_uniq.txt
+end
+
+#combine
+cat *_uniq* | uniq > ATCC_and_CFT073_gene_map.txt
+perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
+perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
+cp *_gene_map.txt ../../
+
+
