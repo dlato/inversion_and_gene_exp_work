@@ -80,5 +80,15 @@ end
 cat *_uniq* | uniq > BW25113_and_K12_MG1655_gene_map.txt
 perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
 perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
+
+
+#Duplicated Mapping Genes:
+#K12MG  BW      BW
+#b1474  BW25113_RS07725 BW25113_RS07730*
+#bl349  BW25113_RS01795*        BW25113_RS01805
+#
+#*gene chosen for actual mapping
+#-for b1474, the RS07725 gene is too small to match the b1474 gene, therefore RS07730 was chosen
+#-for b1349, the RS01805 gene is incomplete and a partial seq, therefore RS001795 was chosen
 cp *_gene_map.txt ../../../
 
