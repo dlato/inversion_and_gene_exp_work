@@ -52,4 +52,9 @@ perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
 perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
 cp *_gene_map.txt ../../
 
-
+#Duplicated Rows:
+#-any row with b4579 has been removed because it is a pseudogene and
+#matching to multiple genes in other genomes
+#-genes RS13775 and RS13780 both match to the same genes in BW, and
+#the K12's. RS13775 was chosen as the matching gene because it is the
+#correct length.
