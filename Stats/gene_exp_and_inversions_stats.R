@@ -10,7 +10,12 @@ library("RColorBrewer")
 library("gplots")
 
 #read in the data
-gei_dat <- read.csv("Sample_final_df.csv", header = TRUE)
+#gei_dat <- read.csv("../Sample_final_df.csv", header = TRUE)
+#getting command line arguments
+args <- commandArgs(TRUE)
+file_name <- as.character(args[1])
+gei_dat <- read.csv(file_name, header = TRUE)
+
 
 ############
 # ALL inversions
@@ -73,56 +78,61 @@ gei_dat['block_t_pvalue'] <- block_t_pvalue
 gei_dat['block_t_stat'] <- block_t_stat
 gei_dat['block_t_confinf'] <- block_t_coninf
 
-############
-# DESeq expression comparison
-############
-#set up df
-#this will need to be changed once the real data comes in
-#********************
-tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
-DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
-MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
-DH <- data.frame(DH[!duplicated(DH[ , c("gene_id")]),])
-levels(DH$strain) <- c(levels(DH$strain), "K12DH_i")
-DH$strain[DH$inversion == 1] <- "K12DH_i"
-MG <- data.frame(MG[!duplicated(MG[ , c("gene_id")]),])
-levels(MG$strain) <- c(levels(MG$strain), "K12MG_i")
-MG$strain[MG$inversion == 1] <- "K12MG_i"
-gene_names <- unique(MG$gene_id)
-DH <- unique(DH[which(DH$gene_id %in% gene_names),])
-exp_df <- rbind(DH,MG)
-exp_df <- spread(exp_df, strain, norm_exp)
-rownames(exp_df) <- exp_df$gene_id
-exp_df <- exp_df[,-1]
-#inversions_col <- exp_df$inversion
-exp_df <- exp_df[,-1]
-#********************
-t_count = 1
-t <- vector(mode='character', length = length(colnames(exp_df)))
-for (l in colnames(exp_df)) {
-  tmp_vec <- strsplit(l, "_")
-  tmp_l <- length(unlist(tmp_vec))
-  if (tmp_l > 1){
-    t[t_count] <- "inversion"
-  } else {
-    t[t_count] <- "none"
-  }
-  t_count <- t_count +1
-}
-#deal with NA values
-exp_df <- exp_df %>% replace(is.na(.), 0)
+print("SAVED DATA TO FILE")
+write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
-print(t)
-# set up experimental design
-experimental_design = data.frame(
-  sample_names = colnames(exp_df),  # sample name
-#  individual = factor(colnames(exp_df)), # each individual strain
-  treatment = factor(t)  # inversion = 1 or no inversion = 0
-#  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
-)
 
-DESeq_data <- DESeqDataSetFromMatrix(exp_df, experimental_design, design = formula(~ treatment))
 
+#############
+## DESeq expression comparison
+#############
+##set up df
+##this will need to be changed once the real data comes in
+##********************
+#tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
+#DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
+#MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
+#DH <- data.frame(DH[!duplicated(DH[ , c("gene_id")]),])
+#levels(DH$strain) <- c(levels(DH$strain), "K12DH_i")
+#DH$strain[DH$inversion == 1] <- "K12DH_i"
+#MG <- data.frame(MG[!duplicated(MG[ , c("gene_id")]),])
+#levels(MG$strain) <- c(levels(MG$strain), "K12MG_i")
+#MG$strain[MG$inversion == 1] <- "K12MG_i"
+#gene_names <- unique(MG$gene_id)
+#DH <- unique(DH[which(DH$gene_id %in% gene_names),])
+#exp_df <- rbind(DH,MG)
+#exp_df <- spread(exp_df, strain, norm_exp)
+#rownames(exp_df) <- exp_df$gene_id
+#exp_df <- exp_df[,-1]
+##inversions_col <- exp_df$inversion
+#exp_df <- exp_df[,-1]
+##********************
+#t_count = 1
+#t <- vector(mode='character', length = length(colnames(exp_df)))
+#for (l in colnames(exp_df)) {
+#  tmp_vec <- strsplit(l, "_")
+#  tmp_l <- length(unlist(tmp_vec))
+#  if (tmp_l > 1){
+#    t[t_count] <- "inversion"
+#  } else {
+#    t[t_count] <- "none"
+#  }
+#  t_count <- t_count +1
+#}
+##deal with NA values
+#exp_df <- exp_df %>% replace(is.na(.), 0)
+#
+#print(t)
+## set up experimental design
+#experimental_design = data.frame(
+#  sample_names = colnames(exp_df),  # sample name
+##  individual = factor(colnames(exp_df)), # each individual strain
+#  treatment = factor(t)  # inversion = 1 or no inversion = 0
+##  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
+#)
+#
+#DESeq_data <- DESeqDataSetFromMatrix(exp_df, experimental_design, design = formula(~ treatment))
+#
 
 
 ############

@@ -1,0 +1,1 @@
+Rscript gene_exp_and_inversions_stats.R ../Sample_final_df.csv --save > out
