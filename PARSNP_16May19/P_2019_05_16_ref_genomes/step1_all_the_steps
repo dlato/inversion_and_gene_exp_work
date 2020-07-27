@@ -69,3 +69,10 @@ end
 #mv * InversionBlocks/
 parallel -j 10 < mv_inversion_blocks
 mv Block* NonInversionBlocks/
+
+
+
+
+
+#cat block info files
+cat NonInversionBlocks/noninversion_block_info.txt InversionBlocks/inversion_block_info.txt > inversion_block_info_all.txt

@@ -2,9 +2,144 @@ foreach x (*.mafft)
 perl -p -i.bak -e "s/ /:/g" $x
 end
 
+#cp desired genomes to this folder *.gbk
+
+foreach x (*.gbk)
+python3 ~/CODE/get_gene_pos_name.py $x `basename $x .gbk`_coding_start_end.txt
+end
+\rm *.gbk
+
+l -1 *_coding_start_end.txt > files.txt
+
+~/CODE/re_name_gene_info_files.pl files.txt > re_name_files
+sh re_name_files
+
+#cp ../../../Gene_Maps/all_ecoli_strains/*_coding_start_end.txt .
+
+
+perl -p -i.bak -e "s/>//g" *_coding_start_end.txt
+perl -p -i.bak -e "s/<//g" *_coding_start_end.txt
+
+#edit the mafft files so they have the correct taxa names
+foreach x (*.mafft)
+perl -p -i.bak -e "s/NZ_CP009072/CP009072/g" $x
+perl -p -i.bak -e "s/NZ_CP009273/CP009273/g" $x
+perl -p -i.bak -e "s/NC_010473/NC_010473/g" $x
+perl -p -i.bak -e "s/NC_U00096/U00096000/g" $x
+perl -p -i.bak -e "s/ /\:/g" $x
+end
+
+
+#list all mafft files and then edit so it is in the format:
+#(python3 /home/dlato/CODE/get_gene_alignments_SUBS_ANALYSIS.py *.mafft 4 5130767 > *.mafft_out) >& *.err
+l -1 *.mafft > get_gene_aln_commands
+#split the blocks up into coding and non-coding parts
+parallel -j 10 < get_gene_aln_commands
+
+
+cat *.err_split1 > ALL_stderr_split1.txt
+grep "^T" ALL_stderr_split1.txt
+
+
+
+############## CODING FILES #####################
+#below will split the big aln file into smaller files separated by
+#GENE first
+foreach x (Block*_coding.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_gene_aln_ -b "%04d.txt" $x "/&/+1" "{*}"
+end
+#editing the files to get rid of the separators
+foreach x (*_coding_gene_aln*.txt)
+perl -p -i.bak -e "s/\&//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+#splitting the gene into its parts
+foreach x (*_coding_gene_aln*.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_sec_ -b "%04d.txt" $x "/=/+1" "{*}"
+end
+
+foreach x (*_coding_gene_aln*_sec_*.txt)
+perl -p -i.bak -e "s/\=//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+
+find . -size 0 -delete
+
+
+############## NON CODING FILES #####################
+#below will split the big NONCODING aln file into smaller files
+separated by
+#GENE first
+foreach x (Block*_noncoding.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_gene_aln_ -b "%04d.txt" $x "/=/+1" "{*}"
+end
+
+foreach x (*_noncoding_gene_aln*.txt)
+perl -p -i.bak -e "s/\&//g" $x
+perl -p -i.bak -e "s/\=//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+
+find . -size 0 -delete
+
+#Trimal
+l -1 *_sec*.txt > trimal_commands
+#get into format:
+#trimal -in Block136_coding_gene_aln_0003_sec_0003_good_sec_0000.txt -out Block136_coding_gene_aln_0003_sec_0003_good_sec_0000.TRIMAL -strictplus -colnumbering > *.trimalcols
+parallel -j 10 < trimal_commands
+#remove the colnumbering from .trimalcols
+perl -p -i.bak -e "s/#ColumnsMap\t//g" *.trimalcols
+perl -p -i.bak -e "s/ //g" *.trimalcols
+
+
+mkdir empty_files/
+
+#editing the fasta headers out of the phylip files
+foreach x (*_coding_gene_aln_*_sec*.txt)
+perl -p -i.bak -e "s/ /:/g" $x
+end
+
+foreach x (*_noncoding_gene_aln_*.txt)
+perl -p -i.bak -e "s/ /:/g" $x
+end
+
+
+#grab the actual aln from trimal
+#l -1 *.trimalcols > parse_t_commands
+#edit so it is in format:
+#python3 ~/CODE/parse_trimal_dN_dS_analysis.py *.txt *.galn 0
+parallel -j 10 < parse_t_commands
+
+l -1 *coding_gene_aln*sec_*.txt | wc -l
+l -1 *.TRIMAL | wc -l
+#if ^ numbers are not equal
+l -1 *coding_gene_aln*sec_*.txt > tot_files
+l -1 *.TRIMAL > tot_trimal
+grep -v -f tot_trimal  tot_files > re_run_trimal
+
+yes | mv *_bad.txt empty_files/
+
+#splitting the gene into its parts AFTER Gblocks
+foreach x (*_good.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_sec_ -b "%04d.txt" $x "/=/+1" "{*}"
+end
+foreach x (*_good_sec*.txt)
+perl -p -i.bak -e "s/\=//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+
+find . -size 0 -delete
+
+
+
+
+
+
+
+
 #list all mafft files and get in format:
 #(python3 /home/dlato/CODE/inversions_block_info.py *.mafft) >& *.err
-l -1 *.mafft > mafft_info_commands
+l -1 *good*_sec*.txt > mafft_info_commands
 
 # MAKE SURE TO CHANGE THE CODE SO IT PUTS A 0 FOR INVERSIONS!!!
 
@@ -15,5 +150,6 @@ grep "^T" ALL_stderr.txt
 cat B*_info.txt > inversion_block_info.txt
 
 #fixing inconsistent taxa ids
-perl -p -i.bak -e "s/\tCP009273/NZ_CP009273/g" inversion_block_info.txt
+perl -p -i.bak -e "s/\tCP009273/\tNZ_CP009273/g" inversion_block_info.txt
+perl -p -i.bak -e "s/NZ_CP009273/\tNZ_CP009273/g" inversion_block_info.txt
 
