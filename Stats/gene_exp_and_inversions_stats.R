@@ -1,15 +1,19 @@
 #test script for inversions and gene expression analysis
-library(tidyverse)
+#library(tidyverse)
 library(dplyr)
-library(tidyr)
-library(broom)
-library(rstatix)
-library(ggpubr)
-library(DESeq2)
+#library(tidyr)
+#library(broom)
+#library(rstatix)
+#library(ggpubr)
+#library(DESeq2)
+library(reshape2)
 library("RColorBrewer")
 library("gplots")
+library("ggplot2")
 
 #read in the data
+#gbk_start and gbk_end are the starts and ends for each gene in the block
+# start and end are the starts and ends for the WHOLE block
 #gei_dat <- read.csv("../Sample_final_df.csv", header = TRUE)
 #getting command line arguments
 args <- commandArgs(TRUE)
@@ -17,24 +21,33 @@ file_name <- as.character(args[1])
 gei_dat <- read.csv(file_name, header = TRUE)
 
 
-############
-# ALL inversions
-############
-#Wilcox signed-rank test
-# to see if there is a difference btwn inversions and non-inverted segments
-#null hyp = there is no difference in gene expression btwn inverted and non-inverted segments
+print("############    ")
+print("# ALL inversions")
+print("############    ")
+print("#Wilcox signed-rank test                                                                     ")
+print("# to see if there is a difference btwn inversions and non-inverted segments                  ")
+print("#null hyp = there is no difference in gene expression btwn inverted and non-inverted segments")
 wilcox.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$inversion == 0])
 t.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$inversion == 0])
+warnings()
 
-############
-# by block inversions
-############
+print("############         ")
+print("# by block inversions")
+print("#Wilcox signed-rank test                                                                     ")
+print("############         ")
+print("blocks with at least one rev comp taxa")
+tmp_df <- gei_dat[which(gei_dat$rev_comp == 1),]
+print(unique(tmp_df$block))
+tmp_df <- gei_dat[which(gei_dat$block == "Block800"),]
+print(tmp_df)
+print("################################################")
 uniq_block_w_pvalue <- c()
 uniq_block_t_pvalue <- c()
 uniq_block_t_stat <- c()
 uniq_block_t_confinf <- c()
 for (i in unique(gei_dat$block)) {
   tmp_df <- gei_dat[which(gei_dat$block == i),]
+  print(tmp_df)
   if (length(unique(tmp_df$rev_comp)) > 1) {
     #wilcox test
     wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
@@ -58,6 +71,7 @@ for (i in unique(gei_dat$block)) {
     uniq_block_t_confinf <- c(uniq_block_t_confinf,"NA")
   }
 }
+warnings()
 
 #add test results to df
 count = 1
@@ -78,8 +92,45 @@ gei_dat['block_t_pvalue'] <- block_t_pvalue
 gei_dat['block_t_stat'] <- block_t_stat
 gei_dat['block_t_confinf'] <- block_t_coninf
 
+print("PVAL LESS THAN 0.05")
+tmp_df <- gei_dat[which(gei_dat$block_w_pvalue <= 0.05),]
+print(tmp_df$block_w_pvalue)
 print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
+
+print("make df with just block info")
+block_df <- subset(gei_dat,select = c("block","start","end","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf"))
+block_df_uniq <- unique(block_df)
+print("check if num of blocks is the same!")
+length(block_df_uniq$block)
+
+#flip so ggplot can use
+block_df_w <- melt(block_df_uniq,
+        # ID variables - all the variables to keep but not split apart
+        # on
+    id.vars=c("block", "start", "end","block_t_stat","block_t_confinf"),
+        # The source columns
+    measure.vars=c("block_w_pvalue", "block_t_pvalue"),
+        # Name of the destination column that will identify the
+        # original
+        # column that the measurement came from
+    variable.name="test",
+    value.name="pvalue"
+)
+#plot pvalues
+block_df_w$block_t_stat <- as.numeric(block_df_w$block_t_stat)
+str(block_df_w)
+head(complete.cases(block_df_w))
+complete_block_df <- block_df_w[complete.cases(block_df_w), ]
+head(complete_block_df)
+tail(complete_block_df)
+p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
+  geom_boxplot()
+pdf("pvalue_box_plots.pdf")
+p
+dev.off()
+
+
 
 
 
