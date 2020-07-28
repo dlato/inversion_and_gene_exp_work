@@ -118,10 +118,15 @@ block_df_w <- melt(block_df_uniq,
     value.name="pvalue"
 )
 #plot pvalues
-block_df_w$block_t_stat <- as.numeric(block_df_w$block_t_stat)
-str(block_df_w)
-head(complete.cases(block_df_w))
-complete_block_df <- block_df_w[complete.cases(block_df_w), ]
+print("non zero pvals") 
+complete_block_df <- block_df_w[which(block_df_w$pvalue != "NA"),]
+complete_block_df[which(complete_block_df$test == "block_t_pvalue"),]
+#block_df_w$block_t_stat <- as.numeric(block_df_w$block_t_stat)
+#block_df_w$block_t_confinf <- as.numeric(block_df_w$block_t_confinf)
+complete_block_df$pvalue <- as.numeric(complete_block_df$pvalue)
+#str(block_df_w)
+#head(complete.cases(block_df_w$pvalue))
+#complete_block_df <- block_df_w[complete.cases(block_df_w), ]
 head(complete_block_df)
 tail(complete_block_df)
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
