@@ -44,31 +44,34 @@ print("################################################")
 uniq_block_w_pvalue <- c()
 uniq_block_t_pvalue <- c()
 uniq_block_t_stat <- c()
-uniq_block_t_confinf <- c()
+uniq_block_t_confinf1 <- c()
+uniq_block_t_confinf2 <- c()
 for (i in unique(gei_dat$block)) {
   tmp_df <- gei_dat[which(gei_dat$block == i),]
-  print(tmp_df)
   if (length(unique(tmp_df$rev_comp)) > 1) {
     #wilcox test
     wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
     uniq_block_w_pvalue <- c(uniq_block_w_pvalue,wilcox_test$p.value)
     #t test
-    if (length(which(tmp_df$rev_comp == 1)) > 1 & length(which(tmp_df$rev_comp == 0)) > 1){
+    if (length(which(tmp_df$rev_comp == 1)) > 1 && length(which(tmp_df$rev_comp == 0)) > 1){
       t_test <- t.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
-      uniq_block_t_pvalue <- c(uniq_block_t_pvalue,t_test$pvalue)
+      uniq_block_t_pvalue <- c(uniq_block_t_pvalue,t_test$p.value)
       uniq_block_t_stat <- c(uniq_block_t_stat,t_test$statistic)
-      uniq_block_t_confinf <- c(uniq_block_t_confinf,t_test$conf.inf)
+      uniq_block_t_confinf1 <- c(uniq_block_t_confinf1,t_test$conf.int[1])
+      uniq_block_t_confinf2 <- c(uniq_block_t_confinf2,t_test$conf.int[2])
     } else {
       uniq_block_t_pvalue <- c(uniq_block_t_pvalue,"NA")
       uniq_block_t_stat <- c(uniq_block_t_stat,"NA")
-      uniq_block_t_confinf <- c(uniq_block_t_confinf,"NA")
+      uniq_block_t_confinf1 <- c(uniq_block_t_confinf1,"NA")
+      uniq_block_t_confinf2 <- c(uniq_block_t_confinf2,"NA")
     }
   } else {
     #not able to do tests
     uniq_block_w_pvalue <- c(uniq_block_w_pvalue,"NA")
     uniq_block_t_pvalue <- c(uniq_block_t_pvalue,"NA")
     uniq_block_t_stat <- c(uniq_block_t_stat,"NA")
-    uniq_block_t_confinf <- c(uniq_block_t_confinf,"NA")
+    uniq_block_t_confinf1 <- c(uniq_block_t_confinf1,"NA")
+    uniq_block_t_confinf2 <- c(uniq_block_t_confinf2,"NA")
   }
 }
 warnings()
@@ -78,28 +81,31 @@ count = 1
 block_w_pvalue <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_pvalue <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_stat <- vector(mode='numeric', length = length(gei_dat$block))
-block_t_coninf <- vector(mode='numeric', length = length(gei_dat$block))
+block_t_coninf1 <- vector(mode='numeric', length = length(gei_dat$block))
+block_t_coninf2 <- vector(mode='numeric', length = length(gei_dat$block))
 for (b in unique(gei_dat$block)) {
   bloc_loc <- which(gei_dat$block == b)
   block_w_pvalue[bloc_loc] <- uniq_block_w_pvalue[count] 
   block_t_pvalue[bloc_loc] <- uniq_block_t_pvalue[count] 
   block_t_stat[bloc_loc] <- uniq_block_t_stat[count] 
-  block_t_coninf[bloc_loc] <- uniq_block_t_confinf[count] 
+  block_t_coninf1[bloc_loc] <- uniq_block_t_confinf1[count] 
+  block_t_coninf2[bloc_loc] <- uniq_block_t_confinf2[count] 
   count <- count + 1
 }
 gei_dat['block_w_pvalue'] <- block_w_pvalue
 gei_dat['block_t_pvalue'] <- block_t_pvalue
 gei_dat['block_t_stat'] <- block_t_stat
-gei_dat['block_t_confinf'] <- block_t_coninf
+gei_dat['block_t_confinf1'] <- block_t_coninf1
+gei_dat['block_t_confinf2'] <- block_t_coninf2
 
 print("PVAL LESS THAN 0.05")
-tmp_df <- gei_dat[which(gei_dat$block_w_pvalue <= 0.05),]
-print(tmp_df$block_w_pvalue)
+tmp_df <- gei_dat[which(gei_dat$block_t_pvalue != "NA"),]
+tmp_df
 print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf"))
+block_df <- subset(gei_dat,select = c("block","start","end","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2"))
 block_df_uniq <- unique(block_df)
 print("check if num of blocks is the same!")
 length(block_df_uniq$block)
@@ -108,7 +114,7 @@ length(block_df_uniq$block)
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","block_t_stat","block_t_confinf"),
+    id.vars=c("block", "start", "end","block_t_stat","block_t_confinf1","block_t_confinf2"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -117,10 +123,8 @@ block_df_w <- melt(block_df_uniq,
     variable.name="test",
     value.name="pvalue"
 )
-#plot pvalues
 print("non zero pvals") 
 complete_block_df <- block_df_w[which(block_df_w$pvalue != "NA"),]
-complete_block_df[which(complete_block_df$test == "block_t_pvalue"),]
 #block_df_w$block_t_stat <- as.numeric(block_df_w$block_t_stat)
 #block_df_w$block_t_confinf <- as.numeric(block_df_w$block_t_confinf)
 complete_block_df$pvalue <- as.numeric(complete_block_df$pvalue)
@@ -129,13 +133,27 @@ complete_block_df$pvalue <- as.numeric(complete_block_df$pvalue)
 #complete_block_df <- block_df_w[complete.cases(block_df_w), ]
 head(complete_block_df)
 tail(complete_block_df)
+#plot pvalues
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
   geom_boxplot()
 pdf("pvalue_box_plots.pdf")
 p
 dev.off()
-
-
+#make df with sig diff in gene exp btwn inversions
+blocks_new <- complete_block_df %>%
+    mutate(sig = if_else(pvalue <= 0.05, 'yes', 'no'))
+#complete_block_df[which(complete_block_df$pvalue <=0.05),]
+#complete_block_df$sig <- which(complete_block_df$pvalue <=0.05)
+blocks_new$class <- rep("BlockX",length(blocks_new$block))
+head(blocks_new)
+pdf("scatter_plot_test.pdf")
+ggplot(blocks_new, aes(start,sig))+
+#  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
+#               position = position_jitter(width = 0.05)) +
+#  geom_point(size = 3) +
+  geom_point(size = 3)
+#  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
+dev.off()
 
 
 
