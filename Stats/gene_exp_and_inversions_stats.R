@@ -106,9 +106,10 @@ write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
 block_df <- subset(gei_dat,select = c("block","start","end","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2"))
-block_df_uniq <- unique(block_df)
+#block_df_uniq <- unique(block_df)
+block_df_uniq <- block_df
 print("check if num of blocks is the same!")
-length(block_df_uniq$block)
+length(unique(block_df_uniq$block))
 
 #flip so ggplot can use
 block_df_w <- melt(block_df_uniq,
@@ -133,12 +134,26 @@ complete_block_df$pvalue <- as.numeric(complete_block_df$pvalue)
 #complete_block_df <- block_df_w[complete.cases(block_df_w), ]
 head(complete_block_df)
 tail(complete_block_df)
+complete_block_df[which(complete_block_df$block == "Block62"),]
 #plot pvalues
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
   geom_boxplot()
 pdf("pvalue_box_plots.pdf")
 p
 dev.off()
+
+print("########################")
+print("INFO ON BLOCKS: diff gene exp between inversions and non-inversions")
+print("########################")
+print("total number of blocks")
+length(unique(gei_dat$block))
+print("number of blocks that were tested")
+length(unique(complete_block_df$block))
+print("number of SIGNIFICANT blocks")
+tmp <- complete_block_df[which(complete_block_df$pvalue <= 0.05),]
+length(unique(tmp$block))
+
+
 #make df with sig diff in gene exp btwn inversions
 blocks_new <- complete_block_df %>%
     mutate(sig = if_else(pvalue <= 0.05, 'yes', 'no'))
