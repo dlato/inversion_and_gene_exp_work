@@ -46,9 +46,21 @@ uniq_block_t_pvalue <- c()
 uniq_block_t_stat <- c()
 uniq_block_t_confinf1 <- c()
 uniq_block_t_confinf2 <- c()
+uniq_avg_exp_invert <- c()
+uniq_avg_exp_noninvert <- c()
 for (i in unique(gei_dat$block)) {
   tmp_df <- gei_dat[which(gei_dat$block == i),]
+print("--------------------")
+print(tmp_df)
   if (length(unique(tmp_df$rev_comp)) > 1) {
+    #mean experssion for each group
+    i_avg <- mean(tmp_df$norm_exp[tmp_df$rev_comp == 1])
+    ni_avg <- mean(tmp_df$norm_exp[tmp_df$rev_comp == 0])
+print("means")
+print(i_avg)
+print(ni_avg)
+    uniq_avg_exp_invert <- c(uniq_avg_exp_invert,i_avg)
+    uniq_avg_exp_noninvert <- c(uniq_avg_exp_noninvert,ni_avg)
     #wilcox test
     wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
     uniq_block_w_pvalue <- c(uniq_block_w_pvalue,wilcox_test$p.value)
@@ -72,6 +84,8 @@ for (i in unique(gei_dat$block)) {
     uniq_block_t_stat <- c(uniq_block_t_stat,"NA")
     uniq_block_t_confinf1 <- c(uniq_block_t_confinf1,"NA")
     uniq_block_t_confinf2 <- c(uniq_block_t_confinf2,"NA")
+    uniq_avg_exp_invert <- c(uniq_avg_exp_invert,"NA")
+    uniq_avg_exp_noninvert <- c(uniq_avg_exp_noninvert,"NA")
   }
 }
 warnings()
@@ -83,6 +97,8 @@ block_t_pvalue <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_stat <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_coninf1 <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_coninf2 <- vector(mode='numeric', length = length(gei_dat$block))
+block_avg_exp_invert <- vector(mode='numeric', length = length(gei_dat$block))
+block_avg_exp_noninvert <- vector(mode='numeric', length = length(gei_dat$block))
 for (b in unique(gei_dat$block)) {
   bloc_loc <- which(gei_dat$block == b)
   block_w_pvalue[bloc_loc] <- uniq_block_w_pvalue[count] 
@@ -90,6 +106,8 @@ for (b in unique(gei_dat$block)) {
   block_t_stat[bloc_loc] <- uniq_block_t_stat[count] 
   block_t_coninf1[bloc_loc] <- uniq_block_t_confinf1[count] 
   block_t_coninf2[bloc_loc] <- uniq_block_t_confinf2[count] 
+  block_avg_exp_invert[bloc_loc] <- uniq_avg_exp_invert[count] 
+  block_avg_exp_noninvert[bloc_loc] <- uniq_avg_exp_noninvert[count] 
   count <- count + 1
 }
 gei_dat['block_w_pvalue'] <- block_w_pvalue
@@ -97,25 +115,23 @@ gei_dat['block_t_pvalue'] <- block_t_pvalue
 gei_dat['block_t_stat'] <- block_t_stat
 gei_dat['block_t_confinf1'] <- block_t_coninf1
 gei_dat['block_t_confinf2'] <- block_t_coninf2
+gei_dat['block_t_confinf2'] <- block_t_coninf2
+gei_dat['block_avg_exp_invert'] <- block_avg_exp_invert
+gei_dat['block_avg_exp_noninvert'] <- block_avg_exp_noninvert
 
-print("PVAL LESS THAN 0.05")
-tmp_df <- gei_dat[which(gei_dat$block_t_pvalue != "NA"),]
-tmp_df
 print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2"))
+block_df <- subset(gei_dat,select = c("block","start","end","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
-print("check if num of blocks is the same!")
-length(unique(block_df_uniq$block))
 
 #flip so ggplot can use
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","block_t_stat","block_t_confinf1","block_t_confinf2"),
+    id.vars=c("block", "start", "end","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -132,6 +148,7 @@ complete_block_df$pvalue <- as.numeric(complete_block_df$pvalue)
 #str(block_df_w)
 #head(complete.cases(block_df_w$pvalue))
 #complete_block_df <- block_df_w[complete.cases(block_df_w), ]
+print("HEAD")
 head(complete_block_df)
 tail(complete_block_df)
 complete_block_df[which(complete_block_df$block == "Block62"),]
@@ -147,12 +164,35 @@ print("INFO ON BLOCKS: diff gene exp between inversions and non-inversions")
 print("########################")
 print("total number of blocks")
 length(unique(gei_dat$block))
+print("number of inverted blocks")
+tmp <- gei_dat[which(gei_dat$rev_comp ==1),]
+length(unique(tmp$block))
+print("percent of inverted blocks")
+(length(unique(tmp$block)) / length(unique(gei_dat$block))) * 100
 print("number of blocks that were tested")
 length(unique(complete_block_df$block))
+print("percent of blocks that were tested")
+(length(unique(complete_block_df$block)) / length(unique(gei_dat$block))) * 100
 print("number of SIGNIFICANT blocks")
 tmp <- complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 length(unique(tmp$block))
+print("percent of SIG tested blocks")
+(length(unique(tmp$block)) / length(unique(complete_block_df$block))) * 100
 
+print("gene exp averages in sig blocks")
+tmp2 <- subset(tmp,select = c("block","pvalue","block_avg_exp_invert", "block_avg_exp_noninvert"))
+df <- tmp2 %>%
+  mutate(exp_reg = ifelse(block_avg_exp_invert > block_avg_exp_noninvert, "up", "down"))
+print("number of SIG blocks with inversion gene exp > noninversions gene exp")
+up <- df[which(df$exp_reg == "up"),]
+length(unique(up$block))
+print("percent of SIG blocks with inversions exp > noninversion exp")
+(length(unique(up$block)) / length(unique(df$block))) *100
+print("number of SIG blocks with inversion gene exp < noninversions gene exp")
+up <- df[which(df$exp_reg == "down"),]
+length(unique(up$block))
+print("percent of SIG blocks with inversions exp < noninversion exp")
+(length(unique(up$block)) / length(unique(df$block))) *100
 
 #make df with sig diff in gene exp btwn inversions
 blocks_new <- complete_block_df %>%
