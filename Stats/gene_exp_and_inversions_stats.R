@@ -175,16 +175,59 @@ block_df_w <- melt(block_df_uniq,
 )
 print("non zero pvals") 
 complete_block_df <- block_df_w[which(block_df_w$pvalue != "NA"),]
+print("SAVED complete DATA TO FILE")
+write.table(complete_block_df, 'inversions_gene_exp_complete_data.csv', sep = "\t")
+n_occur <- data.frame(table(complete_block_df$gbk_midpoint))
+n_occur[n_occur$Freq > 2,]
+complete_block_df[complete_block_df$gbk_midpoint %in% n_occur$Var1[n_occur$Freq > 2],]
 #block_df_w$block_t_stat <- as.numeric(block_df_w$block_t_stat)
 #block_df_w$block_t_confinf <- as.numeric(block_df_w$block_t_confinf)
 complete_block_df$pvalue <- as.numeric(complete_block_df$pvalue)
 #str(block_df_w)
 #head(complete.cases(block_df_w$pvalue))
 #complete_block_df <- block_df_w[complete.cases(block_df_w), ]
+print("TEST mult sig")
+all_sig <- c()
+for (i in unique(complete_block_df$block)) {
+  tmp_df <- complete_block_df[which(complete_block_df$block == i),]
+  if (all(tmp_df$pvalue <= 0.05)) {
+    all_sig <- c(all_sig,"yes")
+  } else {
+    all_sig <- c(all_sig, "no")
+  }#else
+
+}#for
+#add test results to df
+count = 1
+allSig <- vector(mode='numeric', length = length(complete_block_df$block))
+for (b in unique(complete_block_df$block)) {
+  bloc_loc <- which(complete_block_df$block == b)
+  allSig[bloc_loc] <- all_sig[count] 
+  count <- count + 1
+}#for
+complete_block_df['allSig'] <- allSig
+
+print("number of SIG blocks with all sig")
+td <- complete_block_df[which(complete_block_df$allSig == "yes"),]
+length(unique(td$block))
+
+
+#split_block <- split(complete_block_df, complete_block_df$block)
+#split_block
+#split_df <- lapply(split_block, function(x) if (x$pvalue <= 0.05)
+#{print("all_sig")} else {print("not all_sig")})
+#split_df
+#
+#complete_tibble <- complete_block_df %>%
+#group_by(block) %>%
+#mutate(if (pvalue<=0.05){all_sig = "yes"}
+#    else {all_sig = "no"})
+#complete_tibble[1]
+#warnings()
+
+
 print("HEAD")
-head(complete_block_df)
-tail(complete_block_df)
-complete_block_df[which(complete_block_df$block == "Block62"),]
+#complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 #plot pvalues
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
   geom_boxplot()
