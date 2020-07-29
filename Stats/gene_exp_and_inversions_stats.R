@@ -10,6 +10,33 @@ library(reshape2)
 library("RColorBrewer")
 library("gplots")
 library("ggplot2")
+#set theme
+theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
+            #change size of facet header text
+            theme(strip.text = element_text(size =10.49)) +
+            theme(plot.title = element_text(hjust = 0.5, size = 18),
+                  panel.background = element_rect(fill = "white", colour = NA),
+                  panel.grid.major = element_line(colour = "grey90", size = 0.2),
+                  panel.grid.minor = element_line(colour = "grey98", size = 0.5),
+                  panel.spacing = unit(0.25, "lines"),
+                  axis.text=element_text(size=18),
+                  axis.title = element_text(size = 18),
+                  #plot margins
+                  #plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
+                  #for second legend on y-axis
+                  axis.text.y.right = element_text(size=18),
+                  legend.title = element_blank(),
+                  legend.text = element_text(size = 18),
+                  #change the colour of facet label background
+                  strip.background = element_rect(fill = "#E6E1EA"),
+                  #remove space between facest
+                  panel.spacing.x=unit(0, "lines"),
+                  legend.key = element_blank(),
+                  legend.background=element_blank(),
+                  legend.position="none")
+                  #legend.position="top")
+)
+
 
 #read in the data
 #gbk_start and gbk_end are the starts and ends for each gene in the block
@@ -22,13 +49,19 @@ gei_dat <- read.csv(file_name, header = TRUE)
 
 
 print("############    ")
-print("# ALL inversions")
+print("# ALL inversions=1")
 print("############    ")
 print("#Wilcox signed-rank test                                                                     ")
 print("# to see if there is a difference btwn inversions and non-inverted segments                  ")
 print("#null hyp = there is no difference in gene expression btwn inverted and non-inverted segments")
 wilcox.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$inversion == 0])
 t.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$inversion == 0])
+warnings()
+print("############    ")
+print("# ALL rev_comp=1")
+print("############    ")
+wilcox.test(gei_dat$norm_exp[gei_dat$rev_comp == 1], gei_dat$norm_exp[gei_dat$rev_comp == 0])
+t.test(gei_dat$norm_exp[gei_dat$rev_comp == 1], gei_dat$norm_exp[gei_dat$rev_comp == 0])
 warnings()
 
 print("############         ")
@@ -123,7 +156,7 @@ print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert"))
+block_df <- subset(gei_dat,select = c("block","start","end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
 
@@ -131,7 +164,7 @@ block_df_uniq <- block_df
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert"),
+    id.vars=c("block", "start", "end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -202,11 +235,11 @@ blocks_new <- complete_block_df %>%
 blocks_new$class <- rep("BlockX",length(blocks_new$block))
 head(blocks_new)
 pdf("scatter_plot_test.pdf")
-ggplot(blocks_new, aes(start,sig))+
+ggplot(blocks_new, aes(x=gbk_midpoint, y=sig, color=sig))+
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
 #               position = position_jitter(width = 0.05)) +
 #  geom_point(size = 3) +
-  geom_point(size = 3)
+  geom_point(size = 2, alpha=0.4)
 #  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
 dev.off()
 
