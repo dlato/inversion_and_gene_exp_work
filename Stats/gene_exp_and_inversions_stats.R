@@ -25,16 +25,16 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   #plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
                   #for second legend on y-axis
                   axis.text.y.right = element_text(size=18),
-                  legend.title = element_blank(),
+#                  legend.title = element_blank(),
                   legend.text = element_text(size = 18),
                   #change the colour of facet label background
                   strip.background = element_rect(fill = "#E6E1EA"),
                   #remove space between facest
                   panel.spacing.x=unit(0, "lines"),
-                  legend.key = element_blank(),
-                  legend.background=element_blank(),
-                  legend.position="none")
-                  #legend.position="top")
+#                  legend.key = element_blank(),
+#                  legend.background=element_blank(),
+#                  legend.position="none")
+                  legend.position="top")
 )
 
 
@@ -156,7 +156,7 @@ print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert"))
+block_df <- subset(gei_dat,select = c("block","start","end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","strain"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
 
@@ -164,7 +164,7 @@ block_df_uniq <- block_df
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert"),
+    id.vars=c("block", "start", "end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert", "strain"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -276,9 +276,12 @@ blocks_new <- complete_block_df %>%
 #complete_block_df[which(complete_block_df$pvalue <=0.05),]
 #complete_block_df$sig <- which(complete_block_df$pvalue <=0.05)
 blocks_new$class <- rep("BlockX",length(blocks_new$block))
-head(blocks_new)
+sig_blocks <- blocks_new[which(blocks_new$sig == "yes"),]
+reg_df <- sig_blocks %>%
+  mutate(exp_reg = ifelse(block_avg_exp_invert > block_avg_exp_noninvert, "up", "down"))
+head(reg_df)
 pdf("scatter_plot_test.pdf")
-ggplot(blocks_new, aes(x=gbk_midpoint, y=sig, color=sig))+
+ggplot(reg_df, aes(x=gbk_midpoint, y=strain, color=exp_reg))+
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
 #               position = position_jitter(width = 0.05)) +
 #  geom_point(size = 3) +
