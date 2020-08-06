@@ -47,6 +47,123 @@ args <- commandArgs(TRUE)
 file_name <- as.character(args[1])
 gei_dat <- read.csv(file_name, header = TRUE)
 
+print("make column of length of each block")
+gei_dat <- within(gei_dat, block_len <- end - start)
+head(gei_dat)
+bac_name <- as.character(args[5])
+replicon <- as.character(args[6])
+colnames(gei_dat)[colnames(gei_dat) == "block_len"] <- "block_len"
+
+options("scipen"=100, "digits"=10)
+print("################################################################################")
+print("#ORIGIN SCALING AND BIDIRECTIONALITY                                            ")
+print("################################################################################")
+#first scaling things to the origin (if necessary)
+max_pos <- as.numeric(args[2])
+print("max_pos")
+max_pos
+oriC_pos <- as.numeric(args[3])
+print("oriC")
+oriC_pos
+terminus <- as.numeric(args[4])
+print("ter")
+terminus
+new_pos <- gei_dat$gbk_midpoint
+tmp_pos <- gei_dat$gbk_midpoint
+print("MIN POS")
+min(gei_dat$gbk_midpoint)
+
+if (bac_name == "E.coli" | replicon == "pSymA") {
+  to_shift_ter <- max_pos - oriC_pos
+  shifted_ter <-terminus + to_shift_ter
+  terminus <- shifted_ter
+}
+print("shifted ter")
+terminus
+
+if (replicon == "pSymB") {
+  shifted_ter <- terminus - oriC_pos
+  terminus <- shifted_ter
+}
+
+if (bac_name == "E.coli" | replicon == "pSymA" | replicon == "pSymB")
+{
+  for(i in 1:length(tmp_pos)) {
+    if (tmp_pos[i] >= oriC_pos) {
+      new_pos[i] <- tmp_pos[i] - oriC_pos
+    } else {
+      tmp_end <- max_pos - oriC_pos
+      new_pos[i] <- tmp_pos[i] + tmp_end
+    }
+  }
+  tmp_pos <- new_pos
+}
+
+
+##now accounting for the bidirectionality. if things are between the start pos and
+##the terminus then they will stay as the same position. If not, then they will be
+##changed to a new position starting at 1 and going to the terminus
+#new_pos2 <- tmp_pos
+##also have to account for bidirectional replicaion in the strand, in
+##the left replichore a complemented gene (1) is actually on the leading
+##strand. so for the left replichore, all 0 -> 1, and 1 -> 0
+#new_strand <- gei_dat$strand
+#if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name ==
+#"S.meliloti") {
+#  for(i in 1:length(tmp_pos)) {
+#    #left replichore
+#    if (tmp_pos[i] > terminus) {
+#      new_pos2[i] <- max_pos - tmp_pos[i]
+#      # making sure the strand column accounts for bidirectional rep
+#      if (gei_dat$strand[i] == 0) {
+#        new_strand[i] <- 1
+#      } else {
+#        new_strand[i] <- 0
+#      }
+#    } else {
+#    }
+#  }
+#  tmp_pos <- new_pos2
+#
+#  print("max tmp_pos")
+#  max(tmp_pos)
+#}
+#
+#
+#if (bac_name == "Streptomyces") {
+#  for(i in 1:length(tmp_pos)) {
+#    # right replichore
+#    if (tmp_pos[i] >= oriC_pos) {
+#      new_pos[i] <- tmp_pos[i] - oriC_pos
+#    }#if btwn origin and end of genome
+#    # left replichore
+#    if (tmp_pos[i] <= oriC_pos) {
+#      new_pos[i] <- -1 * (oriC_pos - tmp_pos[i])
+#      # making sure the strand column accounts for bidirectional rep
+#      if (gei_dat$strand[i] == 0) {
+#        new_strand[i] <- 1
+#      } else {
+#        new_strand[i] <- 0
+#      }
+#    }#if btwn origin and beginning of genome
+#    if (tmp_pos[i] == oriC_pos) {
+#      new_pos[i] <- 0
+#    }#if equal to origin
+#  }
+#  tmp_pos <- new_pos
+#}
+#
+#
+#gei_dat$strand <- new_strand
+#
+head(gei_dat)
+gei_dat$gbk_midpoint <- tmp_pos
+print("added tmp_pos")
+#gei_dat <- as.data.frame(cbind(gei_dat$block, gei_dat$gene, gei_dat$sec, tmp_pos, gei_dat$dS, gei_dat$dN, gei_dat$omega, gei_dat$sec_len))
+#colnames(gei_dat) <- c("block","end","gbk_end","gbk_gene_id","gbk_locus_tag","gbk_midpoint","gbk_old_locus_tag","gbk_start","gbk_strand","gene_id","inversion","locus_tag","norm_exp","rev_comp","start","strain","taxa","gene_name")
+head(gei_dat)
+max(gei_dat$gbk_midpoint)
+min(gei_dat$gbk_midpoint)
 
 print("############    ")
 print("# ALL inversions=1")
@@ -81,6 +198,8 @@ uniq_block_t_confinf1 <- c()
 uniq_block_t_confinf2 <- c()
 uniq_avg_exp_invert <- c()
 uniq_avg_exp_noninvert <- c()
+uniq_avg_len_invert <- c()
+uniq_avg_len_noninvert <- c()
 for (i in unique(gei_dat$block)) {
   tmp_df <- gei_dat[which(gei_dat$block == i),]
 print("--------------------")
@@ -89,11 +208,16 @@ print(tmp_df)
     #mean experssion for each group
     i_avg <- mean(tmp_df$norm_exp[tmp_df$rev_comp == 1])
     ni_avg <- mean(tmp_df$norm_exp[tmp_df$rev_comp == 0])
+    #mean block length for each group
+    i_len <- mean(tmp_df$block_len[tmp_df$rev_comp == 1])
+    ni_len <- mean(tmp_df$block_len[tmp_df$rev_comp == 0])
 print("means")
-print(i_avg)
-print(ni_avg)
+print(i_len)
+print(ni_len)
     uniq_avg_exp_invert <- c(uniq_avg_exp_invert,i_avg)
     uniq_avg_exp_noninvert <- c(uniq_avg_exp_noninvert,ni_avg)
+    uniq_avg_len_invert <- c(uniq_avg_len_invert,i_len)
+    uniq_avg_len_noninvert <- c(uniq_avg_len_noninvert,ni_len)
     #wilcox test
     wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
     uniq_block_w_pvalue <- c(uniq_block_w_pvalue,wilcox_test$p.value)
@@ -119,6 +243,8 @@ print(ni_avg)
     uniq_block_t_confinf2 <- c(uniq_block_t_confinf2,"NA")
     uniq_avg_exp_invert <- c(uniq_avg_exp_invert,"NA")
     uniq_avg_exp_noninvert <- c(uniq_avg_exp_noninvert,"NA")
+    uniq_avg_len_invert <- c(uniq_avg_len_invert,"NA")
+    uniq_avg_len_noninvert <- c(uniq_avg_len_noninvert,"NA")
   }
 }
 warnings()
@@ -132,6 +258,8 @@ block_t_coninf1 <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_coninf2 <- vector(mode='numeric', length = length(gei_dat$block))
 block_avg_exp_invert <- vector(mode='numeric', length = length(gei_dat$block))
 block_avg_exp_noninvert <- vector(mode='numeric', length = length(gei_dat$block))
+block_avg_len_invert <- vector(mode='numeric', length = length(gei_dat$block))
+block_avg_len_noninvert <- vector(mode='numeric', length = length(gei_dat$block))
 for (b in unique(gei_dat$block)) {
   bloc_loc <- which(gei_dat$block == b)
   block_w_pvalue[bloc_loc] <- uniq_block_w_pvalue[count] 
@@ -141,6 +269,8 @@ for (b in unique(gei_dat$block)) {
   block_t_coninf2[bloc_loc] <- uniq_block_t_confinf2[count] 
   block_avg_exp_invert[bloc_loc] <- uniq_avg_exp_invert[count] 
   block_avg_exp_noninvert[bloc_loc] <- uniq_avg_exp_noninvert[count] 
+  block_avg_len_invert[bloc_loc] <- uniq_avg_len_invert[count] 
+  block_avg_len_noninvert[bloc_loc] <- uniq_avg_len_noninvert[count] 
   count <- count + 1
 }
 gei_dat['block_w_pvalue'] <- block_w_pvalue
@@ -151,12 +281,15 @@ gei_dat['block_t_confinf2'] <- block_t_coninf2
 gei_dat['block_t_confinf2'] <- block_t_coninf2
 gei_dat['block_avg_exp_invert'] <- block_avg_exp_invert
 gei_dat['block_avg_exp_noninvert'] <- block_avg_exp_noninvert
+gei_dat['block_avg_len_invert'] <- block_avg_len_invert
+gei_dat['block_avg_len_noninvert'] <- block_avg_len_noninvert
 
 print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","strain"))
+block_df <- subset(gei_dat,select =
+c("block","start","end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","strain"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
 
@@ -164,7 +297,7 @@ block_df_uniq <- block_df
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert", "strain"),
+    id.vars=c("block", "start", "end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert", "strain"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -258,9 +391,14 @@ print("percent of SIG tested blocks")
 (length(unique(tmp$block)) / length(unique(complete_block_df$block))) * 100
 
 print("gene exp averages in sig blocks")
-tmp2 <- subset(tmp,select = c("block","pvalue","block_avg_exp_invert", "block_avg_exp_noninvert"))
+tmp2 <- subset(tmp,select = c("block","pvalue","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert"))
 df <- tmp2 %>%
   mutate(exp_reg = ifelse(block_avg_exp_invert > block_avg_exp_noninvert, "up", "down"))
+df <- df %>%
+  mutate(len_reg = ifelse(block_avg_len_invert > block_avg_len_noninvert, "long", "short"))
+print("####################")
+print("GENE EXP UP/DOWN INFO")
+print("####################")
 print("number of SIG blocks with inversion gene exp > noninversions gene exp")
 up <- df[which(df$exp_reg == "up"),]
 length(unique(up$block))
@@ -270,6 +408,19 @@ print("number of SIG blocks with inversion gene exp < noninversions gene exp")
 up <- df[which(df$exp_reg == "down"),]
 length(unique(up$block))
 print("percent of SIG blocks with inversions exp < noninversion exp")
+(length(unique(up$block)) / length(unique(df$block))) *100
+print("####################")
+print("BLOCK LENGTH INFO")
+print("####################")
+print("number of SIG blocks with inversion gene len > noninversions gene len")
+up <- df[which(df$len_reg == "up"),]
+length(unique(up$block))
+print("percent of SIG blocks with inversions len > noninversion len")
+(length(unique(up$block)) / length(unique(df$block))) *100
+print("number of SIG blocks with inversion gene len < noninversions gene len")
+up <- df[which(df$len_reg == "down"),]
+length(unique(up$block))
+print("percent of SIG blocks with inversions len < noninversion len")
 (length(unique(up$block)) / length(unique(df$block))) *100
 
 #make df with sig diff in gene exp btwn inversions
@@ -298,9 +449,13 @@ head(blocks_new)
 blocks_new$length <- blocks_new$end - blocks_new$start
 blocks_new$midpoint <- (blocks_new$end + blocks_new$start) / 2
 head(blocks_new)
-print("diff btwn length of inversions that have sig gene exp or not?")
+print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
 wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
-print("diff btwn position of inversions that have sig gene exp or not?")
+print("mean block length: sig blocks")
+mean(blocks_new$length[blocks_new$sig == "yes"])
+print("mean block length: non-sig blocks")
+mean(blocks_new$length[blocks_new$sig == "no"])
+print("diff btwn POSITION of inversions that have sig gene exp or not?")
 wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
 sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
 sub_blocks_new <- unique(sub_blocks_new)
