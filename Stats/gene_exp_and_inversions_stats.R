@@ -175,6 +175,8 @@ block_df_w <- melt(block_df_uniq,
 )
 print("non zero pvals") 
 complete_block_df <- block_df_w[which(block_df_w$pvalue != "NA"),]
+complete_block_df <- complete_block_df %>% filter(test == "block_w_pvalue")
+head(complete_block_df)
 print("SAVED complete DATA TO FILE")
 write.table(complete_block_df, 'inversions_gene_exp_complete_data.csv', sep = "\t")
 n_occur <- data.frame(table(complete_block_df$gbk_midpoint))
@@ -288,6 +290,25 @@ ggplot(reg_df, aes(x=gbk_midpoint, y=strain, color=exp_reg))+
   geom_point(size = 2, alpha=0.4)
 #  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
 dev.off()
+
+print("###################")
+print("# info about sig inversion blocks")
+print("###################")
+head(blocks_new)
+blocks_new$length <- blocks_new$end - blocks_new$start
+blocks_new$midpoint <- (blocks_new$end + blocks_new$start) / 2
+head(blocks_new)
+print("diff btwn length of inversions that have sig gene exp or not?")
+wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
+print("diff btwn position of inversions that have sig gene exp or not?")
+wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
+sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
+sub_blocks_new <- unique(sub_blocks_new)
+print("unique df")
+head(sub_blocks_new)
+tail(sub_blocks_new)
+wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
+
 
 
 
