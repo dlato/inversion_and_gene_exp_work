@@ -1,1 +1,8 @@
-Rscript gene_exp_and_inversions_stats.R ../Sample_final_df.csv --save > out
+#analysis on blocks with ALL 4 taxa present
+Rscript gene_exp_and_inversions_stats.R ../Strains_df/all_strains.csv 5130767 3925744 1588773 E.coli Chromosome --save > out_R_all_taxa_blocks.txt
+
+#analysis on blocks with 4 or 3 taxa present
+Rscript gene_exp_and_inversions_stats.R ../Strains_df/three_plus_strains.csv --save > out_R_4_or_3_taxa_blocks.txt
+
+#analysis on all blocks (4 or 3 or 2 taxa present)
+Rscript gene_exp_and_inversions_stats.R ../Strains_df/two_plus_strains.csv --save > out_R_2_or_more_taxa_blocks.txt

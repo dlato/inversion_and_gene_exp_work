@@ -58,6 +58,115 @@ bac_name <- as.character(args[5])
 replicon <- as.character(args[6])
 
 options("scipen"=100, "digits"=10)
+
+print("################################################################################")
+print("#ORIGIN SCALING AND BIDIRECTIONALITY                                            ")
+print("################################################################################")
+#first scaling things to the origin (if necessary)
+max_pos <- as.numeric(args[2])
+print("max_pos")
+max_pos
+oriC_pos <- as.numeric(args[3])
+print("oriC")
+oriC_pos
+terminus <- as.numeric(args[4])
+print("ter")
+terminus
+new_pos <- gei_dat$midpoint
+tmp_pos <- gei_dat$midpoint
+print("MIN POS")
+min(gei_dat$midpoint)
+
+if (bac_name == "E.coli" | replicon == "pSymA") {
+  to_shift_ter <- max_pos - oriC_pos
+  shifted_ter <-terminus + to_shift_ter
+  terminus <- shifted_ter
+}
+print("shifted ter")
+terminus
+
+if (replicon == "pSymB") {
+  shifted_ter <- terminus - oriC_pos
+  terminus <- shifted_ter
+}
+
+if (bac_name == "E.coli" | replicon == "pSymA" | replicon == "pSymB")
+{
+  for(i in 1:length(tmp_pos)) {
+    if (tmp_pos[i] >= oriC_pos) {
+      new_pos[i] <- tmp_pos[i] - oriC_pos
+    } else {
+      tmp_end <- max_pos - oriC_pos
+      new_pos[i] <- tmp_pos[i] + tmp_end
+    }
+  }
+  tmp_pos <- new_pos
+}
+
+
+##now accounting for the bidirectionality. if things are between the start pos and
+##the terminus then they will stay as the same position. If not, then they will be
+##changed to a new position starting at 1 and going to the terminus
+#new_pos2 <- tmp_pos
+##also have to account for bidirectional replicaion in the strand, in
+##the left replichore a complemented gene (1) is actually on the leading
+##strand. so for the left replichore, all 0 -> 1, and 1 -> 0
+#new_strand <- gei_dat$strand
+#if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name ==
+#"S.meliloti") {
+#  for(i in 1:length(tmp_pos)) {
+#    #left replichore
+#    if (tmp_pos[i] > terminus) {
+#      new_pos2[i] <- max_pos - tmp_pos[i]
+#      # making sure the strand column accounts for bidirectional rep
+#      if (gei_dat$strand[i] == 0) {
+#        new_strand[i] <- 1
+#      } else {
+#        new_strand[i] <- 0
+#      }
+#    } else {
+#    }
+#  }
+#  tmp_pos <- new_pos2
+#
+#  print("max tmp_pos")
+#  max(tmp_pos)
+#}
+#
+#
+#if (bac_name == "Streptomyces") {
+#  for(i in 1:length(tmp_pos)) {
+#    # right replichore
+#    if (tmp_pos[i] >= oriC_pos) {
+#      new_pos[i] <- tmp_pos[i] - oriC_pos
+#    }#if btwn origin and end of genome
+#    # left replichore
+#    if (tmp_pos[i] <= oriC_pos) {
+#      new_pos[i] <- -1 * (oriC_pos - tmp_pos[i])
+#      # making sure the strand column accounts for bidirectional rep
+#      if (gei_dat$strand[i] == 0) {
+#        new_strand[i] <- 1
+#      } else {
+#        new_strand[i] <- 0
+#      }
+#    }#if btwn origin and beginning of genome
+#    if (tmp_pos[i] == oriC_pos) {
+#      new_pos[i] <- 0
+#    }#if equal to origin
+#  }
+#  tmp_pos <- new_pos
+#}
+#
+#
+#gei_dat$strand <- new_strand
+#
+gei_dat$midpoint <- tmp_pos
+#gei_dat <- as.data.frame(cbind(gei_dat$block, gei_dat$gene, gei_dat$sec, tmp_pos, gei_dat$dS, gei_dat$dN, gei_dat$omega, gei_dat$sec_len))
+#colnames(gei_dat) <- c("block","end","gbk_end","gbk_gene_id","gbk_locus_tag","gbk_midpoint","gbk_old_locus_tag","gbk_start","gbk_strand","gene_id","inversion","locus_tag","norm_exp","rev_comp","start","strain","taxa","gene_name")
+head(gei_dat)
+max(gei_dat$midpoint)
+min(gei_dat$midpoint)
+
 print("################################################################################")
 print("#ORIGIN SCALING AND BIDIRECTIONALITY                                            ")
 print("################################################################################")
