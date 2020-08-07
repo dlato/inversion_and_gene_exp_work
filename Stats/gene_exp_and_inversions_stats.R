@@ -398,7 +398,7 @@ print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","strain"))
+block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp","strain"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
 
@@ -406,7 +406,7 @@ block_df_uniq <- block_df
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","midpoint","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert", "strain"),
+    id.vars=c("block", "start", "end","midpoint","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp", "strain"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -470,7 +470,8 @@ length(unique(td$block))
 #warnings()
 
 
-print("HEAD")
+print("complete HEAD")
+head(complete_block_df)
 #complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 #plot pvalues
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
@@ -500,7 +501,7 @@ print("percent of SIG tested blocks")
 (length(unique(tmp$block)) / length(unique(complete_block_df$block))) * 100
 
 print("gene exp averages in sig blocks")
-tmp2 <- subset(tmp,select = c("block","pvalue","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert"))
+tmp2 <- subset(tmp,select = c("block","pvalue","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","rev_comp","inversion"))
 df <- tmp2 %>%
   mutate(exp_reg = ifelse(block_avg_exp_invert > block_avg_exp_noninvert, "up", "down"))
 df <- df %>%
@@ -573,7 +574,66 @@ tail(sub_blocks_new)
 wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
 
 
-
+print("###################")
+print("# Distance from the origin info:")
+print("###################")
+print("# LOGISTIC REGRESSION on rev_comp and dist (midpoint)")
+print("###################")
+#glm with logit link
+log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_rev_mid))
+warnings()
+print("###################")
+print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_rev_gbk))
+warnings()
+print("###################")
+print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
+print("###################")
+#glm with logit link
+log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_inv_mid))
+warnings()
+print("###################")
+print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_inv_gbk))
+warnings()
+print("#################################################################")
+print("SIG diff in gene exp blocks")
+print("###################")
+print("# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_rev_mid))
+warnings()
+print("###################")
+print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_rev_gbk))
+warnings()
+print("###################")
+print("# LOGISTIC REGRESSION on SIG inversions and dist (midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_inv_mid))
+warnings()
+print("###################")
+print("# LOGISTIC REGRESSION on SIG inversions and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_inv_gbk))
+warnings()
 
 #############
 ## DESeq expression comparison
