@@ -582,28 +582,24 @@ print("###################")
 #glm with logit link
 log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
 print(summary(log_reg_rev_mid))
-warnings()
 print("###################")
 print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
 print("###################")
 #glm with logit link
 log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
 print(summary(log_reg_rev_gbk))
-warnings()
 print("###################")
 print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
 print("###################")
 #glm with logit link
 log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
 print(summary(log_reg_inv_mid))
-warnings()
 print("###################")
 print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
 print("###################")
 #glm with logit link
 log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
 print(summary(log_reg_inv_gbk))
-warnings()
 print("#################################################################")
 print("SIG diff in gene exp blocks")
 print("###################")
@@ -612,28 +608,24 @@ print("###################")
 #glm with logit link
 sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
 print(summary(sig_log_reg_rev_mid))
-warnings()
 print("###################")
 print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
 print("###################")
 #glm with logit link
 sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
 print(summary(sig_log_reg_rev_gbk))
-warnings()
 print("###################")
 print("# LOGISTIC REGRESSION on SIG inversions and dist (midpoint)")
 print("###################")
 #glm with logit link
 sig_log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
 print(summary(sig_log_reg_inv_mid))
-warnings()
 print("###################")
 print("# LOGISTIC REGRESSION on SIG inversions and dist (gbk_midpoint)")
 print("###################")
 #glm with logit link
 sig_log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
 print(summary(sig_log_reg_inv_gbk))
-warnings()
 
 #############
 ## DESeq expression comparison
