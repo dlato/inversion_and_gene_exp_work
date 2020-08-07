@@ -2,3 +2,10 @@
 # K12 MG1655 = BW25113
 # K12 DH10B = K12 W3110
 # ATCC = CFT073
+#
+# all blast outputs including ATCC and DH have duplicated RBBH's for
+# the gene ecpD. This gene name is associated with two proteins
+# (Q8FKL3 and A0A0H2V4S3) but only one is actually in the gbk file
+# (Q8FKL3) so this is the RBBH that will be chosen.
+# >sp|Q8FKL3|ECPD_ECOL6 Fimbria adhesin EcpD OS=Escherichia coli O6:H1
+# (strain CFT073 / ATCC 0928 / UPEC) OX=199310 GN=ecpD PE=1 SV=1
