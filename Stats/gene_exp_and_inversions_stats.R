@@ -49,10 +49,13 @@ gei_dat <- read.csv(file_name, header = TRUE)
 
 print("make column of length of each block")
 gei_dat <- within(gei_dat, block_len <- end - start)
+colnames(gei_dat)[colnames(gei_dat) == "block_len"] <- "block_len"
+print("make column of midpoint of each block")
+gei_dat <- within(gei_dat, midpoint <- (end - start) /2)
+colnames(gei_dat)[colnames(gei_dat) == "midpoint"] <- "midpoint"
 head(gei_dat)
 bac_name <- as.character(args[5])
 replicon <- as.character(args[6])
-colnames(gei_dat)[colnames(gei_dat) == "block_len"] <- "block_len"
 
 options("scipen"=100, "digits"=10)
 print("################################################################################")
@@ -156,9 +159,7 @@ if (bac_name == "E.coli" | replicon == "pSymA" | replicon == "pSymB")
 #
 #gei_dat$strand <- new_strand
 #
-head(gei_dat)
 gei_dat$gbk_midpoint <- tmp_pos
-print("added tmp_pos")
 #gei_dat <- as.data.frame(cbind(gei_dat$block, gei_dat$gene, gei_dat$sec, tmp_pos, gei_dat$dS, gei_dat$dN, gei_dat$omega, gei_dat$sec_len))
 #colnames(gei_dat) <- c("block","end","gbk_end","gbk_gene_id","gbk_locus_tag","gbk_midpoint","gbk_old_locus_tag","gbk_start","gbk_strand","gene_id","inversion","locus_tag","norm_exp","rev_comp","start","strain","taxa","gene_name")
 head(gei_dat)
@@ -288,8 +289,7 @@ print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select =
-c("block","start","end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","strain"))
+block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","strain"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
 
@@ -297,7 +297,7 @@ block_df_uniq <- block_df
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert", "strain"),
+    id.vars=c("block", "start", "end","midpoint","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert", "strain"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -447,7 +447,6 @@ print("# info about sig inversion blocks")
 print("###################")
 head(blocks_new)
 blocks_new$length <- blocks_new$end - blocks_new$start
-blocks_new$midpoint <- (blocks_new$end + blocks_new$start) / 2
 head(blocks_new)
 print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
 wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
