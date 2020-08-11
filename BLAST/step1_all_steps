@@ -24,3 +24,11 @@ l -1 Blast_MG1655*uniq.tab > RBBH_parallel
 #NOT_REVERSED.fasta -d REVERSED.fasta
 parallel -j 10 < RBBH_parallel
 #-------------------------------------------------------------------
+
+foreach x (p*/)
+cd $x
+perl -p -i.bak -e "s/\'//g" RB*.tab
+perl -p -i.bak -e "s/\[//g" RB*.tab
+perl -p -i.bak -e "s/\]//g" RB*.tab
+cd ..
+end
