@@ -628,12 +628,23 @@ print("###################")
 sig_log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
 print(summary(sig_log_reg_inv_gbk))
 
-#############
-## DESeq expression comparison
-#############
+print("#############                 ")
+print("## DESeq expression comparison")
+print("#############                 ")
 ##set up df
 ##this will need to be changed once the real data comes in
 ##********************
+#read in raw data file of all combined experiements
+raw_file <- as.character(args[7])
+raw_dat <- read.csv(raw_file, header = TRUE)
+head(raw_dat)
+print(unique(raw_dat$replicates))
+
+#make df with JUST expression and experiment values
+raw_deseq <- subset(raw_data, select = c("Locus_tag","gene_id",))
+
+
+
 #tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
 #DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
 #MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
