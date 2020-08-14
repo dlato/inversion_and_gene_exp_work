@@ -641,8 +641,16 @@ head(raw_dat)
 print(unique(raw_dat$replicates))
 
 #make df with JUST expression and experiment values
-raw_deseq <- subset(raw_data, select = c("Locus_tag","gene_id",))
+raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp"))
+head(raw_deseq)
 
+#read in gene mapping file to tell us which genes are homologous
+gmap_file <- as.character(args[8])
+gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
+#reshape
+gmaps <- subset(gmap, select = c("V2","V4","V6","V8"))
+colnames(gmaps) <- c("CP009072","CP009273","NC_010473","U00096000") 
+head(gmaps)
 
 
 #tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
