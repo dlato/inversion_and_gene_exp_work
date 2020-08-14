@@ -1,11 +1,11 @@
 #test script for inversions and gene expression analysis
 #library(tidyverse)
 library(dplyr)
-#library(tidyr)
+library(tidyr)
 #library(broom)
 #library(rstatix)
 #library(ggpubr)
-#library(DESeq2)
+library(DESeq2)
 library(reshape2)
 library("RColorBrewer")
 library("gplots")
@@ -644,14 +644,32 @@ print(unique(raw_dat$replicates))
 raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp"))
 head(raw_deseq)
 
+#toy df with just ATCC experiments
+raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
+raw_deseqSubset <- raw_deseq[grep("ATCC", raw_deseq$replicate), ]
+raw_deseqW <- spread(raw_deseqSubset,replicates, raw_exp)
+rownames(raw_deseqW) <- raw_deseqW$gene_id
+raw_deseqW <- raw_deseqW[,c(-1,-2)]
+inversion <- raw_deseqW$inversion
+head(raw_deseqW)
+tail(raw_deseqW)
+# set up experimental design
+experimental_design = data.frame(
+  sample_names = colnames(raw_deseqW),  # sample name
+#  individual = factor(colnames(exp_df)), # each individual strain
+  treatment = factor(inversion)  # inversion = 1 or no inversion = 0
+#  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
+)
+DESeq_data <- DESeqDataSetFromMatrix(raw_deseqW, experimental_design, design = formula(~ treatment))
+
+
+
 #read in gene mapping file to tell us which genes are homologous
 gmap_file <- as.character(args[8])
 gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
 #reshape
 gmaps <- subset(gmap, select = c("V2","V4","V6","V8"))
 colnames(gmaps) <- c("CP009072","CP009273","NC_010473","U00096000") 
-head(gmaps)
-
 
 #tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
 #DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
