@@ -80,11 +80,16 @@ end
 cat *_uniq* | uniq > BW25113_and_K12_MG1655_gene_map.txt
 perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
 perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
+perl -p -i.bak -e "s/^\n//g" *_gene_map.txt
 
 
 #Duplicated Mapping Genes:
 #K12MG  BW      BW
 #b1474  BW25113_RS07725 BW25113_RS07730*
+#CP009273        BW25113_RS07750 U00096000       b1474
+#CP009273        BW25113_RS07755 U00096000       b1474*** went with#this one 
+#CP009273        BW25113_RS07760 U00096000       b1474
+#CP009273        BW25113_RS07765 U00096000       b1474
 #bl349  BW25113_RS01795*        BW25113_RS01805
 #
 #*gene chosen for actual mapping
