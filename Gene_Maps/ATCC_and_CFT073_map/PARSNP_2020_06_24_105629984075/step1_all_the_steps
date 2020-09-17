@@ -94,6 +94,11 @@ end
 cat *_uniq* | uniq > ATCC_and_CFT073_gene_map.txt
 perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
 perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
+perl -p -i.bak -e "s/^\n//g" *_gene_map.txt
 cp *_gene_map.txt ../../
 
 
+#### some genes are mapped twice. Here are the decisions that were
+#made based on sequence length.
+# DR76_RS00085 matches C_RS00085
+#
