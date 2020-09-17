@@ -50,7 +50,8 @@ end
 cat *_uniq* | uniq > ATCC_CFT073_K12MG_K12DH_BW_gene_map.txt
 perl -p -i.bak -e "s/\[\'//g" *_gene_map.txt
 perl -p -i.bak -e "s/\'\]//g" *_gene_map.txt
-cp *_gene_map.txt ../../
+perl -p -i.bak -e "s/^\n//g" *_gene_map.txt
+cp *_gene_map.txt ../
 
 #Duplicated Rows:
 #-any row with b4579 has been removed because it is a pseudogene and
