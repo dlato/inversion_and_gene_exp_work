@@ -28,6 +28,72 @@
 [1] "inversion"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
     285    5563    9954   11440   14890   38570 
+[1] "summary of gei_dat"
+      block           start              end             rev_comp     
+ Block499:  161   Min.   :      0   Min.   :   5468   Min.   :0.0000  
+ Block889:  124   1st Qu.:1274932   1st Qu.:1282024   1st Qu.:0.0000  
+ Block656:  115   Median :2394023   Median :2422388   Median :0.0000  
+ Block893:  113   Mean   :2410505   Mean   :2421909   Mean   :0.1791  
+ Block869:  102   3rd Qu.:3526190   3rd Qu.:3530953   3rd Qu.:0.0000  
+ Block485:  101   Max.   :5129412   Max.   :5130766   Max.   :1.0000  
+ (Other) :11358                                                       
+   inversion          strain       gene_name       gbk_start      
+ Min.   :0.0000   ATCC   :3112   b0001  :    2   Min.   :      1  
+ 1st Qu.:0.0000   BW25113:3003   b0002  :    2   1st Qu.:1278984  
+ Median :1.0000   K12DH  :2994   b0003  :    2   Median :2409286  
+ Mean   :0.6948   K12MG  :2965   b0004  :    2   Mean   :2415755  
+ 3rd Qu.:1.0000                  b0007  :    2   3rd Qu.:3529695  
+ Max.   :1.0000                  b0008  :    2   Max.   :5129459  
+                                 (Other):12062                    
+  gbk_midpoint       gbk_strand        gbk_end           norm_exp       
+ Min.   :    222   Min.   :0.0000   Min.   :    255   Min.   :    0.00  
+ 1st Qu.:1279275   1st Qu.:0.0000   1st Qu.:1279534   1st Qu.:   11.52  
+ Median :2409852   Median :1.0000   Median :2410478   Median :   48.55  
+ Mean   :2416229   Mean   :0.5205   Mean   :2416703   Mean   :  209.81  
+ 3rd Qu.:3530088   3rd Qu.:1.0000   3rd Qu.:3530563   3rd Qu.:  149.95  
+ Max.   :5129985   Max.   :1.0000   Max.   :5130511   Max.   :20648.30  
+                                                                        
+  block_length      log_exp        block_len        midpoint      
+ Min.   :  175   Min.   :0.000   Min.   :  175   Min.   :   87.5  
+ 1st Qu.: 5553   1st Qu.:2.527   1st Qu.: 5553   1st Qu.: 2776.5  
+ Median : 9804   Median :3.903   Median : 9804   Median : 4902.0  
+ Mean   :11404   Mean   :3.794   Mean   :11404   Mean   : 5702.0  
+ 3rd Qu.:14887   3rd Qu.:5.017   3rd Qu.:14887   3rd Qu.: 7443.5  
+ Max.   :38569   Max.   :9.935   Max.   :38569   Max.   :19284.5  
+                                                                  
+[1] "summary of gei_dat k12 only"
+      block          start              end             rev_comp
+ Block499:  40   Min.   :      0   Min.   :   5468   Min.   :0  
+ Block889:  31   1st Qu.:1326732   1st Qu.:1335669   1st Qu.:0  
+ Block656:  29   Median :2390012   Median :2422621   Median :0  
+ Block893:  28   Mean   :2397053   Mean   :2408465   Mean   :0  
+ Block485:  26   3rd Qu.:3471484   3rd Qu.:3499176   3rd Qu.:0  
+ Block869:  26   Max.   :4633235   Max.   :4641644   Max.   :0  
+ (Other) :2785                                                  
+   inversion          strain       gene_name      gbk_start      
+ Min.   :0.0000   ATCC   :   0   b0001  :   1   Min.   :    190  
+ 1st Qu.:0.0000   BW25113:   0   b0002  :   1   1st Qu.:1327767  
+ Median :1.0000   K12DH  :   0   b0003  :   1   Median :2412100  
+ Mean   :0.6944   K12MG  :2965   b0004  :   1   Mean   :2402314  
+ 3rd Qu.:1.0000                  b0007  :   1   3rd Qu.:3473542  
+ Max.   :1.0000                  b0008  :   1   Max.   :4640942  
+                                 (Other):2959                    
+  gbk_midpoint       gbk_strand        gbk_end           norm_exp      
+ Min.   :    222   Min.   :0.0000   Min.   :    255   Min.   :   0.00  
+ 1st Qu.:1328062   1st Qu.:0.0000   1st Qu.:1328357   1st Qu.:  23.25  
+ Median :2412347   Median :1.0000   Median :2412594   Median :  72.60  
+ Mean   :2402790   Mean   :0.5224   Mean   :2403267   Mean   : 196.91  
+ 3rd Qu.:3473811   3rd Qu.:1.0000   3rd Qu.:3474081   3rd Qu.: 168.79  
+ Max.   :4641285   Max.   :1.0000   Max.   :4641628   Max.   :7366.75  
+                                                                       
+  block_length      log_exp        block_len        midpoint      
+ Min.   :  175   Min.   :0.000   Min.   :  175   Min.   :   87.5  
+ 1st Qu.: 5553   1st Qu.:3.188   1st Qu.: 5553   1st Qu.: 2776.5  
+ Median : 9851   Median :4.299   Median : 9851   Median : 4925.5  
+ Mean   :11411   Mean   :4.160   Mean   :11411   Mean   : 5705.7  
+ 3rd Qu.:14887   3rd Qu.:5.135   3rd Qu.:14887   3rd Qu.: 7443.5  
+ Max.   :38569   Max.   :8.905   Max.   :38569   Max.   :19284.5  
+                                                                  
 [1] "################################################################################"
 [1] "#ORIGIN SCALING AND BIDIRECTIONALITY MIDPOINT                                            "
 [1] "################################################################################"
@@ -40091,21 +40157,21 @@ null device
                                                    Max.   :6451.203880  
                                                                         
 [1] "###################"
-[1] "2 datapts per block"
+[1] "2 data pts per block"
 [1] "###################"
-    block gbk_midpoint sig                class     avg_exp
-1 Block62      1445602  no block_avg_exp_invert 188.2043577
-2 Block62      1447104  no block_avg_exp_invert 188.2043577
-3 Block62      1448855  no block_avg_exp_invert 188.2043577
-4 Block62      1449733  no block_avg_exp_invert 188.2043577
-5 Block62      1450458  no block_avg_exp_invert 188.2043577
-6 Block73      1460010  no block_avg_exp_invert 530.7857756
-    block gbk_midpoint sig                class     avg_exp
-1 Block62      1445602  no block_avg_exp_invert 188.2043577
-2 Block62      1447104  no block_avg_exp_invert 188.2043577
-3 Block62      1448855  no block_avg_exp_invert 188.2043577
-4 Block62      1449733  no block_avg_exp_invert 188.2043577
-5 Block62      1450458  no block_avg_exp_invert 188.2043577
-6 Block73      1460010  no block_avg_exp_invert 530.7857756
+    block  midpoint sig                class     avg_exp
+1 Block62 1208271.5  no block_avg_exp_invert 188.2043577
+2 Block62 1208271.5  no block_avg_exp_invert 188.2043577
+3 Block62 1208271.5  no block_avg_exp_invert 188.2043577
+4 Block62 1208271.5  no block_avg_exp_invert 188.2043577
+5 Block62 1208271.5  no block_avg_exp_invert 188.2043577
+6 Block73 1207133.0  no block_avg_exp_invert 530.7857756
+      block  midpoint sig                class      avg_exp
+1   Block62 1208271.5  no block_avg_exp_invert 188.20435767
+6   Block73 1207133.0  no block_avg_exp_invert 530.78577561
+8   Block98 1206539.5  no block_avg_exp_invert   3.78237694
+9   Block99 1205602.5  no block_avg_exp_invert  74.27837209
+10 Block101 1205330.0  no block_avg_exp_invert  42.91624541
+11 Block105 1206265.5  no block_avg_exp_invert  41.54346919
 null device 
           1 

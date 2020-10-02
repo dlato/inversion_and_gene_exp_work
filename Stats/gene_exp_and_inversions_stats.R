@@ -63,6 +63,12 @@ summary(gei_dat$block_len[which(gei_dat$inversion == 0)])
 print("inversion")
 summary(gei_dat$block_len[which(gei_dat$inversion == 1)])
 
+print("summary of gei_dat")
+summary(gei_dat)
+print("summary of gei_dat k12 only")
+tmp_k12 <- gei_dat %>% filter(strain == "K12MG")
+summary(tmp_k12)
+
 
 options("scipen"=100, "digits"=10)
 
@@ -571,14 +577,15 @@ k12_df$avg_exp <- as.numeric(k12_df$avg_exp)
 head(k12_df)
 summary(k12_df) 
 print("###################")
-print("2 datapts per block")
+print("2 data pts per block")
 print("###################")
-k12_df <- k12_df %>% select(block, gbk_midpoint,sig,class,avg_exp)
+#I think midpoint is for the block and gbk_midpoint is for each gene
+k12_df <- k12_df %>% select(block, midpoint,sig,class,avg_exp)
 head(k12_df)
 k12_df <- unique(k12_df)
 head(k12_df)
 
-p <- (ggplot(k12_df, aes(x=gbk_midpoint, y=avg_exp, color=class))
+p <- (ggplot(k12_df, aes(x=midpoint, y=avg_exp, color=class))
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
 #               position = position_jitter(width = 0.05)) +
 #  geom_point(size = 3) +
