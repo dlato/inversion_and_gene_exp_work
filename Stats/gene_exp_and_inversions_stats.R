@@ -57,6 +57,13 @@ head(gei_dat)
 bac_name <- as.character(args[5])
 replicon <- as.character(args[6])
 
+print("summary of block lengths:")
+print("non-inversion")
+summary(gei_dat$block_len[which(gei_dat$inversion == 0)])
+print("inversion")
+summary(gei_dat$block_len[which(gei_dat$inversion == 1)])
+
+
 options("scipen"=100, "digits"=10)
 
 print("################################################################################")
@@ -554,199 +561,232 @@ ggplot(reg_df, aes(x=gbk_midpoint, y=strain, color=exp_reg))+
 dev.off()
 
 print("###################")
-print("# info about sig inversion blocks")
+print("df with avg inversion info, only K12")
 print("###################")
-head(blocks_new)
-blocks_new$length <- blocks_new$end - blocks_new$start
-head(blocks_new)
-print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
-wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
-print("mean block length: sig blocks")
-mean(blocks_new$length[blocks_new$sig == "yes"])
-print("mean block length: non-sig blocks")
-mean(blocks_new$length[blocks_new$sig == "no"])
-print("diff btwn POSITION of inversions that have sig gene exp or not?")
-wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
-sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
-sub_blocks_new <- unique(sub_blocks_new)
-print("unique df")
-head(sub_blocks_new)
-tail(sub_blocks_new)
-wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
+#k12_df <- reg_df %>%
+k12_df <- blocks_new %>%
+          filter(strain == "K12MG") %>%
+        gather(class, avg_exp, block_avg_exp_invert:block_avg_exp_noninvert, factor_key = TRUE)
+k12_df$avg_exp <- as.numeric(k12_df$avg_exp)
+head(k12_df)
+summary(k12_df) 
+print("###################")
+print("2 datapts per block")
+print("###################")
+k12_df <- k12_df %>% select(block, gbk_midpoint,sig,class,avg_exp)
+head(k12_df)
+k12_df <- unique(k12_df)
+head(k12_df)
 
-
-print("###################")
-print("# Distance from the origin info:")
-print("###################")
-print("# LOGISTIC REGRESSION on rev_comp and dist (midpoint)")
-print("###################")
-#glm with logit link
-log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_rev_mid))
-print("###################")
-print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
-print("###################")
-#glm with logit link
-log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_rev_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
-print("###################")
-#glm with logit link
-log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_inv_mid))
-print("###################")
-print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
-print("###################")
-#glm with logit link
-log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_inv_gbk))
-print("#################################################################")
-print("SIG diff in gene exp blocks")
-print("###################")
-print("# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_mid))
-print("###################")
-print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on SIG inversions and dist (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_mid))
-print("###################")
-print("# LOGISTIC REGRESSION on SIG inversions and dist (gbk_midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-
-print("#############                 ")
-print("## DESeq expression comparison")
-print("#############                 ")
-##set up df
-##this will need to be changed once the real data comes in
-##********************
-#read in raw data file of all combined experiements
-raw_file <- as.character(args[7])
-raw_dat <- read.csv(raw_file, header = TRUE)
-head(raw_dat)
-print(unique(raw_dat$replicates))
-
-#make df with JUST expression and experiment values
-raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp"))
-head(raw_deseq)
-
-#toy df with just ATCC experiments
-raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
-raw_deseqSubset <- raw_deseq[grep("ATCC", raw_deseq$replicate), ]
-raw_deseqW <- spread(raw_deseqSubset,replicates, raw_exp)
-rownames(raw_deseqW) <- raw_deseqW$gene_id
-raw_deseqW <- raw_deseqW[,c(-1,-2)]
-inversion <- raw_deseqW$inversion
-head(raw_deseqW)
-tail(raw_deseqW)
-# set up experimental design
-experimental_design = data.frame(
-  sample_names = colnames(raw_deseqW),  # sample name
-#  individual = factor(colnames(exp_df)), # each individual strain
-  treatment = factor(inversion)  # inversion = 1 or no inversion = 0
-#  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
+p <- (ggplot(k12_df, aes(x=gbk_midpoint, y=avg_exp, color=class))
+#  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
+#               position = position_jitter(width = 0.05)) +
+#  geom_point(size = 3) +
+   + geom_point(size = 2, alpha=0.4)
+#  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
+   + scale_y_continuous(trans='log10')
+#   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
 )
-DESeq_data <- DESeqDataSetFromMatrix(raw_deseqW, experimental_design, design = formula(~ treatment))
+pdf("genome_pos_inversions_k12.pdf")
+p
+dev.off()
 
-
-
-#read in gene mapping file to tell us which genes are homologous
-gmap_file <- as.character(args[8])
-gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
-#reshape
-gmaps <- subset(gmap, select = c("V2","V4","V6","V8"))
-colnames(gmaps) <- c("CP009072","CP009273","NC_010473","U00096000") 
-
-#tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
-#DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
-#MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
-#DH <- data.frame(DH[!duplicated(DH[ , c("gene_id")]),])
-#levels(DH$strain) <- c(levels(DH$strain), "K12DH_i")
-#DH$strain[DH$inversion == 1] <- "K12DH_i"
-#MG <- data.frame(MG[!duplicated(MG[ , c("gene_id")]),])
-#levels(MG$strain) <- c(levels(MG$strain), "K12MG_i")
-#MG$strain[MG$inversion == 1] <- "K12MG_i"
-#gene_names <- unique(MG$gene_id)
-#DH <- unique(DH[which(DH$gene_id %in% gene_names),])
-#exp_df <- rbind(DH,MG)
-#exp_df <- spread(exp_df, strain, norm_exp)
-#rownames(exp_df) <- exp_df$gene_id
-#exp_df <- exp_df[,-1]
-##inversions_col <- exp_df$inversion
-#exp_df <- exp_df[,-1]
-##********************
-#t_count = 1
-#t <- vector(mode='character', length = length(colnames(exp_df)))
-#for (l in colnames(exp_df)) {
-#  tmp_vec <- strsplit(l, "_")
-#  tmp_l <- length(unlist(tmp_vec))
-#  if (tmp_l > 1){
-#    t[t_count] <- "inversion"
-#  } else {
-#    t[t_count] <- "none"
-#  }
-#  t_count <- t_count +1
-#}
-##deal with NA values
-#exp_df <- exp_df %>% replace(is.na(.), 0)
 #
-#print(t)
+#
+#print("###################")
+#print("# info about sig inversion blocks")
+#print("###################")
+#head(blocks_new)
+#blocks_new$length <- blocks_new$end - blocks_new$start
+#head(blocks_new)
+#print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
+#wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
+#print("mean block length: sig blocks")
+#mean(blocks_new$length[blocks_new$sig == "yes"])
+#print("mean block length: non-sig blocks")
+#mean(blocks_new$length[blocks_new$sig == "no"])
+#print("diff btwn POSITION of inversions that have sig gene exp or not?")
+#wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
+#sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
+#sub_blocks_new <- unique(sub_blocks_new)
+#print("unique df")
+#head(sub_blocks_new)
+#tail(sub_blocks_new)
+#wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
+#
+#
+#print("###################")
+#print("# Distance from the origin info:")
+#print("###################")
+#print("# LOGISTIC REGRESSION on rev_comp and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_rev_mid))
+#print("###################")
+#print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_rev_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_inv_mid))
+#print("###################")
+#print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_inv_gbk))
+#print("#################################################################")
+#print("SIG diff in gene exp blocks")
+#print("###################")
+#print("# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_mid))
+#print("###################")
+#print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on SIG inversions and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_mid))
+#print("###################")
+#print("# LOGISTIC REGRESSION on SIG inversions and dist (gbk_midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#
+#print("#############                 ")
+#print("## DESeq expression comparison")
+#print("#############                 ")
+###set up df
+###this will need to be changed once the real data comes in
+###********************
+##read in raw data file of all combined experiements
+#raw_file <- as.character(args[7])
+#raw_dat <- read.csv(raw_file, header = TRUE)
+#head(raw_dat)
+#print(unique(raw_dat$replicates))
+#
+##make df with JUST expression and experiment values
+#raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp"))
+#head(raw_deseq)
+#
+##toy df with just ATCC experiments
+#raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
+#raw_deseqSubset <- raw_deseq[grep("ATCC", raw_deseq$replicate), ]
+#raw_deseqW <- spread(raw_deseqSubset,replicates, raw_exp)
+#rownames(raw_deseqW) <- raw_deseqW$gene_id
+#raw_deseqW <- raw_deseqW[,c(-1,-2)]
+#inversion <- raw_deseqW$inversion
+#head(raw_deseqW)
+#tail(raw_deseqW)
 ## set up experimental design
 #experimental_design = data.frame(
-#  sample_names = colnames(exp_df),  # sample name
+#  sample_names = colnames(raw_deseqW),  # sample name
 ##  individual = factor(colnames(exp_df)), # each individual strain
-#  treatment = factor(t)  # inversion = 1 or no inversion = 0
+#  treatment = factor(inversion)  # inversion = 1 or no inversion = 0
 ##  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
 #)
-#
-#DESeq_data <- DESeqDataSetFromMatrix(exp_df, experimental_design, design = formula(~ treatment))
-#
-
-
-############
-# ALL inversions
-############
-
-
-
-#t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
-#
-#test_inver <- gei_dat %>% filter(inversion == 1)
-#test_revcomp <- gei_dat %>% filter(rev_comp == 1)
-#
-#gei_dat %>% filter(block == "Block800") %>%
-#  filter(rev_comp == 1)
-#gei_dat %>% filter(block == "Block800") %>%
-#  filter(rev_comp == 0)
-#
-#gei_dat %>% select(block, inversion, rev_comp, norm_exp) %>%
-#  group_by(block, rev_comp)
-#
-#gei_dat %>%
-#  select(filter(rev_comp == 1),block, norm_exp, inversion)
+#DESeq_data <- DESeqDataSetFromMatrix(raw_deseqW, experimental_design, design = formula(~ treatment))
 #
 #
-#gei_dat %>%
-#  filter(block == "Block800" && block == "Block799") %>%
-#  group_by(block) %>%
-#  do(tidy(t.test(norm_exp ~ rev_comp, data = .)))
 #
-##inverted rows we want
-#gei_dat[gei_dat$block %in% gei_dat$block[gei_dat$rev_comp == 1],]
-#gei_dat %>%
-#  filter(rev_comp == 1)
+##read in gene mapping file to tell us which genes are homologous
+#gmap_file <- as.character(args[8])
+#gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
+##reshape
+#gmaps <- subset(gmap, select = c("V2","V4","V6","V8"))
+#colnames(gmaps) <- c("CP009072","CP009273","NC_010473","U00096000") 
 #
+##tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
+##DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
+##MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
+##DH <- data.frame(DH[!duplicated(DH[ , c("gene_id")]),])
+##levels(DH$strain) <- c(levels(DH$strain), "K12DH_i")
+##DH$strain[DH$inversion == 1] <- "K12DH_i"
+##MG <- data.frame(MG[!duplicated(MG[ , c("gene_id")]),])
+##levels(MG$strain) <- c(levels(MG$strain), "K12MG_i")
+##MG$strain[MG$inversion == 1] <- "K12MG_i"
+##gene_names <- unique(MG$gene_id)
+##DH <- unique(DH[which(DH$gene_id %in% gene_names),])
+##exp_df <- rbind(DH,MG)
+##exp_df <- spread(exp_df, strain, norm_exp)
+##rownames(exp_df) <- exp_df$gene_id
+##exp_df <- exp_df[,-1]
+###inversions_col <- exp_df$inversion
+##exp_df <- exp_df[,-1]
+###********************
+##t_count = 1
+##t <- vector(mode='character', length = length(colnames(exp_df)))
+##for (l in colnames(exp_df)) {
+##  tmp_vec <- strsplit(l, "_")
+##  tmp_l <- length(unlist(tmp_vec))
+##  if (tmp_l > 1){
+##    t[t_count] <- "inversion"
+##  } else {
+##    t[t_count] <- "none"
+##  }
+##  t_count <- t_count +1
+##}
+###deal with NA values
+##exp_df <- exp_df %>% replace(is.na(.), 0)
+##
+##print(t)
+### set up experimental design
+##experimental_design = data.frame(
+##  sample_names = colnames(exp_df),  # sample name
+###  individual = factor(colnames(exp_df)), # each individual strain
+##  treatment = factor(t)  # inversion = 1 or no inversion = 0
+###  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
+##)
+##
+##DESeq_data <- DESeqDataSetFromMatrix(exp_df, experimental_design, design = formula(~ treatment))
+##
+#
+#
+#############
+## ALL inversions
+#############
+#
+#
+#
+##t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
+##
+##test_inver <- gei_dat %>% filter(inversion == 1)
+##test_revcomp <- gei_dat %>% filter(rev_comp == 1)
+##
+##gei_dat %>% filter(block == "Block800") %>%
+##  filter(rev_comp == 1)
+##gei_dat %>% filter(block == "Block800") %>%
+##  filter(rev_comp == 0)
+##
+##gei_dat %>% select(block, inversion, rev_comp, norm_exp) %>%
+##  group_by(block, rev_comp)
+##
+##gei_dat %>%
+##  select(filter(rev_comp == 1),block, norm_exp, inversion)
+##
+##
+##gei_dat %>%
+##  filter(block == "Block800" && block == "Block799") %>%
+##  group_by(block) %>%
+##  do(tidy(t.test(norm_exp ~ rev_comp, data = .)))
+##
+###inverted rows we want
+##gei_dat[gei_dat$block %in% gei_dat$block[gei_dat$rev_comp == 1],]
+##gei_dat %>%
+##  filter(rev_comp == 1)
+##
