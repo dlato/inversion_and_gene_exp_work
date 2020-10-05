@@ -51,7 +51,7 @@ print("make column of length of each block")
 gei_dat <- within(gei_dat, block_len <- end - start)
 colnames(gei_dat)[colnames(gei_dat) == "block_len"] <- "block_len"
 print("make column of midpoint of each block")
-gei_dat <- within(gei_dat, midpoint <- (end - start) /2)
+gei_dat <- within(gei_dat, midpoint <- (end + start) /2)
 colnames(gei_dat)[colnames(gei_dat) == "midpoint"] <- "midpoint"
 head(gei_dat)
 bac_name <- as.character(args[5])
@@ -581,9 +581,9 @@ print("2 data pts per block")
 print("###################")
 #I think midpoint is for the block and gbk_midpoint is for each gene
 k12_df <- k12_df %>% select(block, midpoint,sig,class,avg_exp)
-head(k12_df)
 k12_df <- unique(k12_df)
 head(k12_df)
+k12_df[which(k12_df$block == "Block62"),]
 
 p <- (ggplot(k12_df, aes(x=midpoint, y=avg_exp, color=class))
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
