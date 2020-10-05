@@ -569,6 +569,7 @@ dev.off()
 print("###################")
 print("df with avg inversion info, only K12")
 print("###################")
+full_blocks_new_df <- blocks_new
 #k12_df <- reg_df %>%
 k12_df <- blocks_new %>%
           filter(strain == "K12MG") %>%
@@ -598,86 +599,116 @@ pdf("genome_pos_inversions_k12.pdf")
 p
 dev.off()
 
-#
-#
-#print("###################")
-#print("# info about sig inversion blocks")
-#print("###################")
-#head(blocks_new)
-#blocks_new$length <- blocks_new$end - blocks_new$start
-#head(blocks_new)
-#print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
-#wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
-#print("mean block length: sig blocks")
-#mean(blocks_new$length[blocks_new$sig == "yes"])
-#print("mean block length: non-sig blocks")
-#mean(blocks_new$length[blocks_new$sig == "no"])
-#print("diff btwn POSITION of inversions that have sig gene exp or not?")
-#wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
-#sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
-#sub_blocks_new <- unique(sub_blocks_new)
-#print("unique df")
-#head(sub_blocks_new)
-#tail(sub_blocks_new)
-#wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
-#
-#
-#print("###################")
-#print("# Distance from the origin info:")
-#print("###################")
-#print("# LOGISTIC REGRESSION on rev_comp and dist (midpoint)")
-#print("###################")
-##glm with logit link
-#log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-#print(summary(log_reg_rev_mid))
-#print("###################")
-#print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
-#print("###################")
-##glm with logit link
-#log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-#print(summary(log_reg_rev_gbk))
-#print("###################")
-#print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
-#print("###################")
-##glm with logit link
-#log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-#print(summary(log_reg_inv_mid))
-#print("###################")
-#print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
-#print("###################")
-##glm with logit link
-#log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-#print(summary(log_reg_inv_gbk))
-#print("#################################################################")
-#print("SIG diff in gene exp blocks")
-#print("###################")
-#print("# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)")
-#print("###################")
-##glm with logit link
-#sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-#print(summary(sig_log_reg_rev_mid))
-#print("###################")
-#print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
-#print("###################")
-##glm with logit link
-#sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-#print(summary(sig_log_reg_rev_gbk))
-#print("###################")
-#print("# LOGISTIC REGRESSION on SIG inversions and dist (midpoint)")
-#print("###################")
-##glm with logit link
-#sig_log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-#print(summary(sig_log_reg_inv_mid))
-#print("###################")
-#print("# LOGISTIC REGRESSION on SIG inversions and dist (gbk_midpoint)")
-#print("###################")
-##glm with logit link
-#sig_log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
-#print(summary(sig_log_reg_inv_gbk))
-#
-#print("#############                 ")
-#print("## DESeq expression comparison")
-#print("#############                 ")
+
+
+print("###################")
+print("# info about sig inversion blocks")
+print("###################")
+head(blocks_new)
+blocks_new$length <- blocks_new$end - blocks_new$start
+head(blocks_new)
+print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
+wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
+print("mean block length: sig blocks")
+mean(blocks_new$length[blocks_new$sig == "yes"])
+print("mean block length: non-sig blocks")
+mean(blocks_new$length[blocks_new$sig == "no"])
+print("diff btwn POSITION of inversions that have sig gene exp or not?")
+wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
+sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
+sub_blocks_new <- unique(sub_blocks_new)
+print("unique df")
+head(sub_blocks_new)
+tail(sub_blocks_new)
+wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
+
+
+print("###################")
+print("# Distance from the origin info:")
+print("###################")
+print("# LOGISTIC REGRESSION on rev_comp and dist (midpoint)")
+print("###################")
+#glm with logit link
+log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_rev_mid))
+print("###################")
+print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_rev_gbk))
+print("###################")
+print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
+print("###################")
+#glm with logit link
+log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_inv_mid))
+print("###################")
+print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+print(summary(log_reg_inv_gbk))
+print("#################################################################")
+print("SIG diff in gene exp blocks")
+print("###################")
+print("# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_rev_mid))
+print("###################")
+print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_rev_gbk))
+print("###################")
+print("# LOGISTIC REGRESSION on SIG inversions and dist (midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_inv_mid))
+print("###################")
+print("# LOGISTIC REGRESSION on SIG inversions and dist (gbk_midpoint)")
+print("###################")
+#glm with logit link
+sig_log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, blocks_new, control = list(maxit=1000))
+print(summary(sig_log_reg_inv_gbk))
+
+print("#############                 ")
+print("## DESeq expression comparison")
+print("#############                 ")
+print("getting total combos of inversions")
+head(blocks_new)
+inver_combos <- blocks_new %>% select(block,rev_comp,strain)
+inver_combos <- unique(inver_combos)
+#blocks_new[which(blocks_new$block == "Block62"),]
+inver_combos[which(inver_combos$block == "Block62"),]
+inver_combos[which(inver_combos$block == "Block129"),]
+inver_combos[which(inver_combos$block == "Block137"),]
+inver_combos[which(inver_combos$block == "Block130"),]
+inver_combos[which(inver_combos$block == "Block133"),]
+inver_combos[which(inver_combos$block == "Block132"),]
+taxa_order_combo <- unlist(unique(inver_combos$strain))
+print("order of taxa for inversion combos")
+taxa_order_combo
+r2 <- inver_combos %>%
+         group_by(block) %>% 
+         summarise(combo = toString(rev_comp))
+#         summarise(combo = list(rev_comp))
+r2 <- r2 %>%
+    ungroup %>%
+     unnest()
+head(r2)
+r2[which(r2$block == "Block62"),]
+uniq_combos <- unique(r2$combo)
+print("inver_combos")
+uniq_combos
+
+#blocks_new %>%
+#          group_by(block) %>%
+#           
 ###set up df
 ###this will need to be changed once the real data comes in
 ###********************

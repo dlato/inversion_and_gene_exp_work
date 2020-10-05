@@ -40171,3 +40171,460 @@ null device
 2060 Block62 1447718.5  no block_avg_exp_noninvert 128.7900607
 null device 
           1 
+[1] "###################"
+[1] "# info about sig inversion blocks"
+[1] "###################"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 213551 220048 1421822.5      1419706 0.720085166986352
+2 Block62 213551 220048 1421822.5      1421208 0.720085166986352
+3 Block62 213551 220048 1421822.5      1422959 0.720085166986352
+4 Block62 213551 220048 1421822.5      1423837 0.720085166986352
+5 Block62 213551 220048 1421822.5      1424562 0.720085166986352
+6 Block73 227790 232010 1434923.0      1434114 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig  class
+1         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+2         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+3         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+4         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+5         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+6         1        0  K12DH block_w_pvalue 0.6303030303     no  no BlockX
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 213551 220048 1421822.5      1419706 0.720085166986352
+2 Block62 213551 220048 1421822.5      1421208 0.720085166986352
+3 Block62 213551 220048 1421822.5      1422959 0.720085166986352
+4 Block62 213551 220048 1421822.5      1423837 0.720085166986352
+5 Block62 213551 220048 1421822.5      1424562 0.720085166986352
+6 Block73 227790 232010 1434923.0      1434114 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig  class
+1         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+2         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+3         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+4         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+5         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+6         1        0  K12DH block_w_pvalue 0.6303030303     no  no BlockX
+  length
+1   6497
+2   6497
+3   6497
+4   6497
+5   6497
+6   4220
+[1] "diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  blocks_new$length[blocks_new$sig == "yes"] and blocks_new$length[blocks_new$sig == "no"]
+W = 4528087.5, p-value = 0.00000000000159487
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "mean block length: sig blocks"
+[1] 12013.52051
+[1] "mean block length: non-sig blocks"
+[1] 11349.69007
+[1] "diff btwn POSITION of inversions that have sig gene exp or not?"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  blocks_new$midpoint[blocks_new$sig == "yes"] and blocks_new$midpoint[blocks_new$sig == "no"]
+W = 4143492, p-value = 0.05445101
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "unique df"
+   sig length    block  midpoint
+1   no   6497  Block62 1421822.5
+6   no   4220  Block73 1434923.0
+9   no    614 Block101 1520591.0
+10  no   2485 Block105 1522354.5
+13  no   4630 Block123 1529814.0
+17  no   6835 Block129 1541437.5
+     sig length    block  midpoint
+8377  no   2484 Block105  908654.0
+8379  no    614 Block101  910421.0
+8380  no   1159  Block99  911374.5
+8381  no   3033  Block98  915569.5
+8382  no   4220  Block73 1000043.0
+8385  no   6496  Block62 1012066.0
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  sub_blocks_new$length[sub_blocks_new$sig == "yes"] and sub_blocks_new$length[sub_blocks_new$sig == "no"]
+W = 133038, p-value < 0.00000000000000022204
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###################"
+[1] "# Distance from the origin info:"
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on rev_comp and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.6395937  -0.6329994  -0.6257920  -0.6195975   1.8743305  
+
+Coefficients:
+                     Estimate        Std. Error   z value             Pr(>|z|)
+(Intercept) -1.48296838877263  0.04589301826029 -32.31359 < 0.0000000000000002
+midpoint    -0.00000003012468  0.00000003033886  -0.99294              0.32074
+               
+(Intercept) ***
+midpoint       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 11351.853  on 12073  degrees of freedom
+Residual deviance: 11350.867  on 12072  degrees of freedom
+AIC: 11354.867
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ gbk_midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.6393625  -0.6329058  -0.6258419  -0.6197771   1.8739537  
+
+Coefficients:
+                      Estimate        Std. Error   z value            Pr(>|z|)
+(Intercept)  -1.48377435197634  0.04590346984967 -32.32380 <0.0000000000000002
+gbk_midpoint -0.00000002950205  0.00000003034237  -0.97231              0.3309
+                
+(Intercept)  ***
+gbk_midpoint    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 11351.853  on 12073  degrees of freedom
+Residual deviance: 11350.907  on 12072  degrees of freedom
+AIC: 11354.907
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on inversions and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.6817623  -1.4733089   0.7916074   0.8963414   0.9562262  
+
+Coefficients:
+                    Estimate       Std. Error  z value               Pr(>|z|)
+(Intercept) 0.54530802836420 0.03757185452177 14.51374 < 0.000000000000000222
+midpoint    0.00000021654709 0.00000002543109  8.51505 < 0.000000000000000222
+               
+(Intercept) ***
+midpoint    ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 14856.021  on 12073  degrees of freedom
+Residual deviance: 14783.028  on 12072  degrees of freedom
+AIC: 14787.028
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ gbk_midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.6817435  -1.4737669   0.7915368   0.8963715   0.9562394  
+
+Coefficients:
+                     Estimate       Std. Error  z value               Pr(>|z|)
+(Intercept)  0.54531929210087 0.03757554946256 14.51261 < 0.000000000000000222
+gbk_midpoint 0.00000021653596 0.00000002543413  8.51360 < 0.000000000000000222
+                
+(Intercept)  ***
+gbk_midpoint ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 14856.021  on 12073  degrees of freedom
+Residual deviance: 14783.054  on 12072  degrees of freedom
+AIC: 14787.054
+
+Number of Fisher Scoring iterations: 4
+
+[1] "#################################################################"
+[1] "SIG diff in gene exp blocks"
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = blocks_new, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.8150570  -0.7918393  -0.7495753   1.5935827   1.7087769  
+
+Coefficients:
+                     Estimate        Std. Error   z value
+(Intercept) -0.93143657238976  0.04452323275774 -20.92024
+midpoint    -0.00000009467715  0.00000002812135  -3.36674
+                          Pr(>|z|)    
+(Intercept) < 0.000000000000000222 ***
+midpoint                0.00076064 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 9576.5970  on 8388  degrees of freedom
+Residual deviance: 9565.2525  on 8387  degrees of freedom
+AIC: 9569.2525
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ gbk_midpoint, family = binomial, data = blocks_new, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.8148195  -0.7913839  -0.7497436   1.5938633   1.7085313  
+
+Coefficients:
+                      Estimate        Std. Error   z value
+(Intercept)  -0.93214180784084  0.04453140124529 -20.93224
+gbk_midpoint -0.00000009413921  0.00000002812451  -3.34723
+                           Pr(>|z|)    
+(Intercept)  < 0.000000000000000222 ***
+gbk_midpoint             0.00081623 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 9576.5970  on 8388  degrees of freedom
+Residual deviance: 9565.3837  on 8387  degrees of freedom
+AIC: 9569.3837
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on SIG inversions and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ midpoint, family = binomial, data = blocks_new, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+             Min                1Q            Median                3Q  
+0.00000002107342  0.00000002107342  0.00000002107342  0.00000002107342  
+             Max  
+0.00000002107342  
+
+Coefficients:
+                                 Estimate                    Std. Error z value
+(Intercept)      31.566350875563323086226 1331123.624645126517862081528 0.00002
+midpoint         -0.000000000000005230057       0.825156305398133005369 0.00000
+            Pr(>|z|)
+(Intercept)  0.99998
+midpoint     1.00000
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 0.0000000000000000000  on 8388  degrees of freedom
+Residual deviance: 0.0000000000037254644  on 8387  degrees of freedom
+AIC: 4
+
+Number of Fisher Scoring iterations: 30
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on SIG inversions and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ gbk_midpoint, family = binomial, data = blocks_new, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+             Min                1Q            Median                3Q  
+0.00000002107342  0.00000002107342  0.00000002107342  0.00000002107342  
+             Max  
+0.00000002107342  
+
+Coefficients:
+                                 Estimate                   Std. Error z value
+(Intercept)       31.56627973817527177403 1331234.87115315953269600868 0.00002
+gbk_midpoint      -0.00000000000000994618       0.82525865804750475618 0.00000
+             Pr(>|z|)
+(Intercept)   0.99998
+gbk_midpoint  1.00000
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 0.0000000000000000000  on 8388  degrees of freedom
+Residual deviance: 0.0000000000037254644  on 8387  degrees of freedom
+AIC: 4
+
+Number of Fisher Scoring iterations: 30
+
+[1] "#############                 "
+[1] "## DESeq expression comparison"
+[1] "#############                 "
+[1] "getting total combos of inversions"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 213551 220048 1421822.5      1419706 0.720085166986352
+2 Block62 213551 220048 1421822.5      1421208 0.720085166986352
+3 Block62 213551 220048 1421822.5      1422959 0.720085166986352
+4 Block62 213551 220048 1421822.5      1423837 0.720085166986352
+5 Block62 213551 220048 1421822.5      1424562 0.720085166986352
+6 Block73 227790 232010 1434923.0      1434114 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig  class
+1         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+2         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+3         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+4         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+5         1        0  K12DH block_w_pvalue 0.6115841073     no  no BlockX
+6         1        0  K12DH block_w_pvalue 0.6303030303     no  no BlockX
+  length
+1   6497
+2   6497
+3   6497
+4   6497
+5   6497
+6   4220
+[1] "inver_combos"
+# A tibble: 1,524 x 3
+# Groups:   block [381]
+   block    rev_comp strain
+ * <fct>       <int> <fct> 
+ 1 Block62         0 K12DH 
+ 2 Block73         0 K12DH 
+ 3 Block101        0 K12DH 
+ 4 Block105        0 K12DH 
+ 5 Block123        0 K12DH 
+ 6 Block129        0 K12DH 
+ 7 Block130        0 K12DH 
+ 8 Block132        0 K12DH 
+ 9 Block133        0 K12DH 
+10 Block137        0 K12DH 
+# … with 1,514 more rows
+       block rev_comp  strain
+1    Block62        0   K12DH
+2078 Block62        0   K12MG
+4137 Block62        0 BW25113
+8385 Block62        1    ATCC
+        block rev_comp  strain
+17   Block129        0   K12DH
+2095 Block129        0   K12MG
+4155 Block129        0 BW25113
+8366 Block129        1    ATCC
+        block rev_comp  strain
+48   Block137        0   K12DH
+2125 Block137        0   K12MG
+4185 Block137        0 BW25113
+8332 Block137        1    ATCC
+        block rev_comp  strain
+24   Block130        0   K12DH
+2102 Block130        0   K12MG
+4162 Block130        0 BW25113
+8353 Block130        1    ATCC
+        block rev_comp  strain
+43   Block133        0   K12DH
+2120 Block133        0   K12MG
+4180 Block133        0 BW25113
+8340 Block133        1    ATCC
+        block rev_comp  strain
+36   Block132        0   K12DH
+2113 Block132        0   K12MG
+4173 Block132        0 BW25113
+8345 Block132        1    ATCC
+[1] K12DH   K12MG   BW25113 ATCC   
+Levels: ATCC BW25113 K12DH K12MG
+[1] K12DH
+Levels: ATCC BW25113 K12DH K12MG
+[1] BW25113
+Levels: ATCC BW25113 K12DH K12MG
+# A tibble: 6 x 2
+  block     combo     
+  <fct>     <chr>     
+1 Block1000 0, 0, 0, 1
+2 Block1001 0, 0, 0, 1
+3 Block1004 0, 0, 0, 1
+4 Block1006 0, 0, 0, 1
+5 Block1008 0, 0, 0, 1
+6 Block1009 0, 0, 0, 1
+# A tibble: 1 x 2
+  block   combo     
+  <fct>   <chr>     
+1 Block62 0, 0, 0, 1
+[1] "0, 0, 0, 1" "1, 0, 0, 1"
