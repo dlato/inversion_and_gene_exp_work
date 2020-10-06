@@ -758,11 +758,20 @@ sample_inf
 print("re-format sample info info format DESeq can recognize")
 sampleData <- sample_inf
 rownames(sampleData) <- sampleData$replicate
-keep <- c("treatment_A","exp")
+keep <- c("treatment_A","exp","strain")
 sampleData <- sampleData[,keep]
-colnames(sampleData) <- c("treatment", "expID")
+colnames(sampleData) <- c("treatment","expID","strain")
 sampleData$expID <- factor(sampleData$expID)
+sampleData$treatment <- factor(sampleData$treatment)
 sampleData
+print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
+raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
+head(raw_deseqW)
+all(colnames(raw_deseqW) == rownames(sampleData))
+print("Order the treatments so that it is sensible: non-inversion (basically control) -> inversion")
+sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
+print("Create the DEseq2DataSet object")
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
 
 #rownames(raw_deseqW) <- raw_deseqW$gene_id
 #raw_deseqW <- raw_deseqW[,c(-1,-2)]
