@@ -40562,58 +40562,8 @@ Number of Fisher Scoring iterations: 30
 4   6497
 5   6497
 6   4220
-[1] "inver_combos"
-# A tibble: 1,524 x 3
-# Groups:   block [381]
-   block    rev_comp strain
- * <fct>       <int> <fct> 
- 1 Block62         0 K12DH 
- 2 Block73         0 K12DH 
- 3 Block101        0 K12DH 
- 4 Block105        0 K12DH 
- 5 Block123        0 K12DH 
- 6 Block129        0 K12DH 
- 7 Block130        0 K12DH 
- 8 Block132        0 K12DH 
- 9 Block133        0 K12DH 
-10 Block137        0 K12DH 
-# … with 1,514 more rows
-       block rev_comp  strain
-1    Block62        0   K12DH
-2078 Block62        0   K12MG
-4137 Block62        0 BW25113
-8385 Block62        1    ATCC
-        block rev_comp  strain
-17   Block129        0   K12DH
-2095 Block129        0   K12MG
-4155 Block129        0 BW25113
-8366 Block129        1    ATCC
-        block rev_comp  strain
-48   Block137        0   K12DH
-2125 Block137        0   K12MG
-4185 Block137        0 BW25113
-8332 Block137        1    ATCC
-        block rev_comp  strain
-24   Block130        0   K12DH
-2102 Block130        0   K12MG
-4162 Block130        0 BW25113
-8353 Block130        1    ATCC
-        block rev_comp  strain
-43   Block133        0   K12DH
-2120 Block133        0   K12MG
-4180 Block133        0 BW25113
-8340 Block133        1    ATCC
-        block rev_comp  strain
-36   Block132        0   K12DH
-2113 Block132        0   K12MG
-4173 Block132        0 BW25113
-8345 Block132        1    ATCC
-[1] K12DH   K12MG   BW25113 ATCC   
-Levels: ATCC BW25113 K12DH K12MG
-[1] K12DH
-Levels: ATCC BW25113 K12DH K12MG
-[1] BW25113
-Levels: ATCC BW25113 K12DH K12MG
+[1] "order of taxa for inversion combos"
+[1] "K12DH"   "K12MG"   "BW25113" "ATCC"   
 # A tibble: 6 x 2
   block     combo     
   <fct>     <chr>     
@@ -40627,4 +40577,67 @@ Levels: ATCC BW25113 K12DH K12MG
   block   combo     
   <fct>   <chr>     
 1 Block62 0, 0, 0, 1
-[1] "0, 0, 0, 1" "1, 0, 0, 1"
+[1] "inver_combos"
+   strain A B
+1   K12DH 0 1
+2   K12MG 0 0
+3 BW25113 0 0
+4    ATCC 1 1
+[1] "read in raw data file of all combined experiements"
+     Locus_tag gene_id gbk_start gbk_end gbk_midpoint gbk_strand  block start
+1 ECDH10B_0001    thrL       190     255          222          0 Block1     0
+2 ECDH10B_0002    thrA       337    2799         1568          0 Block1     0
+3 ECDH10B_0003    thrB      2801    3733         3267          0 Block1     0
+4 ECDH10B_0004    thrC      3734    5020         4377          0 Block1     0
+5 ECDH10B_0007    yaaJ      6529    7959         7244          1 Block4  5692
+6 ECDH10B_0008    talB      8238    9191         8714          0 Block4  5692
+   end rev_comp inversion strain      taxa replicates      exp raw_ex
+1 5468        0         0  K12DH NC_010473 GSE98890_1 GSE98890    161
+2 5468        0         0  K12DH NC_010473 GSE98890_1 GSE98890   2634
+3 5468        0         0  K12DH NC_010473 GSE98890_1 GSE98890    525
+4 5468        0         0  K12DH NC_010473 GSE98890_1 GSE98890    589
+5 9904        0         0  K12DH NC_010473 GSE98890_1 GSE98890     92
+6 9904        0         0  K12DH NC_010473 GSE98890_1 GSE98890   6929
+ [1] GSE98890_1    GSE98890_2    GSE60522_1    GSE60522_2    GSE60522_3   
+ [6] GSE114917_LP1 GSE114917_LP2 GSE114917_LP3 GSE114917_LP4 GSE54199_RNA 
+[11] GSE54199_DNA  GSE40313_1    GSE40313_2    GSE73673_6    GSE73673_7   
+[16] GSE73673_8    GSE85914      GSE94978_1    GSE94978_2   
+19 Levels: GSE114917_LP1 GSE114917_LP2 GSE114917_LP3 ... GSE98890_2
+  gene_id replicates raw_ex
+1    thrL GSE98890_1    161
+2    thrA GSE98890_1   2634
+3    thrB GSE98890_1    525
+4    thrC GSE98890_1    589
+5    yaaJ GSE98890_1     92
+6    talB GSE98890_1   6929
+[1] "#toy df with just ATCC experiments"
+  gene_id replicates raw_ex strain
+1    thrL GSE98890_1    161  K12DH
+2    thrA GSE98890_1   2634  K12DH
+3    thrB GSE98890_1    525  K12DH
+4    thrC GSE98890_1    589  K12DH
+5    yaaJ GSE98890_1     92  K12DH
+6    talB GSE98890_1   6929  K12DH
+  gene_id strain GSE98890_1 GSE98890_2
+1    aaeA  K12DH         25         68
+2    aaeR  K12DH        155        532
+3    aaeX  K12DH          4         24
+4     aas  K12DH        255        850
+5     aat  K12DH         70        224
+6    abrB  K12DH         46        584
+[1] "get file with sample info"
+         replicates strain       exp
+1        GSE98890_1  K12DH  GSE98890
+3059     GSE98890_2  K12DH  GSE98890
+6117     GSE60522_1  K12MG  GSE60522
+9086     GSE60522_2  K12MG  GSE60522
+12055    GSE60522_3  K12MG  GSE60522
+15024 GSE114917_LP1  K12MG GSE114917
+         replicates     strain          exp   
+ GSE114917_LP1: 1   ATCC   : 2   GSE114917:4  
+ GSE114917_LP2: 1   BW25113: 4   GSE60522 :3  
+ GSE114917_LP3: 1   K12DH  : 2   GSE73673 :3  
+ GSE114917_LP4: 1   K12MG  :11   GSE40313 :2  
+ GSE40313_1   : 1                GSE54199 :2  
+ GSE40313_2   : 1                GSE94978 :2  
+ (Other)      :13                (Other)  :3  

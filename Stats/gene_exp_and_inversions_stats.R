@@ -7,6 +7,7 @@ library(tidyr)
 #library(ggpubr)
 library(DESeq2)
 library(reshape2)
+library(data.table)
 library("RColorBrewer")
 library("gplots")
 library("ggplot2")
@@ -683,14 +684,7 @@ print("getting total combos of inversions")
 head(blocks_new)
 inver_combos <- blocks_new %>% select(block,rev_comp,strain)
 inver_combos <- unique(inver_combos)
-#blocks_new[which(blocks_new$block == "Block62"),]
-inver_combos[which(inver_combos$block == "Block62"),]
-inver_combos[which(inver_combos$block == "Block129"),]
-inver_combos[which(inver_combos$block == "Block137"),]
-inver_combos[which(inver_combos$block == "Block130"),]
-inver_combos[which(inver_combos$block == "Block133"),]
-inver_combos[which(inver_combos$block == "Block132"),]
-taxa_order_combo <- unlist(unique(inver_combos$strain))
+taxa_order_combo <- as.vector(unlist(unique(inver_combos$strain)))
 print("order of taxa for inversion combos")
 taxa_order_combo
 r2 <- inver_combos %>%
@@ -702,30 +696,51 @@ r2 <- r2 %>%
      unnest()
 head(r2)
 r2[which(r2$block == "Block62"),]
-uniq_combos <- unique(r2$combo)
+uniq_combos <- as.data.frame(unique(r2$combo))
+colnames(uniq_combos) <- "pattern"
 print("inver_combos")
-uniq_combos
+uniq_combos <- uniq_combos %>% separate(pattern,
+                taxa_order_combo,", ")
+inver_combos_df <- as.data.frame(t(uniq_combos))
+colnames(inver_combos_df) <- c("A","B")
+inver_combos_df <- tibble::rownames_to_column(inver_combos_df, "strain")
+inver_combos_df
 
-#blocks_new %>%
-#          group_by(block) %>%
-#           
-###set up df
-###this will need to be changed once the real data comes in
-###********************
-##read in raw data file of all combined experiements
-#raw_file <- as.character(args[7])
-#raw_dat <- read.csv(raw_file, header = TRUE)
-#head(raw_dat)
-#print(unique(raw_dat$replicates))
-#
-##make df with JUST expression and experiment values
-#raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp"))
-#head(raw_deseq)
-#
-##toy df with just ATCC experiments
+##set up df
+##this will need to be changed once the real data comes in
+##********************
+print("read in raw data file of all combined experiements")
+raw_file <- as.character(args[7])
+raw_dat <- read.csv(raw_file, header = TRUE)
+head(raw_dat)
+print(unique(raw_dat$replicates))
+
+#make df with JUST expression and experiment values
+#raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp","strain","exp"))
+raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_ex)
+head(raw_deseq)
+#raw_deseq[c(564,2602,189,2264),]
+#raw_deseqW <- spread(raw_deseq,replicates, raw_ex)
+#head(raw_deseqW)
+
+print("#toy df with just ATCC experiments")
 #raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
-#raw_deseqSubset <- raw_deseq[grep("ATCC", raw_deseq$replicate), ]
-#raw_deseqW <- spread(raw_deseqSubset,replicates, raw_exp)
+raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_ex,strain)
+raw_deseqSubset <- raw_deseq[grep("K12DH", raw_deseq$strain), ]
+head(raw_deseqSubset)
+raw_deseqSubset <- raw_deseqSubset[c(-2602,-222,-2264,-5660,-3280,-5322),]
+raw_deseqW <- spread(raw_deseqSubset,replicates, raw_ex)
+head(raw_deseqW)
+
+print("get file with sample info")
+exp_info <- raw_dat %>% select(replicates,strain,exp)
+exp_info <- unique(exp_info)
+head(exp_info)
+summary(exp_info)
+exp_info <- exp_info %>%
+    mutate(treatment = if_else(strain %in% inver_combos_df$strain,inver_combos_df$A[which(inver_combos_df$strain == strain)], 0))
+exp_info
+
 #rownames(raw_deseqW) <- raw_deseqW$gene_id
 #raw_deseqW <- raw_deseqW[,c(-1,-2)]
 #inversion <- raw_deseqW$inversion
