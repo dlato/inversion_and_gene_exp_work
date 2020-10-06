@@ -40626,18 +40626,29 @@ Number of Fisher Scoring iterations: 30
 5     aat  K12DH         70        224
 6    abrB  K12DH         46        584
 [1] "get file with sample info"
-         replicates strain       exp
-1        GSE98890_1  K12DH  GSE98890
-3059     GSE98890_2  K12DH  GSE98890
-6117     GSE60522_1  K12MG  GSE60522
-9086     GSE60522_2  K12MG  GSE60522
-12055    GSE60522_3  K12MG  GSE60522
-15024 GSE114917_LP1  K12MG GSE114917
-         replicates     strain          exp   
- GSE114917_LP1: 1   ATCC   : 2   GSE114917:4  
- GSE114917_LP2: 1   BW25113: 4   GSE60522 :3  
- GSE114917_LP3: 1   K12DH  : 2   GSE73673 :3  
- GSE114917_LP4: 1   K12MG  :11   GSE40313 :2  
- GSE40313_1   : 1                GSE54199 :2  
- GSE40313_2   : 1                GSE94978 :2  
- (Other)      :13                (Other)  :3  
+ATCC 
+   1 
+Levels: 0 1
+[1] "factor"
+[1] "integer"
+[1] 2
+         replicates  strain       exp treatment_A treatment_B
+1        GSE98890_1   K12DH  GSE98890           0           1
+3059     GSE98890_2   K12DH  GSE98890           0           1
+6117     GSE60522_1   K12MG  GSE60522           0           0
+9086     GSE60522_2   K12MG  GSE60522           0           0
+12055    GSE60522_3   K12MG  GSE60522           0           0
+15024 GSE114917_LP1   K12MG GSE114917           0           0
+17993 GSE114917_LP2   K12MG GSE114917           0           0
+20962 GSE114917_LP3   K12MG GSE114917           0           0
+23931 GSE114917_LP4   K12MG GSE114917           0           0
+26900  GSE54199_RNA   K12MG  GSE54199           0           0
+29869  GSE54199_DNA   K12MG  GSE54199           0           0
+32838    GSE40313_1   K12MG  GSE40313           0           0
+35807    GSE40313_2   K12MG  GSE40313           0           0
+38776    GSE73673_6 BW25113  GSE73673           0           0
+41816    GSE73673_7 BW25113  GSE73673           0           0
+44856    GSE73673_8 BW25113  GSE73673           0           0
+47896      GSE85914 BW25113  GSE85914           0           0
+50936    GSE94978_1    ATCC  GSE94978           1           1
+54117    GSE94978_2    ATCC  GSE94978           1           1

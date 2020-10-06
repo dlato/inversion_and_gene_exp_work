@@ -735,10 +735,19 @@ head(raw_deseqW)
 print("get file with sample info")
 exp_info <- raw_dat %>% select(replicates,strain,exp)
 exp_info <- unique(exp_info)
-head(exp_info)
-summary(exp_info)
-exp_info <- exp_info %>%
-    mutate(treatment = if_else(strain %in% inver_combos_df$strain,inver_combos_df$A[which(inver_combos_df$strain == strain)], 0))
+treatment_A <- c()
+for(i in 1:length(exp_info$replicate)) {
+    st <- exp_info$strain[i]
+    inver_p <- inver_combos_df$A[which(inver_combos_df$strain == st)]
+    treatment_A <- c(treatment_A,as.numeric(as.character(inver_p)))
+}
+treatment_B <- c()
+for(i in 1:length(exp_info$replicate)) {
+    st <- exp_info$strain[i]
+    inver_p <- inver_combos_df$B[which(inver_combos_df$strain == st)]
+    treatment_B <- c(treatment_B,as.numeric(as.character(inver_p)))
+}
+exp_info <- cbind(exp_info,treatment_A,treatment_B)
 exp_info
 
 #rownames(raw_deseqW) <- raw_deseqW$gene_id
