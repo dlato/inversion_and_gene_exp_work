@@ -732,7 +732,7 @@ raw_deseqSubset <- raw_deseqSubset[c(-2602,-222,-2264,-5660,-3280,-5322),]
 raw_deseqW <- spread(raw_deseqSubset,replicates, raw_ex)
 head(raw_deseqW)
 
-print("get file with sample info")
+print("get file with sample info: ALL TAXA")
 exp_info <- raw_dat %>% select(replicates,strain,exp)
 exp_info <- unique(exp_info)
 treatment_A <- c()
@@ -749,6 +749,20 @@ for(i in 1:length(exp_info$replicate)) {
 }
 exp_info <- cbind(exp_info,treatment_A,treatment_B)
 exp_info
+
+print("toy sample info: only DH")
+sample_inf <- exp_info %>% filter(strain == "K12DH")
+sample_inf$treatment_A[2] <- 1
+sample_inf
+
+print("re-format sample info info format DESeq can recognize")
+sampleData <- sample_inf
+rownames(sampleData) <- sampleData$replicate
+keep <- c("treatment_A","exp")
+sampleData <- sampleData[,keep]
+colnames(sampleData) <- c("treatment", "expID")
+sampleData$expID <- factor(sampleData$expID)
+sampleData
 
 #rownames(raw_deseqW) <- raw_deseqW$gene_id
 #raw_deseqW <- raw_deseqW[,c(-1,-2)]

@@ -40625,13 +40625,7 @@ Number of Fisher Scoring iterations: 30
 4     aas  K12DH        255        850
 5     aat  K12DH         70        224
 6    abrB  K12DH         46        584
-[1] "get file with sample info"
-ATCC 
-   1 
-Levels: 0 1
-[1] "factor"
-[1] "integer"
-[1] 2
+[1] "get file with sample info: ALL TAXA"
          replicates  strain       exp treatment_A treatment_B
 1        GSE98890_1   K12DH  GSE98890           0           1
 3059     GSE98890_2   K12DH  GSE98890           0           1
@@ -40652,3 +40646,11 @@ Levels: 0 1
 47896      GSE85914 BW25113  GSE85914           0           0
 50936    GSE94978_1    ATCC  GSE94978           1           1
 54117    GSE94978_2    ATCC  GSE94978           1           1
+[1] "toy sample info: only DH"
+  replicates strain      exp treatment_A treatment_B
+1 GSE98890_1  K12DH GSE98890           0           1
+2 GSE98890_2  K12DH GSE98890           1           1
+[1] "re-format sample info info format DESeq can recognize"
+           treatment    expID
+GSE98890_1         0 GSE98890
+GSE98890_2         1 GSE98890
