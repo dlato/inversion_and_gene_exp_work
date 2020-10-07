@@ -726,10 +726,12 @@ head(raw_deseq)
 print("#toy df with just ATCC experiments")
 #raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
 raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_ex,strain)
-raw_deseqSubset <- raw_deseq[grep("K12DH", raw_deseq$strain), ]
+raw_deseq$raw_ex <- as.integer(raw_deseq$raw_ex)
+raw_deseqSubset <- raw_deseq[grep("K12MG", raw_deseq$strain), ]
 head(raw_deseqSubset)
 raw_deseqSubset <- raw_deseqSubset[c(-2602,-222,-2264,-5660,-3280,-5322),]
 raw_deseqW <- spread(raw_deseqSubset,replicates, raw_ex)
+raw_deseqW <- raw_deseqW[complete.cases(raw_deseqW),]
 head(raw_deseqW)
 
 print("get file with sample info: ALL TAXA")
@@ -751,18 +753,20 @@ exp_info <- cbind(exp_info,treatment_A,treatment_B)
 exp_info
 
 print("toy sample info: only DH")
-sample_inf <- exp_info %>% filter(strain == "K12DH")
+sample_inf <- exp_info %>% filter(strain == "K12MG")
 sample_inf$treatment_A[2] <- 1
 sample_inf
 
 print("re-format sample info info format DESeq can recognize")
 sampleData <- sample_inf
 rownames(sampleData) <- sampleData$replicate
-keep <- c("treatment_A","exp","strain")
-sampleData <- sampleData[,keep]
-colnames(sampleData) <- c("treatment","expID","strain")
+#keep <- c("treatment_A","exp","strain")
+#sampleData <- sampleData[,keep]
+colnames(sampleData) <- c("replicates","treatment","expID","strain")
 sampleData$expID <- factor(sampleData$expID)
 sampleData$treatment <- factor(sampleData$treatment)
+sampleData$treatment <- factor(sampleData$replicates)
+sampleData$treatment <- factor(sampleData$strain)
 sampleData
 print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
 raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
@@ -772,7 +776,14 @@ print("Order the treatments so that it is sensible: non-inversion (basically con
 sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
 print("Create the DEseq2DataSet object")
 deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
-
+#deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
+print("#############                 ")
+print("## testing for experiment effect")
+print("#############                 ")
+load.model <- formula(~ expID)
+test_rep_effects <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design=load.model)
+test_re_effects2 <- DESeq(test_rep_effects)
+# We now fit the simple model
 #rownames(raw_deseqW) <- raw_deseqW$gene_id
 #raw_deseqW <- raw_deseqW[,c(-1,-2)]
 #inversion <- raw_deseqW$inversion

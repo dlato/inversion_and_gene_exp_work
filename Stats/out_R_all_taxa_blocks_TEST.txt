@@ -40611,20 +40611,34 @@ Number of Fisher Scoring iterations: 30
 5    yaaJ GSE98890_1     92
 6    talB GSE98890_1   6929
 [1] "#toy df with just ATCC experiments"
-  gene_id replicates raw_ex strain
-1    thrL GSE98890_1    161  K12DH
-2    thrA GSE98890_1   2634  K12DH
-3    thrB GSE98890_1    525  K12DH
-4    thrC GSE98890_1    589  K12DH
-5    yaaJ GSE98890_1     92  K12DH
-6    talB GSE98890_1   6929  K12DH
-  gene_id strain GSE98890_1 GSE98890_2
-1    aaeA  K12DH         25         68
-2    aaeR  K12DH        155        532
-3    aaeX  K12DH          4         24
-4     aas  K12DH        255        850
-5     aat  K12DH         70        224
-6    abrB  K12DH         46        584
+     gene_id replicates raw_ex strain
+6117    thrL GSE60522_1     20  K12MG
+6118    thrA GSE60522_1  29088  K12MG
+6119    thrB GSE60522_1   4799  K12MG
+6120    thrC GSE60522_1   3386  K12MG
+6121    yaaJ GSE60522_1     17  K12MG
+6122    talB GSE60522_1  10479  K12MG
+  gene_id strain GSE114917_LP1 GSE114917_LP2 GSE114917_LP3 GSE114917_LP4
+1    aaeA  K12MG            11            16            14            13
+2    aaeB  K12MG            33            23            19            21
+3    aaeR  K12MG           222           205           164           134
+4    aaeX  K12MG            33            31            15            19
+5     aas  K12MG           323           320           240           309
+6     aat  K12MG           115            86            67            89
+  GSE40313_1 GSE40313_2 GSE54199_DNA GSE54199_RNA GSE60522_1 GSE60522_2
+1         25         35       100098        22945         15         15
+2         16         29       222813        34992         52         25
+3         55         75       116738        37099        133         91
+4         10         10        33264        10853          0          1
+5        106        146       238836        92901        263        194
+6         22         43        62742        24150        156        136
+  GSE60522_3
+1         13
+2         33
+3        109
+4          2
+5        264
+6        138
 [1] "get file with sample info: ALL TAXA"
          replicates  strain       exp treatment_A treatment_B
 1        GSE98890_1   K12DH  GSE98890           0           1
@@ -40647,21 +40661,49 @@ Number of Fisher Scoring iterations: 30
 50936    GSE94978_1    ATCC  GSE94978           1           1
 54117    GSE94978_2    ATCC  GSE94978           1           1
 [1] "toy sample info: only DH"
-  replicates strain      exp treatment_A treatment_B
-1 GSE98890_1  K12DH GSE98890           0           1
-2 GSE98890_2  K12DH GSE98890           1           1
+      replicates strain       exp treatment_A treatment_B
+1     GSE60522_1  K12MG  GSE60522           0           0
+2     GSE60522_2  K12MG  GSE60522           1           0
+3     GSE60522_3  K12MG  GSE60522           0           0
+4  GSE114917_LP1  K12MG GSE114917           0           0
+5  GSE114917_LP2  K12MG GSE114917           0           0
+6  GSE114917_LP3  K12MG GSE114917           0           0
+7  GSE114917_LP4  K12MG GSE114917           0           0
+8   GSE54199_RNA  K12MG  GSE54199           0           0
+9   GSE54199_DNA  K12MG  GSE54199           0           0
+10    GSE40313_1  K12MG  GSE40313           0           0
+11    GSE40313_2  K12MG  GSE40313           0           0
 [1] "re-format sample info info format DESeq can recognize"
-           treatment    expID strain
-GSE98890_1         0 GSE98890  K12DH
-GSE98890_2         1 GSE98890  K12DH
+                 replicates treatment     expID strain NA
+GSE60522_1       GSE60522_1         0  GSE60522      0  0
+GSE60522_2       GSE60522_2         1  GSE60522      1  0
+GSE60522_3       GSE60522_3         0  GSE60522      0  0
+GSE114917_LP1 GSE114917_LP1         0 GSE114917      0  0
+GSE114917_LP2 GSE114917_LP2         0 GSE114917      0  0
+GSE114917_LP3 GSE114917_LP3         0 GSE114917      0  0
+GSE114917_LP4 GSE114917_LP4         0 GSE114917      0  0
+GSE54199_RNA   GSE54199_RNA         0  GSE54199      0  0
+GSE54199_DNA   GSE54199_DNA         0  GSE54199      0  0
+GSE40313_1       GSE40313_1         0  GSE40313      0  0
+GSE40313_2       GSE40313_2         0  GSE40313      0  0
 [1] "Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked"
-  GSE98890_1 GSE98890_2
-1         25         68
-2        155        532
-3          4         24
-4        255        850
-5         70        224
-6         46        584
+  GSE60522_1 GSE60522_2 GSE60522_3 GSE114917_LP1 GSE114917_LP2 GSE114917_LP3
+1         15         15         13            11            16            14
+2         52         25         33            33            23            19
+3        133         91        109           222           205           164
+4          0          1          2            33            31            15
+5        263        194        264           323           320           240
+6        156        136        138           115            86            67
+  GSE114917_LP4 GSE54199_RNA GSE54199_DNA GSE40313_1 GSE40313_2
+1            13        22945       100098         25         35
+2            21        34992       222813         16         29
+3           134        37099       116738         55         75
+4            19        10853        33264         10         10
+5           309        92901       238836        106        146
+6            89        24150        62742         22         43
 [1] TRUE
 [1] "Order the treatments so that it is sensible: non-inversion (basically control) -> inversion"
 [1] "Create the DEseq2DataSet object"
+[1] "#############                 "
+[1] "## testing for experiment effect"
+[1] "#############                 "
