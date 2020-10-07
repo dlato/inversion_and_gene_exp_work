@@ -40661,6 +40661,7 @@ Number of Fisher Scoring iterations: 30
 50936    GSE94978_1    ATCC  GSE94978           1           1
 54117    GSE94978_2    ATCC  GSE94978           1           1
 [1] "toy sample info: only DH"
+[1] "NULL"
       replicates strain       exp treatment_A treatment_B
 1     GSE60522_1  K12MG  GSE60522           0           0
 2     GSE60522_2  K12MG  GSE60522           1           0
@@ -40674,18 +40675,18 @@ Number of Fisher Scoring iterations: 30
 10    GSE40313_1  K12MG  GSE40313           0           0
 11    GSE40313_2  K12MG  GSE40313           0           0
 [1] "re-format sample info info format DESeq can recognize"
-                 replicates treatment     expID strain NA
-GSE60522_1       GSE60522_1         0  GSE60522      0  0
-GSE60522_2       GSE60522_2         1  GSE60522      1  0
-GSE60522_3       GSE60522_3         0  GSE60522      0  0
-GSE114917_LP1 GSE114917_LP1         0 GSE114917      0  0
-GSE114917_LP2 GSE114917_LP2         0 GSE114917      0  0
-GSE114917_LP3 GSE114917_LP3         0 GSE114917      0  0
-GSE114917_LP4 GSE114917_LP4         0 GSE114917      0  0
-GSE54199_RNA   GSE54199_RNA         0  GSE54199      0  0
-GSE54199_DNA   GSE54199_DNA         0  GSE54199      0  0
-GSE40313_1       GSE40313_1         0  GSE40313      0  0
-GSE40313_2       GSE40313_2         0  GSE40313      0  0
+                 replicates strain     expID treatment NA
+GSE60522_1       GSE60522_1  K12MG  GSE60522         0  0
+GSE60522_2       GSE60522_2  K12MG  GSE60522         1  0
+GSE60522_3       GSE60522_3  K12MG  GSE60522         0  0
+GSE114917_LP1 GSE114917_LP1  K12MG GSE114917         0  0
+GSE114917_LP2 GSE114917_LP2  K12MG GSE114917         0  0
+GSE114917_LP3 GSE114917_LP3  K12MG GSE114917         0  0
+GSE114917_LP4 GSE114917_LP4  K12MG GSE114917         0  0
+GSE54199_RNA   GSE54199_RNA  K12MG  GSE54199         0  0
+GSE54199_DNA   GSE54199_DNA  K12MG  GSE54199         0  0
+GSE40313_1       GSE40313_1  K12MG  GSE40313         0  0
+GSE40313_2       GSE40313_2  K12MG  GSE40313         0  0
 [1] "Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked"
   GSE60522_1 GSE60522_2 GSE60522_3 GSE114917_LP1 GSE114917_LP2 GSE114917_LP3
 1         15         15         13            11            16            14
@@ -40704,6 +40705,19 @@ GSE40313_2       GSE40313_2         0  GSE40313      0  0
 [1] TRUE
 [1] "Order the treatments so that it is sensible: non-inversion (basically control) -> inversion"
 [1] "Create the DEseq2DataSet object"
+[1] "done deseq"
+[1] "summary"
+
+out of 2963 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 0, 0% 
+LFC < 0 (down)   : 0, 0% 
+outliers [1]     : 1, 0.034% 
+low counts [2]   : 0, 0% 
+(mean count < 6)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
 [1] "#############                 "
 [1] "## testing for experiment effect"
 [1] "#############                 "

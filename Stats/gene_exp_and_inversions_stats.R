@@ -6,6 +6,8 @@ library(tidyr)
 #library(rstatix)
 #library(ggpubr)
 library(DESeq2)
+#library(tximport)
+library(readr)
 library(reshape2)
 library(data.table)
 library("RColorBrewer")
@@ -755,6 +757,9 @@ exp_info
 print("toy sample info: only DH")
 sample_inf <- exp_info %>% filter(strain == "K12MG")
 sample_inf$treatment_A[2] <- 1
+class(sample_inf$starin)
+#sample_inf$strain[4] <- "FAKE"
+#sample_inf$strain <- replace(sample_inf$strain, 4, "FAKE")
 sample_inf
 
 print("re-format sample info info format DESeq can recognize")
@@ -762,11 +767,11 @@ sampleData <- sample_inf
 rownames(sampleData) <- sampleData$replicate
 #keep <- c("treatment_A","exp","strain")
 #sampleData <- sampleData[,keep]
-colnames(sampleData) <- c("replicates","treatment","expID","strain")
+colnames(sampleData) <- c("replicates","strain","expID","treatment")
 sampleData$expID <- factor(sampleData$expID)
 sampleData$treatment <- factor(sampleData$treatment)
-sampleData$treatment <- factor(sampleData$replicates)
-sampleData$treatment <- factor(sampleData$strain)
+sampleData$replicates <- factor(sampleData$replicates)
+sampleData$strain <- factor(sampleData$strain)
 sampleData
 print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
 raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
@@ -775,14 +780,45 @@ all(colnames(raw_deseqW) == rownames(sampleData))
 print("Order the treatments so that it is sensible: non-inversion (basically control) -> inversion")
 sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
 print("Create the DEseq2DataSet object")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + treatment)
+deseq_results <- DESeq(deseq2Data)
+print("done deseq")
+deseq_results2 <- results(deseq_results, alpha=0.05)
+# alpha = 0.05 is the  "cut-off" for significance (not really - I will
+# discuss).
+print("summary")
+summary(deseq_results2)
 #deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
-print("#############                 ")
-print("## testing for experiment effect")
-print("#############                 ")
-load.model <- formula(~ expID)
-test_rep_effects <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design=load.model)
-test_re_effects2 <- DESeq(test_rep_effects)
+#print("#############                 ")
+#print("## testing for experiment effect")
+#print("#############                 ")
+##load.model <- formula(~ expID+ strain + treatment)
+#test_rep_effects <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design=load.model)
+#test_rep_effects2 <- DESeq(test_rep_effects)
+#print("done deseq")
+#test_rep_effects2_results <- results(test_rep_effects2, alpha=0.05)
+## alpha = 0.05 is the  "cut-off" for significance (not really - I will
+## discuss).
+#print("summary")
+#summary(test_rep_effects2_results)
+## 2 genes which may show  evidence of lane effects, but this is a bit
+## incomplete for the full data set.
+#print("plot results")
+#pdf("exp_effect_deseq.pdf")
+#plotMA(test_rep_effects2_results)
+#dev.off()
+#
+##ians test for lane effects
+#for_pca <- rlog(test_rep_effects2, 
+#                blind = TRUE)
+#
+#pdf("PCA_effect_deseq.pdf")
+#plotPCA(for_pca, 
+#        intgroup=c("expID"),
+#        ntop = 500) 
+#dev.off()
+##head(test_rep_effects2_results)
+
 # We now fit the simple model
 #rownames(raw_deseqW) <- raw_deseqW$gene_id
 #raw_deseqW <- raw_deseqW[,c(-1,-2)]
