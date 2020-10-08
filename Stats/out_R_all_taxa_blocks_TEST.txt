@@ -40719,5 +40719,34 @@ low counts [2]   : 0, 0%
 [2] see 'independentFiltering' argument of ?results
 
 [1] "#############                 "
-[1] "## testing for experiment effect"
+[1] "## DESeq without accounting for experiment effect"
 [1] "#############                 "
+[1] "done deseq"
+[1] "summary"
+
+out of 2963 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 32, 1.1% 
+LFC < 0 (down)   : 5, 0.17% 
+outliers [1]     : 0, 0% 
+low counts [2]   : 1379, 47% 
+(mean count < 443)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
+[1] "#############                 "
+[1] "## DESeq looking at experiment effect"
+[1] "#############                 "
+[1] "done deseq"
+[1] "summary"
+
+out of 2963 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 907, 31% 
+LFC < 0 (down)   : 901, 30% 
+outliers [1]     : 1, 0.034% 
+low counts [2]   : 0, 0% 
+(mean count < 6)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
