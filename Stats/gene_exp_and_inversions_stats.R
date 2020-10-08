@@ -6,6 +6,8 @@ library(tidyr)
 #library(rstatix)
 #library(ggpubr)
 library(DESeq2)
+library(scales) # needed for oob parameter
+library(viridis)
 #library(tximport)
 library(readr)
 library(reshape2)
@@ -805,6 +807,29 @@ deseq_results2 <- results(deseq_results, alpha=0.05)
 print("summary")
 summary(deseq_results2)
 #deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
+# Coerce to a data frame
+deseq2ResDF <- as.data.frame(deseq_results2)
+
+# Examine this data frame
+head(deseq2ResDF)
+
+# Set a boolean column for significance
+deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1,
+"Significant", NA)
+
+# Plot the results similar to DEseq2
+p <- (ggplot(deseq2ResDF, aes(baseMean, log2FoldChange, colour=significant))
++ geom_point(size=1) + scale_y_continuous(limits=c(-3, 3), oob=squish)
++ scale_x_log10() 
++ geom_hline(yintercept = 0, colour="tomato1",size=2) 
++ labs(x="Mean of Normalized Counts", y="Log Fold Change") 
++ scale_colour_manual(name="q-value", values=("Significant"="red"),na.value="grey50") 
+)
+
+pdf("DESeq_K12MG_DE_genes_8Oct2020.pdf")
+#plotMA(deseq_results2)
+p
+dev.off()
 print("#############                 ")
 print("## DESeq without accounting for experiment effect")
 print("#############                 ")

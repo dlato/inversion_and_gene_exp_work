@@ -40610,7 +40610,7 @@ Number of Fisher Scoring iterations: 30
 4    thrC GSE98890_1    589
 5    yaaJ GSE98890_1     92
 6    talB GSE98890_1   6929
-[1] "#toy df with just ATCC experiments"
+[1] "#toy df with just K12MG experiments"
      gene_id replicates raw_ex strain
 6117    thrL GSE60522_1     20  K12MG
 6118    thrA GSE60522_1  29088  K12MG
@@ -40704,6 +40704,26 @@ GSE40313_2       GSE40313_2  K12MG  GSE40313         0  0
 6            89        24150        62742         22         43
 [1] TRUE
 [1] "Order the treatments so that it is sensible: non-inversion (basically control) -> inversion"
+[1] "#############                 "
+[1] "## DESeq looking at experiment effect"
+[1] "#############                 "
+[1] "done deseq"
+[1] "summary"
+
+out of 2963 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 907, 31% 
+LFC < 0 (down)   : 901, 30% 
+outliers [1]     : 1, 0.034% 
+low counts [2]   : 0, 0% 
+(mean count < 6)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
+[1] "we see that a lot of genes are differentially expressed (up or down reg), therefore we need to account for experiment effects"
+[1] "#############                 "
+[1] "## DESeq analysis accounting for experiment effect"
+[1] "#############                 "
 [1] "Create the DEseq2DataSet object"
 [1] "done deseq"
 [1] "summary"
@@ -40718,6 +40738,22 @@ low counts [2]   : 0, 0%
 [1] see 'cooksCutoff' argument of ?results
 [2] see 'independentFiltering' argument of ?results
 
+      baseMean log2FoldChange        lfcSE          stat       pvalue
+1 122.03553137  0.15241470095 0.4351405459  0.3502654542 0.7261394887
+2 206.66187757 -0.26942691583 0.4351471566 -0.6191627631 0.5358091399
+3 402.44062346 -0.11508835813 0.4030263799 -0.2855603600 0.7752148678
+4  59.43998596 -0.05847773262 0.3455579700 -0.1692269827 0.8656181067
+5 764.00118751 -0.15656659627 0.3512193469 -0.4457801019 0.6557560965
+6 260.81948148  0.10814976142 0.3782556587  0.2859171011 0.7749416154
+          padj
+1 0.9998013458
+2 0.9998013458
+3 0.9998013458
+4 0.9998013458
+5 0.9998013458
+6 0.9998013458
+null device 
+          1 
 [1] "#############                 "
 [1] "## DESeq without accounting for experiment effect"
 [1] "#############                 "
@@ -40731,22 +40767,6 @@ LFC < 0 (down)   : 5, 0.17%
 outliers [1]     : 0, 0% 
 low counts [2]   : 1379, 47% 
 (mean count < 443)
-[1] see 'cooksCutoff' argument of ?results
-[2] see 'independentFiltering' argument of ?results
-
-[1] "#############                 "
-[1] "## DESeq looking at experiment effect"
-[1] "#############                 "
-[1] "done deseq"
-[1] "summary"
-
-out of 2963 with nonzero total read count
-adjusted p-value < 0.05
-LFC > 0 (up)     : 907, 31% 
-LFC < 0 (down)   : 901, 30% 
-outliers [1]     : 1, 0.034% 
-low counts [2]   : 0, 0% 
-(mean count < 6)
 [1] see 'cooksCutoff' argument of ?results
 [2] see 'independentFiltering' argument of ?results
 
