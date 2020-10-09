@@ -1,0 +1,394 @@
+#getting the start and stop info for each of the taxa and putting it
+#in a separate file
+############ NOTE ###########
+#the gene names for anything with a locus tag are NOT correct! so the
+#gene name is not necessarally the actual gene name when you include
+#|tag\= in the below greps.
+cp ../RefSeqs/ingroup_gene_info/*_coding_start_end.txt .
+
+perl -p -i.bak -e "s/>//g" *_coding_start_end.txt 
+perl -p -i.bak -e "s/<//g" *_coding_start_end.txt 
+#############################################################
+#	 CHECK THAT FILES DO NOT HAVE THE FIRST GENE AS BIG AS THE
+#	 WHOLE GENOME!!
+#############################################################
+
+cp ../Mauve*ref*/GoodBlocks/B*.mafft .
+#editing the mafft files so they match the treefile_10char so
+#everything will work
+perl -p -i.bak -e "s/  /\:/g" *.mafft
+perl -p -i.bak -e "s/ /\:/g" *.mafft
+perl -p -i.bak -e "s/AL645882\:AL645882/AL645882/g" *.mafft
+perl -p -i.bak -e "s/NZ_CM001889\:NZ_CM001889/CM001889/g" *.mafft
+perl -p -i.bak -e "s/NZ_CP042324\:NZ_CP042324/CP042324/g" *.mafft
+perl -p -i.bak -e "s/NZ_CP050522\:NZ_CP050522/CP050522/g" *.mafft
+perl -p -i.bak -e "s/NZ_GG657756\:NZ_GG657756/CG657756/g" *.mafft
+perl -p -i.bak -e "s/NZ_CM001889/CM001889/g" *.mafft
+perl -p -i.bak -e "s/NZ_CP042324/CP042324/g" *.mafft
+perl -p -i.bak -e "s/NZ_CP050522/CP050522/g" *.mafft
+perl -p -i.bak -e "s/NZ_GG657756/CG657756/g" *.mafft
+
+#list all *.mafft files and edit output so it is in this format
+#(python3 ~/CODE/get_gene_alignments_SUBS_ANALYSIS.py *.mafft 0 8667664 > *.mafft_out) >& *.err
+l -1 *.mafft > get_gene_alignments_commands
+#split the mafft files into gene alignment files
+parallel -j 10 < get_gene_alignments_commands
+
+cat *.err > ALL_stderr.txt
+grep "^T" ALL_stderr.txt
+
+
+############## CODING FILES #####################
+#below will split the big aln file into smaller files separated by
+#GENE first
+foreach x (Block*_coding.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_gene_aln_ -b "%04d.txt" $x "/&/+1" "{*}"
+end
+#editing the files to get rid of the separators
+foreach x (*_coding_gene_aln*.txt)
+perl -p -i.bak -e "s/\&//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+#splitting the gene into its parts
+foreach x (*_coding_gene_aln*.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_sec_ -b "%04d.txt" $x "/=/+1" "{*}"
+end
+
+foreach x (*_coding_gene_aln*_sec_*.txt)
+perl -p -i.bak -e "s/\=//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+
+find . -size 0 -delete
+
+
+############## NON CODING FILES #####################
+#below will split the big NONCODING aln file into smaller files
+separated by
+#GENE first
+foreach x (Block*_noncoding.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_gene_aln_ -b "%04d.txt" $x "/=/+1" "{*}"
+end
+
+foreach x (*_noncoding_gene_aln*.txt)
+perl -p -i.bak -e "s/\&//g" $x
+perl -p -i.bak -e "s/\=//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+
+find . -size 0 -delete
+
+#Trimal
+l -1 *_sec*.txt > trimal_commands
+#get into format:
+#trimal -in Block136_coding_gene_aln_0003_sec_0003_good_sec_0000.txt -out Block136_coding_gene_aln_0003_sec_0003_good_sec_0000.TRIMAL -strictplus -colnumbering > *.trimalcols
+parallel -j 10 < trimal_commands
+#remove the colnumbering from .trimalcols
+perl -p -i.bak -e "s/#ColumnsMap\t//g" *.trimalcols
+perl -p -i.bak -e "s/ //g" *.trimalcols
+#check if trimal ran properly, should be the same number
+l -1 *.trimalcols | wc -l
+l -1 *_sec*.txt | wc -l
+
+
+mkdir empty_files/
+
+#editing the fasta headers out of the phylip files
+foreach x (*_coding_gene_aln_*_sec*.txt)
+perl -p -i.bak -e "s/ /:/g" $x
+end
+
+foreach x (*_noncoding_gene_aln_*.txt)
+perl -p -i.bak -e "s/ /:/g" $x
+end
+
+
+#grab the actual aln from trimal
+#l -1 *.trimalcols > parse_t_commands
+#edit so it is in format:
+#python3 ~/CODE/parse_trimal_dN_dS_analysis.py *.txt *.trimalcols 0
+parallel -j 10 < parse_t_commands
+
+l -1 *coding_gene_aln*sec_*.txt | wc -l
+l -1 *.TRIMAL | wc -l
+#if ^ numbers are not equal
+l -1 *coding_gene_aln*sec_*.txt > tot_files
+l -1 *.TRIMAL > tot_trimal
+grep -v -f tot_trimal  tot_files > re_run_trimal
+
+yes | mv *_bad.txt empty_files/
+
+#splitting the gene into its parts AFTER Gblocks
+foreach x (*_good.txt)
+csplit --digits=2 --quiet --prefix=`basename $x .txt`_sec_ -b "%04d.txt" $x "/=/+1" "{*}"
+end
+foreach x (*_good_sec*.txt)
+perl -p -i.bak -e "s/\=//g" $x
+perl -p -i.bak -e "s/^\n//g" $x
+end
+
+find . -size 0 -delete
+
+#get the total lenght of seq in all blocks (before any trimmiming)
+grep "CP009144" *.mafft > total_seq_len.txt
+
+#edit file so it is in format:
+#start  end (WITH HEADER + new line after header)
+vi total_seq_len.txt
+
+#get length of each block
+awk -f so.awk total_seq_len.txt > sum_seq_len_differences.txt
+
+#edit sum_seq_len_differences.txt file so it is just the diff column
+#(NO HEADER)
+vi sum_seq_len_differences.txt
+
+
+#get the total lenght of seq in all blocks (before any trimmiming)
+grep "CP009144" *good_sec*.txt > trim_total_seq_len.txt
+
+#edit file so it is in format:
+#start  end (WITH HEADER + new line after header)
+vi trim_total_seq_len.txt
+
+#get length of each block
+awk -f so.awk trim_total_seq_len.txt > trim_sum_seq_len_differences.txt
+
+#edit sum_seq_len_differences.txt file so it is just the diff column
+#(NO HEADER)
+vi trim_sum_seq_len_differences.txt
+
+#sum it all up!
+echo "Total Seq Len (no trimming)"
+perl -nle '$sum += $_ } END { print $sum' sum_seq_len_differences.txt
+#sum it all up!
+echo "Total TRIMMED Seq Len"
+perl -nle '$sum += $_ } END { print $sum' trim_sum_seq_len_differences.txt
+
+
+#PHYLIP FORMAT
+#editing the files to get rid of the separators and converting to
+#phylip format
+foreach x (*good_sec_*.txt)
+echo $x
+fasta2phy $x > `basename $x .txt`.fna
+end
+
+
+################ things to do on all the files now ################
+cp treefile_NC treefile
+perl -p -i.bak -e "s/>//g" *.fna
+#########ECOLI
+perl -p -i.bak -e "s/CP0032890/NC_CP003289/g" *.txt
+perl -p -i.bak -e "s/BA0000070/NC_BA000007/g" *.txt
+perl -p -i.bak -e "s/CP0018550/NC_CP001855/g" *.txt
+perl -p -i.bak -e "s/CU9281640/NC_CU928164/g" *.txt
+perl -p -i.bak -e "s/U00096000/NC_U00096/g" *.txt
+perl -p -i.bak -e "s/CU9281630/NC_CU928163/g" *.txt
+perl -p -i.bak -e "s/CP0032890/NC_CP003289/g" *.fna
+perl -p -i.bak -e "s/BA0000070/NC_BA000007/g" *.fna
+perl -p -i.bak -e "s/CP0018550/NC_CP001855/g" *.fna
+perl -p -i.bak -e "s/CU9281640/NC_CU928164/g" *.fna
+perl -p -i.bak -e "s/U00096000/NC_U00096/g" *.fna
+perl -p -i.bak -e "s/CU9281630/NC_CU928163/g" *.fna
+#########BASS
+perl -p -i.bak -e "s/NZ_CP0173/NC_CP017314/g" *.txt
+######### SINO C
+perl -p -i.bak -e "s/CP004140/NC_CP004140/g" *.txt
+perl -p -i.bak -e "s/CP009144/NC_CP009144/g" *.txt
+perl -p -i.bak -e "s/CP004140/NC_CP0041/g" *.fna
+perl -p -i.bak -e "s/CP009144/NC_CP0091/g" *.fna
+######## STREP
+perl -p -i.bak -e "s/>/>NC_/g" *.txt
+#LIST ALL *.fna FILES AND THEN EDIT SO THEY HAVE THE FORMAT
+l -1 *.fna > genome_pos_commands
+#/home/dlato/CODE/genome_positions.pl *.txt treefile > `basename $y .txt`_call_ancestor_commands
+#get the ancestral genome positions
+parallel -j 10 < genome_pos_commands
+
+#create output files
+foreach x (*.fna)
+touch `basename $x .fna`_ancestor_out
+end
+#LIST ALL *call_ancestor_commands FILES AND THEN EDIT SO THEY HAVE THE FORMAT
+l -1 *_call_ancestor_commands > call_ancest_commands
+#sh $x
+#run call ancestor
+sh call_ancest_commands
+
+
+perl -p -i.bak -e "s/ /  /g" *.fna
+perl -p -i.bak -e "s/://g" *.fna
+## ecoli change stuff bc things dont work with the tree for paml. grrr
+perl -p -i.bak -e "s/NC_CP003289/CP0032890/g" *.txt
+perl -p -i.bak -e "s/NC_BA000007/BA0000070/g" *.txt
+perl -p -i.bak -e "s/NC_CP001855/CP0018550/g" *.txt
+perl -p -i.bak -e "s/NC_CU928164/CU9281640/g" *.txt
+perl -p -i.bak -e "s/NC_U00096/U00096000/g" *.txt
+perl -p -i.bak -e "s/NC_CU928163/CU9281630/g" *.txt
+\rm *.fna
+foreach x (*good_sec_*.txt)
+echo $x
+fasta2phy $x > `basename $x .txt`.fna
+end
+perl -p -i.bak -e "s/>//g" *.fna
+perl -p -i.bak -e "s/CP0032890/CP0032890 /g" *.fna
+perl -p -i.bak -e "s/BA0000070/BA0000070 /g" *.fna
+perl -p -i.bak -e "s/CP0018550/CP0018550 /g" *.fna
+perl -p -i.bak -e "s/CU9281640/CU9281640 /" *.fna
+perl -p -i.bak -e "s/U00096000/U00096000 /g" *.fna
+perl -p -i.bak -e "s/CU9281630/CU9281630 /g" *.fna
+
+#run paml
+foreach x (*.fna)
+yes | cp $x inputfile
+\rm lnf mlc orig.treefile rst rst1 rub seqfile
+/usr/local/paml/paml4.9a/bin/baseml baseml.ctl
+cp rst `basename $x fna`pamlout
+end
+
+
+##zip files bc there are WAY too many!
+#zip -r alignments.zip Block*_gene_aln_*.txt*
+#\rm Block*_gene_aln_*.txt*
+
+
+#LIST ALL *.pamlout FILES AND THEN EDIT SO THEY HAVE THE FORMAT
+l -1 *.pamlout > parse_paml_commands
+#/usr/local/bin/python3 /home/dlato/CODE/parse_rst_file.py $x > `basename $x pamlout`parsedpamlout
+#run parse paml output
+parallel -j 10 < parse_paml_commands
+#sort parsedpamlout files
+foreach y (*.parsedpamlout)
+grep -v "#" $y > `basename $y .parsedpamlout`.parsedpamlout2
+end
+#LIST ALL *.parsedpamlout FILES AND THEN EDIT SO THEY HAVE THE FORMAT
+l -1 *.parsedpamlout > combine_ancest_paml_commands
+#python3 /home/dlato/CODE/combine_parsedpaml_ancestout.py *.parsedpamlout2 *_ancestor_out paml_branches_file > *.basechanges
+#run parse paml output
+parallel -j 10 < combine_ancest_paml_commands
+
+find *.basechanges -type f -size 0
+#cat files
+touch chrom_coding.basechanges
+touch chrom_noncoding.basechanges
+cat *_noncoding*.basechanges >> chrom_noncoding.basechanges
+cat *_coding*.basechanges >> chrom_coding.basechanges
+
+#checking if there actually are changes
+cat *.parsedpamlout2 | wc -l
+awk '$5 == "1" {print $0}' chrom_coding.basechanges | wc -l
+awk '$5 == "1" {print $0}' chrom_noncoding.basechanges | wc -l
+
+#checking how many sites are actually coding and non-coding
+##list all text files and give them the format:
+#python3 ~/CODE/total_sites_in_aln.py *.txt >> total_coding_sites
+l -1 B*coding_gene_aln*good_sec_*.txt > total_coding_sites_commands
+touch total_coding_sites
+parallel -j 10 < total_coding_sites_commands
+#sum up all the aln lens
+perl -nle '$sum += $_ } END { print $sum' total_coding_sites
+#python3 ~/CODE/total_sites_in_aln.py *.txt 0 >> total_noncoding_sites
+l -1 B*noncoding_gene_aln*_good_sec*.txt > total_noncoding_sites_commands
+touch total_noncoding_sites
+parallel -j 10 < total_noncoding_sites_commands
+#sum up all the aln lens
+perl -nle '$sum += $_ } END { print $sum' total_noncoding_sites
+
+###### THINGS DID NOT RUN PROPERLY SO YOU WILL HAVE TO RE_DO IT
+#check if these 2 numbers
+l -1 *good_sec_*.txt | wc -l
+#l -1 *_noncoding_*.txt | wc -l
+#add up to this number
+l -1 *.parsedpamlout | wc -l
+#if no, run this
+l -1 *_sec_*.txt > tot_txt
+l -1 *_noncoding_*.txt >> tot_txt
+l -1 *.parsedpamlout > tot_pars
+#edit the tot_pars file so the file extentions are all .txt
+grep -v -f tot_pars tot_txt > re_run_fasta2phy
+#edit the re_run file to be fasta2phy *.txt > *.fna
+parallel -j 10 < re_run_fasta2phy
+#edit the fna files you just created
+perl -p -i.bak -e "s/\>//g" *.fna
+perl -p -i.bak -e "s/ /  /g" *.fna
+perl -p -i.bak -e "s/://g" *.fna
+#LIST ALL *.fna FILES AND THEN EDIT SO THEY HAVE THE FORMAT
+cp re_run_fasta2phy re_run_genome_pos_commands
+#/home/dlato/CODE/genome_positions.pl *.txt treefile > `basename $y .txt`_call_ancestor_commands
+#get the ancestral genome positions
+parallel -j 10 < re_run_genome_pos_commands
+#create ancestor out files
+#touch *_ancestor_out
+cp re_run_fasta2phy re_run_ancest_out_files
+sh re_run_ancest_out_files
+#run call ancest, edit
+#sh *_call_ancestor_commands
+cp re_run_fasta2phy re_run_call_ancest
+sh re_run_call_ancest
+#run paml but it needs to be in a new folder
+mkdir re_run_paml
+cp re_run_fasta2phy re_run_mv_files
+#edit to be: mv *.fna
+sh re_run_mv_files
+cp treefile_10char baseml.ctl re_run_paml/
+cd re_run_paml
+#run paml
+foreach x (*.fna)
+yes | cp $x inputfile
+\rm lnf mlc orig.treefile rst rst1 rub seqfile
+/usr/local/paml/paml4.9a/bin/baseml baseml.ctl
+cp rst `basename $x fna`pamlout
+end
+#LIST ALL *.pamlout FILES AND THEN EDIT SO THEY HAVE THE FORMAT
+l -1 *.pamlout > parse_paml_commands
+#/usr/local/bin/python3 /home/dlato/CODE/parse_rst_file.py $x > `basename $x pamlout`parsedpamlout
+#run parse paml output
+parallel -j 10 < parse_paml_commands
+#sort parsedpamlout files
+foreach y (*.parsedpamlout)
+grep -v "#" $y > `basename $y .parsedpamlout`.parsedpamlout2
+end
+#LIST ALL *.parsedpamlout FILES AND THEN EDIT SO THEY HAVE THE FORMAT
+l -1 *.parsedpamlout > combine_ancest_paml_commands
+#/home/dlato/CODE/combine_parsedPAML_ancestOUT.pl *.parsedpamlout3 *_ancestor_out > `basename $y .parsedpamlout`.basechanges
+#run parse paml output
+parallel -j 10 < combine_ancest_paml_commands
+#move the files back
+mv *.basechanges ..
+cd ..
+#back in the big folder run:
+#cat files
+touch chrom_coding.basechanges
+touch chrom_noncoding.basechanges
+cat *_noncoding*.basechanges >> chrom_noncoding.basechanges
+cat *_coding*.basechanges >> chrom_coding.basechanges
+
+#checking if there actually are changes
+cat *.parsedpamlout2 | wc -l
+awk '$5 == "1" {print $0}' chrom_coding.basechanges | wc -l
+awk '$5 == "1" {print $0}' chrom_noncoding.basechanges | wc -l
+
+#checking how many sites are actually coding and non-coding
+##list all text files and give them the format:
+#python3 ~/CODE/total_sites_in_aln.py *.txt >> total_coding_sites
+l -1 B*coding_gene_aln*_sec_*.txt > total_coding_sites_commands
+touch total_coding_sites
+parallel -j 10 < total_coding_sites_commands
+#sum up all the aln lens
+perl -nle '$sum += $_ } END { print $sum' total_coding_sites
+#python3 ~/CODE/total_sites_in_aln.py *.txt >> total_noncoding_sites
+l -1 B*noncoding_gene_aln*.txt > total_noncoding_sites_commands
+touch total_noncoding_sites
+parallel -j 10 < total_noncoding_sites_commands
+#sum up all the aln lens
+perl -nle '$sum += $_ } END { print $sum' total_noncoding_sites
+
+## ecoli change stuff bc things dont work with the tree for paml. grrr
+perl -p -i.bak -e "s/NC_CP003289/CP0032890/g" *.txt
+perl -p -i.bak -e "s/NC_BA000007/BA0000070/g" *.txt
+perl -p -i.bak -e "s/NC_CP001855/CP0018550/g" *.txt
+perl -p -i.bak -e "s/NC_CU928164/CU9281640/g" *.txt
+perl -p -i.bak -e "s/NC_U00096/U00096000/g" *.txt
+perl -p -i.bak -e "s/NC_CU928163/CU9281630/g" *.txt
+
