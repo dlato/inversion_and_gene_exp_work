@@ -1,0 +1,102 @@
+    Average signal,Peak centre,Gene name,Coordinates,Orientation,Description
+12.3,238019,yafF,239100-239378,+,Function unknown
+7.9,331600,yahA,331595-332683,+,Function unknown
+11.7,389571,hemB,387977-388951,-,5-aminolevulinate dehydratase
+0.5,389571,yaiT,389475-393642,+,Function unknown; interrupted by IS3B
+10.3,569580,ybcL,570116-570667,+,Function unknown
+6.9,570717,ybcM,570677-571474,+,Function unknown
+5.0,583103,appY,582904-583653,+,Regulates hya and appA operons; induced by PO4 starvation and stationary phase
+6.0,735333,ybfL,736048-737184,+,Function unknown
+4.1,837437,ybiJ,836888-837148,-,Function unknown
+5.4,997353,ycbQ,997091-997630,+,Function unknown
+21.5,1063827,yccE,1063259-1064515,+,Function unknown
+4.3,1090864,ycdS,1089089-1091512,-,Function unknown
+5.7,1095162,ycdU,1095066-1096052,+,Function unknown
+12.6,1128949,flgN,1128637-1129053,-,FlgN flagellar synthesis protein
+0.7,1145850,yceD,1146017-1146538,+,Function unknown
+14.8,1145850,yceF,1145234-1145818,-,Function unknown
+9.8,1196104,Between convergent ORFs,,,
+16.0,1197174,ymfE,1196756-1197460,-,Function unknown
+3.4,1197889,lit,1197918-1198811,+,Locus within defective prophage e14; expression of T4 late genes
+5.4,1197889,ymfE,1196756-1197460,-,Function unknown
+8.2,1198327,lit,1197918-1198811,+,Locus within defective prophage e14; expression of T4 late genes
+7.2,1211166,elbA,1210903-1211226,-,Involved in isoprenoid biosynthesis
+12.7,1255584,ycgV,1252308-1255175,-,Function unknown
+8.6,1298748,oppA,1299206-1300837,+,Oligopeptide permease
+13.2,1527880,ydcD,1527946-1528428,+,Function unknown
+7.2,1542705,yddJ,1542408-1542743,-,Function unknown
+5.2,1543496,yddK,1542782-1543771,-,Function unknown
+16.4,1581830,ydeO,1580950-1581711,-,Function unknown
+6.6,1620632,Between convergent ORFs,,,
+15.5,1636804,cspI,1636479-1636691,-,Cold shock protein homolog
+6.3,1710423,ydgR,1710793-1712295,+,Function unknown
+4.1,1755951,ynhG,1755745-1756749,-,Function unknown
+42.9,1802220,arpB,1801118-1803017,+,Putative regulatory protein with ankyrin repeats
+9.1,1857393,ydjK,1856874-1858253,-,Function unknown
+8.9,1968405,tap,1967407-1969008,-,Flagellar regulon; chemotactic membrane receptor for aspartate; methyl-accepting protein IV; peptide receptor
+5.3,1998948,fliZ,1998496-1999047,-,Not required for motility; may regulate FliA (sigma F)
+9.7,1999764,fliA,1999093-1999812,-,Transcription sigma factor for class 3a and 3b operons; regulation of late gene expression
+6.3,2000652,fliC,2000133-2001629,-,"Flagellin, structural gene; flagellar regulon member"
+16.4,2001538,fliC,2000133-2001629,-,"Flagellin, structural gene; flagellar regulon member"
+2.7,2001538,fliD,2001895-2003301,+,"Hook-associated protein 2, axial family; flagellar regulon member"
+19.2,2009441,Between convergent ORFs,,,
+6.0,2010208,intG,2010524-2010685,+,Defective integrase gene
+10.6,2010208,yedM,2010023-2010373,-,Function unknown
+10.9,2101252,fliF,2011251-2012909,+,Flagellar basal body M-ring protein
+41.6,2101888,wbbK,2101413-2102531,-,Involved in lipopolysaccharide biosynthesis
+5.8,2103996,wbbI,2103087-2104079,-,Involved in lipopolysaccharide biosynthesis
+23.6,2104867,rfc,2104082-2105248,-,O-antigen polymerase
+4.9,2106311,glf,2105248-2106351,-,UDP-galactopyranose mutase
+9.6,2107184,rfbX,2106359-2107606,-,"Hydrophobic protein, O-antigen"
+5.2,2186393,yehA,2185400-2186434,-,Function unknown
+5.1,2226940,yohG,2225343-2226778,-,Function unknown
+11.6,2380729,elaD,2380733-2381944,+,Unspecified
+6.8,2466907,yfdH,2466234-2467154,+,Function unknown
+26.0,2467786,yfdI,2467151-2468482,+,Function unknown
+6.4,2479126,emrY,2478658-2480196,-,Putative multidrug resistance pump
+35.4,2520569,xapR,2519613-2520497,-,Regulatory gene for xapA
+8.7,2626262,yfgF,2624715-2626958,-,Function unknown
+5.3,2722746,kgtP,2722468-2723766,-,Alpha-ketoglutarate permease
+12.2,2772608,yfjW,2771339-2773042,+,Function unknown
+6.7,2985196,yqeH,2985558-2986190,+,Function unknown
+4.4,2987430,yqeJ,2987326-2987808,+,Function unknown
+76.1,2989258,ygeG,2989290-2989781,+,Function unknown
+39.3,2989631,ygeH,2990116-2991492,+,Function unknown
+7.2,2991706,ygeI,2991660-2991878,+,Function unknown
+8.8,3077215,cmtB,3076906-3077349,-,Protein-N-phosphohistidine sugar P-transferase; enzyme III of PEP-PTS cryptic mannitol transport
+16.5,3117362,yghJ,3115101-3116987,-,Function unknown
+18.4,3266453,yhaC,3266056-3267243,+,Function unknown
+7.2,3266738,yhaC,3266056-3267243,+,Function unknown
+6.2,3319331,yhbX,3317629-3319254,-,Function unknown
+8.7,3320106,secG,3319814-3320146,-,p12 cytoplasmic membrane protein involved with protein export
+4.8,3358590,gltF,3358811-3359575,+,Regulatory gene?
+10.2,3410215,Between convergent ORFs,,,
+5.9,3441159,secY,3440403-3441734,-,"Multispanning membrane protein, translocator of proteins (with SecE)"
+10.2,3620989,yhhH,3621030-3621413,+,Function unknown
+8.8,3629913,yhiJ,3628598-3630220,-,Function unknown
+12.7,3632003,yhiL,3630482-3632088,-,Function unknown
+1.0,3632003,yhiM,3632429-3633523,+,Function unknown
+10.2,3649293,yhiS,3648921-3651343,+,Function unknown; interrupted by IS5T
+11.7,3764103,yibA,3763964-3764806,+,Function unknown
+8.4,3765736,yibG,3765804-3766265,+,Function unknown
+8.5,3766974,Between convergent ORFs,,,
+24.2,3794786,rfaL,3794575-3795834,+,LPS core biosynthesis; O-antigen ligase
+12.2,3796405,waaU,3795866-3796939,-,Adds terminal GlcNac side branch to the lipopolysaccharide core prior to attachment of the O antigen; not the same as Salmonella rfaK
+9.9,3797827,rfaZ,3796972-3797823,-,LPS core biosynthesis
+13.8,3799266,rfaJ,3798610-3799626,-,UDP-D-glucose: (galactosyl)lipopolysaccharide glucosyltransferase
+5.9,3800215,rfaI,3799666-3800685,-,"UDP-D-galactose: (glucosyl)lipopolysaccharide-1,3-D-galactosyltransferase"
+11.5,3801372,rfaB,3800685-3801794,-,"UDP-galactose: (glucosyl)lipopolysaccharide-1,6-galactosyltransferase"
+7.7,3801921,rfaS,3801808-3802743,-,"LPS core, not affecting attachment of O antigen"
+7.3,3802513,rfaS,3801808-3802743,-,"LPS core, not affecting attachment of O antigen"
+7.3,4178071,rplL,4178138-4178503,+,50S ribosomal subunit protein L7/L12
+6.9,4218504,arpA,4217880-4220066,-,Regulator of acetyl-coenzyme A synthetase gene expression
+10.8,4248891,yjbI,4248534-4249862,+,Function unknown
+31.4,4279752,yjcF,4279362-4280654,-,Function unknown
+13.4,4280569,yjcF,4279362-4280654,-,Function unknown
+8.0,4435425,ytfI,4435285-4435785,+,Function unknown
+17.7,4474328,yjgL,4473011-4474825,+,Function unknown
+4.5,4478159,yjgN,4477294-4478491,+,Function unknown
+25.2,4502719,yjhC,4502855-4503973,+,Function unknown
+7.8,4569685,yjiT,4569935-4571500,+,Function unknown
+6.5,N/A,rrs,N/A,+,16S RNA of rrn operons
+4.7,N/A,rrs,N/A,+,rrn promoter

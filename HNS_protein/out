@@ -1,0 +1,91 @@
+  Average.signal Peak.centre Gene.name   Coordinates Orientation
+1           12.3      238019      yafF 239100-239378           +
+2            7.9      331600      yahA 331595-332683           +
+3           11.7      389571      hemB 387977-388951           -
+4            0.5      389571      yaiT 389475-393642           +
+5           10.3      569580      ybcL 570116-570667           +
+6            6.9      570717      ybcM 570677-571474           +
+                            Description
+1                      Function unknown
+2                      Function unknown
+3         5-aminolevulinate dehydratase
+4 Function unknown; interrupted by IS3B
+5                      Function unknown
+6                      Function unknown
+  Gene_name  start    end
+1      yafF 239100 239378
+2      yahA 331595 332683
+3      hemB 387977 388951
+4      yaiT 389475 393642
+5      ybcL 570116 570667
+6      ybcM 570677 571474
+  ID K.12.gene.namea dN..average. dS..average. HTGb H.NS.bindingc
+1  0            thrA  0.001128224   0.07550666    x         FALSE
+2  1            thrB  0.001521142   0.06078901    x         FALSE
+3  2            thrC  0.001167336   0.06167209    n         FALSE
+4  3            yaaA  0.003860677   0.05017886    n         FALSE
+5  4            yaaJ  0.004496300   0.05725095    N         FALSE
+6  5            talB  0.001281184   0.03585381    n         FALSE
+  H.NS.binding..excluded.genes.in.which.H.NS.bound.regions.were.restricted.at.the.3..end.and.length.is.less.than.10..of.total.gene.length.d
+1                                                                                                                                     FALSE
+2                                                                                                                                     FALSE
+3                                                                                                                                     FALSE
+4                                                                                                                                     FALSE
+5                                                                                                                                     FALSE
+6                                                                                                                                     FALSE
+  Genes.included.in.transcriptional.units.H.NS.bounde Transcription.unit.namef
+1                                               FALSE                         
+2                                               FALSE                         
+3                                               FALSE                         
+4                                               FALSE                         
+5                                               FALSE                         
+6                                               FALSE                         
+  gbk_start gbk_end gbk_midpoint gene_name
+1       190     255          222      thrL
+2       337    2799         1568      thrA
+3      2801    3733         3267      thrB
+4      3734    5020         4377      thrC
+5      5234    5530         5382      yaaX
+6      5683    6459         6071      yaaA
+  gene_name HNS_binding HNS_cutoff HNS_transcript gbk_start gbk_end
+1      aaeA       FALSE      FALSE          FALSE   3388194 3389126
+2      aaeB       FALSE      FALSE          FALSE   3386221 3388188
+3      aaeR       FALSE      FALSE          FALSE   3389520 3390449
+4      aaeX       FALSE      FALSE          FALSE   3389134 3389337
+5      abrB       FALSE      FALSE           TRUE    746723  747769
+6      accA       FALSE      FALSE          FALSE    208621  209580
+  gbk_midpoint
+1      3388660
+2      3387204
+3      3389984
+4      3389235
+5       747246
+6       209100
+  H.NS.binding.regions.in.wild.type.cells..W3110.     X
+1                                          starta  enda
+2                                                      
+3                                                      
+4                                           41611 42680
+5                                           83715 84024
+6                                           84095 84499
+  H.NS.binding.regions.in.hha.ydgT.mutant.cells   X.1
+1                                        starta  enda
+2                                         17158 17334
+3                                         36063 36448
+4                                         41668 42509
+5                                         83696 84024
+6                                         84095 84461
+  overlapping.of.H.NS.binding.regions.in.wild.type.cells.and.hha.ydgT.mutant.cellsb
+1                                                                            starta
+2                                                                                  
+3                                                                                  
+4                                                                             41668
+5                                                                             83715
+6                                                                             84095
+    X.2
+1  enda
+2      
+3      
+4 42509
+5 84024
+6 84461
