@@ -47,39 +47,46 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
 #read in the data
 #and format
 
-#gbk_start and gbk_end are the starts and ends for each gene in the block
-# start and end are the starts and ends for the WHOLE block
-#gei_dat <- read.csv("../Sample_final_df.csv", header = TRUE)
-#getting command line arguments
-#args <- commandArgs(TRUE)
-#file_name <- as.character(args[1])
+# K12 MG1655
 graniger_dat <- read.csv("raw_data_files/Grainger_2006_HNS_binding_cutoff_coding_and_noncoding.csv", header = TRUE)
-head(graniger_dat)
 sub_g_dat <- graniger_dat %>%
              select(Gene.name,Coordinates)
-colnames(sub_g_dat) <- c("Gene_name","Coords") 
+colnames(sub_g_dat) <- c("gene_name","Coords") 
 coords <- str_split_fixed(sub_g_dat$Coords, "-", 2)
 colnames(coords) <- c("start","end")
 sub_g_dat <- cbind(sub_g_dat,coords)
 sub_g_dat <- sub_g_dat %>%
-             select(Gene_name,start,end)
+             select(gene_name,start,end) %>%
+             filter(gene_name != "Between convergent ORFs") %>%
+             filter(start != "N/A")
 head(sub_g_dat)
 
 #below has to be combined with gene info file for K12MG
+# W3
 file <- "raw_data_files/Higashi_2016_HNS_binding_sites_coding.csv"
 higashi_dat <- read.csv(file, header = TRUE)
-head(higashi_dat)
 sub_h_dat <- higashi_dat[,c(2,6,7,8)]
 colnames(sub_h_dat) <- c("gene_name","HNS_binding","HNS_cutoff","HNS_transcript") 
 gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
 gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
 colnames(gene_inf) <- c("gbk_start","gbk_end","gbk_midpoint","gene_name")
-head(gene_inf)
 sub_h_df <- merge(sub_h_dat,gene_inf, by = "gene_name")
+print("FILTER BASED ON WHATEVER COLUMN BRIAN CHOOSES")
+sub_h_df <- sub_h_df %>%
+            filter(HNS_binding == TRUE)
 head(sub_h_df)
 
+# W3
 ueda_dat <- read.csv("raw_data_files/Ueda_2013_HNS_binding_sites_W3110.csv", header = TRUE)
-head(ueda_dat)
+sub_u_dat <- ueda_dat[,c(1,2)]
+colnames(sub_u_dat) <- c("W3_start","W3_end")
+sub_u_dat <- na.omit(sub_u_dat)
+head(sub_u_dat)
+
+print("combine all the hns binding info into one df")
+#except W3 bc it has different gene names
+hns_bind <- merge(sub_g_dat,sub_h_df, by = "gene_name")
+head(hns_bind)
 
 #print("make column of length of each block")
 #gei_dat <- within(gei_dat, block_len <- end - start)
