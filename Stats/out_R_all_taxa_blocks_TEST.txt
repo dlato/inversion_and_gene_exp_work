@@ -40772,13 +40772,20 @@ low counts [2]   : 1379, 47%
 
 [1] "HNS BINDING"
 [1] "##################################################"
-  gene_name  start    end
-1      yafF 239100 239378
-2      yahA 331595 332683
-3      hemB 387977 388951
-4      yaiT 389475 393642
-5      ybcL 570116 570667
-6      ybcM 570677 571474
+  gbk_strand gene_name
+1          0      thrL
+2          0      thrA
+3          0      thrB
+4          0      thrC
+5          0      yaaX
+6          1      yaaA
+  gene_name   start     end gbk_strand
+1      appY  582904  583653          0
+2      arpA 4217880 4220066          1
+3      arpB 1801118 1803017          0
+4      cmtB 3076906 3077349          1
+5      cspI 1636479 1636691          1
+6      elaD 2380733 2381944          0
 [1] "FILTER BASED ON WHATEVER COLUMN BRIAN CHOOSES"
   gene_name HNS_binding HNS_cutoff HNS_transcript gbk_start gbk_end
 1      acrE        TRUE       TRUE           TRUE   3413864 3415021
@@ -40802,24 +40809,80 @@ low counts [2]   : 1379, 47%
 7    150671 151113
 11   155915 156870
 [1] "merge HNS with K12 MG data"
-      block  midpoint sig                class      avg_exp
-1   Block62 1447718.5  no block_avg_exp_invert 188.20435767
-6   Block73 1460819.0  no block_avg_exp_invert 530.78577561
-8   Block98 1567827.5  no block_avg_exp_invert   3.78237694
-9   Block99 1572022.5  no block_avg_exp_invert  74.27837209
-10 Block101 1582036.0  no block_avg_exp_invert  42.91624541
-11 Block105 1583799.5  no block_avg_exp_invert  41.54346919
-  gene_name  start    end
-1      yafF 239100 239378
-2      yahA 331595 332683
-3      hemB 387977 388951
-4      yaiT 389475 393642
-5      ybcL 570116 570667
-6      ybcM 570677 571474
-  gene_name  start    end midpoint
-1      yafF 239100 239378 239239.0
-2      yahA 331595 332683 332139.0
-3      hemB 387977 388951 388464.0
-4      yaiT 389475 393642 391558.5
-5      ybcL 570116 570667 570391.5
-6      ybcM 570677 571474 571075.5
+  midpoint class2
+1  1207757      0
+2  1207757      0
+3  1207757      0
+4  1207757      0
+5  1212821      0
+6  1212821      0
+    midpoint          class2         
+ Min.   :   1509   Length:2965       
+ 1st Qu.: 530349   Class :character  
+ Median :1371588   Mode  :character  
+ Mean   :1309115                     
+ 3rd Qu.:2019628                     
+ Max.   :2792216                     
+[1] "inver_k12mg head"
+    midpoint       class2
+1  1207757.0 No Inversion
+5  1212821.0 No Inversion
+8  1215885.5 No Inversion
+10 1218631.0 No Inversion
+12 1221955.0 No Inversion
+13 1223450.5 No Inversion
+  gene_name   start     end gbk_strand
+1      appY  582904  583653          0
+2      arpA 4217880 4220066          1
+3      arpB 1801118 1803017          0
+4      cmtB 3076906 3077349          1
+5      cspI 1636479 1636691          1
+6      elaD 2380733 2381944          0
+   midpoint      class2 gbk_strand
+1  583278.5 HNS_Binding          0
+2 4218973.0 HNS_Binding          1
+3 1802067.5 HNS_Binding          0
+4 3077127.5 HNS_Binding          1
+5 1636585.0 HNS_Binding          1
+6 2381338.5 HNS_Binding          0
+[1] "################################################################################"
+[1] "#ORIGIN SCALING AND BIDIRECTIONALITY HNS                                            "
+[1] "################################################################################"
+[1] "max_pos"
+[1] 5130767
+[1] "oriC"
+[1] 3925744
+[1] "ter"
+[1] 1588773
+[1] "MIN POS"
+[1] 239239
+[1] "shifted ter"
+[1] 2793796
+[1] "max tmp_pos"
+[1] 2786353.5
+   midpoint      class2 gbk_strand
+1 1788301.5 HNS_Binding          0
+2  293229.0 HNS_Binding          1
+3 2123676.5 HNS_Binding          1
+4  848616.5 HNS_Binding          0
+5 2289159.0 HNS_Binding          0
+6 1544405.5 HNS_Binding          1
+[1] 2786353.5
+[1] 129341.5
+    midpoint       class2
+1  1207757.0 No Inversion
+5  1212821.0 No Inversion
+8  1215885.5 No Inversion
+10 1218631.0 No Inversion
+12 1221955.0 No Inversion
+13 1223450.5 No Inversion
+      midpoint      class2
+628   644973.5 HNS_Binding
+6291 2402131.0 HNS_Binding
+630  2402131.0 HNS_Binding
+631   939870.0 HNS_Binding
+6321  938177.0 HNS_Binding
+633   509791.0 HNS_Binding
+[1] "test plot of HNS binding and inversions"
+null device 
+          1 

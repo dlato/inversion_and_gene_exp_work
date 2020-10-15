@@ -294,6 +294,7 @@ gei_dat$gbk_midpoint <- tmp_pos
 head(gei_dat)
 max(gei_dat$gbk_midpoint)
 min(gei_dat$gbk_midpoint)
+inver_dat_bidir <- gei_dat
 
 print("############    ")
 print("# ALL inversions=1")
@@ -1000,6 +1001,11 @@ sub_g_dat <- sub_g_dat %>%
              select(gene_name,start,end) %>%
              filter(gene_name != "Between convergent ORFs") %>%
              filter(start != "N/A")
+gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
+gene_inf <- gene_inf %>% select(gbk_strand,gbk_gene_id)
+colnames(gene_inf) <- c("gbk_strand","gene_name")
+head(gene_inf)
+sub_g_dat <- merge(sub_g_dat,gene_inf, by = "gene_name")
 head(sub_g_dat)
 
 #below has to be combined with gene info file for K12MG
@@ -1030,10 +1036,158 @@ head(sub_u_dat)
 #head(hns_bind)
 
 print ("merge HNS with K12 MG data")
+k12MG_df <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
+            select(midpoint,rev_comp)
+colnames(k12MG_df) <- c("midpoint","class2")
+k12MG_df$class2 <- as.character(k12MG_df$class2)
 head(k12MG_df)
+summary(k12MG_df)
+#inver_k12mg <- k12MG_df %>% filter(class == "block_avg_exp_invert")
+#class2 <- rep("Inversion",length(inver_k12mg$class))
+#inver_k12mg <- cbind(inver_k12mg,class2)
+#inver_k12mg <- inver_k12mg %>% select(midpoint, class2)
+#inver_k12mg <- k12MG_df %>% select(midpoint, class)
+#change names in class col
+inver_k12mg <- k12MG_df %>% 
+    mutate(class2 = recode(class2, 
+                      "0" = "No Inversion", 
+                      "1" = "Inversion"))
+#lst <- c(1 = "Inversion", 0 = "No Inversion")
+#inver_k12mg <- k12MG_df
+#inver_k12mg$class2 <- as.character(lst[inver_k12mg$rev_comp])
+#inver_k12mg <- inver_k12mg %>% select(midpoint,class2)
+print("inver_k12mg head")
+inver_k12mg <- unique(inver_k12mg)
+head(inver_k12mg)
+
 head(sub_g_dat)
 sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
 sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
 hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
 colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+class2 <- rep("HNS_Binding",length(hns_dat$start))
+hns_dat <- cbind(hns_dat,class2)
+hns_dat <- hns_dat %>% select(midpoint, class2,gbk_strand)
 head(hns_dat)
+
+
+print("################################################################################")
+print("#ORIGIN SCALING AND BIDIRECTIONALITY HNS                                            ")
+print("################################################################################")
+#first scaling things to the origin (if necessary)
+max_pos <- as.numeric(args[2])
+print("max_pos")
+max_pos
+oriC_pos <- as.numeric(args[3])
+print("oriC")
+oriC_pos
+terminus <- as.numeric(args[4])
+print("ter")
+terminus
+new_pos <- hns_dat$midpoint
+tmp_pos <- hns_dat$midpoint
+print("MIN POS")
+min(hns_dat$midpoint)
+
+if (bac_name == "E.coli" | replicon == "pSymA") {
+  to_shift_ter <- max_pos - oriC_pos
+  shifted_ter <-terminus + to_shift_ter
+  terminus <- shifted_ter
+}
+print("shifted ter")
+terminus
+
+if (replicon == "pSymB") {
+  shifted_ter <- terminus - oriC_pos
+  terminus <- shifted_ter
+}
+
+if (bac_name == "E.coli" | replicon == "pSymA" | replicon == "pSymB")
+{
+  for(i in 1:length(tmp_pos)) {
+    if (tmp_pos[i] >= oriC_pos) {
+      new_pos[i] <- tmp_pos[i] - oriC_pos
+    } else {
+      tmp_end <- max_pos - oriC_pos
+      new_pos[i] <- tmp_pos[i] + tmp_end
+    }
+  }
+  tmp_pos <- new_pos
+}
+
+
+#now accounting for the bidirectionality. if things are between the start pos and
+#the terminus then they will stay as the same position. If not, then they will be
+#changed to a new position starting at 1 and going to the terminus
+new_pos2 <- tmp_pos
+#also have to account for bidirectional replicaion in the strand, in
+#the left replichore a complemented gene (1) is actually on the leading
+#strand. so for the left replichore, all 0 -> 1, and 1 -> 0
+new_strand <- hns_dat$gbk_strand
+if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name ==
+"S.meliloti") {
+  for(i in 1:length(tmp_pos)) {
+    #left replichore
+    if (tmp_pos[i] > terminus) {
+      new_pos2[i] <- max_pos - tmp_pos[i]
+      # making sure the strand column accounts for bidirectional rep
+      if (hns_dat$gbk_strand[i] == 0) {
+        new_strand[i] <- 1
+      } else {
+        new_strand[i] <- 0
+      }
+    } else {
+    }
+  }
+  tmp_pos <- new_pos2
+
+  print("max tmp_pos")
+  max(tmp_pos)
+}
+
+
+if (bac_name == "Streptomyces") {
+  for(i in 1:length(tmp_pos)) {
+    # right replichore
+    if (tmp_pos[i] >= oriC_pos) {
+      new_pos[i] <- tmp_pos[i] - oriC_pos
+    }#if btwn origin and end of genome
+    # left replichore
+    if (tmp_pos[i] <= oriC_pos) {
+      new_pos[i] <- -1 * (oriC_pos - tmp_pos[i])
+      # making sure the strand column accounts for bidirectional rep
+      if (hns_dat$gbk_strand[i] == 0) {
+        new_strand[i] <- 1
+      } else {
+        new_strand[i] <- 0
+      }
+    }#if btwn origin and beginning of genome
+    if (tmp_pos[i] == oriC_pos) {
+      new_pos[i] <- 0
+    }#if equal to origin
+  }
+  tmp_pos <- new_pos
+}
+
+
+hns_dat$gbk_strand <- new_strand
+
+hns_dat$midpoint <- tmp_pos
+head(hns_dat)
+max(hns_dat$midpoint)
+min(hns_dat$midpoint)
+hns_dat <- hns_dat %>% select(midpoint,class2)
+
+hns_inver <- rbind(inver_k12mg,hns_dat)
+head(hns_inver)
+tail(hns_inver)
+
+print("test plot of HNS binding and inversions")
+pdf("hns_inver_plot_test.pdf")
+ggplot(hns_inver, aes(x=midpoint, y=class2, color=class2))+
+#  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
+#               position = position_jitter(width = 0.05)) +
+#  geom_point(size = 3) +
+  geom_point(size = 2, alpha=0.4)
+#  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
+dev.off()
