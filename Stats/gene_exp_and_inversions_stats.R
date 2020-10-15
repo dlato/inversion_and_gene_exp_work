@@ -591,6 +591,7 @@ k12_df <- k12_df %>% select(block, midpoint,sig,class,avg_exp)
 k12_df <- unique(k12_df)
 head(k12_df)
 k12_df[which(k12_df$block == "Block62"),]
+k12MG_df <- k12_df
 
 p <- (ggplot(k12_df, aes(x=midpoint, y=avg_exp, color=class))
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
@@ -1028,3 +1029,11 @@ head(sub_u_dat)
 #hns_bind <- merge(sub_g_dat,sub_h_df, by = "gene_name")
 #head(hns_bind)
 
+print ("merge HNS with K12 MG data")
+head(k12MG_df)
+head(sub_g_dat)
+sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
+sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
+hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
+colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+head(hns_dat)

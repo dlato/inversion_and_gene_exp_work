@@ -40801,3 +40801,25 @@ low counts [2]   : 1379, 47%
 6     85159  85373
 7    150671 151113
 11   155915 156870
+[1] "merge HNS with K12 MG data"
+      block  midpoint sig                class      avg_exp
+1   Block62 1447718.5  no block_avg_exp_invert 188.20435767
+6   Block73 1460819.0  no block_avg_exp_invert 530.78577561
+8   Block98 1567827.5  no block_avg_exp_invert   3.78237694
+9   Block99 1572022.5  no block_avg_exp_invert  74.27837209
+10 Block101 1582036.0  no block_avg_exp_invert  42.91624541
+11 Block105 1583799.5  no block_avg_exp_invert  41.54346919
+  gene_name  start    end
+1      yafF 239100 239378
+2      yahA 331595 332683
+3      hemB 387977 388951
+4      yaiT 389475 393642
+5      ybcL 570116 570667
+6      ybcM 570677 571474
+  gene_name  start    end midpoint
+1      yafF 239100 239378 239239.0
+2      yahA 331595 332683 332139.0
+3      hemB 387977 388951 388464.0
+4      yaiT 389475 393642 391558.5
+5      ybcL 570116 570667 570391.5
+6      ybcM 570677 571474 571075.5
