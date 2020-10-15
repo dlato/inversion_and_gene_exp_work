@@ -40770,3 +40770,34 @@ low counts [2]   : 1379, 47%
 [1] see 'cooksCutoff' argument of ?results
 [2] see 'independentFiltering' argument of ?results
 
+[1] "HNS BINDING"
+[1] "##################################################"
+  gene_name  start    end
+1      yafF 239100 239378
+2      yahA 331595 332683
+3      hemB 387977 388951
+4      yaiT 389475 393642
+5      ybcL 570116 570667
+6      ybcM 570677 571474
+[1] "FILTER BASED ON WHATEVER COLUMN BRIAN CHOOSES"
+  gene_name HNS_binding HNS_cutoff HNS_transcript gbk_start gbk_end
+1      acrE        TRUE       TRUE           TRUE   3413864 3415021
+2      acrR        TRUE       TRUE           TRUE    485761  486408
+3      adiC        TRUE       TRUE           TRUE   4335694 4337031
+4      adiY        TRUE       TRUE           TRUE   4337168 4337929
+5      agaB        TRUE       TRUE           TRUE   3284170 3284646
+6      agaC        TRUE       TRUE           TRUE   3284685 3285488
+  gbk_midpoint
+1      3414442
+2       486084
+3      4336362
+4      4337548
+5      3284408
+6      3285086
+   W3_start W3_end
+3     41611  42680
+4     83715  84024
+5     84095  84499
+6     85159  85373
+7    150671 151113
+11   155915 156870
