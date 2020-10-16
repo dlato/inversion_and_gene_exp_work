@@ -592,14 +592,24 @@ k12_df <- k12_df %>% select(block, midpoint,sig,class,avg_exp)
 k12_df <- unique(k12_df)
 head(k12_df)
 k12_df[which(k12_df$block == "Block62"),]
+k12_df_non_sig <- k12_df %>% filter(sig == "no")
+head(k12_df_non_sig)
+k12_df_sig <- k12_df %>% filter(sig == "yes")
+head(k12_df_sig)
 k12MG_df <- k12_df
 
-p <- (ggplot(k12_df, aes(x=midpoint, y=avg_exp, color=class))
+p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class))
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
-#               position = position_jitter(width = 0.05)) +
-#  geom_point(size = 3) +
-   + geom_point(size = 2, alpha=0.4)
-#  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
+   #non-sig pts in light grey, un-filled
+   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y = avg_exp, color = "#BEBEBE"), alpha=0.7, shape=1)
+   #sig pts
+   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class))
+#   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color =class),span=0.5, method = "loess")
+   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"))
+##               position = position_jitter(width = 0.05)) +
+##  geom_point(size = 3) +
+#   + geom_point(size = 2, alpha=0.4)
+##  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
    + scale_y_continuous(trans='log10')
 #   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
 )

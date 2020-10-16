@@ -40169,6 +40169,20 @@ null device
        block  midpoint sig                   class     avg_exp
 1    Block62 1447718.5  no    block_avg_exp_invert 188.2043577
 2060 Block62 1447718.5  no block_avg_exp_noninvert 128.7900607
+     block  midpoint sig                class      avg_exp
+1  Block62 1447718.5  no block_avg_exp_invert 188.20435767
+2  Block73 1460819.0  no block_avg_exp_invert 530.78577561
+3  Block98 1567827.5  no block_avg_exp_invert   3.78237694
+4  Block99 1572022.5  no block_avg_exp_invert  74.27837209
+5 Block101 1582036.0  no block_avg_exp_invert  42.91624541
+6 Block105 1583799.5  no block_avg_exp_invert  41.54346919
+     block  midpoint sig                class      avg_exp
+1 Block164 1778905.0 yes block_avg_exp_invert  28.92242444
+2 Block211 2016737.0 yes block_avg_exp_invert  20.94408636
+3 Block232 2099887.5 yes block_avg_exp_invert  14.61043214
+4 Block288 2331092.5 yes block_avg_exp_invert 155.81490459
+5 Block289 2341039.5 yes block_avg_exp_invert  72.79216103
+6 Block312 2437771.0 yes block_avg_exp_invert 144.84877288
 null device 
           1 
 [1] "###################"
