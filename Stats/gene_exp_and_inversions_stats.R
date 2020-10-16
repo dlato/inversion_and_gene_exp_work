@@ -417,6 +417,7 @@ gei_dat['block_avg_len_noninvert'] <- block_avg_len_noninvert
 
 print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
+bp_dat <- gei_dat
 
 print("make df with just block info")
 block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp","strain"))
@@ -617,7 +618,35 @@ pdf("genome_pos_inversions_k12.pdf")
 p
 dev.off()
 
+print("##############")
+print("boxplot test data")
+print("##############")
+head(bp_dat)
+bp_dat$rev_comp <- as.factor(bp_dat$rev_comp)
+sig_blocks <- k12_df_sig$block
+bp_sig <- bp_dat %>% filter(block == sig_blocks) 
+head(bp_sig)
+tail(bp_sig)
 
+p <- (ggplot(bp_sig, aes(x=block, y=norm_exp, color=rev_comp))
+   + geom_boxplot() 
+##  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
+#   #non-sig pts in light grey, un-filled
+#   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y = avg_exp, color = "#BEBEBE"), alpha=0.7, shape=1)
+#   #sig pts
+#   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class))
+##   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color =class),span=0.5, method = "loess")
+#   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"))
+###               position = position_jitter(width = 0.05)) +
+###  geom_point(size = 3) +
+##   + geom_point(size = 2, alpha=0.4)
+###  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
+   + scale_y_continuous(trans='log10')
+#   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
+)
+pdf("genome_pos_inversions_k12_boxplot.pdf")
+p
+dev.off()
 
 print("###################")
 print("# info about sig inversion blocks")
