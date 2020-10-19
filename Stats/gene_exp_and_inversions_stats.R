@@ -16,6 +16,7 @@ library(data.table)
 library("RColorBrewer")
 library("gplots")
 library("ggplot2")
+library("GenomicRanges")
 #set theme
 theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
             #change size of facet header text
@@ -1087,6 +1088,7 @@ summary(k12MG_df)
 #inver_k12mg <- inver_k12mg %>% select(midpoint, class2)
 #inver_k12mg <- k12MG_df %>% select(midpoint, class)
 #change names in class col
+cor_inver_df <- k12MG_df
 inver_k12mg <- k12MG_df %>% 
     mutate(class2 = recode(class2, 
                       "0" = "No Inversion", 
@@ -1106,6 +1108,7 @@ hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
 colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
 class2 <- rep("HNS_Binding",length(hns_dat$start))
 hns_dat <- cbind(hns_dat,class2)
+hns_cor_d <- hns_dat
 hns_dat <- hns_dat %>% select(midpoint, class2,gbk_strand)
 head(hns_dat)
 
@@ -1220,6 +1223,42 @@ hns_dat <- hns_dat %>% select(midpoint,class2)
 hns_inver <- rbind(inver_k12mg,hns_dat)
 head(hns_inver)
 tail(hns_inver)
+
+print("combine HNS binary info to inversion df")
+print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
+head(inver_dat_bidir)
+inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
+            select(start,end,inversion)
+#            select(start,end)
+#colnames(inver_cor_d) <- c("start1","end1")
+colnames(inver_cor_d) <- c("start1","end1","Inversion")
+inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
+inver_cor_d <- unique(inver_cor_d)
+head(inver_cor_d)
+write.table(inver_cor_d, 'inver_cor_data.csv', sep = "\t")
+
+print("hns")
+head(hns_cor_d)
+#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+hns_cor_d <- hns_cor_d %>% select(start,end)
+summary(hns_cor_d)
+#hns_cor_d <- hns_cor_d %>% 
+#    mutate(class2 = recode(class2, 
+#                      "No_HNS_Binding" = "0", 
+#                      "HNS_Binding" = "1"))
+hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+head(hns_cor_d)
+write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+
+
+ir1 = with(inver_cor_d, IRanges(start1, end1))
+ir2 = with(hns_cor_d, IRanges(start, end))
+inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+inver_cor_d[which(inver_cor_d$start1 == 383921),]
+colnames(inver_cor_d) <- c("start","end","Inversion","HNS_binding")
+inver_cor_d$HNS_binding <- as.integer(inver_cor_d$HNS_binding)
+head(inver_cor_d)
+inver_cor_d[which(inver_cor_d$start == 383921),]
 
 print("test plot of HNS binding and inversions")
 pdf("hns_inver_plot_test.pdf")

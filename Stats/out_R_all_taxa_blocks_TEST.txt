@@ -41007,6 +41007,69 @@ low counts [2]   : 1379, 47%
 631   939870.0 HNS_Binding
 6321  938177.0 HNS_Binding
 633   509791.0 HNS_Binding
+[1] "combine HNS binary info to inversion df"
+[1] "THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!"
+   block start  end rev_comp inversion strain    gene_name gbk_start
+1 Block1     0 5468        0         0  K12DH ECDH10B_0001       190
+2 Block1     0 5468        0         0  K12DH ECDH10B_0002       337
+3 Block1     0 5468        0         0  K12DH ECDH10B_0003      2801
+4 Block1     0 5468        0         0  K12DH ECDH10B_0004      3734
+5 Block4  5692 9904        0         0  K12DH ECDH10B_0007      6529
+6 Block4  5692 9904        0         0  K12DH ECDH10B_0008      8238
+  gbk_midpoint gbk_strand gbk_end      norm_exp block_length     log_exp
+1      1205245          0     255   61.59354370         5468 4.136662137
+2      1206591          0    2799 1271.68152038         5468 7.148881387
+3      1208290          0    3733  264.75595861         5468 5.582578439
+4      1209400          0    5020  340.09738790         5468 5.832168032
+5      1212267          1    7959   61.27309217         4212 4.131529425
+6      1213737          0    9191 3146.24206487         4212 8.054281813
+  block_len midpoint
+1      5468  1207757
+2      5468  1207757
+3      5468  1207757
+4      5468  1207757
+5      4212  1212821
+6      4212  1212821
+   start1  end1 Inversion
+1       0  5468         0
+5    5692  9904         0
+8    9928 11797         0
+10  11827 15389         0
+12  16739 17125         0
+13  17258 19597         0
+[1] "hns"
+  gene_name   start     end gbk_strand  midpoint      class2
+1      appY  582904  583653          0  583278.5 HNS_Binding
+2      arpA 4217880 4220066          1 4218973.0 HNS_Binding
+3      arpB 1801118 1803017          0 1802067.5 HNS_Binding
+4      cmtB 3076906 3077349          1 3077127.5 HNS_Binding
+5      cspI 1636479 1636691          1 1636585.0 HNS_Binding
+6      elaD 2380733 2381944          0 2381338.5 HNS_Binding
+     start              end         
+ Min.   : 239100   Min.   : 239378  
+ 1st Qu.:1264032   1st Qu.:1266590  
+ Median :2145324   Median :2146392  
+ Mean   :2413919   Mean   :2415022  
+ 3rd Qu.:3420005   3rd Qu.:3421194  
+ Max.   :4569935   Max.   :4571500  
+    start    end
+31 239100 239378
+32 331595 332683
+17 387977 388951
+33 389475 393642
+34 570116 570667
+35 570677 571474
+    start1   end1 Inversion overlap
+173 383921 388551         1    TRUE
+   start   end Inversion HNS_binding
+1      0  5468         0           0
+5   5692  9904         0           0
+8   9928 11797         0           0
+10 11827 15389         0           0
+12 16739 17125         0           0
+13 17258 19597         0           0
+     start    end Inversion HNS_binding
+173 383921 388551         1           1
 [1] "test plot of HNS binding and inversions"
 null device 
           1 
