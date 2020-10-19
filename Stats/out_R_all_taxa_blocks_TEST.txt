@@ -41070,6 +41070,19 @@ low counts [2]   : 1379, 47%
 13 17258 19597         0           0
      start    end Inversion HNS_binding
 173 383921 388551         1           1
+[1] "correlation test btwn inversion and hns bindin"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$HNS_binding
+t = -0.19814795, df = 557, p-value = 0.8430016
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.09126204668  0.07458651298
+sample estimates:
+            cor 
+-0.008395502029 
+
 [1] "test plot of HNS binding and inversions"
 null device 
           1 

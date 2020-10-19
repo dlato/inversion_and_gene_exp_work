@@ -1257,8 +1257,13 @@ inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
 colnames(inver_cor_d) <- c("start","end","Inversion","HNS_binding")
 inver_cor_d$HNS_binding <- as.integer(inver_cor_d$HNS_binding)
+inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
 inver_cor_d[which(inver_cor_d$start == 383921),]
+
+print("correlation test btwn inversion and hns bindin")
+cor.test(inver_cor_d$Inversion, inver_cor_d$HNS_binding,
+         method = "pearson")
 
 print("test plot of HNS binding and inversions")
 pdf("hns_inver_plot_test.pdf")
