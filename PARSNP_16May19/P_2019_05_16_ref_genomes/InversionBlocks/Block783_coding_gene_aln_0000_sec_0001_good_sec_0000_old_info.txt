@@ -1,0 +1,4 @@
+Block783_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	1826137	1826697	1	1
+Block783_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	3054569	3055129	0	1
+Block783_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	3153102	3153662	0	1
+Block783_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	3061210	3061770	0	1

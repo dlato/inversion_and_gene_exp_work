@@ -1,0 +1,4 @@
+Block265_coding_gene_aln_0006_sec_0001_good_sec_0000	CP009072	4242011	4242862	1	1
+Block265_coding_gene_aln_0006_sec_0001_good_sec_0000	CP009273	1032211	1033062	0	1
+Block265_coding_gene_aln_0006_sec_0001_good_sec_0000	NC_010473	1089906	1090757	0	1
+Block265_coding_gene_aln_0006_sec_0001_good_sec_0000	U00096000	1036755	1037606	0	1

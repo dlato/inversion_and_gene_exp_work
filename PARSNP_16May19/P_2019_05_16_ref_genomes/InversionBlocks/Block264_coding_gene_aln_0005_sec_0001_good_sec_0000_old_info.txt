@@ -1,0 +1,4 @@
+Block264_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009072	4253093	4255147	1	1
+Block264_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009273	1019927	1021981	0	1
+Block264_coding_gene_aln_0005_sec_0001_good_sec_0000	NC_010473	1077622	1079676	0	1
+Block264_coding_gene_aln_0005_sec_0001_good_sec_0000	U00096000	1024471	1026525	0	1

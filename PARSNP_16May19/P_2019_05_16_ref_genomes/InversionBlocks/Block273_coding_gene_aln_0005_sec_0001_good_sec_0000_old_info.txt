@@ -1,0 +1,4 @@
+Block273_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009072	4217054	4217740	1	1
+Block273_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009273	1067630	1068316	1	1
+Block273_coding_gene_aln_0005_sec_0001_good_sec_0000	NC_010473	1125325	1126011	1	1
+Block273_coding_gene_aln_0005_sec_0001_good_sec_0000	U00096000	1072174	1072860	1	1

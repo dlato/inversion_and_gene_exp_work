@@ -1,0 +1,4 @@
+Block140_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009072	4760464	4761042	1	1
+Block140_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009273	449045	449623	1	1
+Block140_coding_gene_aln_0007_sec_0001_good_sec_0000	NC_010473	392144	392722	1	1
+Block140_coding_gene_aln_0007_sec_0001_good_sec_0000	U00096000	453589	454167	1	1

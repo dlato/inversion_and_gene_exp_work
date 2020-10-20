@@ -1,0 +1,4 @@
+Block331_coding_gene_aln_0008_sec_0001_good_sec_0000	CP009072	3784436	3785221	1	1
+Block331_coding_gene_aln_0008_sec_0001_good_sec_0000	CP009273	1303273	1304058	1	1
+Block331_coding_gene_aln_0008_sec_0001_good_sec_0000	NC_010473	1348058	1348843	1	1
+Block331_coding_gene_aln_0008_sec_0001_good_sec_0000	U00096000	1309016	1309801	1	1

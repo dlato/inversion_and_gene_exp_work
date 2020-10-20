@@ -1,0 +1,4 @@
+Block795_coding_gene_aln_0005_sec_0001_good_sec_0002	CP009072	1789513	1789617	1	1
+Block795_coding_gene_aln_0005_sec_0001_good_sec_0002	CP009273	3091613	3091717	0	1
+Block795_coding_gene_aln_0005_sec_0001_good_sec_0002	NC_010473	3191345	3191449	0	1
+Block795_coding_gene_aln_0005_sec_0001_good_sec_0002	U00096000	3098254	3098358	0	1

@@ -1,0 +1,4 @@
+Block730_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009072	2131357	2132427	1	1
+Block730_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009273	2733439	2734509	1	1
+Block730_coding_gene_aln_0007_sec_0001_good_sec_0000	NC_010473	2829867	2830937	1	1
+Block730_coding_gene_aln_0007_sec_0001_good_sec_0000	U00096000	2740080	2741150	1	1

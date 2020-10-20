@@ -1,0 +1,4 @@
+Block906_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	1167895	1168422	1	1
+Block906_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	3570425	3570952	1	1
+Block906_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	3672833	3673360	1	1
+Block906_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	3577065	3577592	1	1

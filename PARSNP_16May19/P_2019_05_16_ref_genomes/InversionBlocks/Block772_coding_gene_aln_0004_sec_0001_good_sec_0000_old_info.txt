@@ -1,0 +1,4 @@
+Block772_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009072	1904725	1905414	1	1
+Block772_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009273	2963021	2963710	0	1
+Block772_coding_gene_aln_0004_sec_0001_good_sec_0000	NC_010473	3061554	3062243	0	1
+Block772_coding_gene_aln_0004_sec_0001_good_sec_0000	U00096000	2969662	2970351	0	1

@@ -1,0 +1,4 @@
+Block789_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	1811078	1811209	1	1
+Block789_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	3072087	3072218	1	1
+Block789_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	3171819	3171950	1	1
+Block789_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	3078728	3078859	1	1

@@ -1,0 +1,4 @@
+Block762_coding_gene_aln_0009_sec_0001_good_sec_0000	CP009072	2025021	2026445	1	1
+Block762_coding_gene_aln_0009_sec_0001_good_sec_0000	CP009273	2867354	2868778	1	1
+Block762_coding_gene_aln_0009_sec_0001_good_sec_0000	NC_010473	2964559	2965983	1	1
+Block762_coding_gene_aln_0009_sec_0001_good_sec_0000	U00096000	2873995	2875419	1	1

@@ -1,0 +1,4 @@
+Block877_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	1343084	1343965	1	1
+Block877_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	3402429	3403310	0	1
+Block877_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	3504837	3505718	0	1
+Block877_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	3409070	3409951	0	1

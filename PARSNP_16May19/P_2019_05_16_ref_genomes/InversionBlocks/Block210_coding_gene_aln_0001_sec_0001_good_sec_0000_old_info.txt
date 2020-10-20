@@ -1,0 +1,4 @@
+Block210_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	4460532	4460918	1	1
+Block210_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	802976	803362	1	1
+Block210_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	860671	861057	1	1
+Block210_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	807520	807906	1	1

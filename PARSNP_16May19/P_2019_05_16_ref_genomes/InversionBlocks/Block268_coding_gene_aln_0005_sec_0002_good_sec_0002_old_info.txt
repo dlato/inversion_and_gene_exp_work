@@ -1,0 +1,4 @@
+Block268_coding_gene_aln_0005_sec_0002_good_sec_0002	CP009072	4231407	4231919	1	1
+Block268_coding_gene_aln_0005_sec_0002_good_sec_0002	CP009273	1052203	1052715	0	1
+Block268_coding_gene_aln_0005_sec_0002_good_sec_0002	NC_010473	1109898	1110410	0	1
+Block268_coding_gene_aln_0005_sec_0002_good_sec_0002	U00096000	1056747	1057259	0	1

@@ -1,0 +1,4 @@
+Block746_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	2099609	2101723	1	1
+Block746_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	2794737	2796851	0	1
+Block746_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	2891165	2893279	0	1
+Block746_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	2801378	2803492	0	1

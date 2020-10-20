@@ -1,0 +1,4 @@
+Block484_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	3363231	3364445	1	1
+Block484_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	1765328	1766542	0	1
+Block484_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	1859666	1860880	0	1
+Block484_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	1771071	1772285	0	1

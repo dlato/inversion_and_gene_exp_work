@@ -1,0 +1,4 @@
+Block123_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009072	4827436	4827546	1	1
+Block123_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009273	382433	382543	0	1
+Block123_coding_gene_aln_0004_sec_0001_good_sec_0000	NC_010473	325532	325642	0	1
+Block123_coding_gene_aln_0004_sec_0001_good_sec_0000	U00096000	386977	387087	0	1

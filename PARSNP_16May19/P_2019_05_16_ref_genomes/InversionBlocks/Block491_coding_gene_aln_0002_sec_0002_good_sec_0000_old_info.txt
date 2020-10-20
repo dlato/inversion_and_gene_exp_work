@@ -1,0 +1,4 @@
+Block491_coding_gene_aln_0002_sec_0002_good_sec_0000	CP009072	3318195	3319034	1	1
+Block491_coding_gene_aln_0002_sec_0002_good_sec_0000	CP009273	1812862	1813701	1	1
+Block491_coding_gene_aln_0002_sec_0002_good_sec_0000	NC_010473	1907200	1908039	1	1
+Block491_coding_gene_aln_0002_sec_0002_good_sec_0000	U00096000	1818605	1819444	1	1

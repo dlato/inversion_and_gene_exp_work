@@ -1,0 +1,4 @@
+Block786_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	1818776	1819747	1	1
+Block786_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	3066031	3067002	1	1
+Block786_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	3164564	3165535	1	1
+Block786_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	3072672	3073643	1	1

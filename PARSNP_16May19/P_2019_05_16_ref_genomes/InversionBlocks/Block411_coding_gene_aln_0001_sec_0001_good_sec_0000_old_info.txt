@@ -1,0 +1,4 @@
+Block411_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	3604747	3605433	1	1
+Block411_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	1530877	1531563	1	1
+Block411_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	1625239	1625925	1	1
+Block411_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	1536620	1537306	1	1

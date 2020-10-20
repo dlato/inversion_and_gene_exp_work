@@ -1,0 +1,4 @@
+Block220_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	4429676	4429885	1	1
+Block220_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	833172	833381	1	1
+Block220_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	890867	891076	1	1
+Block220_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	837716	837925	1	1

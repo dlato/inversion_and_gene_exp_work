@@ -1,0 +1,4 @@
+Block744_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009072	2107941	2108099	1	1
+Block744_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009273	2790229	2790387	1	1
+Block744_coding_gene_aln_0007_sec_0001_good_sec_0000	NC_010473	2886657	2886815	1	1
+Block744_coding_gene_aln_0007_sec_0001_good_sec_0000	U00096000	2796870	2797028	1	1

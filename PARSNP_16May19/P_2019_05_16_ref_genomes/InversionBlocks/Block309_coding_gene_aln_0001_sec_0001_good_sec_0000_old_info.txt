@@ -1,0 +1,4 @@
+Block309_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	3874806	3875618	1	1
+Block309_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	1220005	1220817	1	1
+Block309_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	1264013	1264825	1	1
+Block309_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	1224549	1225361	1	1

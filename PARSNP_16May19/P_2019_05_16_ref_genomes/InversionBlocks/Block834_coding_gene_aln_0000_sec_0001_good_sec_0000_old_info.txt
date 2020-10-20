@@ -1,0 +1,4 @@
+Block834_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	1508855	1509907	1	1
+Block834_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	3228182	3229234	1	1
+Block834_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	3330590	3331642	1	1
+Block834_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	3234823	3235875	1	1

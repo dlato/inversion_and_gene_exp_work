@@ -1,0 +1,4 @@
+Block771_coding_gene_aln_0008_sec_0001_good_sec_0000	CP009072	1911373	1911918	1	1
+Block771_coding_gene_aln_0008_sec_0001_good_sec_0000	CP009273	2956518	2957063	1	1
+Block771_coding_gene_aln_0008_sec_0001_good_sec_0000	NC_010473	3055051	3055596	1	1
+Block771_coding_gene_aln_0008_sec_0001_good_sec_0000	U00096000	2963159	2963704	1	1

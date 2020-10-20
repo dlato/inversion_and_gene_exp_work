@@ -1,0 +1,4 @@
+Block438_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	3540958	3541341	1	1
+Block438_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	1613831	1614214	0	1
+Block438_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	1707223	1707606	0	1
+Block438_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	1619574	1619957	0	1

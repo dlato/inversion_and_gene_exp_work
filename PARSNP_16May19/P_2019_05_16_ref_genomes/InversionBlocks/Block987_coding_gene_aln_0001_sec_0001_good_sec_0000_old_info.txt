@@ -1,0 +1,4 @@
+Block987_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	822587	823543	1	1
+Block987_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	3902802	3903758	1	1
+Block987_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	4005049	4006005	1	1
+Block987_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	3909442	3910398	1	1

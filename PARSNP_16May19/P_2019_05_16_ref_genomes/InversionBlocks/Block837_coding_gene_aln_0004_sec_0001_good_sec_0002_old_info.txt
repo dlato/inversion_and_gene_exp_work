@@ -1,0 +1,4 @@
+Block837_coding_gene_aln_0004_sec_0001_good_sec_0002	CP009072	1498283	1498942	1	1
+Block837_coding_gene_aln_0004_sec_0001_good_sec_0002	CP009273	3239222	3239881	0	1
+Block837_coding_gene_aln_0004_sec_0001_good_sec_0002	NC_010473	3341630	3342289	0	1
+Block837_coding_gene_aln_0004_sec_0001_good_sec_0002	U00096000	3245863	3246522	0	1

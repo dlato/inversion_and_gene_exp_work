@@ -1,0 +1,4 @@
+Block169_coding_gene_aln_0003_sec_0001_good_sec_0000	CP009072	4563022	4564056	1	1
+Block169_coding_gene_aln_0003_sec_0001_good_sec_0000	CP009273	687800	688834	1	1
+Block169_coding_gene_aln_0003_sec_0001_good_sec_0000	NC_010473	744159	745193	1	1
+Block169_coding_gene_aln_0003_sec_0001_good_sec_0000	U00096000	692344	693378	1	1

@@ -1,0 +1,4 @@
+Block869_coding_gene_aln_0019_sec_0002_good_sec_0000	CP009072	1402235	1402861	1	1
+Block869_coding_gene_aln_0019_sec_0002_good_sec_0000	CP009273	3341811	3342437	0	1
+Block869_coding_gene_aln_0019_sec_0002_good_sec_0000	NC_010473	3444219	3444845	0	1
+Block869_coding_gene_aln_0019_sec_0002_good_sec_0000	U00096000	3348452	3349078	0	1

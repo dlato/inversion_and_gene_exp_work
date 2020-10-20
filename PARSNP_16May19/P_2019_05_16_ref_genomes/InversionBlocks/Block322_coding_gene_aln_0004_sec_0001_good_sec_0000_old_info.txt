@@ -1,0 +1,4 @@
+Block322_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009072	3821746	3823533	1	1
+Block322_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009273	1271287	1273074	1	1
+Block322_coding_gene_aln_0004_sec_0001_good_sec_0000	NC_010473	1315295	1317082	1	1
+Block322_coding_gene_aln_0004_sec_0001_good_sec_0000	U00096000	1275831	1277618	1	1

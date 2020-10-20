@@ -1,0 +1,4 @@
+Block450_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	3496135	3496290	1	1
+Block450_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	1632211	1632366	1	1
+Block450_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	1725603	1725758	1	1
+Block450_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	1637954	1638109	1	1

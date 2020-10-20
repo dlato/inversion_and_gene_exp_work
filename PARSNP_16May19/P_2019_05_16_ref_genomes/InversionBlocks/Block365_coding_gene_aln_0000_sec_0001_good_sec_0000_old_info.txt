@@ -1,0 +1,4 @@
+Block365_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	3915398	3915565	1	1
+Block365_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	1417657	1417824	0	1
+Block365_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	1510820	1510987	0	1
+Block365_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	1423400	1423567	0	1

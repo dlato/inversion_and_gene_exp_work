@@ -1,0 +1,4 @@
+Block960_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009072	941341	942009	1	1
+Block960_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009273	3805251	3805919	1	1
+Block960_coding_gene_aln_0005_sec_0001_good_sec_0000	NC_010473	3907491	3908159	1	1
+Block960_coding_gene_aln_0005_sec_0001_good_sec_0000	U00096000	3811891	3812559	1	1

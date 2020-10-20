@@ -1,0 +1,4 @@
+Block889_coding_gene_aln_0021_sec_0001_good_sec_0000	CP009072	1304957	1305208	1	1
+Block889_coding_gene_aln_0021_sec_0001_good_sec_0000	CP009273	3441673	3441924	1	1
+Block889_coding_gene_aln_0021_sec_0001_good_sec_0000	NC_010473	3544081	3544332	1	1
+Block889_coding_gene_aln_0021_sec_0001_good_sec_0000	U00096000	3448314	3448565	1	1

@@ -1,0 +1,4 @@
+Block840_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	1490220	1490384	1	1
+Block840_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	3248402	3248566	0	1
+Block840_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	3350810	3350974	0	1
+Block840_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	3255043	3255207	0	1

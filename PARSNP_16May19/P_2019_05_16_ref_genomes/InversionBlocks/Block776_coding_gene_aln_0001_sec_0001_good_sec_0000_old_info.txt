@@ -1,0 +1,4 @@
+Block776_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	1874273	1875205	1	1
+Block776_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	3004820	3005752	0	1
+Block776_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	3103353	3104285	0	1
+Block776_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	3011461	3012393	0	1
