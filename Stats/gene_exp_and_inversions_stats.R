@@ -1283,18 +1283,17 @@ head(cor_dat)
 
 
 print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns
-binding ONLY INVERSION BLOCKS")
+print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
 cor.test(cor_dat$sig, cor_dat$HNS_binding,
          method = "pearson")
 
 
 print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
-cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$sig, cor_dat$HNS_binding,
+#cor_dat <- cor_dat %>% filter(inversion == 1)
+cor.test(cor_dat$inversion, cor_dat$HNS_binding,
          method = "pearson")
 
 
