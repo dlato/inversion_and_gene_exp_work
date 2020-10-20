@@ -495,6 +495,7 @@ length(unique(td$block))
 
 print("complete HEAD")
 head(complete_block_df)
+cor_dat <- complete_block_df
 #complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 #plot pvalues
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
@@ -1261,9 +1262,41 @@ inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
 inver_cor_d[which(inver_cor_d$start == 383921),]
 
-print("correlation test btwn inversion and hns bindin")
+print("################################################################################")
+print("correlation test btwn inversion/non-inversion and hns binding")
+print("################################################################################")
 cor.test(inver_cor_d$Inversion, inver_cor_d$HNS_binding,
          method = "pearson")
+
+print("get new df with hns binding + inversions + sig block info")
+cor_dat <- cor_dat %>% filter(strain == "K12MG")
+cor_dat <- cor_dat %>%
+    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+head(cor_dat)
+ir1 = with(cor_dat, IRanges(start, end))
+cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+names(cor_dat)[names(cor_dat)=="overlap"] <- "HNS_binding"
+cor_dat[which(cor_dat$start == 383921),]
+cor_dat$HNS_binding <- as.integer(cor_dat$HNS_binding)
+cor_dat$sig <- as.integer(cor_dat$sig)
+head(cor_dat)
+
+
+print("################################################################################")
+print("correlation test btwn sig inversion/non-inversion and hns
+binding ONLY INVERSION BLOCKS")
+print("################################################################################")
+cor.test(cor_dat$sig, cor_dat$HNS_binding,
+         method = "pearson")
+
+
+print("################################################################################")
+print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+print("################################################################################")
+cor_dat <- cor_dat %>% filter(inversion == 1)
+cor.test(cor_dat$sig, cor_dat$HNS_binding,
+         method = "pearson")
+
 
 print("test plot of HNS binding and inversions")
 pdf("hns_inver_plot_test.pdf")

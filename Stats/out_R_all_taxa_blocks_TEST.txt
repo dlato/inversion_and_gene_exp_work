@@ -41070,7 +41070,9 @@ low counts [2]   : 1379, 47%
 13 17258 19597         0           0
      start    end Inversion HNS_binding
 173 383921 388551         1           1
-[1] "correlation test btwn inversion and hns bindin"
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
 
 	Pearson's product-moment correlation
 
@@ -41082,6 +41084,113 @@ alternative hypothesis: true correlation is not equal to 0
 sample estimates:
             cor 
 -0.008395502029 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+      block  start    end midpoint gbk_midpoint      block_t_stat
+14 Block123 383921 388551  1591259      1589360 0.163737532965995
+15 Block123 383921 388551  1591259      1590736 0.163737532965995
+16 Block123 383921 388551  1591259      1591613 0.163737532965995
+17 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+17 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+17        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig HNS_binding
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0        TRUE
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0        TRUE
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0        TRUE
+17         1        0  K12MG block_w_pvalue 0.2615384615     no   0        TRUE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig HNS_binding
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0           0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0           0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0           0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0           0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0           0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0           0
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$HNS_binding
+t = -0.76082811, df = 2057, p-value = 0.4468469
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.05992773643  0.02644450685
+sample estimates:
+           cor 
+-0.01677290574 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$HNS_binding
+t = -0.76082811, df = 2057, p-value = 0.4468469
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.05992773643  0.02644450685
+sample estimates:
+           cor 
+-0.01677290574 
 
 [1] "test plot of HNS binding and inversions"
 null device 
