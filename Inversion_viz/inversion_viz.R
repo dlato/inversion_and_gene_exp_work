@@ -26,7 +26,7 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   axis.text=element_text(size=18),
                   axis.title = element_text(size = 18),
                   #plot margins
-                  #plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
+                  plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
                   #for second legend on y-axis
                   axis.text.y.right = element_text(size=18),
                   axis.text.x = element_blank(),
@@ -80,6 +80,7 @@ ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + xlab("Strain") 
   + ylab("Genomic Position")
   + coord_flip()
+  + scale_x_discrete(expand = c(0,0))
 )
 #pdf("Inversion_viz/parallel_sets_first_10_blocks.pdf", width = 15, height = 7)
 pdf("Inversion_viz/parallel_sets_all.pdf", width = 15, height = 7)
