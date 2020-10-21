@@ -59,11 +59,12 @@ bi_dat <-  spread(bi_dat, strain, midpoint)
 head(bi_dat)
 
 print("test parallel sets plot")
-ps <- bi_dat %>%
-  gather_set_data(2:3) %>%
-  head(ps)
-#  ggplot(aes(x, id = id, split = y, value = 1))  +
-#  geom_parallel_sets(aes(fill = engine))
+ps_dat <- bi_dat %>%
+  gather_set_data(2:5)
+
+ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
+  + geom_parallel_sets(aes(fill = U00096000 ))
+)
 #pdf("parallel_sets.pdf")
-#ps
+ps
 #dev.off()
