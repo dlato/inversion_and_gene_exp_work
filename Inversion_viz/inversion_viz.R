@@ -29,8 +29,8 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   #plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
                   #for second legend on y-axis
                   axis.text.y.right = element_text(size=18),
-                  axis.text.y = element_blank(),
-                  axis.ticks.y = element_blank(),
+                  axis.text.x = element_blank(),
+                  axis.ticks.x = element_blank(),
                   #                  legend.title = element_blank(),
                   legend.text = element_text(size = 18),
                   #change the colour of facet label background
@@ -53,8 +53,13 @@ file_name <- "inversion_block_info_all.txt"
 block_inf <- read.table(file_name,sep = "\t", header = FALSE)
 colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
 print("make column of midpoint of each block")
+summary(block_inf)
 block_inf <- within(block_inf, midpoint <- (end + start) /2)
 colnames(block_inf)[colnames(block_inf) == "midpoint"] <- "midpoint"
+head(block_inf)
+#get the genome pos into Mbp
+block_inf$midpoint <- as.numeric(block_inf$midpoint)
+block_inf$midpoint <- as.numeric(block_inf$midpoint / 1000000)
 head(block_inf)
 bi_dat <- block_inf %>% select(block,strain,midpoint)
 bi_dat <-  spread(bi_dat, strain, midpoint)
@@ -62,12 +67,13 @@ head(bi_dat)
 #bi_dat <- bi_dat[1:10,]
 bi_dat <- bi_dat[order(bi_dat[,5],decreasing = FALSE),]
 bi_dat
+summary(bi_dat)
 
 print("test parallel sets plot")
 ps_dat <- bi_dat %>%
   gather_set_data(2:5)
 head(ps_dat)
-
+summary(ps_dat)
 
 ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + geom_parallel_sets(aes(fill = U00096000 ))
@@ -75,6 +81,7 @@ ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + ylab("Genomic Position")
   + coord_flip()
 )
-pdf("Inversion_viz/parallel_sets.pdf")
+#pdf("Inversion_viz/parallel_sets_first_10_blocks.pdf", width = 15, height = 7)
+pdf("Inversion_viz/parallel_sets_all.pdf", width = 15, height = 7)
 ps
 dev.off()
