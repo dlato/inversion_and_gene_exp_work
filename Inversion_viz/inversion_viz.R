@@ -57,10 +57,15 @@ head(block_inf)
 bi_dat <- block_inf %>% select(block,strain,midpoint)
 bi_dat <-  spread(bi_dat, strain, midpoint)
 head(bi_dat)
+bi_dat <- bi_dat[1:10,]
+bi_dat <- bi_dat[order(U00096000),]
+bi_dat
 
 print("test parallel sets plot")
 ps_dat <- bi_dat %>%
   gather_set_data(2:5)
+head(ps_dat)
+
 
 ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + geom_parallel_sets(aes(fill = U00096000 ))
