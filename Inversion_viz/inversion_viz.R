@@ -29,6 +29,8 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   #plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
                   #for second legend on y-axis
                   axis.text.y.right = element_text(size=18),
+                  axis.text.y = element_blank(),
+                  axis.ticks.y = element_blank(),
                   #                  legend.title = element_blank(),
                   legend.text = element_text(size = 18),
                   #change the colour of facet label background
@@ -38,7 +40,7 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   #                  legend.key = element_blank(),
                   #                  legend.background=element_blank(),
                   #                  legend.position="none")
-                  legend.position="top")
+                  legend.position="none")
 )
 
 
@@ -58,7 +60,7 @@ bi_dat <- block_inf %>% select(block,strain,midpoint)
 bi_dat <-  spread(bi_dat, strain, midpoint)
 head(bi_dat)
 bi_dat <- bi_dat[1:10,]
-bi_dat <- bi_dat[order(U00096000),]
+bi_dat <- bi_dat[order(bi_dat[,5],decreasing = FALSE),]
 bi_dat
 
 print("test parallel sets plot")
