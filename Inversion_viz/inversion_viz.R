@@ -73,6 +73,7 @@ ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + geom_parallel_sets(aes(fill = U00096000 ))
   + xlab("Strain") 
   + ylab("Genomic Position")
+  + coord_flip()
 )
 pdf("Inversion_viz/parallel_sets.pdf")
 ps
