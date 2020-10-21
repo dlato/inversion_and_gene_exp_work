@@ -47,7 +47,7 @@ print("#########################################################################
 print("INVERSION VISUALIZATION PARALLEL SETS")
 print("###############################################################################")
 print("read in block info file")
-file_name <- as.character(args[9])
+file_name <- "inversion_block_info_all.txt"
 block_inf <- read.table(file_name,sep = "\t", header = FALSE)
 colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
 print("make column of midpoint of each block")
