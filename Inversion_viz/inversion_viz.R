@@ -59,7 +59,7 @@ head(block_inf)
 bi_dat <- block_inf %>% select(block,strain,midpoint)
 bi_dat <-  spread(bi_dat, strain, midpoint)
 head(bi_dat)
-bi_dat <- bi_dat[1:10,]
+#bi_dat <- bi_dat[1:10,]
 bi_dat <- bi_dat[order(bi_dat[,5],decreasing = FALSE),]
 bi_dat
 
@@ -71,7 +71,9 @@ head(ps_dat)
 
 ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + geom_parallel_sets(aes(fill = U00096000 ))
+  + xlab("Strain") 
+  + ylab("Genomic Position")
 )
-#pdf("parallel_sets.pdf")
+pdf("Inversion_viz/parallel_sets.pdf")
 ps
-#dev.off()
+dev.off()
