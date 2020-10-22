@@ -49,7 +49,8 @@ print("#########################################################################
 print("INVERSION VISUALIZATION PARALLEL SETS")
 print("###############################################################################")
 print("read in block info file")
-file_name <- "inversion_block_info_all.txt"
+#file_name <- "inversion_block_info_all.txt"
+file_name <- "Inversion_viz/inversion_block_info_all_ATCC_revcomp.txt"
 block_inf <- read.table(file_name,sep = "\t", header = FALSE)
 colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
 print("make column of midpoint of each block")
@@ -76,13 +77,15 @@ head(ps_dat)
 summary(ps_dat)
 
 ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
-  + geom_parallel_sets(aes(fill = U00096000 ))
+  #+ geom_parallel_sets(aes(fill = U00096000 ))
+  + geom_parallel_sets(aes(fill = U00096 ))
   + xlab("Strain") 
   + ylab("Genomic Position")
   + coord_flip()
   + scale_x_discrete(expand = c(0,0))
 )
 #pdf("Inversion_viz/parallel_sets_first_10_blocks.pdf", width = 15, height = 7)
-pdf("Inversion_viz/parallel_sets_all.pdf", width = 15, height = 7)
+#pdf("Inversion_viz/parallel_sets_all.pdf", width = 15, height = 7)
+pdf("Inversion_viz/parallel_sets_all_ATCC_revcomp.pdf", width = 15, height = 7)
 ps
 dev.off()
