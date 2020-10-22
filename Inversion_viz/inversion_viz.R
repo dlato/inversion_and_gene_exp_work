@@ -53,6 +53,8 @@ print("read in block info file")
 file_name <- "Inversion_viz/inversion_block_info_all_ATCC_revcomp.txt"
 block_inf <- read.table(file_name,sep = "\t", header = FALSE)
 colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
+summary(block_inf)
+block_inf$strain <- factor(block_inf$strain, c("U00096", "NC_010473", "NZ_CP009273", "NZ_CP009072"))
 print("make column of midpoint of each block")
 summary(block_inf)
 block_inf <- within(block_inf, midpoint <- (end + start) /2)
@@ -70,9 +72,11 @@ bi_dat <- bi_dat[order(bi_dat[,5],decreasing = FALSE),]
 bi_dat
 summary(bi_dat)
 
+
 print("test parallel sets plot")
 ps_dat <- bi_dat %>%
   gather_set_data(2:5)
+ps_dat$x <- factor(ps_dat$x, rev(c("U00096", "NC_010473", "NZ_CP009273", "NZ_CP009072")))
 head(ps_dat)
 summary(ps_dat)
 
