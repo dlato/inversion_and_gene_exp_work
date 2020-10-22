@@ -1,0 +1,5 @@
+#run PARSNP without the outgroup
+parsnp -g ../ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ../Genomes_rev_comp_ATCC/ -c
+
+##run PARSNP WITH the outgroup
+#parsnp -g ../ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ./Genomes_with_outgroup/ -c
