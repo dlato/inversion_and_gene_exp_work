@@ -2,7 +2,7 @@
 grep "[=>]" *.xmfa > ecoli_ref_genomes.txt
 
 #commands to cut blocks
-~/CODE/cut_blocks.pl > run_samtools
+~/CODE/cut_blocks_parsnp.pl > run_samtools
 sh run_samtools
 #edit the revcomp files names
 foreach x (*rev_comp_Ecoli_ATCC_25922_NZ_CP009072.fasta)
@@ -75,4 +75,4 @@ mv Block* NonInversionBlocks/
 
 
 #cat block info files
-cat NonInversionBlocks/noninversion_block_info.txt InversionBlocks/inversion_block_info.txt > inversion_block_info_all.txt
+cat NonInversionBlocks/non_inversion_block_info.txt InversionBlocks/inversion_block_info.txt > inversion_block_info_all.txt
