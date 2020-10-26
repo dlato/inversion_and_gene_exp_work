@@ -32,16 +32,16 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   #plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
                   #for second legend on y-axis
                   axis.text.y.right = element_text(size=18),
-#                  legend.title = element_blank(),
+                  legend.title = element_blank(),
                   legend.text = element_text(size = 18),
                   #change the colour of facet label background
                   strip.background = element_rect(fill = "#E6E1EA"),
                   #remove space between facest
                   panel.spacing.x=unit(0, "lines"),
-#                  legend.key = element_blank(),
-#                  legend.background=element_blank(),
-#                  legend.position="none")
-                  legend.position="top")
+                  legend.key = element_blank(),
+                  legend.background=element_blank(),
+                  legend.position="none")
+#                  legend.position="top")
 )
 
 
@@ -605,22 +605,27 @@ k12_df_sig$midpoint = k12_df_sig$midpoint / 1000000
 k12_df_non_sig$midpoint = k12_df_non_sig$midpoint / 1000000
 print("TEST HEAD")
 head(k12_df_sig)
-
-p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class))
+cols <- c("block_avg_exp_noninvert" = "#3d405b","block_avg_exp_invert" = "#e07a5f")
+p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class, shape= class))
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
    #non-sig pts in light grey, un-filled
-   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y = avg_exp, color = "#BEBEBE"), alpha=0.7, shape=1)
+   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.7 )
    #sig pts
    + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class))
-#   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color =class),span=0.5, method = "loess")
-   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"))
+   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess" )
+#   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"),limits = "Inverted Sequences", "Non-inverted Sequences")
+#   + scale_color_manual(values = c("#BEBEBE","#e07a5f" = "block_avg_exp_invert" ,"#3d405b"= "block_avg_exp_noninvert" ),limits = "block_avg_exp_invert", "block_avg_exp_noninvert",limits =c("Inversion","No Inversion"))
+   + scale_color_manual(values =
+c("#BEBEBE","#e07a5f","#3d405b"),labels =c("Non-significant","Inverted Sequences","Non-inverted Sequences"))
 ##               position = position_jitter(width = 0.05)) +
 ##  geom_point(size = 3) +
 #   + geom_point(size = 2, alpha=0.4)
 ##  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
    + scale_y_continuous(trans='log10')
    + scale_x_continuous(limits = c(0, 3))
-   + labs(x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
+   + labs(title= "Average Gene Expression within Alignment Blocks",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
+   #colour for legend
+#   + scale_colour_manual(values = cols, limits = "Inverted Sequences", "Non-inverted Sequences")
 #   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
 )
 pdf("genome_pos_inversions_k12.pdf")
