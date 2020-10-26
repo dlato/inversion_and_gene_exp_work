@@ -40183,6 +40183,14 @@ null device
 4 Block288 2331092.5 yes block_avg_exp_invert 155.81490459
 5 Block289 2341039.5 yes block_avg_exp_invert  72.79216103
 6 Block312 2437771.0 yes block_avg_exp_invert 144.84877288
+[1] "TEST HEAD"
+     block  midpoint sig                class      avg_exp
+1 Block164 1.7789050 yes block_avg_exp_invert  28.92242444
+2 Block211 2.0167370 yes block_avg_exp_invert  20.94408636
+3 Block232 2.0998875 yes block_avg_exp_invert  14.61043214
+4 Block288 2.3310925 yes block_avg_exp_invert 155.81490459
+5 Block289 2.3410395 yes block_avg_exp_invert  72.79216103
+6 Block312 2.4377710 yes block_avg_exp_invert 144.84877288
 null device 
           1 
 [1] "##############"
@@ -41183,15 +41191,35 @@ sample estimates:
 
 	Pearson's product-moment correlation
 
-data:  cor_dat$sig and cor_dat$HNS_binding
-t = -0.76082811, df = 2057, p-value = 0.4468469
+data:  cor_dat$inversion and cor_dat$HNS_binding
+t = NA, df = 2057, p-value = NA
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.05992773643  0.02644450685
+ NA NA
 sample estimates:
-           cor 
--0.01677290574 
+cor 
+ NA 
 
 [1] "test plot of HNS binding and inversions"
 null device 
           1 
+[1] "###############################################################################"
+[1] "INVERSION VISUALIZATION PARALLEL SETS"
+[1] "###############################################################################"
+[1] "read in block info file"
+[1] "make column of midpoint of each block"
+            block      strain   start     end rev_comp inversion midpoint
+1 Block1005.mafft    CP009072 2787739 2787761        0         0  2787750
+2 Block1005.mafft NZ_CP009273 4020872 4020894        0         0  4020883
+3 Block1005.mafft   NC_010473 4124455 4124477        0         0  4124466
+4 Block1005.mafft   U00096000 4027512 4027534        0         0  4027523
+5 Block1020.mafft    CP009072  563989  564015        0         0   564002
+6 Block1020.mafft NZ_CP009273 4084761 4084787        0         0  4084774
+            block  CP009072 NC_010473 NZ_CP009273 U00096000
+1    Block1.mafft 2677292.5    2734.0      2734.0    2734.0
+2   Block10.mafft 2703044.0   26935.0     26935.0   26935.0
+3  Block100.mafft  983008.0  447356.0    504257.0  375247.0
+4 Block1000.mafft  725139.5 4101400.0   3997817.0 4004457.0
+5 Block1001.mafft  720281.5 4106267.0   4002684.0 4009324.0
+6 Block1002.mafft  715544.5 4111123.5   4007540.5 4014180.5
+[1] "test parallel sets plot"

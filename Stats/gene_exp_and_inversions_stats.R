@@ -600,6 +600,11 @@ head(k12_df_non_sig)
 k12_df_sig <- k12_df %>% filter(sig == "yes")
 head(k12_df_sig)
 k12MG_df <- k12_df
+#adjust genomic position to be in Mbp
+k12_df_sig$midpoint = k12_df_sig$midpoint / 1000000
+k12_df_non_sig$midpoint = k12_df_non_sig$midpoint / 1000000
+print("TEST HEAD")
+head(k12_df_sig)
 
 p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class))
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
@@ -614,6 +619,7 @@ p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class))
 #   + geom_point(size = 2, alpha=0.4)
 ##  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
    + scale_y_continuous(trans='log10')
+   + labs(x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
 #   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
 )
 pdf("genome_pos_inversions_k12.pdf")
@@ -1306,3 +1312,33 @@ ggplot(hns_inver, aes(x=midpoint, y=class2, color=class2))+
   geom_point(size = 2, alpha=0.4)
 #  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
 dev.off()
+
+
+
+
+print("###############################################################################")
+print("INVERSION VISUALIZATION PARALLEL SETS")
+print("###############################################################################")
+print("read in block info file")
+file_name <- as.character(args[9])
+block_inf <- read.table(file_name,sep = "\t", header = FALSE)
+colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
+print("make column of midpoint of each block")
+block_inf <- within(block_inf, midpoint <- (end + start) /2)
+colnames(block_inf)[colnames(block_inf) == "midpoint"] <- "midpoint"
+head(block_inf)
+bi_dat <- block_inf %>% select(block,strain,midpoint)
+bi_dat <-  spread(bi_dat, strain, midpoint)
+head(bi_dat)
+
+print("test parallel sets plot")
+ps <- bi_dat %>%
+  gather_set_data(2:3) %>%
+head(ps)
+#  ggplot(aes(x, id = id, split = y, value = 1))  +
+#  geom_parallel_sets(aes(fill = engine)) 
+#pdf("parallel_sets.pdf")
+#ps
+#dev.off()
+
+
