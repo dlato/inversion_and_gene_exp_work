@@ -1067,6 +1067,11 @@ file <- "../HNS_protein/raw_data_files/Higashi_2016_HNS_binding_sites_coding.csv
 higashi_dat <- read.csv(file, header = TRUE)
 sub_h_dat <- higashi_dat[,c(2,6,7,8)]
 colnames(sub_h_dat) <- c("gene_name","HNS_binding","HNS_cutoff","HNS_transcript")
+file <- "../HNS_protein/raw_data_files/Higashi_2016_HNS_binding_sites_noncoding.csv"
+higashi_nc_dat <- read.csv(file, header = TRUE)
+sub_hnc_dat <- higashi_dat[,c(2,3,5,6,7)]
+print("HEAD NC")
+head(sub_hnc_dat)
 gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
 gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
 colnames(gene_inf) <- c("gbk_start","gbk_end","gbk_midpoint","gene_name")

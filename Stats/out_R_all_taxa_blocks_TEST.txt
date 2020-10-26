@@ -40918,6 +40918,21 @@ low counts [2]   : 1379, 47%
 4      cmtB 3076906 3077349          1
 5      cspI 1636479 1636691          1
 6      elaD 2380733 2381944          0
+[1] "HEAD NC"
+  ID Orthologous.gene..left.a Orthologous.gene..right. Average.distanceb
+1  0                     yaaA                     yaaJ       0.003259725
+2  1                     yaaJ                     talB       0.014976956
+3  2                     talB                      mog       0.007447146
+4  3                     yaaH                     yaaW       0.003736469
+5  4                     dnaK                     dnaJ       0.012604319
+6  5                     nhaA                     nhaR       0.024818182
+  H.NS.bindingc Tail.to.taild With.known.promoter Transcription.unit.namef
+1         FALSE         FALSE               FALSE                         
+2         FALSE         FALSE                TRUE                     yaaJ
+3         FALSE         FALSE               FALSE                         
+4         FALSE         FALSE               FALSE                         
+5         FALSE         FALSE               FALSE                         
+6         FALSE         FALSE               FALSE                         
 [1] "FILTER BASED ON WHATEVER COLUMN BRIAN CHOOSES"
   gene_name HNS_binding HNS_cutoff HNS_transcript gbk_start gbk_end
 1      acrE        TRUE       TRUE           TRUE   3413864 3415021
