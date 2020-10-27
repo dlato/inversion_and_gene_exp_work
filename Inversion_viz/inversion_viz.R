@@ -23,16 +23,17 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   panel.grid.major = element_line(colour = "grey90", size = 0.2),
                   panel.grid.minor = element_line(colour = "grey98", size = 0.5),
                   panel.spacing = unit(0.25, "lines"),
-                  axis.text=element_text(size=18),
-                  axis.title = element_text(size = 18),
+                  text = element_text(size = 24),
+                  axis.text=element_text(),
+                  axis.title = element_text(),
                   #plot margins
                   plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
                   #for second legend on y-axis
-                  axis.text.y.right = element_text(size=18),
+                  axis.text.y.right = element_text(),
                   axis.text.x = element_blank(),
                   axis.ticks.x = element_blank(),
                   #                  legend.title = element_blank(),
-                  legend.text = element_text(size = 18),
+                  legend.text = element_text(),
                   #change the colour of facet label background
                   strip.background = element_rect(fill = "#E6E1EA"),
                   #remove space between facest
@@ -77,13 +78,17 @@ print("test parallel sets plot")
 ps_dat <- bi_dat %>%
   gather_set_data(2:5)
 ps_dat$x <- factor(ps_dat$x, rev(c("U00096", "NC_010473", "NZ_CP009273", "NZ_CP009072")))
+levels(ps_dat$x) <- list("K12 MG1655"="U00096", "K12 DH10B"="NC_010473", "BW25113"="NZ_CP009273", "ATCC"="NZ_CP009072")
+ps_dat$x <- factor(ps_dat$x, rev(c("K12 MG1655", "K12 DH10B", "BW25113", "ATCC")))
 head(ps_dat)
 summary(ps_dat)
+
+ecolT <- substitute(italic(ecoli)~strain, list(ecoli="E.coli",strain="Strain"))
 
 ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   #+ geom_parallel_sets(aes(fill = U00096000 ))
   + geom_parallel_sets(aes(fill = U00096 ))
-  + xlab("Strain") 
+  + xlab(ecolT) 
   + ylab("Genomic Position")
   + coord_flip()
   + scale_x_discrete(expand = c(0,0))
