@@ -74,6 +74,7 @@ print("summary of gei_dat")
 summary(gei_dat)
 print("summary of gei_dat k12 only")
 tmp_k12 <- gei_dat %>% filter(strain == "K12MG")
+inver_tmp_k12 <- tmp_k12
 summary(tmp_k12)
 
 
@@ -777,7 +778,7 @@ print(unique(raw_dat$replicates))
 
 #make df with JUST expression and experiment values
 #raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp","strain","exp"))
-raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_ex)
+raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_exp)
 head(raw_deseq)
 #raw_deseq[c(564,2602,189,2264),]
 #raw_deseqW <- spread(raw_deseq,replicates, raw_ex)
@@ -785,12 +786,12 @@ head(raw_deseq)
 
 print("#toy df with just K12MG experiments")
 #raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
-raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_ex,strain)
-raw_deseq$raw_ex <- as.integer(raw_deseq$raw_ex)
+raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_exp,strain)
+raw_deseq$raw_exp <- as.integer(raw_deseq$raw_exp)
 raw_deseqSubset <- raw_deseq[grep("K12MG", raw_deseq$strain), ]
 head(raw_deseqSubset)
 raw_deseqSubset <- raw_deseqSubset[c(-2602,-222,-2264,-5660,-3280,-5322),]
-raw_deseqW <- spread(raw_deseqSubset,replicates, raw_ex)
+raw_deseqW <- spread(raw_deseqSubset,replicates, raw_exp)
 raw_deseqW <- raw_deseqW[complete.cases(raw_deseqW),]
 head(raw_deseqW)
 
@@ -1067,9 +1068,10 @@ file <- "../HNS_protein/raw_data_files/Higashi_2016_HNS_binding_sites_coding.csv
 higashi_dat <- read.csv(file, header = TRUE)
 sub_h_dat <- higashi_dat[,c(2,6,7,8)]
 colnames(sub_h_dat) <- c("gene_name","HNS_binding","HNS_cutoff","HNS_transcript")
-file <- "../HNS_protein/raw_data_files/Higashi_2016_HNS_binding_sites_noncoding.csv"
+#non-coding Higashi
+file <- "../HNS_protein/raw_data_files/higashi_nc_dat.csv"
 higashi_nc_dat <- read.csv(file, header = TRUE)
-sub_hnc_dat <- higashi_dat[,c(2,3,5,6,7)]
+sub_hnc_dat <- higashi_nc_dat[,c(6,7,8,10,11)]
 print("HEAD NC")
 head(sub_hnc_dat)
 gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
@@ -1130,6 +1132,41 @@ hns_cor_d <- hns_dat
 hns_dat <- hns_dat %>% select(midpoint, class2,gbk_strand)
 head(hns_dat)
 
+print("check higashi non coding overlap with data")
+head(sub_hnc_dat)
+sub_hnc_dat <- sub_hnc_dat %>% filter(HNS == "True")
+head(sub_hnc_dat)
+sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
+sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+hns_dat <- within(sub_hnc_dat, midpoint <- (end + start) /2)
+colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+class2 <- rep("HNS_Binding",length(hns_dat$start))
+hns_dat <- cbind(hns_dat,class2)
+hns_cor_d <- hns_dat
+hns_dat <- hns_dat %>% select(start,end, class2)
+hns_dat <- hns_dat[complete.cases(hns_dat),]
+head(hns_dat)
+hns_cor_d <- hns_dat
+
+
+print("get new df with non-cod hns binding + inversions + sig block info")
+inver_cor_d <- inver_tmp_k12 %>% 
+            select(start,end,inversion)
+colnames(inver_cor_d) <- c("start1","end1","Inversion")
+inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
+inver_cor_d <- unique(inver_cor_d)
+head(inver_cor_d)
+
+ir1 = with(inver_cor_d, IRanges(start1, end1))
+ir2 = with(hns_cor_d, IRanges(start, end))
+print("did ir1 and ir2")
+inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+inver_cor_d[which(inver_cor_d$start1 == 383921),]
+colnames(inver_cor_d) <- c("start","end","Inversion","HNS_binding")
+inver_cor_d$HNS_binding <- as.integer(inver_cor_d$HNS_binding)
+inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
 
 print("################################################################################")
 print("#ORIGIN SCALING AND BIDIRECTIONALITY HNS                                            ")
