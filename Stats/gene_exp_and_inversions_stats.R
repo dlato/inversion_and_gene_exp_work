@@ -72,6 +72,17 @@ summary(gei_dat$block_len[which(gei_dat$inversion == 1)])
 
 print("summary of gei_dat")
 summary(gei_dat)
+print("K12MG")
+gei_dat %>% filter(strain == "K12MG") %>% filter(rev_comp == 1)
+print("K12DH")
+gei_dat %>% filter(strain == "K12DH") %>% filter(rev_comp == 1)
+print("-------------------------------------------------------")
+gei_dat %>% filter(block == "Block800")
+print("-------------------------------------------------------")
+gei_dat %>% filter(block == "Block799")
+print("-------------------------------------------------------")
+print("BW25113")
+gei_dat %>% filter(strain == "BW25113") %>% filter(rev_comp == 1)
 print("summary of gei_dat k12 only")
 tmp_k12 <- gei_dat %>% filter(strain == "K12MG")
 inver_tmp_k12 <- tmp_k12
@@ -333,6 +344,7 @@ uniq_avg_exp_invert <- c()
 uniq_avg_exp_noninvert <- c()
 uniq_avg_len_invert <- c()
 uniq_avg_len_noninvert <- c()
+uniq_block_tax_num <- c()
 for (i in unique(gei_dat$block)) {
   tmp_df <- gei_dat[which(gei_dat$block == i),]
 print("--------------------")
@@ -344,13 +356,17 @@ print(tmp_df)
     #mean block length for each group
     i_len <- mean(tmp_df$block_len[tmp_df$rev_comp == 1])
     ni_len <- mean(tmp_df$block_len[tmp_df$rev_comp == 0])
+    tnum <- length(unique(tmp_df$strain))
 print("means")
 print(i_len)
 print(ni_len)
+print("tnum")
+print(tnum)
     uniq_avg_exp_invert <- c(uniq_avg_exp_invert,i_avg)
     uniq_avg_exp_noninvert <- c(uniq_avg_exp_noninvert,ni_avg)
     uniq_avg_len_invert <- c(uniq_avg_len_invert,i_len)
     uniq_avg_len_noninvert <- c(uniq_avg_len_noninvert,ni_len)
+    uniq_block_tax_num <- c(uniq_block_tax_num,tnum)
     #wilcox test
     wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
     uniq_block_w_pvalue <- c(uniq_block_w_pvalue,wilcox_test$p.value)
@@ -368,6 +384,8 @@ print(ni_len)
       uniq_block_t_confinf2 <- c(uniq_block_t_confinf2,"NA")
     }
   } else {
+    tnum <- length(unique(tmp_df$strain))
+    uniq_block_tax_num <- c(uniq_block_tax_num,tnum)
     #not able to do tests
     uniq_block_w_pvalue <- c(uniq_block_w_pvalue,"NA")
     uniq_block_t_pvalue <- c(uniq_block_t_pvalue,"NA")
@@ -384,6 +402,7 @@ warnings()
 
 #add test results to df
 count = 1
+block_tax_num <- vector(mode='numeric', length = length(gei_dat$block))
 block_w_pvalue <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_pvalue <- vector(mode='numeric', length = length(gei_dat$block))
 block_t_stat <- vector(mode='numeric', length = length(gei_dat$block))
@@ -395,6 +414,7 @@ block_avg_len_invert <- vector(mode='numeric', length = length(gei_dat$block))
 block_avg_len_noninvert <- vector(mode='numeric', length = length(gei_dat$block))
 for (b in unique(gei_dat$block)) {
   bloc_loc <- which(gei_dat$block == b)
+  block_tax_num[bloc_loc] <- uniq_block_tax_num[count] 
   block_w_pvalue[bloc_loc] <- uniq_block_w_pvalue[count] 
   block_t_pvalue[bloc_loc] <- uniq_block_t_pvalue[count] 
   block_t_stat[bloc_loc] <- uniq_block_t_stat[count] 
@@ -406,6 +426,7 @@ for (b in unique(gei_dat$block)) {
   block_avg_len_noninvert[bloc_loc] <- uniq_avg_len_noninvert[count] 
   count <- count + 1
 }
+gei_dat['block_tax_num'] <- block_tax_num
 gei_dat['block_w_pvalue'] <- block_w_pvalue
 gei_dat['block_t_pvalue'] <- block_t_pvalue
 gei_dat['block_t_stat'] <- block_t_stat
@@ -417,6 +438,11 @@ gei_dat['block_avg_exp_noninvert'] <- block_avg_exp_noninvert
 gei_dat['block_avg_len_invert'] <- block_avg_len_invert
 gei_dat['block_avg_len_noninvert'] <- block_avg_len_noninvert
 
+head(gei_dat)
+print("#####################")
+print("ONLY USING BLOCKS WITH ALL 4 TAXA")
+print("#####################")
+gei_dat <- gei_dat %>% filter(block_tax_num == 4)
 print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 bp_dat <- gei_dat
@@ -745,9 +771,20 @@ print("getting total combos of inversions")
 head(blocks_new)
 inver_combos <- blocks_new %>% select(block,rev_comp,strain)
 inver_combos <- unique(inver_combos)
+print("test less taxa blocks")
+print("K12MG")
+inver_combos %>% filter(strain == "K12MG") %>% filter(rev_comp == 1)
+print("K12DH")
+inver_combos %>% filter(strain == "K12MG") %>% filter(rev_comp == 1)
+print("BW25113")
+inver_combos %>% filter(strain == "BW25113") %>% filter(rev_comp == 1)
+print("ATCC")
+inver_combos %>% filter(strain == "ATCC") %>% filter(rev_comp == 1)
 taxa_order_combo <- as.vector(unlist(unique(inver_combos$strain)))
 print("order of taxa for inversion combos")
 taxa_order_combo
+rev1 <- inver_combos %>% filter(rev_comp == 1)
+rev1
 r2 <- inver_combos %>%
          group_by(block) %>% 
          summarise(combo = toString(rev_comp))
@@ -755,15 +792,17 @@ r2 <- inver_combos %>%
 r2 <- r2 %>%
     ungroup %>%
      unnest()
-head(r2)
+r2
+
 r2[which(r2$block == "Block62"),]
 uniq_combos <- as.data.frame(unique(r2$combo))
 colnames(uniq_combos) <- "pattern"
+head(uniq_combos)
 print("inver_combos")
 uniq_combos <- uniq_combos %>% separate(pattern,
                 taxa_order_combo,", ")
 inver_combos_df <- as.data.frame(t(uniq_combos))
-colnames(inver_combos_df) <- c("A","B")
+#colnames(inver_combos_df) <- c("A","B")
 inver_combos_df <- tibble::rownames_to_column(inver_combos_df, "strain")
 inver_combos_df
 
@@ -1364,29 +1403,29 @@ dev.off()
 
 
 
-print("###############################################################################")
-print("INVERSION VISUALIZATION PARALLEL SETS")
-print("###############################################################################")
-print("read in block info file")
-file_name <- as.character(args[9])
-block_inf <- read.table(file_name,sep = "\t", header = FALSE)
-colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
-print("make column of midpoint of each block")
-block_inf <- within(block_inf, midpoint <- (end + start) /2)
-colnames(block_inf)[colnames(block_inf) == "midpoint"] <- "midpoint"
-head(block_inf)
-bi_dat <- block_inf %>% select(block,strain,midpoint)
-bi_dat <-  spread(bi_dat, strain, midpoint)
-head(bi_dat)
-
-print("test parallel sets plot")
-ps <- bi_dat %>%
-  gather_set_data(2:3) %>%
-head(ps)
-#  ggplot(aes(x, id = id, split = y, value = 1))  +
-#  geom_parallel_sets(aes(fill = engine)) 
-#pdf("parallel_sets.pdf")
-#ps
-#dev.off()
-
-
+#print("###############################################################################")
+#print("INVERSION VISUALIZATION PARALLEL SETS")
+#print("###############################################################################")
+#print("read in block info file")
+#file_name <- as.character(args[9])
+#block_inf <- read.table(file_name,sep = "\t", header = FALSE)
+#colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
+#print("make column of midpoint of each block")
+#block_inf <- within(block_inf, midpoint <- (end + start) /2)
+#colnames(block_inf)[colnames(block_inf) == "midpoint"] <- "midpoint"
+#head(block_inf)
+#bi_dat <- block_inf %>% select(block,strain,midpoint)
+#bi_dat <-  spread(bi_dat, strain, midpoint)
+#head(bi_dat)
+#
+#print("test parallel sets plot")
+#ps <- bi_dat %>%
+#  gather_set_data(2:3) %>%
+#head(ps)
+##  ggplot(aes(x, id = id, split = y, value = 1))  +
+##  geom_parallel_sets(aes(fill = engine)) 
+##pdf("parallel_sets.pdf")
+##ps
+##dev.off()
+#
+#
