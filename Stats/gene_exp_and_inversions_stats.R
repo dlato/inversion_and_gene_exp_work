@@ -1132,41 +1132,41 @@ hns_cor_d <- hns_dat
 hns_dat <- hns_dat %>% select(midpoint, class2,gbk_strand)
 head(hns_dat)
 
-print("check higashi non coding overlap with data")
-head(sub_hnc_dat)
-sub_hnc_dat <- sub_hnc_dat %>% filter(HNS == "True")
-head(sub_hnc_dat)
-sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
-sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
-hns_dat <- within(sub_hnc_dat, midpoint <- (end + start) /2)
-colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
-class2 <- rep("HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-hns_dat <- hns_dat %>% select(start,end, class2)
-hns_dat <- hns_dat[complete.cases(hns_dat),]
-head(hns_dat)
-hns_cor_d <- hns_dat
-
-
-print("get new df with non-cod hns binding + inversions + sig block info")
-inver_cor_d <- inver_tmp_k12 %>% 
-            select(start,end,inversion)
-colnames(inver_cor_d) <- c("start1","end1","Inversion")
-inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
-inver_cor_d <- unique(inver_cor_d)
-head(inver_cor_d)
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-print("did ir1 and ir2")
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start","end","Inversion","HNS_binding")
-inver_cor_d$HNS_binding <- as.integer(inver_cor_d$HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-#inver_cor_d[which(inver_cor_d$start == 383921),]
+#print("check higashi non coding overlap with data")
+#head(sub_hnc_dat)
+#sub_hnc_dat <- sub_hnc_dat %>% filter(HNS == "True")
+#head(sub_hnc_dat)
+#sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
+#sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+#hns_dat <- within(sub_hnc_dat, midpoint <- (end + start) /2)
+#colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+#class2 <- rep("HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#hns_dat <- hns_dat %>% select(start,end, class2)
+#hns_dat <- hns_dat[complete.cases(hns_dat),]
+#head(hns_dat)
+#hns_cor_d <- hns_dat
+#
+#
+#print("get new df with non-cod hns binding + inversions + sig block info")
+#inver_cor_d <- inver_tmp_k12 %>% 
+#            select(start,end,inversion)
+#colnames(inver_cor_d) <- c("start1","end1","Inversion")
+#inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
+#inver_cor_d <- unique(inver_cor_d)
+#head(inver_cor_d)
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#print("did ir1 and ir2")
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start","end","Inversion","HNS_binding")
+#inver_cor_d$HNS_binding <- as.integer(inver_cor_d$HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+##inver_cor_d[which(inver_cor_d$start == 383921),]
 
 print("################################################################################")
 print("#ORIGIN SCALING AND BIDIRECTIONALITY HNS                                            ")
