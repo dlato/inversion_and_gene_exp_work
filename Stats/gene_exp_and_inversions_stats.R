@@ -814,15 +814,18 @@ inver_combos_df <- unique(rev_comp_inf)
 head(inver_combos_df)
 
 
-###set up df
-###this will need to be changed once the real data comes in
-###********************
-#print("read in raw data file of all combined experiements")
-#raw_file <- as.character(args[7])
-#raw_dat <- read.csv(raw_file, header = TRUE)
-#head(raw_dat)
+##set up df
+##this will need to be changed once the real data comes in
+##********************
+print("read in raw data file of all combined experiements")
+raw_file <- as.character(args[7])
+raw_dat <- read.csv(raw_file, header = TRUE)
+head(raw_dat)
+#make df with JUST expression and experiment values
+raw_deseq <- raw_dat %>% select(MG_names,ATCC_GSE94978_1:K12MG_GSE60522_3)
+head(raw_deseq)
+
 #print(unique(raw_dat$replicates))
-#
 ##make df with JUST expression and experiment values
 ##raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp","strain","exp"))
 #raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_exp)
