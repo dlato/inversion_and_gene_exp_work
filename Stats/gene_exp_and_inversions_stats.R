@@ -814,11 +814,16 @@ inver_combos_df <- unique(rev_comp_inf)
 inver_combo <- rownames(inver_combos_df)
 inver_combos_df <- cbind(inver_combo=inver_combo, inver_combos_df)
 inver_combos_df <- gather(inver_combos_df, sample, treatment, ATCC_GSE94978_1:K12MG_GSE60522_3, factor_key=TRUE)
+#get strain info from sample ids
 inver_combos_df$strain <- gsub("_.*","",inver_combos_df$sample)
+#get experiment info from sample ids
+inver_combos_df$tmp_expID <- gsub("^.*_G","G",inver_combos_df$sample)
+inver_combos_df$expID <- gsub("_.*","",inver_combos_df$tmp_expID)
+inver_combos_df <- inver_combos_df %>% select(inver_combo,treatment,sample,strain,expID)
+inver_combos_df$expID <- as.factor(inver_combos_df$expID)
 head(inver_combos_df)
 
-
-##set up df
+##set up raw exp df
 ##this will need to be changed once the real data comes in
 ##********************
 print("read in raw data file of all combined experiements")
@@ -828,6 +833,7 @@ head(raw_dat)
 #make df with JUST expression and experiment values
 raw_deseq <- raw_dat %>% select(MG_names,ATCC_GSE94978_1:K12MG_GSE60522_3)
 head(raw_deseq)
+raw_deseqW <- raw_deseq
 
 #print(unique(raw_dat$replicates))
 ##make df with JUST expression and experiment values
