@@ -51569,21 +51569,13 @@ Number of Fisher Scoring iterations: 30
 4                  0                0                0                0
 5                  0                0                0                0
 6                  0                0                0                0
-   ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
-1                1               1                  0                  0
-73               0               0                  0                  0
-   BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
-1                   0                0                0                0
-73                  0                0                0                0
-   K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
-1                    0                   0                   0
-73                   0                   0                   0
-   K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
-1                    0                0                0                  0
-73                   0                0                0                  0
-   K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
-1                   0                0                0                0
-73                  0                0                0                0
+  inver_combo             sample treatment  strain
+1           1    ATCC_GSE94978_1         1    ATCC
+2          73    ATCC_GSE94978_1         0    ATCC
+3           1    ATCC_GSE94978_2         1    ATCC
+4          73    ATCC_GSE94978_2         0    ATCC
+5           1 BW25113_GSE73673_6         0 BW25113
+6          73 BW25113_GSE73673_6         0 BW25113
 [1] "read in raw data file of all combined experiements"
     ATCC_names        BW_names        DH_names MG_names ATCC_GSE94978_1
 1 DR76_RS03355 BW25113_RS19845 ECDH10B_RS20415    b3822            1643

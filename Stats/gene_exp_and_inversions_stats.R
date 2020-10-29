@@ -811,6 +811,10 @@ rev_comp_inf <- read.csv("../new_dataframes/raw_rev_comp.csv", header = TRUE)
 rev_comp_inf <- subset(rev_comp_inf, select = -c(1:4))
 head(rev_comp_inf)
 inver_combos_df <- unique(rev_comp_inf)
+inver_combo <- rownames(inver_combos_df)
+inver_combos_df <- cbind(inver_combo=inver_combo, inver_combos_df)
+inver_combos_df <- gather(inver_combos_df, sample, treatment, ATCC_GSE94978_1:K12MG_GSE60522_3, factor_key=TRUE)
+inver_combos_df$strain <- gsub("_.*","",inver_combos_df$sample)
 head(inver_combos_df)
 
 
