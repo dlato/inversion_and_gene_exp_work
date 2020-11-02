@@ -51534,57 +51534,13 @@ Number of Fisher Scoring iterations: 30
 [1] "## DESeq expression comparison"
 [1] "#############                 "
 [1] "getting total combos of inversions"
-  ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
-1               1               1                  0                  0
-2               1               1                  0                  0
-3               1               1                  0                  0
-4               1               1                  0                  0
-5               1               1                  0                  0
-6               1               1                  0                  0
-  BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
-1                  0                0                0                0
-2                  0                0                0                0
-3                  0                0                0                0
-4                  0                0                0                0
-5                  0                0                0                0
-6                  0                0                0                0
-  K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
-1                   0                   0                   0
-2                   0                   0                   0
-3                   0                   0                   0
-4                   0                   0                   0
-5                   0                   0                   0
-6                   0                   0                   0
-  K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
-1                   0                0                0                  0
-2                   0                0                0                  0
-3                   0                0                0                  0
-4                   0                0                0                  0
-5                   0                0                0                  0
-6                   0                0                0                  0
-  K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
-1                  0                0                0                0
-2                  0                0                0                0
-3                  0                0                0                0
-4                  0                0                0                0
-5                  0                0                0                0
-6                  0                0                0                0
- [1] "ATCC_GSE94978_1"     "ATCC_GSE94978_2"     "BW25113_GSE73673_6" 
- [4] "BW25113_GSE73673_7"  "BW25113_GSE73673_8"  "BW25113_GSE85914"   
- [7] "K12DH_GSE98890_1"    "K12DH_GSE98890_2"    "K12MG_GSE114917_LP1"
-[10] "K12MG_GSE114917_LP2" "K12MG_GSE114917_LP3" "K12MG_GSE114917_LP4"
-[13] "K12MG_GSE40313_1"    "K12MG_GSE40313_2"    "K12MG_GSE54199_DNA" 
-[16] "K12MG_GSE54199_RNA"  "K12MG_GSE60522_1"    "K12MG_GSE60522_2"   
-[19] "K12MG_GSE60522_3"   
-  inver_combo treatment             sample  strain    expID
-1           1         1    ATCC_GSE94978_1    ATCC GSE94978
-2          73         0    ATCC_GSE94978_1    ATCC GSE94978
-3           1         1    ATCC_GSE94978_2    ATCC GSE94978
-4          73         0    ATCC_GSE94978_2    ATCC GSE94978
-5           1         0 BW25113_GSE73673_6 BW25113 GSE73673
-6          73         0 BW25113_GSE73673_6 BW25113 GSE73673
-[1] "GSE114917" "GSE40313"  "GSE54199"  "GSE60522"  "GSE73673"  "GSE85914" 
-[7] "GSE94978"  "GSE98890" 
+  inver_combo treatment          sample strain    expID
+1           1         1 ATCC_GSE94978_1   ATCC GSE94978
+2          79         0 ATCC_GSE94978_1   ATCC GSE94978
+3        1589         1 ATCC_GSE94978_1   ATCC GSE94978
+4           1         1 ATCC_GSE94978_2   ATCC GSE94978
+5          79         0 ATCC_GSE94978_2   ATCC GSE94978
+6        1589         1 ATCC_GSE94978_2   ATCC GSE94978
 [1] "read in raw data file of all combined experiements"
     ATCC_names        BW_names        DH_names MG_names ATCC_GSE94978_1
 1 DR76_RS03355 BW25113_RS19845 ECDH10B_RS20415    b3822            1643
@@ -51615,12 +51571,12 @@ Number of Fisher Scoring iterations: 30
 5                 290                 218                 267               70
 6                  21                  16                  35               28
   K12MG_GSE40313_2 K12MG_GSE54199_DNA K12MG_GSE54199_RNA K12MG_GSE60522_1
-1              125           251616.5            78116.0              414
-2               98            87975.5            43191.5              193
-3               23            94226.0            22085.5               83
-4              194           134028.0            73142.0              310
-5              111           125536.0            55234.5              291
-6               35           119906.0            15015.5             1575
+1              125             251616              78116              414
+2               98              87975              43191              193
+3               23              94226              22085               83
+4              194             134028              73142              310
+5              111             125536              55234              291
+6               35             119906              15015             1575
   K12MG_GSE60522_2 K12MG_GSE60522_3
 1              325              312
 2              188              241
@@ -51628,6 +51584,16 @@ Number of Fisher Scoring iterations: 30
 4              199              308
 5              252              245
 6              973             1906
+[1] "duplicates"
+ [1] ATCC_names          BW_names            DH_names           
+ [4] MG_names            ATCC_GSE94978_1     ATCC_GSE94978_2    
+ [7] BW25113_GSE73673_6  BW25113_GSE73673_7  BW25113_GSE73673_8 
+[10] BW25113_GSE85914    K12DH_GSE98890_1    K12DH_GSE98890_2   
+[13] K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+[16] K12MG_GSE114917_LP4 K12MG_GSE40313_1    K12MG_GSE40313_2   
+[19] K12MG_GSE54199_DNA  K12MG_GSE54199_RNA  K12MG_GSE60522_1   
+[22] K12MG_GSE60522_2    K12MG_GSE60522_3   
+<0 rows> (or 0-length row.names)
   MG_names ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6
 1    b3822            1643            1489                 19
 2    b3823            2260            3060                 31
@@ -51650,16 +51616,124 @@ Number of Fisher Scoring iterations: 30
 5              474                 281                 290                 218
 6              434                  21                  21                  16
   K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
-1                 500               88              125           251616.5
-2                 137               61               98            87975.5
-3                  19               18               23            94226.0
-4                 368              149              194           134028.0
-5                 267               70              111           125536.0
-6                  35               28               35           119906.0
+1                 500               88              125             251616
+2                 137               61               98              87975
+3                  19               18               23              94226
+4                 368              149              194             134028
+5                 267               70              111             125536
+6                  35               28               35             119906
   K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
-1            78116.0              414              325              312
-2            43191.5              193              188              241
-3            22085.5               83               60               86
-4            73142.0              310              199              308
-5            55234.5              291              252              245
-6            15015.5             1575              973             1906
+1              78116              414              325              312
+2              43191              193              188              241
+3              22085               83               60               86
+4              73142              310              199              308
+5              55234              291              252              245
+6              15015             1575              973             1906
+      ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
+b3822            1643            1489                 19                 13
+b3823            2260            3060                 31                  6
+b3824             399             364                  9                  2
+b3825            2506            2588                 18                  7
+b3826             946            1313                 43                 20
+b3828             119             196                 36                 13
+      BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
+b3822                 16               26              289              567
+b3823                  6               37              135              460
+b3824                  5              163               48              204
+b3825                 10              667              392             1059
+b3826                 26              129              195              474
+b3828                 15               12               96              434
+      K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+b3822                 439                 313                 258
+b3823                 212                 170                 153
+b3824                  35                  24                  21
+b3825                 510                 414                 377
+b3826                 281                 290                 218
+b3828                  21                  21                  16
+      K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+b3822                 500               88              125             251616
+b3823                 137               61               98              87975
+b3824                  19               18               23              94226
+b3825                 368              149              194             134028
+b3826                 267               70              111             125536
+b3828                  35               28               35             119906
+      K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+b3822              78116              414              325              312
+b3823              43191              193              188              241
+b3824              22085               83               60               86
+b3825              73142              310              199              308
+b3826              55234              291              252              245
+b3828              15015             1575              973             1906
+[1] "#############################################################"
+[1] "DESeq on inversion combo 1"
+[1] "#############################################################"
+[1] "re-format sample info info format DESeq can recognize"
+                    strain    expID treatment
+ATCC_GSE94978_1       ATCC GSE94978         1
+ATCC_GSE94978_2       ATCC GSE94978         1
+BW25113_GSE73673_6 BW25113 GSE73673         0
+BW25113_GSE73673_7 BW25113 GSE73673         0
+BW25113_GSE73673_8 BW25113 GSE73673         0
+BW25113_GSE85914   BW25113 GSE85914         0
+                     strain     expID treatment
+ATCC_GSE94978_1        ATCC  GSE94978         1
+ATCC_GSE94978_2        ATCC  GSE94978         1
+BW25113_GSE73673_6  BW25113  GSE73673         0
+BW25113_GSE73673_7  BW25113  GSE73673         0
+BW25113_GSE73673_8  BW25113  GSE73673         0
+BW25113_GSE85914    BW25113  GSE85914         0
+K12DH_GSE98890_1      K12DH  GSE98890         0
+K12DH_GSE98890_2      K12DH  GSE98890         0
+K12MG_GSE114917_LP1   K12MG GSE114917         0
+K12MG_GSE114917_LP2   K12MG GSE114917         0
+K12MG_GSE114917_LP3   K12MG GSE114917         0
+K12MG_GSE114917_LP4   K12MG GSE114917         0
+K12MG_GSE40313_1      K12MG  GSE40313         0
+K12MG_GSE40313_2      K12MG  GSE40313         0
+K12MG_GSE54199_DNA    K12MG  GSE54199         0
+K12MG_GSE54199_RNA    K12MG  GSE54199         0
+K12MG_GSE60522_1      K12MG  GSE60522         0
+K12MG_GSE60522_2      K12MG  GSE60522         0
+K12MG_GSE60522_3      K12MG  GSE60522         0
+[1] "Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked"
+      ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
+b3822            1643            1489                 19                 13
+b3823            2260            3060                 31                  6
+b3824             399             364                  9                  2
+b3825            2506            2588                 18                  7
+b3826             946            1313                 43                 20
+b3828             119             196                 36                 13
+      BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
+b3822                 16               26              289              567
+b3823                  6               37              135              460
+b3824                  5              163               48              204
+b3825                 10              667              392             1059
+b3826                 26              129              195              474
+b3828                 15               12               96              434
+      K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+b3822                 439                 313                 258
+b3823                 212                 170                 153
+b3824                  35                  24                  21
+b3825                 510                 414                 377
+b3826                 281                 290                 218
+b3828                  21                  21                  16
+      K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+b3822                 500               88              125             251616
+b3823                 137               61               98              87975
+b3824                  19               18               23              94226
+b3825                 368              149              194             134028
+b3826                 267               70              111             125536
+b3828                  35               28               35             119906
+      K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+b3822              78116              414              325              312
+b3823              43191              193              188              241
+b3824              22085               83               60               86
+b3825              73142              310              199              308
+b3826              55234              291              252              245
+b3828              15015             1575              973             1906
+[1] TRUE
+[1] "Order the treatments so that it is sensible: non-inversion (basically control) -> inversion"
+[1] "#############                 "
+[1] "## DESeq analysis accounting for experiment effect"
+[1] "#############                 "
+[1] "Create the DEseq2DataSet object"

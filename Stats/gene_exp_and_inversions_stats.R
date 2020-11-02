@@ -809,7 +809,6 @@ print("getting total combos of inversions")
 #read in the rev_comp data file:
 rev_comp_inf <- read.csv("../new_dataframes/raw_rev_comp.csv", header = TRUE)
 rev_comp_inf <- subset(rev_comp_inf, select = -c(1:4))
-head(rev_comp_inf)
 inver_combos_df <- unique(rev_comp_inf)
 inver_combo <- rownames(inver_combos_df)
 inver_combos_df <- cbind(inver_combo=inver_combo, inver_combos_df)
@@ -829,11 +828,24 @@ head(inver_combos_df)
 print("read in raw data file of all combined experiements")
 raw_file <- as.character(args[7])
 raw_dat <- read.csv(raw_file, header = TRUE)
+#ensure that all raw values are integers
+raw_dat <- raw_dat %>% 
+                mutate_at(seq(5,23,1), as.integer)
 head(raw_dat)
+#dealing with one K12 gene that matches to multiple ATCC genes: b3894
+raw_dat <- raw_dat[-35,]
+print("duplicates")
+n_occur <- data.frame(table(raw_dat$MG_names))
+raw_dat[raw_dat$MG_names %in% n_occur$Var1[n_occur$Freq > 1],]
 #make df with JUST expression and experiment values
 raw_deseq <- raw_dat %>% select(MG_names,ATCC_GSE94978_1:K12MG_GSE60522_3)
 head(raw_deseq)
 raw_deseqW <- raw_deseq
+rownames(raw_deseqW) <- raw_deseq$MG_names
+raw_deseqW <- raw_deseqW[,-1]
+head(raw_deseqW)
+
+
 
 #print(unique(raw_dat$replicates))
 ##make df with JUST expression and experiment values
@@ -881,7 +893,139 @@ raw_deseqW <- raw_deseq
 ##sample_inf$strain <- replace(sample_inf$strain, 4, "FAKE")
 #sample_inf
 #
-#print("re-format sample info info format DESeq can recognize")
+print("#############################################################")
+print("DESeq on inversion combo 1")
+print("#############################################################")
+print("re-format sample info info format DESeq can recognize")
+sampleData <- inver_combos_df %>% filter(inver_combo == 1)
+sampleData <- sampleData %>% select(sample, strain, expID, treatment)
+colnames(sampleData) <- c("replicates","strain","expID","treatment")
+rownames(sampleData) <- sampleData$replicates
+sampleData$expID <- factor(sampleData$expID)
+sampleData$treatment <- factor(sampleData$treatment)
+sampleData$replicates <- factor(sampleData$replicates)
+sampleData$strain <- factor(sampleData$strain)
+sampleData <- sampleData[,-1]
+head(sampleData)
+sampleData
+print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
+raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
+head(raw_deseqW)
+all(colnames(raw_deseqW) == rownames(sampleData))
+print("Order the treatments so that it is sensible: non-inversion (basically control) -> inversion")
+sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
+print("#############                 ")
+print("## DESeq analysis accounting for experiment effect")
+print("#############                 ")
+print("Create the DEseq2DataSet object")
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + treatment)
+deseq_results <- DESeq(deseq2Data)
+print("done deseq")
+deseq_results2 <- results(deseq_results, alpha=0.05)
+# alpha = 0.05 is the  "cut-off" for significance (not really - I will
+# discuss).
+print("summary")
+summary(deseq_results2)
+#deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
+# Coerce to a data frame
+deseq2ResDF <- as.data.frame(deseq_results2)
+
+# Examine this data frame
+head(deseq2ResDF)
+
+# Set a boolean column for significance
+deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1,
+"Significant", NA)
+
+# Plot the results similar to DEseq2
+p <- (ggplot(deseq2ResDF, aes(baseMean, log2FoldChange, colour=significant))
++ geom_point(size=1) + scale_y_continuous(limits=c(-3, 3), oob=squish)
++ scale_x_log10() 
++ geom_hline(yintercept = 0, colour="tomato1",size=2) 
++ labs(x="Mean of Normalized Counts", y="Log Fold Change") 
++ scale_colour_manual(name="q-value", values=("Significant"="red"),na.value="grey50") 
+)
+
+pdf("DESeq_all_tax_2Nov20.pdf")
+#plotMA(deseq_results2)
+p
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #sampleData <- sample_inf
 #rownames(sampleData) <- sampleData$replicate
 ##keep <- c("treatment_A","exp","strain")
