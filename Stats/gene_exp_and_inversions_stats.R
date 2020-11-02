@@ -810,6 +810,7 @@ print("getting total combos of inversions")
 rev_comp_inf <- read.csv("../new_dataframes/raw_rev_comp.csv", header = TRUE)
 rev_comp_inf <- subset(rev_comp_inf, select = -c(1:4))
 inver_combos_df <- unique(rev_comp_inf)
+inver_combos_df
 inver_combo <- rownames(inver_combos_df)
 inver_combos_df <- cbind(inver_combo=inver_combo, inver_combos_df)
 inver_combos_df <- gather(inver_combos_df, sample, treatment, ATCC_GSE94978_1:K12MG_GSE60522_3, factor_key=TRUE)
@@ -833,7 +834,7 @@ raw_dat <- raw_dat %>%
                 mutate_at(seq(5,23,1), as.integer)
 head(raw_dat)
 #dealing with one K12 gene that matches to multiple ATCC genes: b3894
-raw_dat <- raw_dat[-35,]
+raw_dat <- raw_dat[-44,]
 print("duplicates")
 n_occur <- data.frame(table(raw_dat$MG_names))
 raw_dat[raw_dat$MG_names %in% n_occur$Var1[n_occur$Freq > 1],]
@@ -897,7 +898,7 @@ print("#############################################################")
 print("DESeq on inversion combo 1")
 print("#############################################################")
 print("re-format sample info info format DESeq can recognize")
-sampleData <- inver_combos_df %>% filter(inver_combo == 1)
+sampleData <- inver_combos_df %>% filter(inver_combo == 2147)
 sampleData <- sampleData %>% select(sample, strain, expID, treatment)
 colnames(sampleData) <- c("replicates","strain","expID","treatment")
 rownames(sampleData) <- sampleData$replicates
@@ -906,7 +907,7 @@ sampleData$treatment <- factor(sampleData$treatment)
 sampleData$replicates <- factor(sampleData$replicates)
 sampleData$strain <- factor(sampleData$strain)
 sampleData <- sampleData[,-1]
-head(sampleData)
+sampleData <- sampleData %>% select(expID, treatment)
 sampleData
 print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
 raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
