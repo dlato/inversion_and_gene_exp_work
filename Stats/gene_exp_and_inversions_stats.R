@@ -907,19 +907,21 @@ sampleData$treatment <- factor(sampleData$treatment)
 sampleData$replicates <- factor(sampleData$replicates)
 sampleData$strain <- factor(sampleData$strain)
 sampleData <- sampleData[,-1]
-sampleData <- sampleData %>% select(expID, treatment)
+#sampleData <- sampleData %>% select(expID, treatment)
 sampleData
 print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
 raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
 head(raw_deseqW)
 all(colnames(raw_deseqW) == rownames(sampleData))
-print("Order the treatments so that it is sensible: non-inversion (basically control) -> inversion")
+print("Order the treatments so that it is sensible: non-inversion (control) -> inversion")
 sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
 print("#############                 ")
 print("## DESeq analysis accounting for experiment effect")
 print("#############                 ")
 print("Create the DEseq2DataSet object")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + treatment)
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + treatment)
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain + treatment)
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
 deseq_results <- DESeq(deseq2Data)
 print("done deseq")
 deseq_results2 <- results(deseq_results, alpha=0.05)
@@ -935,8 +937,7 @@ deseq2ResDF <- as.data.frame(deseq_results2)
 head(deseq2ResDF)
 
 # Set a boolean column for significance
-deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1,
-"Significant", NA)
+deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1, "Significant", NA)
 
 # Plot the results similar to DEseq2
 p <- (ggplot(deseq2ResDF, aes(baseMean, log2FoldChange, colour=significant))
@@ -951,76 +952,6 @@ pdf("DESeq_all_tax_2Nov20.pdf")
 #plotMA(deseq_results2)
 p
 dev.off()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -51688,26 +51688,26 @@ b3826              55234              291              252              245
 [1] "DESeq on inversion combo 1"
 [1] "#############################################################"
 [1] "re-format sample info info format DESeq can recognize"
-                        expID treatment
-ATCC_GSE94978_1      GSE94978         1
-ATCC_GSE94978_2      GSE94978         1
-BW25113_GSE73673_6   GSE73673         0
-BW25113_GSE73673_7   GSE73673         0
-BW25113_GSE73673_8   GSE73673         0
-BW25113_GSE85914     GSE85914         0
-K12DH_GSE98890_1     GSE98890         1
-K12DH_GSE98890_2     GSE98890         1
-K12MG_GSE114917_LP1 GSE114917         0
-K12MG_GSE114917_LP2 GSE114917         0
-K12MG_GSE114917_LP3 GSE114917         0
-K12MG_GSE114917_LP4 GSE114917         0
-K12MG_GSE40313_1     GSE40313         0
-K12MG_GSE40313_2     GSE40313         0
-K12MG_GSE54199_DNA   GSE54199         0
-K12MG_GSE54199_RNA   GSE54199         0
-K12MG_GSE60522_1     GSE60522         0
-K12MG_GSE60522_2     GSE60522         0
-K12MG_GSE60522_3     GSE60522         0
+                     strain     expID treatment
+ATCC_GSE94978_1        ATCC  GSE94978         1
+ATCC_GSE94978_2        ATCC  GSE94978         1
+BW25113_GSE73673_6  BW25113  GSE73673         0
+BW25113_GSE73673_7  BW25113  GSE73673         0
+BW25113_GSE73673_8  BW25113  GSE73673         0
+BW25113_GSE85914    BW25113  GSE85914         0
+K12DH_GSE98890_1      K12DH  GSE98890         1
+K12DH_GSE98890_2      K12DH  GSE98890         1
+K12MG_GSE114917_LP1   K12MG GSE114917         0
+K12MG_GSE114917_LP2   K12MG GSE114917         0
+K12MG_GSE114917_LP3   K12MG GSE114917         0
+K12MG_GSE114917_LP4   K12MG GSE114917         0
+K12MG_GSE40313_1      K12MG  GSE40313         0
+K12MG_GSE40313_2      K12MG  GSE40313         0
+K12MG_GSE54199_DNA    K12MG  GSE54199         0
+K12MG_GSE54199_RNA    K12MG  GSE54199         0
+K12MG_GSE60522_1      K12MG  GSE60522         0
+K12MG_GSE60522_2      K12MG  GSE60522         0
+K12MG_GSE60522_3      K12MG  GSE60522         0
 [1] "Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked"
       ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
 b3820             159             240                  4                  5
@@ -51745,7 +51745,7 @@ b3824              22085               83               60               86
 b3825              73142              310              199              308
 b3826              55234              291              252              245
 [1] TRUE
-[1] "Order the treatments so that it is sensible: non-inversion (basically control) -> inversion"
+[1] "Order the treatments so that it is sensible: non-inversion (control) -> inversion"
 [1] "#############                 "
 [1] "## DESeq analysis accounting for experiment effect"
 [1] "#############                 "
