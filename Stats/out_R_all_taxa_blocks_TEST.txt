@@ -51930,3 +51930,76 @@ b3826              55234              291              252              245
 [1] "## DESeq analysis accounting for experiment effect"
 [1] "#############                 "
 [1] "Create the DEseq2DataSet object"
+      ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
+b3820             159             240                  4                  5
+b3822            1643            1489                 19                 13
+b3823            2260            3060                 31                  6
+b3824             399             364                  9                  2
+b3825            2506            2588                 18                  7
+b3826             946            1313                 43                 20
+      BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
+b3820                  3               45               47               85
+b3822                 16               26              289              567
+b3823                  6               37              135              460
+b3824                  5              163               48              204
+b3825                 10              667              392             1059
+b3826                 26              129              195              474
+      K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+b3820                  11                   9                  10
+b3822                 439                 313                 258
+b3823                 212                 170                 153
+b3824                  35                  24                  21
+b3825                 510                 414                 377
+b3826                 281                 290                 218
+      K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+b3820                  26                4               10              71286
+b3822                 500               88              125             251616
+b3823                 137               61               98              87975
+b3824                  19               18               23              94226
+b3825                 368              149              194             134028
+b3826                 267               70              111             125536
+      K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+b3820              15081              115              144              171
+b3822              78116              414              325              312
+b3823              43191              193              188              241
+b3824              22085               83               60               86
+b3825              73142              310              199              308
+b3826              55234              291              252              245
+                    strain    expID treatment ind.n
+ATCC_GSE94978_1       ATCC GSE94978         1     1
+ATCC_GSE94978_2       ATCC GSE94978         1     2
+BW25113_GSE73673_6 BW25113 GSE73673         0     1
+BW25113_GSE73673_7 BW25113 GSE73673         0     2
+BW25113_GSE73673_8 BW25113 GSE73673         0     3
+BW25113_GSE85914   BW25113 GSE85914         0     1
+[1] "DE btwn strains"
+[1] "done deseq"
+[1] "summary"
+
+out of 2722 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 87, 3.2% 
+LFC < 0 (down)   : 61, 2.2% 
+outliers [1]     : 155, 5.7% 
+low counts [2]   : 0, 0% 
+(mean count < 2)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
+[1] "DE btwn experiments"
+[1] "done deseq"
+[1] "summary"
+
+out of 2722 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 444, 16% 
+LFC < 0 (down)   : 552, 20% 
+outliers [1]     : 1, 0.037% 
+low counts [2]   : 0, 0% 
+(mean count < 7)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
+[1] "check PCA"
+null device 
+          1 
