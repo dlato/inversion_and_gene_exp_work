@@ -907,8 +907,15 @@ sampleData$treatment <- factor(sampleData$treatment)
 sampleData$replicates <- factor(sampleData$replicates)
 sampleData$strain <- factor(sampleData$strain)
 sampleData <- sampleData[,-1]
+ind.n <- factor(c(1,2,1,2,3,1,1,2,1,2,3,4,1,2,1,2,1,2,3))
+sampleData$ind.n <- ind.n
 #sampleData <- sampleData %>% select(expID, treatment)
 sampleData
+m1 <- model.matrix(~ expID + expID:ind.n + expID:treatment, sampleData)
+all.zero <- apply(m1, 2, function(x) all(x==0))
+idx <- which(all.zero)
+m1 <- m1[,-idx]
+unname(m1)
 print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
 raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
 head(raw_deseqW)
@@ -920,7 +927,8 @@ print("## DESeq analysis accounting for experiment effect")
 print("#############                 ")
 print("Create the DEseq2DataSet object")
 #deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + treatment)
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain + treatment)
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain + treatment)
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= m1)
 #deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
 deseq_results <- DESeq(deseq2Data)
 print("done deseq")
