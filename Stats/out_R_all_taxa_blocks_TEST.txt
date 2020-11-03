@@ -51708,26 +51708,186 @@ K12MG_GSE54199_RNA    K12MG  GSE54199         0     2
 K12MG_GSE60522_1      K12MG  GSE60522         0     1
 K12MG_GSE60522_2      K12MG  GSE60522         0     2
 K12MG_GSE60522_3      K12MG  GSE60522         0     3
-     
- [1,]
- [2,]
- [3,]
- [4,]
- [5,]
- [6,]
- [7,]
- [8,]
- [9,]
-[10,]
-[11,]
-[12,]
-[13,]
-[14,]
-[15,]
-[16,]
-[17,]
-[18,]
-[19,]
+                    (Intercept) expIDGSE40313 expIDGSE54199 expIDGSE60522
+ATCC_GSE94978_1               1             0             0             0
+ATCC_GSE94978_2               1             0             0             0
+BW25113_GSE73673_6            1             0             0             0
+BW25113_GSE73673_7            1             0             0             0
+BW25113_GSE73673_8            1             0             0             0
+BW25113_GSE85914              1             0             0             0
+K12DH_GSE98890_1              1             0             0             0
+K12DH_GSE98890_2              1             0             0             0
+K12MG_GSE114917_LP1           1             0             0             0
+K12MG_GSE114917_LP2           1             0             0             0
+K12MG_GSE114917_LP3           1             0             0             0
+K12MG_GSE114917_LP4           1             0             0             0
+K12MG_GSE40313_1              1             1             0             0
+K12MG_GSE40313_2              1             1             0             0
+K12MG_GSE54199_DNA            1             0             1             0
+K12MG_GSE54199_RNA            1             0             1             0
+K12MG_GSE60522_1              1             0             0             1
+K12MG_GSE60522_2              1             0             0             1
+K12MG_GSE60522_3              1             0             0             1
+                    expIDGSE73673 expIDGSE85914 expIDGSE94978 expIDGSE98890
+ATCC_GSE94978_1                 0             0             1             0
+ATCC_GSE94978_2                 0             0             1             0
+BW25113_GSE73673_6              1             0             0             0
+BW25113_GSE73673_7              1             0             0             0
+BW25113_GSE73673_8              1             0             0             0
+BW25113_GSE85914                0             1             0             0
+K12DH_GSE98890_1                0             0             0             1
+K12DH_GSE98890_2                0             0             0             1
+K12MG_GSE114917_LP1             0             0             0             0
+K12MG_GSE114917_LP2             0             0             0             0
+K12MG_GSE114917_LP3             0             0             0             0
+K12MG_GSE114917_LP4             0             0             0             0
+K12MG_GSE40313_1                0             0             0             0
+K12MG_GSE40313_2                0             0             0             0
+K12MG_GSE54199_DNA              0             0             0             0
+K12MG_GSE54199_RNA              0             0             0             0
+K12MG_GSE60522_1                0             0             0             0
+K12MG_GSE60522_2                0             0             0             0
+K12MG_GSE60522_3                0             0             0             0
+                    expIDGSE114917:ind.n2 expIDGSE40313:ind.n2
+ATCC_GSE94978_1                         0                    0
+ATCC_GSE94978_2                         0                    0
+BW25113_GSE73673_6                      0                    0
+BW25113_GSE73673_7                      0                    0
+BW25113_GSE73673_8                      0                    0
+BW25113_GSE85914                        0                    0
+K12DH_GSE98890_1                        0                    0
+K12DH_GSE98890_2                        0                    0
+K12MG_GSE114917_LP1                     0                    0
+K12MG_GSE114917_LP2                     1                    0
+K12MG_GSE114917_LP3                     0                    0
+K12MG_GSE114917_LP4                     0                    0
+K12MG_GSE40313_1                        0                    0
+K12MG_GSE40313_2                        0                    1
+K12MG_GSE54199_DNA                      0                    0
+K12MG_GSE54199_RNA                      0                    0
+K12MG_GSE60522_1                        0                    0
+K12MG_GSE60522_2                        0                    0
+K12MG_GSE60522_3                        0                    0
+                    expIDGSE54199:ind.n2 expIDGSE60522:ind.n2
+ATCC_GSE94978_1                        0                    0
+ATCC_GSE94978_2                        0                    0
+BW25113_GSE73673_6                     0                    0
+BW25113_GSE73673_7                     0                    0
+BW25113_GSE73673_8                     0                    0
+BW25113_GSE85914                       0                    0
+K12DH_GSE98890_1                       0                    0
+K12DH_GSE98890_2                       0                    0
+K12MG_GSE114917_LP1                    0                    0
+K12MG_GSE114917_LP2                    0                    0
+K12MG_GSE114917_LP3                    0                    0
+K12MG_GSE114917_LP4                    0                    0
+K12MG_GSE40313_1                       0                    0
+K12MG_GSE40313_2                       0                    0
+K12MG_GSE54199_DNA                     0                    0
+K12MG_GSE54199_RNA                     1                    0
+K12MG_GSE60522_1                       0                    0
+K12MG_GSE60522_2                       0                    1
+K12MG_GSE60522_3                       0                    0
+                    expIDGSE73673:ind.n2 expIDGSE94978:ind.n2
+ATCC_GSE94978_1                        0                    0
+ATCC_GSE94978_2                        0                    1
+BW25113_GSE73673_6                     0                    0
+BW25113_GSE73673_7                     1                    0
+BW25113_GSE73673_8                     0                    0
+BW25113_GSE85914                       0                    0
+K12DH_GSE98890_1                       0                    0
+K12DH_GSE98890_2                       0                    0
+K12MG_GSE114917_LP1                    0                    0
+K12MG_GSE114917_LP2                    0                    0
+K12MG_GSE114917_LP3                    0                    0
+K12MG_GSE114917_LP4                    0                    0
+K12MG_GSE40313_1                       0                    0
+K12MG_GSE40313_2                       0                    0
+K12MG_GSE54199_DNA                     0                    0
+K12MG_GSE54199_RNA                     0                    0
+K12MG_GSE60522_1                       0                    0
+K12MG_GSE60522_2                       0                    0
+K12MG_GSE60522_3                       0                    0
+                    expIDGSE98890:ind.n2 expIDGSE114917:ind.n3
+ATCC_GSE94978_1                        0                     0
+ATCC_GSE94978_2                        0                     0
+BW25113_GSE73673_6                     0                     0
+BW25113_GSE73673_7                     0                     0
+BW25113_GSE73673_8                     0                     0
+BW25113_GSE85914                       0                     0
+K12DH_GSE98890_1                       0                     0
+K12DH_GSE98890_2                       1                     0
+K12MG_GSE114917_LP1                    0                     0
+K12MG_GSE114917_LP2                    0                     0
+K12MG_GSE114917_LP3                    0                     1
+K12MG_GSE114917_LP4                    0                     0
+K12MG_GSE40313_1                       0                     0
+K12MG_GSE40313_2                       0                     0
+K12MG_GSE54199_DNA                     0                     0
+K12MG_GSE54199_RNA                     0                     0
+K12MG_GSE60522_1                       0                     0
+K12MG_GSE60522_2                       0                     0
+K12MG_GSE60522_3                       0                     0
+                    expIDGSE60522:ind.n3 expIDGSE73673:ind.n3
+ATCC_GSE94978_1                        0                    0
+ATCC_GSE94978_2                        0                    0
+BW25113_GSE73673_6                     0                    0
+BW25113_GSE73673_7                     0                    0
+BW25113_GSE73673_8                     0                    1
+BW25113_GSE85914                       0                    0
+K12DH_GSE98890_1                       0                    0
+K12DH_GSE98890_2                       0                    0
+K12MG_GSE114917_LP1                    0                    0
+K12MG_GSE114917_LP2                    0                    0
+K12MG_GSE114917_LP3                    0                    0
+K12MG_GSE114917_LP4                    0                    0
+K12MG_GSE40313_1                       0                    0
+K12MG_GSE40313_2                       0                    0
+K12MG_GSE54199_DNA                     0                    0
+K12MG_GSE54199_RNA                     0                    0
+K12MG_GSE60522_1                       0                    0
+K12MG_GSE60522_2                       0                    0
+K12MG_GSE60522_3                       1                    0
+                    expIDGSE114917:ind.n4 expIDGSE94978:treatment1
+ATCC_GSE94978_1                         0                        1
+ATCC_GSE94978_2                         0                        1
+BW25113_GSE73673_6                      0                        0
+BW25113_GSE73673_7                      0                        0
+BW25113_GSE73673_8                      0                        0
+BW25113_GSE85914                        0                        0
+K12DH_GSE98890_1                        0                        0
+K12DH_GSE98890_2                        0                        0
+K12MG_GSE114917_LP1                     0                        0
+K12MG_GSE114917_LP2                     0                        0
+K12MG_GSE114917_LP3                     0                        0
+K12MG_GSE114917_LP4                     1                        0
+K12MG_GSE40313_1                        0                        0
+K12MG_GSE40313_2                        0                        0
+K12MG_GSE54199_DNA                      0                        0
+K12MG_GSE54199_RNA                      0                        0
+K12MG_GSE60522_1                        0                        0
+K12MG_GSE60522_2                        0                        0
+K12MG_GSE60522_3                        0                        0
+                    expIDGSE98890:treatment1
+ATCC_GSE94978_1                            0
+ATCC_GSE94978_2                            0
+BW25113_GSE73673_6                         0
+BW25113_GSE73673_7                         0
+BW25113_GSE73673_8                         0
+BW25113_GSE85914                           0
+K12DH_GSE98890_1                           1
+K12DH_GSE98890_2                           1
+K12MG_GSE114917_LP1                        0
+K12MG_GSE114917_LP2                        0
+K12MG_GSE114917_LP3                        0
+K12MG_GSE114917_LP4                        0
+K12MG_GSE40313_1                           0
+K12MG_GSE40313_2                           0
+K12MG_GSE54199_DNA                         0
+K12MG_GSE54199_RNA                         0
+K12MG_GSE60522_1                           0
+K12MG_GSE60522_2                           0
+K12MG_GSE60522_3                           0
 [1] "Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked"
       ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
 b3820             159             240                  4                  5
