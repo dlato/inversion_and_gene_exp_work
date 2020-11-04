@@ -1300,11 +1300,12 @@ print("#########################################################################
 print("CORRELATION TESTS FOR GRAINGER 2006 cutoff DATA")
 print("################################################################################")
 print("hns")
-sub_g_dat$start <- as.numeric(sub_g_dat$start)
-sub_g_dat$end <- as.numeric(sub_g_dat$end)
+head(sub_g_dat)
+sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
+sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
 hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
 colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
-class2 <- rep("HNS_Binding",length(hns_dat$start))
+class2 <- rep("G_HNS_Binding",length(hns_dat$start))
 hns_dat <- cbind(hns_dat,class2)
 hns_cor_d <- hns_dat
 head(hns_cor_d)
@@ -1347,7 +1348,12 @@ names(cor_dat)[names(cor_dat)=="overlap"] <- "G_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
 cor_dat$G_HNS_binding <- as.integer(cor_dat$G_HNS_binding)
 cor_dat$sig <- as.integer(cor_dat$sig)
+cor_dat$inversion <- as.integer(cor_dat$inversion)
 head(cor_dat)
+tail(cor_dat)
+summary(cor_dat)
+print("cor_dat")
+cor_dat %>% filter(sig == 1)
 
 
 print("################################################################################")
@@ -1368,8 +1374,9 @@ print("#########################################################################
 print("CORRELATION TESTS FOR UEDA 2013 cutoff DATA")
 print("################################################################################")
 print("hns")
-sub_u_dat$start <- as.numeric(sub_u_dat$start)
-sub_u_dat$end <- as.numeric(sub_u_dat$end)
+head(sub_u_dat)
+sub_u_dat$start <- as.numeric(as.character(sub_u_dat$start))
+sub_u_dat$end <- as.numeric(as.character(sub_u_dat$end))
 hns_dat <- within(sub_u_dat, midpoint <- (end + start) /2)
 colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
 class2 <- rep("U_HNS_Binding",length(hns_dat$start))
@@ -1436,10 +1443,11 @@ print("#########################################################################
 print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding DATA")
 print("################################################################################")
 print("hns")
+head(sub_h_df)
 sub_h_df <- sub_h_df %>%
             filter(HNS_binding == TRUE)
-sub_h_df$start <- as.numeric(sub_h_df$start)
-sub_h_df$end <- as.numeric(sub_h_df$end)
+sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
+sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
 hns_dat <- sub_h_df
 class2 <- rep("H1_HNS_Binding",length(hns_dat$start))
 hns_dat <- cbind(hns_dat,class2)
@@ -1508,8 +1516,8 @@ print("hns")
 sub_hnc_dat <- sub_hnc_dat %>%
             filter(HNS == TRUE) %>%
             select(start,end)
-sub_hnc_dat$start <- as.numeric(sub_hnc_dat$start)
-sub_hnc_dat$end <- as.numeric(sub_hnc_dat$end)
+sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
 #combine coding higashi with non-cod criteria 1
 sub_h_df <- sub_h_df %>%
             filter(HNS_transcript == TRUE)
@@ -1585,8 +1593,8 @@ print("hns")
 sub_hnc_dat <- sub_hnc_dat %>%
             filter(TtoT == TRUE) %>%
             select(start,end)
-sub_hnc_dat$start <- as.numeric(sub_hnc_dat$start)
-sub_hnc_dat$end <- as.numeric(sub_hnc_dat$end)
+sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
 #combine coding higashi with non-cod criteria 1
 sub_h_df <- sub_h_df %>%
             filter(HNS_transcript == TRUE) 
@@ -1662,8 +1670,8 @@ print("hns")
 sub_hnc_dat <- sub_hnc_dat %>%
             filter(known_promoter == TRUE) %>%
             select(start,end)
-sub_hnc_dat$start <- as.numeric(sub_hnc_dat$start)
-sub_hnc_dat$end <- as.numeric(sub_hnc_dat$end)
+sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
 #combine coding higashi with non-cod criteria 1
 sub_h_df <- sub_h_df %>%
             filter(HNS_transcript == TRUE) 
@@ -1738,8 +1746,8 @@ print("#########################################################################
 print("hns")
 sub_h_df <- sub_h_df %>%
             filter(HNS_cutoff == TRUE)
-sub_h_df$start <- as.numeric(sub_h_df$start)
-sub_h_df$end <- as.numeric(sub_h_df$end)
+sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
+sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
 hns_dat <- sub_h_df
 class2 <- rep("H2_HNS_Binding",length(hns_dat$start))
 hns_dat <- cbind(hns_dat,class2)
@@ -1807,8 +1815,8 @@ print("#########################################################################
 print("hns")
 sub_h_df <- sub_h_df %>%
             filter(HNS_transcript == TRUE)
-sub_h_df$start <- as.numeric(sub_h_df$start)
-sub_h_df$end <- as.numeric(sub_h_df$end)
+sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
+sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
 hns_dat <- sub_h_df
 class2 <- rep("H3_HNS_Binding",length(hns_dat$start))
 hns_dat <- cbind(hns_dat,class2)
