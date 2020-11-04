@@ -946,9 +946,19 @@ print("DE btwn experiments")
 deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  expID)
 deseq_results <- DESeq(deseq2Data)
 print("done deseq")
-deseq_results2 <- results(deseq_results, alpha=0.05)
+deseq_results2 <- results(deseq_results,alpha=0.05)
 # alpha = 0.05 is the  "cut-off" for significance (not really - I will
 # discuss).
+print("summary")
+summary(deseq_results2)
+print("DE btwn treatments")
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  treatment)
+deseq_results <- DESeq(deseq2Data)
+print("done deseq")
+deseq_results2 <- results(deseq_results, contrast = c("treatment", 1,0),  alpha=0.05)
+# alpha = 0.05 is the  "cut-off" for significance (not really - I will
+# discuss).
+deseq_results2 <- deseq_results2[order(deseq_results2$pvalue),]
 print("summary")
 summary(deseq_results2)
 print("check PCA")
@@ -956,8 +966,13 @@ for_pca <- rlog(deseq_results,
                 blind = TRUE)
 pdf("DESeq_all_tax_2Nov20.pdf")
 plotPCA(for_pca, 
-        intgroup=c("strain"),
-        ntop = 2000) 
+        intgroup=c("expID"),
+        ntop = 10000) 
+dev.off()
+print("check pvalue dist")
+pdf("DESeqtreatment_pval_dist.pdf")
+ggplot(data = as.data.frame(deseq_results2), aes(x = pvalue)) + 
+  geom_histogram(bins = 100)
 dev.off()
 ##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain + treatment)
 ##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + expID:ind.n + expID:treatment)
