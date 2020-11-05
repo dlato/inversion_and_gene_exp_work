@@ -1880,8 +1880,23 @@ cor.test(cor_dat$inversion, cor_dat$H3_HNS_binding,
 
 
 
-##print("combine all the hns binding info into one df")
+print("checking overlap between HNS binding sites in all datasets")
+print("total HNS binding sites for each dataset")
+inver_cor_d %>%
+gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
+group_by(x)%>%
+tally(value == 1)
 
+tmp_d <- inver_cor_d%>% select(G_HNS_binding:H3_HNS_binding) %>%
+         filter( G_HNS_binding ==1 | U_HNS_binding == 1 | H1_HNS_binding == 1 | H1nc1_HNS_binding == 1| H1nc2_HNS_binding == 1 | H1nc3_HNS_binding == 1| H2_HNS_binding == 1 | H3_HNS_binding == 1) 
+print("total number of genes/blocks")
+length(tmp_d$G_HNS_binding)
+print("total number of rows where HNS binding is the same for all datasets")
+sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
+
+#gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
+#group_by(x)%>%
+#tally(value == 1)
 
 ##print("combine all the hns binding info into one df")
 ###except W3 bc it has different gene names
