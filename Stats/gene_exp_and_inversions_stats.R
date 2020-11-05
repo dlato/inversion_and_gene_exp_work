@@ -465,6 +465,7 @@ block_df_w <- melt(block_df_uniq,
     variable.name="test",
     value.name="pvalue"
 )
+summary(block_df_w)
 print("non zero pvals") 
 complete_block_df <- block_df_w[which(block_df_w$pvalue != "NA"),]
 complete_block_df <- complete_block_df %>% filter(test == "block_w_pvalue")
@@ -1352,8 +1353,6 @@ cor_dat$inversion <- as.integer(cor_dat$inversion)
 head(cor_dat)
 tail(cor_dat)
 summary(cor_dat)
-print("cor_dat")
-cor_dat %>% filter(sig == 1)
 
 
 print("################################################################################")
