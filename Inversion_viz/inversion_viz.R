@@ -51,12 +51,12 @@ print("INVERSION VISUALIZATION PARALLEL SETS")
 print("###############################################################################")
 print("read in block info file")
 file_name <- "inversion_block_info_all.txt"
-#file_name <- "Inversion_viz/inversion_block_info_all_ATCC_revcomp.txt"
+file_name <- "Inversion_viz/inversion_block_info_all_ATCC_revcomp.txt"
 block_inf <- read.table(file_name,sep = "\t", header = FALSE)
 colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
 summary(block_inf)
-#block_inf$strain <- factor(block_inf$strain, c("U00096", "NC_010473", "NZ_CP009273", "NZ_CP009072"))
-block_inf$strain <- factor(block_inf$strain, c("U00096000", "NC_010473", "NZ_CP009273", "CP009072"))
+block_inf$strain <- factor(block_inf$strain, c("U00096", "NC_010473", "NZ_CP009273", "NZ_CP009072"))
+#block_inf$strain <- factor(block_inf$strain, c("U00096000", "NC_010473", "NZ_CP009273", "CP009072"))
 print("make column of midpoint of each block")
 summary(block_inf)
 block_inf <- within(block_inf, midpoint <- (end + start) /2)
@@ -67,6 +67,11 @@ block_inf$midpoint <- as.numeric(block_inf$midpoint)
 #block_inf$midpoint <- as.numeric(block_inf$midpoint / 1000000)
 head(block_inf)
 
+tmpd <- block_inf %>% filter(strain == "NZ_CP009072")
+sum(tmpd$rev_comp)
+length(tmpd$rev_comp)
+
+
 #test rev comp the non-revcomp data
 manual_rev <- block_inf %>% filter(strain == "CP009072") %>%
               mutate(midpoint, as.numeric(abs(midpoint - 5130767)))
@@ -74,6 +79,8 @@ colnames(manual_rev)[8] <- "rev_midpoint"
 manual_rev <- manual_rev %>% select(!midpoint)
 head(manual_rev)
 colnames(manual_rev)[7] <- "midpoint"
+sum(manual_rev$rev_comp)
+length(manual_rev$rev_comp)
 
 other_t <- block_inf %>% filter(strain != "CP009072")
 head(other_t)
@@ -82,7 +89,7 @@ block_inf <- rbind(manual_rev,other_t)
 bi_dat <- block_inf %>% select(block,strain,midpoint)
 bi_dat <-  spread(bi_dat, strain, midpoint)
 head(bi_dat)
-bi_dat <- bi_dat[1:10,]
+#bi_dat <- bi_dat[1:10,]
 bi_dat <- bi_dat[order(bi_dat[,5],decreasing = FALSE),]
 bi_dat
 summary(bi_dat)
