@@ -1,4 +1,10 @@
 ##################
+# get csv files with ALL gene names for blast proteomes
+##################
+foreach x (*_blast_gene_names.txt)
+python3 parse_all_blast_names.py $x
+end
+##################
 # running all versions of blast/diamond
 ##################
 parallel -j 10 < default_blast_parallel
