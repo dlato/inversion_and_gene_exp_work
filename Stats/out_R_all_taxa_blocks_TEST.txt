@@ -41297,8 +41297,6 @@ null device
 4         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
 5         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
 6         1        1   ATCC block_w_pvalue 0.1428571429     no  no BlockX
-[1] 8220
-[1] 8220
       block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block1034 535405 540728 1743089.5      1740878 0.675647315217252
 2 Block1034 535405 540728 1743089.5      1742174 0.675647315217252
