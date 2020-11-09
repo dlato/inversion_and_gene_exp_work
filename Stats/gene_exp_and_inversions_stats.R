@@ -575,12 +575,12 @@ print("####################")
 print("BLOCK LENGTH INFO")
 print("####################")
 print("number of SIG blocks with inversion gene len > noninversions gene len")
-up <- df[which(df$len_reg == "up"),]
+up <- df[which(df$len_reg == "long"),]
 length(unique(up$block))
 print("percent of SIG blocks with inversions len > noninversion len")
 (length(unique(up$block)) / length(unique(df$block))) *100
 print("number of SIG blocks with inversion gene len < noninversions gene len")
-up <- df[which(df$len_reg == "down"),]
+up <- df[which(df$len_reg == "short"),]
 length(unique(up$block))
 print("percent of SIG blocks with inversions len < noninversion len")
 (length(unique(up$block)) / length(unique(df$block))) *100
@@ -999,7 +999,7 @@ print("DESeq on inversion combo 1")
 print("#############################################################")
 print("re-format sample info info format DESeq can recognize")
 #sampleData <- inver_combos_df %>% filter(inver_combo == 1)
-sampleData <- inver_combos_df %>% filter(inver_combo == 2147)
+sampleData <- inver_combos_df %>% filter(inver_combo == 2179)
 sampleData <- sampleData %>% select(sample, strain, expID, treatment)
 colnames(sampleData) <- c("replicates","strain","expID","treatment")
 rownames(sampleData) <- sampleData$replicates
