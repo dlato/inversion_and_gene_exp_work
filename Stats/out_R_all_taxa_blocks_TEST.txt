@@ -41264,5 +41264,3245 @@ null device
 4 Block289 2.3410395 yes block_avg_exp_invert  72.79216103
 5 Block312 2.4377710 yes block_avg_exp_invert 144.84877288
 6 Block316 2.4543795 yes block_avg_exp_invert  45.28139112
+     block midpoint sig                   class       avg_exp
+1 Block164 1.778905 yes    block_avg_exp_invert 28.9224244350
+2 Block164 1.778905 yes block_avg_exp_noninvert  0.3379578946
 null device 
           1 
+[1] "###################"
+[1] "# info about sig inversion blocks"
+[1] "###################"
+      block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block1034 535405 540728 1743089.5      1740878 0.675647315217252
+2 Block1034 535405 540728 1743089.5      1742174 0.675647315217252
+3 Block1034 535405 540728 1743089.5      1744015 0.675647315217252
+4 Block1034 535405 540728 1743089.5      1744784 0.675647315217252
+5 Block1034 535405 540728 1743089.5      1745287 0.675647315217252
+6 Block1033 543453 546061 1749780.0      1749273   2.3423278757203
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1 -163.983376782048 282.731638595168     217.238651173013
+2 -163.983376782048 282.731638595168     217.238651173013
+3 -163.983376782048 282.731638595168     217.238651173013
+4 -163.983376782048 282.731638595168     217.238651173013
+5 -163.983376782048 282.731638595168     217.238651173013
+6 -152.352305727151 695.259498513013      616.72183182262
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        157.864520266454                 5323                    5323
+2        157.864520266454                 5323                    5323
+3        157.864520266454                 5323                    5323
+4        157.864520266454                 5323                    5323
+5        157.864520266454                 5323                    5323
+6        345.268235429689                 2608                    2608
+  inversion rev_comp strain           test       pvalue allSig sig  class
+1         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+2         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+3         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+4         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+5         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+6         1        1   ATCC block_w_pvalue 0.1428571429     no  no BlockX
+      block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block1034 535405 540728 1743089.5      1740878 0.675647315217252
+2 Block1034 535405 540728 1743089.5      1742174 0.675647315217252
+3 Block1034 535405 540728 1743089.5      1744015 0.675647315217252
+4 Block1034 535405 540728 1743089.5      1744784 0.675647315217252
+5 Block1034 535405 540728 1743089.5      1745287 0.675647315217252
+6 Block1033 543453 546061 1749780.0      1749273   2.3423278757203
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1 -163.983376782048 282.731638595168     217.238651173013
+2 -163.983376782048 282.731638595168     217.238651173013
+3 -163.983376782048 282.731638595168     217.238651173013
+4 -163.983376782048 282.731638595168     217.238651173013
+5 -163.983376782048 282.731638595168     217.238651173013
+6 -152.352305727151 695.259498513013      616.72183182262
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        157.864520266454                 5323                    5323
+2        157.864520266454                 5323                    5323
+3        157.864520266454                 5323                    5323
+4        157.864520266454                 5323                    5323
+5        157.864520266454                 5323                    5323
+6        345.268235429689                 2608                    2608
+  inversion rev_comp strain           test       pvalue allSig sig  class
+1         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+2         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+3         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+4         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+5         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
+6         1        1   ATCC block_w_pvalue 0.1428571429     no  no BlockX
+  length
+1   5323
+2   5323
+3   5323
+4   5323
+5   5323
+6   2608
+[1] "diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  blocks_new$length[blocks_new$sig == "yes"] and blocks_new$length[blocks_new$sig == "no"]
+W = 4293494.5, p-value = 0.0000000000004728148
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "mean block length: sig blocks"
+[1] 12079.0057
+[1] "mean block length: non-sig blocks"
+[1] 11310.02902
+[1] "diff btwn POSITION of inversions that have sig gene exp or not?"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  blocks_new$midpoint[blocks_new$sig == "yes"] and blocks_new$midpoint[blocks_new$sig == "no"]
+W = 3894191, p-value = 0.09304934
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "unique df"
+   sig length     block  midpoint
+1   no   5323 Block1034 1743089.5
+6   no   2608 Block1033 1749780.0
+8   no   4480 Block1032 1756439.0
+10  no   2968 Block1030 1760287.0
+11  no   1830 Block1029 1762741.0
+12  no  10577 Block1028 1768995.5
+     sig length     block  midpoint
+8156  no   4480 Block1032  230225.0
+8158  no   2608 Block1033  233837.0
+8160  no   5323 Block1034  237899.5
+8166  no    285  Block940  205255.5
+8170  no   2651  Block788  848373.5
+8191  no   1957  Block301 2423958.5
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  sub_blocks_new$length[sub_blocks_new$sig == "yes"] and sub_blocks_new$length[sub_blocks_new$sig == "no"]
+W = 128286, p-value < 0.00000000000000022204
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "###################"
+[1] "# Distance from the origin info:"
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on rev_comp and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.6401244  -0.6333372  -0.6258426  -0.6194216   1.8747975  
+
+Coefficients:
+                     Estimate        Std. Error   z value            Pr(>|z|)
+(Intercept) -1.48113381354329  0.04634726825369 -31.95731 <0.0000000000000002
+midpoint    -0.00000003116114  0.00000003064296  -1.01691              0.3092
+               
+(Intercept) ***
+midpoint       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 11113.785  on 11817  degrees of freedom
+Residual deviance: 11112.751  on 11816  degrees of freedom
+AIC: 11116.751
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ gbk_midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.6398989  -0.6332385  -0.6258854  -0.6195998   1.8744317  
+
+Coefficients:
+                      Estimate        Std. Error   z value             Pr(>|z|)
+(Intercept)  -1.48191960688880  0.04635798436100 -31.96687 < 0.0000000000000002
+gbk_midpoint -0.00000003055364  0.00000003064657  -0.99697              0.31878
+                
+(Intercept)  ***
+gbk_midpoint    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 11113.785  on 11817  degrees of freedom
+Residual deviance: 11112.791  on 11816  degrees of freedom
+AIC: 11116.791
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on inversions and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.6842971  -1.4744412   0.7900155   0.8952848   0.9555195  
+
+Coefficients:
+                    Estimate       Std. Error  z value               Pr(>|z|)
+(Intercept) 0.54714963487281 0.03797509406771 14.40812 < 0.000000000000000222
+midpoint    0.00000021793783 0.00000002571011  8.47674 < 0.000000000000000222
+               
+(Intercept) ***
+midpoint    ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 14526.413  on 11817  degrees of freedom
+Residual deviance: 14454.068  on 11816  degrees of freedom
+AIC: 14458.068
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ gbk_midpoint, family = binomial, data = gei_dat, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.6842832  -1.4745135   0.7900536   0.8953176   0.9555378  
+
+Coefficients:
+                     Estimate       Std. Error  z value               Pr(>|z|)
+(Intercept)  0.54714774470129 0.03797908058550 14.40656 < 0.000000000000000222
+gbk_midpoint 0.00000021793557 0.00000002571327  8.47561 < 0.000000000000000222
+                
+(Intercept)  ***
+gbk_midpoint ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 14526.413  on 11817  degrees of freedom
+Residual deviance: 14454.087  on 11816  degrees of freedom
+AIC: 14458.087
+
+Number of Fisher Scoring iterations: 4
+
+[1] "#################################################################"
+[1] "SIG diff in gene exp blocks"
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = sig_blocks, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.8670714  -0.8137128  -0.7331836   1.5178000   1.7878183  
+
+Coefficients:
+                    Estimate       Std. Error  z value               Pr(>|z|)
+(Intercept) -1.3737134888459  0.1386795999139 -9.90566 < 0.000000000000000222
+midpoint     0.0000002239058  0.0000000840352  2.66443              0.0077119
+               
+(Intercept) ***
+midpoint    ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1198.8796  on 1052  degrees of freedom
+Residual deviance: 1191.7294  on 1051  degrees of freedom
+AIC: 1195.7294
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ gbk_midpoint, family = binomial, data = sig_blocks, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.8675503  -0.8138884  -0.7328090   1.5177908   1.7882490  
+
+Coefficients:
+                     Estimate       Std. Error  z value             Pr(>|z|)
+(Intercept)  -1.3746089011108  0.1386808492708 -9.91203 < 0.0000000000000002
+gbk_midpoint  0.0000002245430  0.0000000840242  2.67236             0.007532
+                
+(Intercept)  ***
+gbk_midpoint ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 1198.8796  on 1052  degrees of freedom
+Residual deviance: 1191.6865  on 1051  degrees of freedom
+AIC: 1195.6865
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on all blocks sig and dist (gbk_midpoint)"
+[1] "###################"
+      block          start              end             midpoint      
+ Block499: 153   Min.   : 213551   Min.   : 220048   Min.   :    345  
+ Block889: 124   1st Qu.:1263454   1st Qu.:1282024   1st Qu.: 482209  
+ Block893: 109   Median :2077614   Median :2091320   Median :1598432  
+ Block869: 102   Mean   :2413487   Mean   :2424895   Mean   :1346933  
+ Block485:  97   3rd Qu.:3517352   3rd Qu.:3530672   3rd Qu.:2142098  
+ Block475:  92   Max.   :4934562   Max.   :4941058   Max.   :2792216  
+ (Other) :7543                                                        
+  gbk_midpoint       block_t_stat       block_t_confinf1   block_t_confinf2  
+ Min.   :    134.0   Length:8220        Length:8220        Length:8220       
+ 1st Qu.: 484338.5   Class :character   Class :character   Class :character  
+ Median :1598553.0   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1346937.6                                                           
+ 3rd Qu.:2144286.0                                                           
+ Max.   :2793601.0                                                           
+                                                                             
+ block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+ Length:8220          Length:8220             Length:8220         
+ Class :character     Class :character        Class :character    
+ Mode  :character     Mode  :character        Mode  :character    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+ block_avg_len_noninvert   inversion    rev_comp             strain    
+ Length:8220             Min.   :1   Min.   :0.0000000   ATCC   :2116  
+ Class :character        1st Qu.:1   1st Qu.:0.0000000   BW25113:2047  
+ Mode  :character        Median :1   Median :0.0000000   K12DH  :2032  
+                         Mean   :1   Mean   :0.2576642   K12MG  :2025  
+                         3rd Qu.:1   3rd Qu.:1.0000000                 
+                         Max.   :1   Max.   :1.0000000                 
+                                                                       
+             test          pvalue               allSig         
+ block_w_pvalue:8220   Min.   :0.000128999   Length:8220       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466030598                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+      sig               class               length        
+ Min.   :0.0000000   Length:8220        Min.   :  285.00  
+ 1st Qu.:0.0000000   Class :character   1st Qu.: 5563.00  
+ Median :0.0000000   Mode  :character   Median : 9954.00  
+ Mean   :0.1281022                      Mean   :11408.54  
+ 3rd Qu.:0.0000000                      3rd Qu.:14887.00  
+ Max.   :1.0000000                      Max.   :38569.00  
+                                                          
+
+Call:
+glm(formula = sig ~ gbk_midpoint, family = binomial, data = sig_df, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.5264169  -0.5252967  -0.5224676  -0.5215633   2.0322103  
+
+Coefficients:
+                       Estimate         Std. Error   z value
+(Intercept)  -1.906390987405304  0.059818090669758 -31.86981
+gbk_midpoint -0.000000008518731  0.000000037177309  -0.22914
+                         Pr(>|z|)    
+(Intercept)  < 0.0000000000000002 ***
+gbk_midpoint              0.81876    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 6292.6247  on 8219  degrees of freedom
+Residual deviance: 6292.5722  on 8218  degrees of freedom
+AIC: 6296.5722
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on all blocks sig and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = sig ~ midpoint, family = binomial, data = sig_df, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.5263893  -0.5252843  -0.5224766  -0.5215779   2.0321478  
+
+Coefficients:
+                      Estimate         Std. Error   z value
+(Intercept) -1.906501568692895  0.059814355932307 -31.87365
+midpoint    -0.000000008436363  0.000000037172803  -0.22695
+                        Pr(>|z|)    
+(Intercept) < 0.0000000000000002 ***
+midpoint                 0.82046    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 6292.6247  on 8219  degrees of freedom
+Residual deviance: 6292.5732  on 8218  degrees of freedom
+AIC: 6296.5732
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on inverted blocks sig and dist (gbk_midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = sig ~ gbk_midpoint, family = binomial, data = sig_df, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.5264169  -0.5252967  -0.5224676  -0.5215633   2.0322103  
+
+Coefficients:
+                       Estimate         Std. Error   z value
+(Intercept)  -1.906390987405304  0.059818090669758 -31.86981
+gbk_midpoint -0.000000008518731  0.000000037177309  -0.22914
+                         Pr(>|z|)    
+(Intercept)  < 0.0000000000000002 ***
+gbk_midpoint              0.81876    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 6292.6247  on 8219  degrees of freedom
+Residual deviance: 6292.5722  on 8218  degrees of freedom
+AIC: 6296.5722
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on inverted blocks sig and dist (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = sig ~ midpoint, family = binomial, data = sig_df, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.5263893  -0.5252843  -0.5224766  -0.5215779   2.0321478  
+
+Coefficients:
+                      Estimate         Std. Error   z value
+(Intercept) -1.906501568692895  0.059814355932307 -31.87365
+midpoint    -0.000000008436363  0.000000037172803  -0.22695
+                        Pr(>|z|)    
+(Intercept) < 0.0000000000000002 ***
+midpoint                 0.82046    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 6292.6247  on 8219  degrees of freedom
+Residual deviance: 6292.5732  on 8218  degrees of freedom
+AIC: 6296.5732
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on STRAINS"
+[1] "# blocks with sig diff in gene exp btwn inverted and non-inverted seqs"
+[1] "###################"
+[1] "K12MG"
+  locus_tag gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id gbk_locus_tag
+1     b0001    thrL       190     255      1205245        thrL              
+2     b0002    thrA       337    2799      1206591        thrA              
+3     b0003    thrB      2801    3733      1208290        thrB              
+4     b0004    thrC      3734    5020      1209400        thrC              
+5     b0007    yaaJ      6529    7959      1212267        yaaJ              
+6     b0009     mog      9306    9893      1214622         mog              
+  gbk_strand     norm_exp  block      taxa start  end rev_comp inversion strain
+1          0  10.19978761 Block1 U00096000     0 5468        0         0  K12MG
+2          0 795.00779745 Block1 U00096000     0 5468        0         0  K12MG
+3          0 332.04580200 Block1 U00096000     0 5468        0         0  K12MG
+4          0 380.08004288 Block1 U00096000     0 5468        0         0  K12MG
+5          1  85.63047504 Block4 U00096000  5692 9904        0         0  K12MG
+6          0 109.29951695 Block4 U00096000  5692 9904        0         0  K12MG
+  gbk_old_locus_tag block_len midpoint block_tax_num block_w_pvalue
+1                        5468  1207757             4             NA
+2                        5468  1207757             4             NA
+3                        5468  1207757             4             NA
+4                        5468  1207757             4             NA
+5                        4212  1212821             4             NA
+6                        4212  1212821             4             NA
+  block_t_pvalue block_t_stat block_t_confinf1 block_t_confinf2
+1             NA           NA               NA               NA
+2             NA           NA               NA               NA
+3             NA           NA               NA               NA
+4             NA           NA               NA               NA
+5             NA           NA               NA               NA
+6             NA           NA               NA               NA
+  block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+1                   NA                      NA                   NA
+2                   NA                      NA                   NA
+3                   NA                      NA                   NA
+4                   NA                      NA                   NA
+5                   NA                      NA                   NA
+6                   NA                      NA                   NA
+  block_avg_len_noninvert
+1                      NA
+2                      NA
+3                      NA
+4                      NA
+5                      NA
+6                      NA
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on K12MG rev_comp (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+              Min                 1Q             Median                 3Q  
+-0.00000002107342  -0.00000002107342  -0.00000002107342  -0.00000002107342  
+              Max  
+-0.00000002107342  
+
+Coefficients:
+                                     Estimate                        Std. Error
+(Intercept)   -30.566068523540476320476955152 94361.067397068618447519838809967
+midpoint       -0.000000000000000000007438735     0.061697184189280940280752930
+             z value Pr(>|z|)
+(Intercept) -0.00032  0.99974
+midpoint     0.00000  1.00000
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 0.0000000000000000000  on 2909  degrees of freedom
+Residual deviance: 0.0000000000012922996  on 2908  degrees of freedom
+AIC: 4
+
+Number of Fisher Scoring iterations: 29
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on K12MG inversion (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.7594718  -1.4185209   0.7498172   0.9078077   1.0191839  
+
+Coefficients:
+                    Estimate       Std. Error z value          Pr(>|z|)    
+(Intercept) 0.38371572441991 0.07526568004791 5.09815 0.000000342989047 ***
+midpoint    0.00000035058025 0.00000005175557 6.77377 0.000000000012547 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3575.3304  on 2909  degrees of freedom
+Residual deviance: 3528.7062  on 2908  degrees of freedom
+AIC: 3532.7062
+
+Number of Fisher Scoring iterations: 4
+
+[1] "K12DH"
+     locus_tag gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1 ECDH10B_0001    thrL       190     255      1205245        thrL
+2 ECDH10B_0002    thrA       337    2799      1206591        thrA
+3 ECDH10B_0003    thrB      2801    3733      1208290        thrB
+4 ECDH10B_0004    thrC      3734    5020      1209400        thrC
+5 ECDH10B_0007    yaaJ      6529    7959      1212267            
+6 ECDH10B_0009    mogA      9306    9893      1214622         mog
+    gbk_locus_tag gbk_strand      norm_exp  block      taxa start  end rev_comp
+1 ECDH10B_RS00005          0   61.59354370 Block1 NC_010473     0 5468        0
+2 ECDH10B_RS00010          0 1271.68152038 Block1 NC_010473     0 5468        0
+3 ECDH10B_RS00015          0  264.75595861 Block1 NC_010473     0 5468        0
+4 ECDH10B_RS00020          0  340.09738790 Block1 NC_010473     0 5468        0
+5 ECDH10B_RS00040          1   61.27309217 Block4 NC_010473  5692 9904        0
+6 ECDH10B_RS00050          0  160.81252053 Block4 NC_010473  5692 9904        0
+  inversion strain gbk_old_locus_tag block_len midpoint block_tax_num
+1         0  K12DH                        5468  1207757             4
+2         0  K12DH                        5468  1207757             4
+3         0  K12DH                        5468  1207757             4
+4         0  K12DH                        5468  1207757             4
+5         0  K12DH                        4212  1212821             4
+6         0  K12DH                        4212  1212821             4
+  block_w_pvalue block_t_pvalue block_t_stat block_t_confinf1 block_t_confinf2
+1             NA             NA           NA               NA               NA
+2             NA             NA           NA               NA               NA
+3             NA             NA           NA               NA               NA
+4             NA             NA           NA               NA               NA
+5             NA             NA           NA               NA               NA
+6             NA             NA           NA               NA               NA
+  block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+1                   NA                      NA                   NA
+2                   NA                      NA                   NA
+3                   NA                      NA                   NA
+4                   NA                      NA                   NA
+5                   NA                      NA                   NA
+6                   NA                      NA                   NA
+  block_avg_len_noninvert
+1                      NA
+2                      NA
+3                      NA
+4                      NA
+5                      NA
+6                      NA
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on K12DH rev_comp (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-0.0620974  -0.0467477  -0.0307867  -0.0216270   3.7449995  
+
+Coefficients:
+                   Estimate      Std. Error  z value        Pr(>|z|)    
+(Intercept) -6.249920066535  1.069787391001 -5.84221 0.0000000051514 ***
+midpoint    -0.000001061967  0.000001119875 -0.94829         0.34298    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 33.152978  on 2926  degrees of freedom
+Residual deviance: 32.044287  on 2925  degrees of freedom
+AIC: 36.044287
+
+Number of Fisher Scoring iterations: 11
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on K12DH inversion (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.7683251  -1.4376377   0.7537324   0.9160754   1.0140622  
+
+Coefficients:
+                    Estimate       Std. Error z value          Pr(>|z|)    
+(Intercept) 0.39702936163045 0.07437221955084 5.33841 0.000000093765502 ***
+midpoint    0.00000034171449 0.00000005215305 6.55215 0.000000000056715 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3604.1753  on 2926  degrees of freedom
+Residual deviance: 3560.4639  on 2925  degrees of freedom
+AIC: 3564.4639
+
+Number of Fisher Scoring iterations: 4
+
+[1] "BW25113"
+  locus_tag gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id   gbk_locus_tag
+1     b0001               190     255      1205245             BW25113_RS00005
+2     b0002               337    2799      1206591             BW25113_RS00010
+3     b0003              2801    3733      1208290             BW25113_RS00015
+4     b0004              3734    5020      1209400             BW25113_RS00020
+5     b0007              6529    7959      1212267             BW25113_RS00040
+6     b0009              9306    9893      1214622             BW25113_RS00050
+  gbk_strand     norm_exp  block        taxa start  end rev_comp inversion
+1          0 139.13261355 Block1 NZ_CP009273     0 5468        0         0
+2          0 710.75141177 Block1 NZ_CP009273     0 5468        0         0
+3          0 430.08119171 Block1 NZ_CP009273     0 5468        0         0
+4          0 193.72748952 Block1 NZ_CP009273     0 5468        0         0
+5          1  15.88295322 Block4 NZ_CP009273  5692 9904        0         0
+6          0  28.09576864 Block4 NZ_CP009273  5692 9904        0         0
+   strain gbk_old_locus_tag block_len midpoint block_tax_num block_w_pvalue
+1 BW25113      BW25113_0001      5468  1207757             4             NA
+2 BW25113      BW25113_0002      5468  1207757             4             NA
+3 BW25113      BW25113_0003      5468  1207757             4             NA
+4 BW25113      BW25113_0004      5468  1207757             4             NA
+5 BW25113      BW25113_0007      4212  1212821             4             NA
+6 BW25113      BW25113_0009      4212  1212821             4             NA
+  block_t_pvalue block_t_stat block_t_confinf1 block_t_confinf2
+1             NA           NA               NA               NA
+2             NA           NA               NA               NA
+3             NA           NA               NA               NA
+4             NA           NA               NA               NA
+5             NA           NA               NA               NA
+6             NA           NA               NA               NA
+  block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+1                   NA                      NA                   NA
+2                   NA                      NA                   NA
+3                   NA                      NA                   NA
+4                   NA                      NA                   NA
+5                   NA                      NA                   NA
+6                   NA                      NA                   NA
+  block_avg_len_noninvert
+1                      NA
+2                      NA
+3                      NA
+4                      NA
+5                      NA
+6                      NA
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on BW25113 rev_comp (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+              Min                 1Q             Median                 3Q  
+-0.00000002107342  -0.00000002107342  -0.00000002107342  -0.00000002107342  
+              Max  
+-0.00000002107342  
+
+Coefficients:
+                                    Estimate                       Std. Error
+(Intercept)   -30.56606852353739611771743512 94107.09883440729754511266946793
+midpoint       -0.00000000000000000002129118     0.06142673040299216624671175
+             z value Pr(>|z|)
+(Intercept) -0.00032  0.99974
+midpoint     0.00000  1.00000
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 0.0000000000000000000  on 2935  degrees of freedom
+Residual deviance: 0.0000000000013038459  on 2934  degrees of freedom
+AIC: 4
+
+Number of Fisher Scoring iterations: 29
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on BW25113 inversion (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.7730810  -1.4117541   0.7428222   0.9066410   1.0259175  
+
+Coefficients:
+                   Estimate      Std. Error z value            Pr(>|z|)    
+(Intercept) 0.3654353506930 0.0750214817632 4.87108 0.00000110992047719 ***
+midpoint    0.0000003698481 0.0000000516538 7.16013 0.00000000000080598 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3600.7820  on 2935  degrees of freedom
+Residual deviance: 3548.6128  on 2934  degrees of freedom
+AIC: 3552.6128
+
+Number of Fisher Scoring iterations: 4
+
+[1] "ATCC"
+  locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1           DR76_RS00005         1    1278      1205662            
+2           DR76_RS00010      1275    2279      1206800            
+3           DR76_RS00015      2276    3241      1207781            
+4           DR76_RS00020      3215    3961      1208611            
+5           DR76_RS00025      4013    4831      1209445            
+6           DR76_RS00030      4896    5696      1210319            
+  gbk_locus_tag gbk_strand     norm_exp    block     taxa start   end rev_comp
+1                        0  6.407148557 Block611 CP009072     0 19237        0
+2                        0  9.374275240 Block611 CP009072     0 19237        0
+3                        0 12.994059477 Block611 CP009072     0 19237        0
+4                        1 36.333187983 Block611 CP009072     0 19237        0
+5                        1  8.955027464 Block611 CP009072     0 19237        0
+6                        1 54.367769580 Block611 CP009072     0 19237        0
+  inversion strain gbk_old_locus_tag block_len  midpoint block_tax_num
+1         0   ATCC            DR76_1     19237 1214641.5             4
+2         0   ATCC            DR76_2     19237 1214641.5             4
+3         0   ATCC            DR76_4     19237 1214641.5             4
+4         0   ATCC            DR76_3     19237 1214641.5             4
+5         0   ATCC            DR76_5     19237 1214641.5             4
+6         0   ATCC            DR76_6     19237 1214641.5             4
+  block_w_pvalue block_t_pvalue block_t_stat block_t_confinf1 block_t_confinf2
+1             NA             NA           NA               NA               NA
+2             NA             NA           NA               NA               NA
+3             NA             NA           NA               NA               NA
+4             NA             NA           NA               NA               NA
+5             NA             NA           NA               NA               NA
+6             NA             NA           NA               NA               NA
+  block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+1                   NA                      NA                   NA
+2                   NA                      NA                   NA
+3                   NA                      NA                   NA
+4                   NA                      NA                   NA
+5                   NA                      NA                   NA
+6                   NA                      NA                   NA
+  block_avg_len_noninvert
+1                      NA
+2                      NA
+3                      NA
+4                      NA
+5                      NA
+6                      NA
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on ATCC rev_comp (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = rev_comp ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.6507778  -1.5176031   0.7980762   0.8939541   0.9546603  
+
+Coefficients:
+                     Estimate        Std. Error  z value               Pr(>|z|)
+(Intercept)  1.07842891748871  0.08083848467647 13.34054 < 0.000000000000000222
+midpoint    -0.00000018952965  0.00000005156957 -3.67522             0.00023764
+               
+(Intercept) ***
+midpoint    ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3746.0553  on 3044  degrees of freedom
+Residual deviance: 3732.4935  on 3043  degrees of freedom
+AIC: 3736.4935
+
+Number of Fisher Scoring iterations: 4
+
+[1] "###################"
+[1] "# LOGISTIC REGRESSION on ATCC inversion (midpoint)"
+[1] "###################"
+
+Call:
+glm(formula = inversion ~ midpoint, family = binomial, data = tmp_bd, 
+    control = list(maxit = 1000))
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.6507778  -1.5176031   0.7980762   0.8939541   0.9546603  
+
+Coefficients:
+                     Estimate        Std. Error  z value               Pr(>|z|)
+(Intercept)  1.07842891748871  0.08083848467647 13.34054 < 0.000000000000000222
+midpoint    -0.00000018952965  0.00000005156957 -3.67522             0.00023764
+               
+(Intercept) ***
+midpoint    ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 3746.0553  on 3044  degrees of freedom
+Residual deviance: 3732.4935  on 3043  degrees of freedom
+AIC: 3736.4935
+
+Number of Fisher Scoring iterations: 4
+
+[1] "#############                 "
+[1] "## DESeq expression comparison"
+[1] "#############                 "
+[1] "getting total combos of inversions"
+     ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
+1                  1               1                  0                  0
+102                0               0                  0                  0
+2179               1               1                  0                  0
+     BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
+1                     0                0                0                0
+102                   0                0                0                0
+2179                  0                0                1                1
+     K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+1                      0                   0                   0
+102                    0                   0                   0
+2179                   0                   0                   0
+     K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+1                      0                0                0                  0
+102                    0                0                0                  0
+2179                   0                0                0                  0
+     K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+1                     0                0                0                0
+102                   0                0                0                0
+2179                  0                0                0                0
+  inver_combo treatment          sample strain    expID
+1           1         1 ATCC_GSE94978_1   ATCC GSE94978
+2         102         0 ATCC_GSE94978_1   ATCC GSE94978
+3        2179         1 ATCC_GSE94978_1   ATCC GSE94978
+4           1         1 ATCC_GSE94978_2   ATCC GSE94978
+5         102         0 ATCC_GSE94978_2   ATCC GSE94978
+6        2179         1 ATCC_GSE94978_2   ATCC GSE94978
+[1] "read in raw data file of all combined experiements"
+    ATCC_names        BW_names        DH_names MG_names ATCC_GSE94978_1
+1 DR76_RS03365 BW25113_RS19835 ECDH10B_RS20405    b3820             159
+2 DR76_RS03355 BW25113_RS19845 ECDH10B_RS20415    b3822            1643
+3 DR76_RS03350 BW25113_RS19850 ECDH10B_RS20420    b3823            2260
+4 DR76_RS03345 BW25113_RS19855 ECDH10B_RS20425    b3824             399
+5 DR76_RS03340 BW25113_RS19860 ECDH10B_RS20430    b3825            2506
+6 DR76_RS03335 BW25113_RS19865 ECDH10B_RS20435    b3826             946
+  ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7 BW25113_GSE73673_8
+1             240                  4                  5                  3
+2            1489                 19                 13                 16
+3            3060                 31                  6                  6
+4             364                  9                  2                  5
+5            2588                 18                  7                 10
+6            1313                 43                 20                 26
+  BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2 K12MG_GSE114917_LP1
+1               45               47               85                  11
+2               26              289              567                 439
+3               37              135              460                 212
+4              163               48              204                  35
+5              667              392             1059                 510
+6              129              195              474                 281
+  K12MG_GSE114917_LP2 K12MG_GSE114917_LP3 K12MG_GSE114917_LP4 K12MG_GSE40313_1
+1                   9                  10                  26                4
+2                 313                 258                 500               88
+3                 170                 153                 137               61
+4                  24                  21                  19               18
+5                 414                 377                 368              149
+6                 290                 218                 267               70
+  K12MG_GSE40313_2 K12MG_GSE54199_DNA K12MG_GSE54199_RNA K12MG_GSE60522_1
+1               10              71286              15081              115
+2              125             251616              78116              414
+3               98              87975              43191              193
+4               23              94226              22085               83
+5              194             134028              73142              310
+6              111             125536              55234              291
+  K12MG_GSE60522_2 K12MG_GSE60522_3
+1              144              171
+2              325              312
+3              188              241
+4               60               86
+5              199              308
+6              252              245
+[1] "duplicates"
+ [1] ATCC_names          BW_names            DH_names           
+ [4] MG_names            ATCC_GSE94978_1     ATCC_GSE94978_2    
+ [7] BW25113_GSE73673_6  BW25113_GSE73673_7  BW25113_GSE73673_8 
+[10] BW25113_GSE85914    K12DH_GSE98890_1    K12DH_GSE98890_2   
+[13] K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+[16] K12MG_GSE114917_LP4 K12MG_GSE40313_1    K12MG_GSE40313_2   
+[19] K12MG_GSE54199_DNA  K12MG_GSE54199_RNA  K12MG_GSE60522_1   
+[22] K12MG_GSE60522_2    K12MG_GSE60522_3   
+<0 rows> (or 0-length row.names)
+  MG_names ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6
+1    b3820             159             240                  4
+2    b3822            1643            1489                 19
+3    b3823            2260            3060                 31
+4    b3824             399             364                  9
+5    b3825            2506            2588                 18
+6    b3826             946            1313                 43
+  BW25113_GSE73673_7 BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1
+1                  5                  3               45               47
+2                 13                 16               26              289
+3                  6                  6               37              135
+4                  2                  5              163               48
+5                  7                 10              667              392
+6                 20                 26              129              195
+  K12DH_GSE98890_2 K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+1               85                  11                   9                  10
+2              567                 439                 313                 258
+3              460                 212                 170                 153
+4              204                  35                  24                  21
+5             1059                 510                 414                 377
+6              474                 281                 290                 218
+  K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+1                  26                4               10              71286
+2                 500               88              125             251616
+3                 137               61               98              87975
+4                  19               18               23              94226
+5                 368              149              194             134028
+6                 267               70              111             125536
+  K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+1              15081              115              144              171
+2              78116              414              325              312
+3              43191              193              188              241
+4              22085               83               60               86
+5              73142              310              199              308
+6              55234              291              252              245
+      ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
+b3820             159             240                  4                  5
+b3822            1643            1489                 19                 13
+b3823            2260            3060                 31                  6
+b3824             399             364                  9                  2
+b3825            2506            2588                 18                  7
+b3826             946            1313                 43                 20
+      BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
+b3820                  3               45               47               85
+b3822                 16               26              289              567
+b3823                  6               37              135              460
+b3824                  5              163               48              204
+b3825                 10              667              392             1059
+b3826                 26              129              195              474
+      K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+b3820                  11                   9                  10
+b3822                 439                 313                 258
+b3823                 212                 170                 153
+b3824                  35                  24                  21
+b3825                 510                 414                 377
+b3826                 281                 290                 218
+      K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+b3820                  26                4               10              71286
+b3822                 500               88              125             251616
+b3823                 137               61               98              87975
+b3824                  19               18               23              94226
+b3825                 368              149              194             134028
+b3826                 267               70              111             125536
+      K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+b3820              15081              115              144              171
+b3822              78116              414              325              312
+b3823              43191              193              188              241
+b3824              22085               83               60               86
+b3825              73142              310              199              308
+b3826              55234              291              252              245
+[1] "#############################################################"
+[1] "DESeq on inversion combo 1"
+[1] "#############################################################"
+[1] "re-format sample info info format DESeq can recognize"
+                     strain     expID treatment ind.n
+ATCC_GSE94978_1        ATCC  GSE94978         1     1
+ATCC_GSE94978_2        ATCC  GSE94978         1     2
+BW25113_GSE73673_6  BW25113  GSE73673         0     1
+BW25113_GSE73673_7  BW25113  GSE73673         0     2
+BW25113_GSE73673_8  BW25113  GSE73673         0     3
+BW25113_GSE85914    BW25113  GSE85914         0     1
+K12DH_GSE98890_1      K12DH  GSE98890         1     1
+K12DH_GSE98890_2      K12DH  GSE98890         1     2
+K12MG_GSE114917_LP1   K12MG GSE114917         0     1
+K12MG_GSE114917_LP2   K12MG GSE114917         0     2
+K12MG_GSE114917_LP3   K12MG GSE114917         0     3
+K12MG_GSE114917_LP4   K12MG GSE114917         0     4
+K12MG_GSE40313_1      K12MG  GSE40313         0     1
+K12MG_GSE40313_2      K12MG  GSE40313         0     2
+K12MG_GSE54199_DNA    K12MG  GSE54199         0     1
+K12MG_GSE54199_RNA    K12MG  GSE54199         0     2
+K12MG_GSE60522_1      K12MG  GSE60522         0     1
+K12MG_GSE60522_2      K12MG  GSE60522         0     2
+K12MG_GSE60522_3      K12MG  GSE60522         0     3
+                    (Intercept) expIDGSE40313 expIDGSE54199 expIDGSE60522
+ATCC_GSE94978_1               1             0             0             0
+ATCC_GSE94978_2               1             0             0             0
+BW25113_GSE73673_6            1             0             0             0
+BW25113_GSE73673_7            1             0             0             0
+BW25113_GSE73673_8            1             0             0             0
+BW25113_GSE85914              1             0             0             0
+K12DH_GSE98890_1              1             0             0             0
+K12DH_GSE98890_2              1             0             0             0
+K12MG_GSE114917_LP1           1             0             0             0
+K12MG_GSE114917_LP2           1             0             0             0
+K12MG_GSE114917_LP3           1             0             0             0
+K12MG_GSE114917_LP4           1             0             0             0
+K12MG_GSE40313_1              1             1             0             0
+K12MG_GSE40313_2              1             1             0             0
+K12MG_GSE54199_DNA            1             0             1             0
+K12MG_GSE54199_RNA            1             0             1             0
+K12MG_GSE60522_1              1             0             0             1
+K12MG_GSE60522_2              1             0             0             1
+K12MG_GSE60522_3              1             0             0             1
+                    expIDGSE73673 expIDGSE85914 expIDGSE94978 expIDGSE98890
+ATCC_GSE94978_1                 0             0             1             0
+ATCC_GSE94978_2                 0             0             1             0
+BW25113_GSE73673_6              1             0             0             0
+BW25113_GSE73673_7              1             0             0             0
+BW25113_GSE73673_8              1             0             0             0
+BW25113_GSE85914                0             1             0             0
+K12DH_GSE98890_1                0             0             0             1
+K12DH_GSE98890_2                0             0             0             1
+K12MG_GSE114917_LP1             0             0             0             0
+K12MG_GSE114917_LP2             0             0             0             0
+K12MG_GSE114917_LP3             0             0             0             0
+K12MG_GSE114917_LP4             0             0             0             0
+K12MG_GSE40313_1                0             0             0             0
+K12MG_GSE40313_2                0             0             0             0
+K12MG_GSE54199_DNA              0             0             0             0
+K12MG_GSE54199_RNA              0             0             0             0
+K12MG_GSE60522_1                0             0             0             0
+K12MG_GSE60522_2                0             0             0             0
+K12MG_GSE60522_3                0             0             0             0
+                    expIDGSE114917:ind.n2 expIDGSE40313:ind.n2
+ATCC_GSE94978_1                         0                    0
+ATCC_GSE94978_2                         0                    0
+BW25113_GSE73673_6                      0                    0
+BW25113_GSE73673_7                      0                    0
+BW25113_GSE73673_8                      0                    0
+BW25113_GSE85914                        0                    0
+K12DH_GSE98890_1                        0                    0
+K12DH_GSE98890_2                        0                    0
+K12MG_GSE114917_LP1                     0                    0
+K12MG_GSE114917_LP2                     1                    0
+K12MG_GSE114917_LP3                     0                    0
+K12MG_GSE114917_LP4                     0                    0
+K12MG_GSE40313_1                        0                    0
+K12MG_GSE40313_2                        0                    1
+K12MG_GSE54199_DNA                      0                    0
+K12MG_GSE54199_RNA                      0                    0
+K12MG_GSE60522_1                        0                    0
+K12MG_GSE60522_2                        0                    0
+K12MG_GSE60522_3                        0                    0
+                    expIDGSE54199:ind.n2 expIDGSE60522:ind.n2
+ATCC_GSE94978_1                        0                    0
+ATCC_GSE94978_2                        0                    0
+BW25113_GSE73673_6                     0                    0
+BW25113_GSE73673_7                     0                    0
+BW25113_GSE73673_8                     0                    0
+BW25113_GSE85914                       0                    0
+K12DH_GSE98890_1                       0                    0
+K12DH_GSE98890_2                       0                    0
+K12MG_GSE114917_LP1                    0                    0
+K12MG_GSE114917_LP2                    0                    0
+K12MG_GSE114917_LP3                    0                    0
+K12MG_GSE114917_LP4                    0                    0
+K12MG_GSE40313_1                       0                    0
+K12MG_GSE40313_2                       0                    0
+K12MG_GSE54199_DNA                     0                    0
+K12MG_GSE54199_RNA                     1                    0
+K12MG_GSE60522_1                       0                    0
+K12MG_GSE60522_2                       0                    1
+K12MG_GSE60522_3                       0                    0
+                    expIDGSE73673:ind.n2 expIDGSE94978:ind.n2
+ATCC_GSE94978_1                        0                    0
+ATCC_GSE94978_2                        0                    1
+BW25113_GSE73673_6                     0                    0
+BW25113_GSE73673_7                     1                    0
+BW25113_GSE73673_8                     0                    0
+BW25113_GSE85914                       0                    0
+K12DH_GSE98890_1                       0                    0
+K12DH_GSE98890_2                       0                    0
+K12MG_GSE114917_LP1                    0                    0
+K12MG_GSE114917_LP2                    0                    0
+K12MG_GSE114917_LP3                    0                    0
+K12MG_GSE114917_LP4                    0                    0
+K12MG_GSE40313_1                       0                    0
+K12MG_GSE40313_2                       0                    0
+K12MG_GSE54199_DNA                     0                    0
+K12MG_GSE54199_RNA                     0                    0
+K12MG_GSE60522_1                       0                    0
+K12MG_GSE60522_2                       0                    0
+K12MG_GSE60522_3                       0                    0
+                    expIDGSE98890:ind.n2 expIDGSE114917:ind.n3
+ATCC_GSE94978_1                        0                     0
+ATCC_GSE94978_2                        0                     0
+BW25113_GSE73673_6                     0                     0
+BW25113_GSE73673_7                     0                     0
+BW25113_GSE73673_8                     0                     0
+BW25113_GSE85914                       0                     0
+K12DH_GSE98890_1                       0                     0
+K12DH_GSE98890_2                       1                     0
+K12MG_GSE114917_LP1                    0                     0
+K12MG_GSE114917_LP2                    0                     0
+K12MG_GSE114917_LP3                    0                     1
+K12MG_GSE114917_LP4                    0                     0
+K12MG_GSE40313_1                       0                     0
+K12MG_GSE40313_2                       0                     0
+K12MG_GSE54199_DNA                     0                     0
+K12MG_GSE54199_RNA                     0                     0
+K12MG_GSE60522_1                       0                     0
+K12MG_GSE60522_2                       0                     0
+K12MG_GSE60522_3                       0                     0
+                    expIDGSE60522:ind.n3 expIDGSE73673:ind.n3
+ATCC_GSE94978_1                        0                    0
+ATCC_GSE94978_2                        0                    0
+BW25113_GSE73673_6                     0                    0
+BW25113_GSE73673_7                     0                    0
+BW25113_GSE73673_8                     0                    1
+BW25113_GSE85914                       0                    0
+K12DH_GSE98890_1                       0                    0
+K12DH_GSE98890_2                       0                    0
+K12MG_GSE114917_LP1                    0                    0
+K12MG_GSE114917_LP2                    0                    0
+K12MG_GSE114917_LP3                    0                    0
+K12MG_GSE114917_LP4                    0                    0
+K12MG_GSE40313_1                       0                    0
+K12MG_GSE40313_2                       0                    0
+K12MG_GSE54199_DNA                     0                    0
+K12MG_GSE54199_RNA                     0                    0
+K12MG_GSE60522_1                       0                    0
+K12MG_GSE60522_2                       0                    0
+K12MG_GSE60522_3                       1                    0
+                    expIDGSE114917:ind.n4 expIDGSE94978:treatment1
+ATCC_GSE94978_1                         0                        1
+ATCC_GSE94978_2                         0                        1
+BW25113_GSE73673_6                      0                        0
+BW25113_GSE73673_7                      0                        0
+BW25113_GSE73673_8                      0                        0
+BW25113_GSE85914                        0                        0
+K12DH_GSE98890_1                        0                        0
+K12DH_GSE98890_2                        0                        0
+K12MG_GSE114917_LP1                     0                        0
+K12MG_GSE114917_LP2                     0                        0
+K12MG_GSE114917_LP3                     0                        0
+K12MG_GSE114917_LP4                     1                        0
+K12MG_GSE40313_1                        0                        0
+K12MG_GSE40313_2                        0                        0
+K12MG_GSE54199_DNA                      0                        0
+K12MG_GSE54199_RNA                      0                        0
+K12MG_GSE60522_1                        0                        0
+K12MG_GSE60522_2                        0                        0
+K12MG_GSE60522_3                        0                        0
+                    expIDGSE98890:treatment1
+ATCC_GSE94978_1                            0
+ATCC_GSE94978_2                            0
+BW25113_GSE73673_6                         0
+BW25113_GSE73673_7                         0
+BW25113_GSE73673_8                         0
+BW25113_GSE85914                           0
+K12DH_GSE98890_1                           1
+K12DH_GSE98890_2                           1
+K12MG_GSE114917_LP1                        0
+K12MG_GSE114917_LP2                        0
+K12MG_GSE114917_LP3                        0
+K12MG_GSE114917_LP4                        0
+K12MG_GSE40313_1                           0
+K12MG_GSE40313_2                           0
+K12MG_GSE54199_DNA                         0
+K12MG_GSE54199_RNA                         0
+K12MG_GSE60522_1                           0
+K12MG_GSE60522_2                           0
+K12MG_GSE60522_3                           0
+[1] "Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked"
+      ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
+b3820             159             240                  4                  5
+b3822            1643            1489                 19                 13
+b3823            2260            3060                 31                  6
+b3824             399             364                  9                  2
+b3825            2506            2588                 18                  7
+b3826             946            1313                 43                 20
+      BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
+b3820                  3               45               47               85
+b3822                 16               26              289              567
+b3823                  6               37              135              460
+b3824                  5              163               48              204
+b3825                 10              667              392             1059
+b3826                 26              129              195              474
+      K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+b3820                  11                   9                  10
+b3822                 439                 313                 258
+b3823                 212                 170                 153
+b3824                  35                  24                  21
+b3825                 510                 414                 377
+b3826                 281                 290                 218
+      K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+b3820                  26                4               10              71286
+b3822                 500               88              125             251616
+b3823                 137               61               98              87975
+b3824                  19               18               23              94226
+b3825                 368              149              194             134028
+b3826                 267               70              111             125536
+      K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+b3820              15081              115              144              171
+b3822              78116              414              325              312
+b3823              43191              193              188              241
+b3824              22085               83               60               86
+b3825              73142              310              199              308
+b3826              55234              291              252              245
+[1] TRUE
+[1] "Order the treatments so that it is sensible: non-inversion (control) -> inversion"
+[1] "#############                 "
+[1] "## DESeq analysis accounting for experiment effect"
+[1] "#############                 "
+[1] "Create the DEseq2DataSet object"
+      ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
+b3820             159             240                  4                  5
+b3822            1643            1489                 19                 13
+b3823            2260            3060                 31                  6
+b3824             399             364                  9                  2
+b3825            2506            2588                 18                  7
+b3826             946            1313                 43                 20
+      BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
+b3820                  3               45               47               85
+b3822                 16               26              289              567
+b3823                  6               37              135              460
+b3824                  5              163               48              204
+b3825                 10              667              392             1059
+b3826                 26              129              195              474
+      K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
+b3820                  11                   9                  10
+b3822                 439                 313                 258
+b3823                 212                 170                 153
+b3824                  35                  24                  21
+b3825                 510                 414                 377
+b3826                 281                 290                 218
+      K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
+b3820                  26                4               10              71286
+b3822                 500               88              125             251616
+b3823                 137               61               98              87975
+b3824                  19               18               23              94226
+b3825                 368              149              194             134028
+b3826                 267               70              111             125536
+      K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
+b3820              15081              115              144              171
+b3822              78116              414              325              312
+b3823              43191              193              188              241
+b3824              22085               83               60               86
+b3825              73142              310              199              308
+b3826              55234              291              252              245
+                    strain    expID treatment ind.n
+ATCC_GSE94978_1       ATCC GSE94978         1     1
+ATCC_GSE94978_2       ATCC GSE94978         1     2
+BW25113_GSE73673_6 BW25113 GSE73673         0     1
+BW25113_GSE73673_7 BW25113 GSE73673         0     2
+BW25113_GSE73673_8 BW25113 GSE73673         0     3
+BW25113_GSE85914   BW25113 GSE85914         0     1
+[1] "DE btwn strains"
+[1] "done deseq"
+[1] "summary"
+
+out of 2766 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 89, 3.2% 
+LFC < 0 (down)   : 61, 2.2% 
+outliers [1]     : 158, 5.7% 
+low counts [2]   : 0, 0% 
+(mean count < 2)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
+[1] "DE btwn experiments"
+[1] "done deseq"
+[1] "summary"
+
+out of 2766 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 451, 16% 
+LFC < 0 (down)   : 560, 20% 
+outliers [1]     : 1, 0.036% 
+low counts [2]   : 54, 2% 
+(mean count < 21)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
+[1] "DE btwn treatments"
+[1] "done deseq"
+Formal class 'DESeqDataSet' [package "DESeq2"] with 8 slots
+  ..@ design            :Class 'formula' length 2 ~treatment
+  .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> 
+  ..@ dispersionFunction:function (q)  
+  .. ..- attr(*, "coefficients")= Named num [1:2] 0.925 24.347
+  .. .. ..- attr(*, "names")= chr [1:2] "asymptDisp" "extraPois"
+  .. ..- attr(*, "fitType")= chr "parametric"
+  .. ..- attr(*, "varLogDispEsts")= num 0.903
+  .. ..- attr(*, "dispPriorVar")= num 0.778
+  ..@ rowRanges         :Formal class 'GRangesList' [package "GenomicRanges"] with 5 slots
+  .. .. ..@ unlistData     :Formal class 'GRanges' [package "GenomicRanges"] with 6 slots
+  .. .. .. .. ..@ seqnames       :Formal class 'Rle' [package "S4Vectors"] with 4 slots
+  .. .. .. .. .. .. ..@ values         : Factor w/ 0 levels: 
+  .. .. .. .. .. .. ..@ lengths        : int(0) 
+  .. .. .. .. .. .. ..@ elementMetadata: NULL
+  .. .. .. .. .. .. ..@ metadata       : list()
+  .. .. .. .. ..@ ranges         :Formal class 'IRanges' [package "IRanges"] with 6 slots
+  .. .. .. .. .. .. ..@ start          : int(0) 
+  .. .. .. .. .. .. ..@ width          : int(0) 
+  .. .. .. .. .. .. ..@ NAMES          : NULL
+  .. .. .. .. .. .. ..@ elementType    : chr "integer"
+  .. .. .. .. .. .. ..@ elementMetadata: NULL
+  .. .. .. .. .. .. ..@ metadata       : list()
+  .. .. .. .. ..@ strand         :Formal class 'Rle' [package "S4Vectors"] with 4 slots
+  .. .. .. .. .. .. ..@ values         : Factor w/ 3 levels "+","-","*": 
+  .. .. .. .. .. .. ..@ lengths        : int(0) 
+  .. .. .. .. .. .. ..@ elementMetadata: NULL
+  .. .. .. .. .. .. ..@ metadata       : list()
+  .. .. .. .. ..@ elementMetadata:Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+  .. .. .. .. .. .. ..@ rownames       : NULL
+  .. .. .. .. .. .. ..@ nrows          : int 0
+  .. .. .. .. .. .. ..@ listData       : Named list()
+  .. .. .. .. .. .. ..@ elementType    : chr "ANY"
+  .. .. .. .. .. .. ..@ elementMetadata: NULL
+  .. .. .. .. .. .. ..@ metadata       : list()
+  .. .. .. .. ..@ seqinfo        :Formal class 'Seqinfo' [package "GenomeInfoDb"] with 4 slots
+  .. .. .. .. .. .. ..@ seqnames   : chr(0) 
+  .. .. .. .. .. .. ..@ seqlengths : int(0) 
+  .. .. .. .. .. .. ..@ is_circular: logi(0) 
+  .. .. .. .. .. .. ..@ genome     : chr(0) 
+  .. .. .. .. ..@ metadata       : list()
+  .. .. ..@ elementMetadata:Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+  .. .. .. .. ..@ rownames       : NULL
+  .. .. .. .. ..@ nrows          : int 2766
+  .. .. .. .. ..@ listData       :List of 28
+  .. .. .. .. .. ..$ baseMean                : num [1:2766] 87 414.4 264.4 86.6 641.5 ...
+  .. .. .. .. .. ..$ baseVar                 : num [1:2766] 7221 35791 8014 4358 632626 ...
+  .. .. .. .. .. ..$ allZero                 : logi [1:2766] FALSE FALSE FALSE FALSE FALSE FALSE ...
+  .. .. .. .. .. ..$ dispGeneEst             : num [1:2766] 0.8027 0.1999 0.0511 0.361 0.6385 ...
+  .. .. .. .. .. ..$ dispFit                 : num [1:2766] 1.205 0.984 1.017 1.206 0.963 ...
+  .. .. .. .. .. ..$ dispersion              : num [1:2766] 0.841 0.249 0.103 0.426 0.67 ...
+  .. .. .. .. .. ..$ dispIter                : int [1:2766] 10 7 9 10 10 10 9 10 9 10 ...
+  .. .. .. .. .. ..$ dispOutlier             : logi [1:2766] FALSE FALSE FALSE FALSE FALSE FALSE ...
+  .. .. .. .. .. ..$ dispMAP                 : num [1:2766] 0.841 0.249 0.103 0.426 0.67 ...
+  .. .. .. .. .. ..$ Intercept               : num [1:2766] 6.17 8.62 8.21 6.45 9.26 ...
+  .. .. .. .. .. ..$ treatment0              : num [1:2766] 0.4157 0.1405 -0.2665 0.0196 0.1088 ...
+  .. .. .. .. .. ..$ treatment1              : num [1:2766] -0.4157 -0.1404 0.2665 -0.0195 -0.1087 ...
+  .. .. .. .. .. ..$ SE_Intercept            : num [1:2766] 0.366 0.202 0.133 0.266 0.325 ...
+  .. .. .. .. .. ..$ SE_treatment0           : num [1:2766] 0.343 0.198 0.132 0.257 0.309 ...
+  .. .. .. .. .. ..$ SE_treatment1           : num [1:2766] 0.343 0.198 0.132 0.257 0.309 ...
+  .. .. .. .. .. ..$ MLE_Intercept           : num [1:2766] 6.6 8.77 7.95 6.47 9.37 ...
+  .. .. .. .. .. ..$ MLE_treatment_1_vs_0    : num [1:2766] -0.9142 -0.289 0.5395 -0.0411 -0.2341 ...
+  .. .. .. .. .. ..$ WaldStatistic_Intercept : num [1:2766] 16.9 42.7 61.9 24.3 28.5 ...
+  .. .. .. .. .. ..$ WaldStatistic_treatment0: num [1:2766] 1.212 0.7088 -2.0259 0.0762 0.3517 ...
+  .. .. .. .. .. ..$ WaldStatistic_treatment1: num [1:2766] -1.212 -0.7087 2.0261 -0.0761 -0.3516 ...
+  .. .. .. .. .. ..$ WaldPvalue_Intercept    : num [1:2766] 8.70e-64 0.00 0.00 2.82e-130 2.17e-178 ...
+  .. .. .. .. .. ..$ WaldPvalue_treatment0   : num [1:2766] 0.2255 0.4784 0.0428 0.9393 0.725 ...
+  .. .. .. .. .. ..$ WaldPvalue_treatment1   : num [1:2766] 0.2255 0.4785 0.0428 0.9393 0.7251 ...
+  .. .. .. .. .. ..$ betaConv                : logi [1:2766] TRUE TRUE TRUE TRUE TRUE TRUE ...
+  .. .. .. .. .. ..$ betaIter                : num [1:2766] 6 4 4 3 4 5 9 3 4 4 ...
+  .. .. .. .. .. ..$ deviance                : num [1:2766] 206 249 217 200 281 ...
+  .. .. .. .. .. ..$ maxCooks                : Named num [1:2766] 0.0788 0.2656 0.1764 0.3687 0.1192 ...
+  .. .. .. .. .. .. ..- attr(*, "names")= chr [1:2766] "b3820" "b3822" "b3823" "b3824" ...
+  .. .. .. .. .. ..$ replace                 : Named logi [1:2766] FALSE FALSE FALSE TRUE FALSE FALSE ...
+  .. .. .. .. .. .. ..- attr(*, "names")= chr [1:2766] "b3820" "b3822" "b3823" "b3824" ...
+  .. .. .. .. ..@ elementType    : chr "ANY"
+  .. .. .. .. ..@ elementMetadata:Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+  .. .. .. .. .. .. ..@ rownames       : NULL
+  .. .. .. .. .. .. ..@ nrows          : int 28
+  .. .. .. .. .. .. ..@ listData       :List of 2
+  .. .. .. .. .. .. .. ..$ type       : chr [1:28] "intermediate" "intermediate" "intermediate" "intermediate" ...
+  .. .. .. .. .. .. .. ..$ description: chr [1:28] "mean of normalized counts for all samples" "variance of normalized counts for all samples" "all counts for a gene are zero" "gene-wise estimates of dispersion" ...
+  .. .. .. .. .. .. ..@ elementType    : chr "ANY"
+  .. .. .. .. .. .. ..@ elementMetadata: NULL
+  .. .. .. .. .. .. ..@ metadata       : list()
+  .. .. .. .. ..@ metadata       : list()
+  .. .. ..@ partitioning   :Formal class 'PartitioningByEnd' [package "IRanges"] with 5 slots
+  .. .. .. .. ..@ end            : int [1:2766] 0 0 0 0 0 0 0 0 0 0 ...
+  .. .. .. .. ..@ NAMES          : chr [1:2766] "b3820" "b3822" "b3823" "b3824" ...
+  .. .. .. .. ..@ elementType    : chr "integer"
+  .. .. .. .. ..@ elementMetadata: NULL
+  .. .. .. .. ..@ metadata       : list()
+  .. .. ..@ elementType    : chr "GRanges"
+  .. .. ..@ metadata       : list()
+  ..@ colData           :Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+  .. .. ..@ rownames       : chr [1:19] "ATCC_GSE94978_1" "ATCC_GSE94978_2" "BW25113_GSE73673_6" "BW25113_GSE73673_7" ...
+  .. .. ..@ nrows          : int 19
+  .. .. ..@ listData       :List of 6
+  .. .. .. ..$ strain     : Factor w/ 4 levels "ATCC","BW25113",..: 1 1 2 2 2 2 3 3 4 4 ...
+  .. .. .. ..$ expID      : Factor w/ 8 levels "GSE114917","GSE40313",..: 7 7 5 5 5 6 8 8 1 1 ...
+  .. .. .. ..$ treatment  : Factor w/ 2 levels "0","1": 2 2 1 1 1 1 2 2 1 1 ...
+  .. .. .. ..$ ind.n      : Factor w/ 4 levels "1","2","3","4": 1 2 1 2 3 1 1 2 1 2 ...
+  .. .. .. ..$ sizeFactor : Named num [1:19] 5.541 6.3665 0.1181 0.0608 0.0633 ...
+  .. .. .. .. ..- attr(*, "names")= chr [1:19] "ATCC_GSE94978_1" "ATCC_GSE94978_2" "BW25113_GSE73673_6" "BW25113_GSE73673_7" ...
+  .. .. .. ..$ replaceable: logi [1:19] FALSE FALSE TRUE TRUE TRUE TRUE ...
+  .. .. ..@ elementType    : chr "ANY"
+  .. .. ..@ elementMetadata:Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+  .. .. .. .. ..@ rownames       : NULL
+  .. .. .. .. ..@ nrows          : int 6
+  .. .. .. .. ..@ listData       :List of 2
+  .. .. .. .. .. ..$ type       : chr [1:6] "input" "input" "input" "input" ...
+  .. .. .. .. .. ..$ description: chr [1:6] "" "" "" "" ...
+  .. .. .. .. ..@ elementType    : chr "ANY"
+  .. .. .. .. ..@ elementMetadata: NULL
+  .. .. .. .. ..@ metadata       : list()
+  .. .. ..@ metadata       : list()
+  ..@ assays            :Reference class 'ShallowSimpleListAssays' [package "GenomicRanges"] with 1 field
+  .. ..$ data: NULL
+  .. ..and 14 methods.
+  ..@ NAMES             : NULL
+  ..@ elementMetadata   :Formal class 'DataFrame' [package "S4Vectors"] with 6 slots
+  .. .. ..@ rownames       : NULL
+  .. .. ..@ nrows          : int 2766
+  .. .. ..@ listData       : Named list()
+  .. .. ..@ elementType    : chr "ANY"
+  .. .. ..@ elementMetadata: NULL
+  .. .. ..@ metadata       : list()
+  ..@ metadata          : list()
+[1] "summary"
+
+out of 2766 with nonzero total read count
+adjusted p-value < 0.05
+LFC > 0 (up)     : 29, 1% 
+LFC < 0 (down)   : 153, 5.5% 
+outliers [1]     : 25, 0.9% 
+low counts [2]   : 105, 3.8% 
+(mean count < 17)
+[1] see 'cooksCutoff' argument of ?results
+[2] see 'independentFiltering' argument of ?results
+
+[1] "check PCA"
+null device 
+          1 
+[1] "check pvalue dist"
+null device 
+          1 
+[1] "HNS BINDING"
+[1] "##################################################"
+[1] "Grainger 2006 cutoff"
+  gbk_strand gene_name
+1          0      thrL
+2          0      thrA
+3          0      thrB
+4          0      thrC
+5          0      yaaX
+6          1      yaaA
+  gene_name   start     end gbk_strand
+1      appY  582904  583653          0
+2      arpA 4217880 4220066          1
+3      arpB 1801118 1803017          0
+4      cmtB 3076906 3077349          1
+5      cspI 1636479 1636691          1
+6      elaD 2380733 2381944          0
+[1] "Higashi 2016 coding"
+  gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
+1      aaeA       FALSE      FALSE          FALSE 3388194 3389126      3388660
+2      aaeB       FALSE      FALSE          FALSE 3386221 3388188      3387204
+3      aaeR       FALSE      FALSE          FALSE 3389520 3390449      3389984
+4      aaeX       FALSE      FALSE          FALSE 3389134 3389337      3389235
+5      abrB       FALSE      FALSE           TRUE  746723  747769       747246
+6      accA       FALSE      FALSE          FALSE  208621  209580       209100
+[1] "Higashi 2016 non-coding"
+    HNS  TtoT known_promoter start   end
+1 False False          False  5684  6458
+2 False False           True  6530  7958
+3 False False          False  8239  9190
+4 False False          False    NA    NA
+5 False False          False 12164 14078
+6 False False          False 17490 18654
+[1] "Ueda 2013"
+    start    end
+3   41611  42680
+4   83715  84024
+5   84095  84499
+6   85159  85373
+7  150671 151113
+11 155915 156870
+[1] "combine HNS binary info to inversion df"
+[1] "THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!"
+  locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1           DR76_RS00005         1    1278      1205662            
+2           DR76_RS00010      1275    2279      1206800            
+3           DR76_RS00015      2276    3241      1207781            
+4           DR76_RS00020      3215    3961      1208611            
+5           DR76_RS00025      4013    4831      1209445            
+6           DR76_RS00030      4896    5696      1210319            
+  gbk_locus_tag gbk_strand     norm_exp    block     taxa start   end rev_comp
+1                        0  6.407148557 Block611 CP009072     0 19237        0
+2                        0  9.374275240 Block611 CP009072     0 19237        0
+3                        0 12.994059477 Block611 CP009072     0 19237        0
+4                        1 36.333187983 Block611 CP009072     0 19237        0
+5                        1  8.955027464 Block611 CP009072     0 19237        0
+6                        1 54.367769580 Block611 CP009072     0 19237        0
+  inversion strain gbk_old_locus_tag block_len  midpoint
+1         0   ATCC            DR76_1     19237 1214641.5
+2         0   ATCC            DR76_2     19237 1214641.5
+3         0   ATCC            DR76_4     19237 1214641.5
+4         0   ATCC            DR76_3     19237 1214641.5
+5         0   ATCC            DR76_5     19237 1214641.5
+6         0   ATCC            DR76_6     19237 1214641.5
+   start1  end1 Inversion
+1       0  5468         0
+5    5692  9904         0
+7    9928 11797         0
+8   11827 15389         0
+10  16739 17125         0
+11  17258 19597         0
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR GRAINGER 2006 cutoff DATA"
+[1] "################################################################################"
+[1] "hns"
+  gene_name   start     end gbk_strand
+1      appY  582904  583653          0
+2      arpA 4217880 4220066          1
+3      arpB 1801118 1803017          0
+4      cmtB 3076906 3077349          1
+5      cspI 1636479 1636691          1
+6      elaD 2380733 2381944          0
+  gene_name   start     end gbk_strand  midpoint        class2
+1      appY  582904  583653          0  583278.5 G_HNS_Binding
+2      arpA 4217880 4220066          1 4218973.0 G_HNS_Binding
+3      arpB 1801118 1803017          0 1802067.5 G_HNS_Binding
+4      cmtB 3076906 3077349          1 3077127.5 G_HNS_Binding
+5      cspI 1636479 1636691          1 1636585.0 G_HNS_Binding
+6      elaD 2380733 2381944          0 2381338.5 G_HNS_Binding
+     start              end         
+ Min.   : 239100   Min.   : 239378  
+ 1st Qu.:1264032   1st Qu.:1266590  
+ Median :2145324   Median :2146392  
+ Mean   :2413919   Mean   :2415022  
+ 3rd Qu.:3420005   3rd Qu.:3421194  
+ Max.   :4569935   Max.   :4571500  
+    start    end
+31 239100 239378
+32 331595 332683
+17 387977 388951
+33 389475 393642
+34 570116 570667
+35 570677 571474
+    start1   end1 Inversion overlap
+168 383921 388551         1    TRUE
+   start1  end1 Inversion G_HNS_binding
+1       0  5468         0             0
+5    5692  9904         0             0
+7    9928 11797         0             0
+8   11827 15389         0             0
+10  16739 17125         0             0
+11  17258 19597         0             0
+    start1   end1 Inversion G_HNS_binding
+168 383921 388551         1             1
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$G_HNS_binding
+t = -0.12820302, df = 557, p-value = 0.8980346
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.08832235337  0.07753295605
+sample estimates:
+           cor 
+-0.00543205598 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding
+13          TRUE
+14          TRUE
+15          TRUE
+16          TRUE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding
+1             0
+2             0
+3             0
+4             0
+5             0
+6             0
+         block   start     end  midpoint gbk_midpoint       block_t_stat
+2020  Block992 3946844 3951536   23446.0        24788  -1.53129358943664
+2021  Block495 1864776 1878953 2053879.5      2046833 -0.969514526632923
+2022  Block495 1864776 1878953 2053879.5      2046922 -0.969514526632923
+2023  Block778 3015096 3042331  897030.5       892865   2.06880147668458
+2024  Block864 3304508 3328792  609094.0       617851  0.625892365489686
+2025 Block1011 4053595 4056451  129279.0       127958  -0.93705109631993
+       block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+2020  -183.220273888678 29.1456865359047     29.9115264614212
+2021   -125.39466244931  43.582796718746     67.6006045372277
+2022   -125.39466244931  43.582796718746     67.6006045372277
+2023 -0.445257694882861 1045.81784778266     651.160489821333
+2024  -377.527417021115 715.961206834327     840.726325659811
+2025  -95.3984724377516 41.1998287850472     57.9555586486249
+     block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+2020        106.948820137808                 4692                    4692
+2021         108.50653740251                14177                   14177
+2022         108.50653740251                14177                   14177
+2023        128.474194777443                27234                   27235
+2024        671.509430753205                24282                   24284
+2025        85.0548804749771                 2856                    2856
+     inversion rev_comp strain           test          pvalue allSig sig
+2020         1        0  K12MG block_w_pvalue 0.2672121480171     no   0
+2021         1        0  K12MG block_w_pvalue 0.2798536831841     no   0
+2022         1        0  K12MG block_w_pvalue 0.2798536831841     no   0
+2023         1        0  K12MG block_w_pvalue 0.0002229557365    yes   1
+2024         1        0  K12MG block_w_pvalue 0.2555487713597     no   0
+2025         1        0  K12MG block_w_pvalue 0.8333333333333     no   0
+     G_HNS_binding
+2020             0
+2021             0
+2022             0
+2023             0
+2024             1
+2025             0
+      block          start              end             midpoint      
+ Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
+ Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
+ Block893:  27   Median :1988582   Median :2002288   Median :1639674  
+ Block869:  26   Mean   :2302853   Mean   :2314265   Mean   :1375220  
+ Block485:  25   3rd Qu.:3419108   3rd Qu.:3423266   3rd Qu.:2160175  
+ Block475:  23   Max.   :4160982   Max.   :4166305   Max.   :2792216  
+ (Other) :1855                                                        
+  gbk_midpoint     block_t_stat       block_t_confinf1   block_t_confinf2  
+ Min.   :    489   Length:2025        Length:2025        Length:2025       
+ 1st Qu.: 503868   Class :character   Class :character   Class :character  
+ Median :1641145   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1375295                                                           
+ 3rd Qu.:2158587                                                           
+ Max.   :2792300                                                           
+                                                                           
+ block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+ Length:2025          Length:2025             Length:2025         
+ Class :character     Class :character        Class :character    
+ Mode  :character     Mode  :character        Mode  :character    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+ block_avg_len_noninvert   inversion    rev_comp     strain    
+ Length:2025             Min.   :1   Min.   :0   ATCC   :   0  
+ Class :character        1st Qu.:1   1st Qu.:0   BW25113:   0  
+ Mode  :character        Median :1   Median :0   K12DH  :   0  
+                         Mean   :1   Mean   :0   K12MG  :2025  
+                         3rd Qu.:1   3rd Qu.:0                 
+                         Max.   :1   Max.   :0                 
+                                                               
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+      sig            G_HNS_binding      
+ Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.0000000  
+ Mean   :0.1283951   Mean   :0.1071605  
+ 3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.0000000  
+                                        
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$G_HNS_binding
+t = -0.61433291, df = 2023, p-value = 0.5390644
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.05718276898  0.02991995655
+sample estimates:
+           cor 
+-0.01365731516 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$G_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR UEDA 2013 cutoff DATA"
+[1] "################################################################################"
+[1] "hns"
+    start    end
+3   41611  42680
+4   83715  84024
+5   84095  84499
+6   85159  85373
+7  150671 151113
+11 155915 156870
+    start    end midpoint        class2
+3   41611  42680  42145.5 U_HNS_Binding
+4   83715  84024  83869.5 U_HNS_Binding
+5   84095  84499  84297.0 U_HNS_Binding
+6   85159  85373  85266.0 U_HNS_Binding
+7  150671 151113 150892.0 U_HNS_Binding
+11 155915 156870 156392.5 U_HNS_Binding
+     start              end         
+ Min.   :  41611   Min.   :  42680  
+ 1st Qu.:1425228   1st Qu.:1426468  
+ Median :2468205   Median :2470015  
+ Mean   :2464566   Mean   :2465303  
+ 3rd Qu.:3835568   3rd Qu.:3835896  
+ Max.   :4607543   Max.   :4608365  
+    start    end
+3   41611  42680
+4   83715  84024
+5   84095  84499
+6   85159  85373
+7  150671 151113
+11 155915 156870
+    start1   end1 Inversion G_HNS_binding overlap
+168 383921 388551         1             1    TRUE
+   start1  end1 Inversion G_HNS_binding U_HNS_binding
+1       0  5468         0             0             0
+5    5692  9904         0             0             0
+7    9928 11797         0             0             0
+8   11827 15389         0             0             0
+10  16739 17125         0             0             0
+11  17258 19597         0             0             0
+    start1   end1 Inversion G_HNS_binding U_HNS_binding
+168 383921 388551         1             1             1
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$U_HNS_binding
+t = -0.60806538, df = 557, p-value = 0.543392
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.10845444153  0.05729645751
+sample estimates:
+           cor 
+-0.02575600967 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding
+1             0
+2             0
+3             0
+4             0
+5             0
+6             0
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding U_HNS_binding
+13             1          TRUE
+14             1          TRUE
+15             1          TRUE
+16             1          TRUE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding
+1             0             0
+2             0             0
+3             0             0
+4             0             0
+5             0             0
+6             0             0
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$U_HNS_binding
+t = 0.6346223, df = 2023, p-value = 0.5257465
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.02946929958  0.05763233717
+sample estimates:
+          cor 
+0.01410828292 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$U_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding DATA"
+[1] "################################################################################"
+[1] "hns"
+  gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
+1      aaeA       FALSE      FALSE          FALSE 3388194 3389126      3388660
+2      aaeB       FALSE      FALSE          FALSE 3386221 3388188      3387204
+3      aaeR       FALSE      FALSE          FALSE 3389520 3390449      3389984
+4      aaeX       FALSE      FALSE          FALSE 3389134 3389337      3389235
+5      abrB       FALSE      FALSE           TRUE  746723  747769       747246
+6      accA       FALSE      FALSE          FALSE  208621  209580       209100
+  gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
+1      acrE        TRUE       TRUE           TRUE 3413864 3415021      3414442
+2      acrR        TRUE       TRUE           TRUE  485761  486408       486084
+3      adiC        TRUE       TRUE           TRUE 4335694 4337031      4336362
+4      adiY        TRUE       TRUE           TRUE 4337168 4337929      4337548
+5      agaB        TRUE       TRUE           TRUE 3284170 3284646      3284408
+6      agaC        TRUE       TRUE           TRUE 3284685 3285488      3285086
+          class2
+1 H1_HNS_Binding
+2 H1_HNS_Binding
+3 H1_HNS_Binding
+4 H1_HNS_Binding
+5 H1_HNS_Binding
+6 H1_HNS_Binding
+     start              end         
+ Min.   :  17489   Min.   :  18655  
+ 1st Qu.:1286280   1st Qu.:1287236  
+ Median :1984205   Median :1985078  
+ Mean   :2183566   Mean   :2184498  
+ 3rd Qu.:3225850   3rd Qu.:3226545  
+ Max.   :4604875   Max.   :4605663  
+    start   end
+156 17489 18655
+35  30817 34038
+34  34300 34695
+33  35377 36162
+32  36271 37824
+93  42403 43173
+    start1   end1 Inversion G_HNS_binding U_HNS_binding overlap
+168 383921 388551         1             1             1   FALSE
+   start1  end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+1       0  5468         0             0             0              0
+5    5692  9904         0             0             0              0
+7    9928 11797         0             0             0              0
+8   11827 15389         0             0             0              0
+10  16739 17125         0             0             0              0
+11  17258 19597         0             0             0              1
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$H1_HNS_binding
+t = 2.4359029, df = 557, p-value = 0.01516713
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.01990652431 0.18403033633
+sample estimates:
+         cor 
+0.1026671212 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding
+1             0             0
+2             0             0
+3             0             0
+4             0             0
+5             0             0
+6             0             0
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding U_HNS_binding H1_HNS_binding
+13             1             1          FALSE
+14             1             1          FALSE
+15             1             1          FALSE
+16             1             1          FALSE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding
+1             0             0              0
+2             0             0              0
+3             0             0              0
+4             0             0              0
+5             0             0              0
+6             0             0              1
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$H1_HNS_binding
+t = 5.1373316, df = 2023, p-value = 0.0000003054361
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.07026938267 0.15626850621
+sample estimates:
+         cor 
+0.1134814996 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$H1_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING DATA"
+[1] "################################################################################"
+[1] "hns"
+    start     end            class2
+1 3413864 3415021 H1nc1_HNS_Binding
+2  485761  486408 H1nc1_HNS_Binding
+3 4335694 4337031 H1nc1_HNS_Binding
+4 4337168 4337929 H1nc1_HNS_Binding
+5 3284170 3284646 H1nc1_HNS_Binding
+6 3284685 3285488 H1nc1_HNS_Binding
+     start              end         
+ Min.   :  17489   Min.   :  18655  
+ 1st Qu.:1258214   1st Qu.:1259612  
+ Median :1977847   Median :1978197  
+ Mean   :2180811   Mean   :2181704  
+ 3rd Qu.:3225978   3rd Qu.:3226919  
+ Max.   :4604160   Max.   :4604837  
+    start   end
+143 17489 18655
+33  34300 34695
+32  35377 36162
+31  36271 37824
+86  42403 43173
+124 81958 83529
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding overlap
+168 383921 388551         1             1             1              0   FALSE
+   start1  end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+1       0  5468         0             0             0              0
+5    5692  9904         0             0             0              0
+7    9928 11797         0             0             0              0
+8   11827 15389         0             0             0              0
+10  16739 17125         0             0             0              0
+11  17258 19597         0             0             0              1
+   H1nc1_HNS_binding
+1                  0
+5                  0
+7                  0
+8                  0
+10                 0
+11                 1
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding
+168                 0
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$H1nc1_HNS_binding
+t = 2.4156978, df = 557, p-value = 0.01602587
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.01905521314 0.18320741558
+sample estimates:
+       cor 
+0.10182439 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding
+1             0             0              0
+2             0             0              0
+3             0             0              0
+4             0             0              0
+5             0             0              0
+6             0             0              1
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+13             1             1              0             FALSE
+14             1             1              0             FALSE
+15             1             1              0             FALSE
+16             1             1              0             FALSE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$H1nc1_HNS_binding
+t = 4.6778295, df = 2023, p-value = 0.000003091014
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.06015677401 0.14634521677
+sample estimates:
+         cor 
+0.1034451787 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$H1nc1_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 2 DATA"
+[1] "################################################################################"
+[1] "hns"
+    start     end            class2
+1 3413864 3415021 H1nc2_HNS_Binding
+2  485761  486408 H1nc2_HNS_Binding
+3 4335694 4337031 H1nc2_HNS_Binding
+4 4337168 4337929 H1nc2_HNS_Binding
+5 3284170 3284646 H1nc2_HNS_Binding
+6 3284685 3285488 H1nc2_HNS_Binding
+     start              end         
+ Min.   :  17489   Min.   :  18655  
+ 1st Qu.:1258214   1st Qu.:1259612  
+ Median :1977847   Median :1978197  
+ Mean   :2180811   Mean   :2181704  
+ 3rd Qu.:3225978   3rd Qu.:3226919  
+ Max.   :4604160   Max.   :4604837  
+    start   end
+143 17489 18655
+33  34300 34695
+32  35377 36162
+31  36271 37824
+86  42403 43173
+124 81958 83529
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding overlap
+168                 0   FALSE
+   start1  end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+1       0  5468         0             0             0              0
+5    5692  9904         0             0             0              0
+7    9928 11797         0             0             0              0
+8   11827 15389         0             0             0              0
+10  16739 17125         0             0             0              0
+11  17258 19597         0             0             0              1
+   H1nc1_HNS_binding H1nc2_HNS_binding
+1                  0                 0
+5                  0                 0
+7                  0                 0
+8                  0                 0
+10                 0                 0
+11                 1                 1
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding H1nc2_HNS_binding
+168                 0                 0
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$H1nc2_HNS_binding
+t = 2.4156978, df = 557, p-value = 0.01602587
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.01905521314 0.18320741558
+sample estimates:
+       cor 
+0.10182439 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+13             1             1              0                 0
+14             1             1              0                 0
+15             1             1              0                 0
+16             1             1              0                 0
+   H1nc2_HNS_binding
+13             FALSE
+14             FALSE
+15             FALSE
+16             FALSE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding
+1                 0
+2                 0
+3                 0
+4                 0
+5                 0
+6                 1
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$H1nc2_HNS_binding
+t = 4.6778295, df = 2023, p-value = 0.000003091014
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.06015677401 0.14634521677
+sample estimates:
+         cor 
+0.1034451787 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$H1nc2_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 3 DATA"
+[1] "################################################################################"
+[1] "hns"
+    start     end            class2
+1 3413864 3415021 H1nc3_HNS_Binding
+2  485761  486408 H1nc3_HNS_Binding
+3 4335694 4337031 H1nc3_HNS_Binding
+4 4337168 4337929 H1nc3_HNS_Binding
+5 3284170 3284646 H1nc3_HNS_Binding
+6 3284685 3285488 H1nc3_HNS_Binding
+     start              end         
+ Min.   :  17489   Min.   :  18655  
+ 1st Qu.:1258214   1st Qu.:1259612  
+ Median :1977847   Median :1978197  
+ Mean   :2180811   Mean   :2181704  
+ 3rd Qu.:3225978   3rd Qu.:3226919  
+ Max.   :4604160   Max.   :4604837  
+    start   end
+143 17489 18655
+33  34300 34695
+32  35377 36162
+31  36271 37824
+86  42403 43173
+124 81958 83529
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding H1nc2_HNS_binding overlap
+168                 0                 0   FALSE
+   start1  end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+1       0  5468         0             0             0              0
+5    5692  9904         0             0             0              0
+7    9928 11797         0             0             0              0
+8   11827 15389         0             0             0              0
+10  16739 17125         0             0             0              0
+11  17258 19597         0             0             0              1
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
+1                  0                 0                 0
+5                  0                 0                 0
+7                  0                 0                 0
+8                  0                 0                 0
+10                 0                 0                 0
+11                 1                 1                 1
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
+168                 0                 0                 0
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$H1nc3_HNS_binding
+t = 2.4156978, df = 557, p-value = 0.01602587
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.01905521314 0.18320741558
+sample estimates:
+       cor 
+0.10182439 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding
+1                 0
+2                 0
+3                 0
+4                 0
+5                 0
+6                 1
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+13             1             1              0                 0
+14             1             1              0                 0
+15             1             1              0                 0
+16             1             1              0                 0
+   H1nc2_HNS_binding H1nc3_HNS_binding
+13                 0             FALSE
+14                 0             FALSE
+15                 0             FALSE
+16                 0             FALSE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding H1nc3_HNS_binding
+1                 0                 0
+2                 0                 0
+3                 0                 0
+4                 0                 0
+5                 0                 0
+6                 1                 1
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$H1nc3_HNS_binding
+t = 4.6778295, df = 2023, p-value = 0.000003091014
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.06015677401 0.14634521677
+sample estimates:
+         cor 
+0.1034451787 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$H1nc3_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR Higashi 2016 criteria 2: HNS cutoff DATA"
+[1] "################################################################################"
+[1] "hns"
+  gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
+1      acrE        TRUE       TRUE           TRUE 3413864 3415021      3414442
+2      acrR        TRUE       TRUE           TRUE  485761  486408       486084
+3      adiC        TRUE       TRUE           TRUE 4335694 4337031      4336362
+4      adiY        TRUE       TRUE           TRUE 4337168 4337929      4337548
+5      agaB        TRUE       TRUE           TRUE 3284170 3284646      3284408
+6      agaC        TRUE       TRUE           TRUE 3284685 3285488      3285086
+          class2
+1 H2_HNS_Binding
+2 H2_HNS_Binding
+3 H2_HNS_Binding
+4 H2_HNS_Binding
+5 H2_HNS_Binding
+6 H2_HNS_Binding
+     start              end         
+ Min.   :  17489   Min.   :  18655  
+ 1st Qu.:1275926   1st Qu.:1276978  
+ Median :1984205   Median :1985078  
+ Mean   :2193872   Mean   :2194759  
+ 3rd Qu.:3227409   3rd Qu.:3228570  
+ Max.   :4604160   Max.   :4604837  
+    start   end
+140 17489 18655
+33  34300 34695
+32  35377 36162
+31  36271 37824
+84  42403 43173
+121 81958 83529
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding overlap
+168                 0                 0                 0   FALSE
+   start1  end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+1       0  5468         0             0             0              0
+5    5692  9904         0             0             0              0
+7    9928 11797         0             0             0              0
+8   11827 15389         0             0             0              0
+10  16739 17125         0             0             0              0
+11  17258 19597         0             0             0              1
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                  0                 0                 0              0
+5                  0                 0                 0              0
+7                  0                 0                 0              0
+8                  0                 0                 0              0
+10                 0                 0                 0              0
+11                 1                 1                 1              1
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+168                 0                 0                 0              0
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$H2_HNS_binding
+t = 2.4946182, df = 557, p-value = 0.01289787
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.02237979893 0.18641982509
+sample estimates:
+         cor 
+0.1051147951 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding H1nc3_HNS_binding
+1                 0                 0
+2                 0                 0
+3                 0                 0
+4                 0                 0
+5                 0                 0
+6                 1                 1
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+13             1             1              0                 0
+14             1             1              0                 0
+15             1             1              0                 0
+16             1             1              0                 0
+   H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+13                 0                 0          FALSE
+14                 0                 0          FALSE
+15                 0                 0          FALSE
+16                 0                 0          FALSE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0              0
+2                 0                 0              0
+3                 0                 0              0
+4                 0                 0              0
+5                 0                 0              0
+6                 1                 1              1
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$H2_HNS_binding
+t = 4.7124284, df = 2023, p-value = 0.000002614485
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.06091905634 0.14709383330
+sample estimates:
+         cor 
+0.1042020178 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$H2_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "################################################################################"
+[1] "CORRELATION TESTS FOR Higashi 2016 criteria 3: HNS transcript DATA"
+[1] "################################################################################"
+[1] "hns"
+  gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
+1      acrE        TRUE       TRUE           TRUE 3413864 3415021      3414442
+2      acrR        TRUE       TRUE           TRUE  485761  486408       486084
+3      adiC        TRUE       TRUE           TRUE 4335694 4337031      4336362
+4      adiY        TRUE       TRUE           TRUE 4337168 4337929      4337548
+5      agaB        TRUE       TRUE           TRUE 3284170 3284646      3284408
+6      agaC        TRUE       TRUE           TRUE 3284685 3285488      3285086
+          class2
+1 H3_HNS_Binding
+2 H3_HNS_Binding
+3 H3_HNS_Binding
+4 H3_HNS_Binding
+5 H3_HNS_Binding
+6 H3_HNS_Binding
+     start              end         
+ Min.   :  17489   Min.   :  18655  
+ 1st Qu.:1275926   1st Qu.:1276978  
+ Median :1984205   Median :1985078  
+ Mean   :2193872   Mean   :2194759  
+ 3rd Qu.:3227409   3rd Qu.:3228570  
+ Max.   :4604160   Max.   :4604837  
+    start   end
+140 17489 18655
+33  34300 34695
+32  35377 36162
+31  36271 37824
+84  42403 43173
+121 81958 83529
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+168                 0                 0                 0              0
+    overlap
+168   FALSE
+   start1  end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+1       0  5468         0             0             0              0
+5    5692  9904         0             0             0              0
+7    9928 11797         0             0             0              0
+8   11827 15389         0             0             0              0
+10  16739 17125         0             0             0              0
+11  17258 19597         0             0             0              1
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                  0                 0                 0              0
+5                  0                 0                 0              0
+7                  0                 0                 0              0
+8                  0                 0                 0              0
+10                 0                 0                 0              0
+11                 1                 1                 1              1
+   H3_HNS_binding
+1               0
+5               0
+7               0
+8               0
+10              0
+11              1
+    start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+168 383921 388551         1             1             1              0
+    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+168                 0                 0                 0              0
+    H3_HNS_binding
+168              0
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and hns binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$H3_HNS_binding
+t = 2.4946182, df = 557, p-value = 0.01289787
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.02237979893 0.18641982509
+sample estimates:
+         cor 
+0.1051147951 
+
+[1] "get new df with hns binding + inversions + sig block info"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0              0
+2                 0                 0              0
+3                 0                 0              0
+4                 0                 0              0
+5                 0                 0              0
+6                 1                 1              1
+      block  start    end midpoint gbk_midpoint      block_t_stat
+13 Block123 383921 388551  1591259      1589360 0.163737532965995
+14 Block123 383921 388551  1591259      1590736 0.163737532965995
+15 Block123 383921 388551  1591259      1591613 0.163737532965995
+16 Block123 383921 388551  1591259      1592407 0.163737532965995
+    block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 -1.71587409814233 1.99773344766049     2.09340259108493
+14 -1.71587409814233 1.99773344766049     2.09340259108493
+15 -1.71587409814233 1.99773344766049     2.09340259108493
+16 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig sig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
+   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+13             1             1              0                 0
+14             1             1              0                 0
+15             1             1              0                 0
+16             1             1              0                 0
+   H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
+13                 0                 0              0          FALSE
+14                 0                 0              0          FALSE
+15                 0                 0              0          FALSE
+16                 0                 0              0          FALSE
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
+1                 0                 0              0              0
+2                 0                 0              0              0
+3                 0                 0              0              0
+4                 0                 0              0              0
+5                 0                 0              0              0
+6                 1                 1              1              1
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$H3_HNS_binding
+t = 4.7124284, df = 2023, p-value = 0.000002614485
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.06091905634 0.14709383330
+sample estimates:
+         cor 
+0.1042020178 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$inversion and cor_dat$H3_HNS_binding
+t = NA, df = 2023, p-value = NA
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ NA NA
+sample estimates:
+cor 
+ NA 
+
+[1] "checking overlap between HNS binding sites in all datasets"
+[1] "total HNS binding sites for each dataset"
+# A tibble: 8 x 2
+  x                     n
+  <chr>             <int>
+1 G_HNS_binding        37
+2 H1_HNS_binding      206
+3 H1nc1_HNS_binding   189
+4 H1nc2_HNS_binding   189
+5 H1nc3_HNS_binding   189
+6 H2_HNS_binding      187
+7 H3_HNS_binding      187
+8 U_HNS_binding       165
+[1] "total number of genes/blocks"
+[1] 290
+[1] "total number of rows where HNS binding is the same for all datasets"
+[1] 10
