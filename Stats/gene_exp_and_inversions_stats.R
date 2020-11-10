@@ -2005,6 +2005,34 @@ length(tmp_d$G_HNS_binding)
 print("total number of rows where HNS binding is the same for all datasets")
 sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
 
+
+print("HNS binding and inversions viz")
+fake_val <- rep(10,length(cor_dat$block))
+hns_inver <- cbind(cor_dat,fake_val)
+head(hns_inver)
+hns_inver <- hns_inver %>% filter(inversion == 1)
+hns_inver$midpoint = hns_inver$midpoint / 1000000
+hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
+
+
+p <- (ggplot(hns_inver, aes(x=midpoint, y=fake_val))
+   #inversions in grey
+   + geom_point(size = 10, colour = "#BEBEBE")
+   + geom_point(data = hns_bind, aes(x=midpoint, y=fake_val), colour = "blue", size = 3,shape = 2)
+   + labs(title= "H-NS Binding and Inversions",x = "Distance from the Origin of Replication (Mbp)", y = "") 
+   + theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major.y = element_blank(),
+          panel.grid.minor.y = element_blank()
+          )
+)
+pdf("hns_all_inversions.pdf")
+p
+dev.off()
+
+
+
 #gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
 #group_by(x)%>%
 #tally(value == 1)

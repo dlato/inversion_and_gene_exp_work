@@ -44506,3 +44506,48 @@ cor
 [1] 290
 [1] "total number of rows where HNS binding is the same for all datasets"
 [1] 10
+[1] "HNS binding and inversions viz"
+    block  start    end  midpoint gbk_midpoint      block_t_stat
+1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
+2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
+3 Block62 239447 245944 1447718.5      1448855 0.720085166986352
+4 Block62 239447 245944 1447718.5      1449733 0.720085166986352
+5 Block62 239447 245944 1447718.5      1450458 0.720085166986352
+6 Block73 253686 257906 1460819.0      1460010 0.502231451227166
+   block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1  -158.36415207118 277.192745947071     188.204357673068
+2  -158.36415207118 277.192745947071     188.204357673068
+3  -158.36415207118 277.192745947071     188.204357673068
+4  -158.36415207118 277.192745947071     188.204357673068
+5  -158.36415207118 277.192745947071     188.204357673068
+6 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig sig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
+6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
+1             0             0              0                 0
+2             0             0              0                 0
+3             0             0              0                 0
+4             0             0              0                 0
+5             0             0              0                 0
+6             0             0              1                 1
+  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding fake_val
+1                 0                 0              0              0       10
+2                 0                 0              0              0       10
+3                 0                 0              0              0       10
+4                 0                 0              0              0       10
+5                 0                 0              0              0       10
+6                 1                 1              1              1       10
+null device 
+          1 
