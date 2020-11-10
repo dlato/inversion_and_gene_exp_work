@@ -2008,7 +2008,7 @@ sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
 
 print("HNS binding and inversions viz")
 fake_val <- rep(10,length(cor_dat$block))
-fake_val2 <- rep(9.5,length(cor_dat$block))
+fake_val2 <- rep(9.95,length(cor_dat$block))
 hns_inver <- cbind(cor_dat,fake_val,fake_val2)
 head(hns_inver)
 hns_inver <- hns_inver %>% filter(inversion == 1)
@@ -2017,7 +2017,8 @@ hns_sig <- hns_inver %>% filter(sig == 1)
 hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
 
 
-override.shape <- c(2,16,1)
+override.shape <- c(1,2,16)
+override.size <- c(5,5,10)
 p <- (ggplot(hns_inver, aes(x=midpoint, y=fake_val, colour = strain))
    #inversions in grey
    + geom_point(size = 10, aes(colour = "#BEBEBE"))
@@ -2025,10 +2026,9 @@ p <- (ggplot(hns_inver, aes(x=midpoint, y=fake_val, colour = strain))
    # sig inversions
    + geom_point(data = hns_sig, aes(x=midpoint, y=fake_val2,  color = "#AA5042"), size = 3,shape = 2)
    + labs(title= "H-NS Binding and Inversions",x = "Distance from the Origin of Replication (Mbp)", y = "") 
-   + scale_color_manual(values = c("#AA5042","#BEBEBE","#2E294E"),
-labels = c("Significant Inversion","Inversion", "H-NS Binding"))
-   + guides(colour = guide_legend(override.aes = list(shape = override.shape, fill=NA,unit(2,"line"))))
-   + scale_y_continuous(limits = c(9.4, 10.5))
+   + scale_color_manual(values = c("#2E294E","#AA5042","#BEBEBE"), labels = c("H-NS Binding","Significant Inversion","Inversion"))
+   + guides(colour = guide_legend(override.aes = list(shape = override.shape, size = override.size, fill=NA)))
+   + scale_y_continuous(limits = c(9.5, 10.5))
    + theme(axis.text.y = element_blank(),
           legend.position = c(.95, .95),
           legend.justification = c("right", "top"),
@@ -2043,32 +2043,6 @@ labels = c("Significant Inversion","Inversion", "H-NS Binding"))
 pdf("hns_all_inversions.pdf")
 p
 dev.off()
-
-hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
-override.shape <- c(2,16)
-p <- (ggplot(hns_inver, aes(x=midpoint, y=fake_val, colour = strain))
-   #inversions in grey
-   + geom_point(size = 10, aes(colour = "#BEBEBE"))
-   + geom_point(data = hns_bind, aes(x=midpoint, y=fake_val,  color = "#2E294E"), size = 3,shape = 2)
-   + labs(title= "H-NS Binding and Inversions",x = "Distance from the Origin of Replication (Mbp)", y = "") 
-   + scale_color_manual(values = c("#2E294E","#BEBEBE"), labels = c("H-NS Binding","Inversion"))
-   + guides(colour = guide_legend(override.aes = list(shape = override.shape, fill=NA,unit(2,"line"))))
-   + theme(axis.text.y = element_blank(),
-          legend.position = c(.95, .95),
-          legend.justification = c("right", "top"),
-          legend.box.just = "right",
-          legend.margin = margin(6, 6, 6, 6),
-          axis.ticks.y = element_blank(),
-          axis.title.y = element_blank(),
-          panel.grid.major.y = element_blank(),
-          panel.grid.minor.y = element_blank()
-          )
-)
-pdf("hns_sig_inversions.pdf")
-p
-dev.off()
-
-
 
 #gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
 #group_by(x)%>%
