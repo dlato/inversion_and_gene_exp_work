@@ -57,19 +57,48 @@ final_o_tab <- rbind(final_o_tab, t7)
 
 #dealing with pages with 8 columns
 which(cols_pages == 8)
-t7 <- as.data.frame(o_tab[[55]])
+n_h <- c(55,57,61,82,83,92,97)
+t7 <- as.data.frame(do.call(rbind,o_tab[n_h]))
+t7 <- t7 %>%
+  separate(V3, c("lengthnt", "start", "end"), " ")
+t7 <- cbind(t7[,1:7], test=t7[,8], t3="", t2=t7[,9:ncol(t7)])
+colnames(t7) <- col_names_tab
+final_o_tab <- rbind(final_o_tab, t7)
+
+n_h_s1 <- c(90,103)
+t7 <- as.data.frame(do.call(rbind,o_tab[n_h_s1]))
 t7 <- t7 %>% select(-V2) %>%
   separate(V3, c("lengthnt", "start", "end"), " ")
 t7 <- t7 %>%
   separate(V1, c("lt", "gene"), " ")
-t7 <- cbind(t7[,1:7], test=t7[,8], t3="",hns="", t2=t7[,ncol(t7)])
+t7 <- cbind(t7[,1:7], test=t7[,8], t3="", t2=t7[,9:ncol(t7)])
 colnames(t7) <- col_names_tab
 final_o_tab <- rbind(final_o_tab, t7)
 
 
+n_l <- c(60)
+t7 <- as.data.frame(do.call(rbind,o_tab[n_l]))
+t7 <- t7 %>%
+  separate(V3, c("lengthnt", "start", "end"), " ")
+t7 <- cbind(t7[,1:7], test=t7[,8], t2=t7[,9],t3="", t=t7[,ncol(t7)] )
+colnames(t7) <- col_names_tab
+final_o_tab <- rbind(final_o_tab, t7)
 
-final_o_tab <- do.call(rbind, tt4[-length(tt4)])
 
+n_l_s1 <- c(99)
+t7 <- as.data.frame(do.call(rbind,o_tab[n_l_s1]))
+t7 <- t7 %>% select(-V2) %>%
+  separate(V3, c("lengthnt", "start", "end"), " ")
+t7 <- t7 %>%
+  separate(V1, c("lt", "gene"), " ")
+t7 <- cbind(t7[,1:7], test=t7[,8], t2=t7[,9],t3="", t=t7[,ncol(t7)] )
+colnames(t7) <- col_names_tab
+final_o_tab <- rbind(final_o_tab, t7)
 
+#dealing with pages with 9 columns
+which(cols_pages == 9)
+n_s1 <- c(6,)
+n <- c(11,)
+t7 <- as.data.frame(o_tab[11])
+t7 <- as.data.frame(do.call(rbind,o_tab[n_h]))
 
-m <- matrix(parse_number(c(tt4)), ncol=ncol(tt4))
