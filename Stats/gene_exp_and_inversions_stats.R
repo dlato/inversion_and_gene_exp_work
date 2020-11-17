@@ -1022,6 +1022,9 @@ sampleData <- sampleData[,-1]
 ind.n <- factor(c(1,2,1,2,3,1,1,2,1,2,3,4,1,2,1,2,1,2,3))
 sampleData$ind.n <- ind.n
 #sampleData <- sampleData %>% select(expID, treatment)
+sampleData <- tibble::rownames_to_column(sampleData, "sample")
+rownames(sampleData) <- sampleData$sample
+sampleData$sample<-as.factor(gsub("^.*\\_G","",sampleData$sample))
 sampleData
 m1 <- model.matrix(~ expID + expID:ind.n + expID:treatment, sampleData)
 all.zero <- apply(m1, 2, function(x) all(x==0))
@@ -1045,7 +1048,7 @@ print("Create the DEseq2DataSet object")
 head(raw_deseqW)
 head(sampleData)
 print("DE btwn strains")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  strain)
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ sample + treatment)
 deseq_results <- DESeq(deseq2Data)
 print("done deseq")
 deseq_results2 <- results(deseq_results, alpha=0.05)
