@@ -137,9 +137,11 @@ t7 <- cbind(t7[,1:8],t3="",t=t7[,9:ncol(t7)] )
 colnames(t7) <- col_names_tab
 final_o_tab <- rbind(final_o_tab, t7)
 
-
-
-
-t7 <- as.data.frame(o_tab[108])
+#dealing with pages with 10 columns
+which(cols_pages == 10)
+p <- c(1)
+n_h <- c(3)
+n_h_s1 <- c(19)
+t7 <- as.data.frame(o_tab[19])
 t7 <- as.data.frame(do.call(rbind,o_tab[n_h]))
 
