@@ -140,8 +140,28 @@ final_o_tab <- rbind(final_o_tab, t7)
 #dealing with pages with 10 columns
 which(cols_pages == 10)
 p <- c(1)
-n_h <- c(3)
+t7 <- as.data.frame(do.call(rbind,o_tab[p]))
+t7 <- t7 %>%
+  separate(V4, c("start", "end"), " ")
+colnames(t7) <- col_names_tab
+t7 <- t7[-1,]
+final_o_tab <- rbind(final_o_tab, t7)
+
 n_h_s1 <- c(19)
-t7 <- as.data.frame(o_tab[19])
+t7 <- as.data.frame(do.call(rbind,o_tab[n_h_s1]))
+t7 <- t7 %>% select(-V2) %>%
+  separate(V1, c("lt", "gene"), " ")
+t7 <- cbind(t7[,1:8],t3="",t=t7[,9:ncol(t7)] )
+colnames(t7) <- col_names_tab
+final_o_tab <- rbind(final_o_tab, t7)
+
+n_h <- c(3)
 t7 <- as.data.frame(do.call(rbind,o_tab[n_h]))
+t7 <- cbind(t7[,1:8],t3="",t=t7[,9:ncol(t7)] )
+colnames(t7) <- col_names_tab
+final_o_tab <- rbind(final_o_tab, t7)
+
+length(final_o_tab$locus_tag)
+
+write.csv(final_o_tab, "HNS_Protein/raw_data_files/Oshima_2006_HGT_HNS.csv")
 
