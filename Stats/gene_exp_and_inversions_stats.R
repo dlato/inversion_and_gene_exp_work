@@ -1402,8 +1402,8 @@ head(sub_u_dat)
 print("Lang 2007")
 print("all data is an HNS binding site")
 lang_dat <- read.csv("../HNS_protein/raw_data_files/Lang_2007_HNS_binding.csv", header = TRUE)
-sub_l_dat <- na.omit(lang_dat)
-head(sub_l_dat)
+sub_l_df <- na.omit(lang_dat)
+head(sub_l_df)
 
 print("Oshima 2006")
 oshima_dat <- read.csv("../HNS_protein/raw_data_files/Oshima_2006_HGT_HNS.csv", header = TRUE)
@@ -1411,8 +1411,8 @@ oshima_dat$Nakamura[is.na(oshima_dat$Nakamura)] <- 0
 oshima_dat$Lawrence[is.na(oshima_dat$Lawrence)] <- 0
 oshima_dat$hns[is.na(oshima_dat$hns)] <- 0
 oshima_dat <- oshima_dat %>% drop_na(start)
-sub_o_dat <- filter(oshima_dat, hns == 1)
-head(sub_o_dat)
+sub_o_df <- filter(oshima_dat, hns == 1)
+head(sub_o_df)
 
 print("combine HNS binary info to inversion df")
 print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
@@ -2007,18 +2007,156 @@ print("#########################################################################
 cor.test(cor_dat$inversion, cor_dat$H3_HNS_binding,
          method = "pearson")
 
+print("################################################################################")
+print("CORRELATION TESTS FOR Lang 2007: composite data")
+print("################################################################################")
+print("hns")
+sub_l_df$start <- as.numeric(as.character(sub_l_df$start))
+sub_l_df$end <- as.numeric(as.character(sub_l_df$end))
+hns_dat <- sub_l_df
+class2 <- rep("L_HNS_Binding",length(hns_dat$start))
+hns_dat <- cbind(hns_dat,class2)
+hns_cor_d <- hns_dat
+head(hns_cor_d)
+#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+hns_cor_d <- hns_cor_d %>% select(start,end)
+summary(hns_cor_d)
+#hns_cor_d <- hns_cor_d %>% 
+#    mutate(class2 = recode(class2, 
+#                      "No_HNS_Binding" = "0", 
+#                      "HNS_Binding" = "1"))
+hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+head(hns_cor_d)
+write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+
+
+ir1 = with(inver_cor_d, IRanges(start1, end1))
+ir2 = with(hns_cor_d, IRanges(start, end))
+inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+inver_cor_d[which(inver_cor_d$start1 == 383921),]
+colnames(inver_cor_d) <-
+c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding")
+inver_cor_d$L_HNS_binding <- as.integer(inver_cor_d$L_HNS_binding)
+inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+head(inver_cor_d)
+inver_cor_d[which(inver_cor_d$start == 383921),]
+
+print("################################################################################")
+print("correlation test btwn inversion/non-inversion and hns binding")
+print("################################################################################")
+cor.test(inver_cor_d$Inversion, inver_cor_d$L_HNS_binding,
+         method = "pearson")
+
+print("get new df with hns binding + inversions + sig block info")
+cor_dat <- cor_dat %>% filter(strain == "K12MG")
+cor_dat <- cor_dat %>%
+    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+head(cor_dat)
+ir1 = with(cor_dat, IRanges(start, end))
+cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+names(cor_dat)[names(cor_dat)=="overlap"] <- "L_HNS_binding"
+cor_dat[which(cor_dat$start == 383921),]
+cor_dat$L_HNS_binding <- as.integer(cor_dat$L_HNS_binding)
+cor_dat$sig <- as.integer(cor_dat$sig)
+head(cor_dat)
+
+
+print("################################################################################")
+print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+print("################################################################################")
+cor.test(cor_dat$sig, cor_dat$L_HNS_binding,
+         method = "pearson")
+
+
+print("################################################################################")
+print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+print("################################################################################")
+#cor_dat <- cor_dat %>% filter(inversion == 1)
+cor.test(cor_dat$inversion, cor_dat$L_HNS_binding,
+         method = "pearson")
+
+print("################################################################################")
+print("CORRELATION TESTS FOR Oshima 2006: composite data")
+print("################################################################################")
+print("hns")
+sub_o_df$start <- as.numeric(as.character(sub_o_df$start))
+sub_o_df$end <- as.numeric(as.character(sub_o_df$end))
+hns_dat <- sub_o_df
+class2 <- rep("O_HNS_Binding",length(hns_dat$start))
+hns_dat <- cbind(hns_dat,class2)
+hns_cor_d <- hns_dat
+head(hns_cor_d)
+#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+hns_cor_d <- hns_cor_d %>% select(start,end)
+summary(hns_cor_d)
+#hns_cor_d <- hns_cor_d %>% 
+#    mutate(class2 = recode(class2, 
+#                      "No_HNS_Binding" = "0", 
+#                      "HNS_Binding" = "1"))
+hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+head(hns_cor_d)
+write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+
+
+ir1 = with(inver_cor_d, IRanges(start1, end1))
+ir2 = with(hns_cor_d, IRanges(start, end))
+inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+inver_cor_d[which(inver_cor_d$start1 == 383921),]
+colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding", "O_HNS_binding")
+inver_cor_d$O_HNS_binding <- as.integer(inver_cor_d$O_HNS_binding)
+inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+head(inver_cor_d)
+inver_cor_d[which(inver_cor_d$start == 383921),]
+
+print("################################################################################")
+print("correlation test btwn inversion/non-inversion and hns binding")
+print("################################################################################")
+cor.test(inver_cor_d$Inversion, inver_cor_d$O_HNS_binding,
+         method = "pearson")
+
+print("get new df with hns binding + inversions + sig block info")
+cor_dat <- cor_dat %>% filter(strain == "K12MG")
+cor_dat <- cor_dat %>%
+    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+head(cor_dat)
+ir1 = with(cor_dat, IRanges(start, end))
+cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+names(cor_dat)[names(cor_dat)=="overlap"] <- "O_HNS_binding"
+cor_dat[which(cor_dat$start == 383921),]
+cor_dat$O_HNS_binding <- as.integer(cor_dat$O_HNS_binding)
+cor_dat$sig <- as.integer(cor_dat$sig)
+head(cor_dat)
+
+
+print("################################################################################")
+print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+print("################################################################################")
+cor.test(cor_dat$sig, cor_dat$O_HNS_binding,
+         method = "pearson")
+
+
+print("################################################################################")
+print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+print("################################################################################")
+#cor_dat <- cor_dat %>% filter(inversion == 1)
+cor.test(cor_dat$inversion, cor_dat$O_HNS_binding,
+         method = "pearson")
+
+
+
+
 
 
 
 print("checking overlap between HNS binding sites in all datasets")
 print("total HNS binding sites for each dataset")
 inver_cor_d %>%
-gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
+gather(x, value, G_HNS_binding:O_HNS_binding)%>%
 group_by(x)%>%
 tally(value == 1)
 
-tmp_d <- inver_cor_d%>% select(G_HNS_binding:H3_HNS_binding) %>%
-         filter( G_HNS_binding ==1 | U_HNS_binding == 1 | H1_HNS_binding == 1 | H1nc1_HNS_binding == 1| H1nc2_HNS_binding == 1 | H1nc3_HNS_binding == 1| H2_HNS_binding == 1 | H3_HNS_binding == 1) 
+tmp_d <- inver_cor_d%>% select(G_HNS_binding:O_HNS_binding) %>% 
+         filter( G_HNS_binding ==1 | U_HNS_binding == 1 | H1_HNS_binding == 1 | H1nc1_HNS_binding == 1| H1nc2_HNS_binding == 1 | H1nc3_HNS_binding == 1| H2_HNS_binding == 1 | H3_HNS_binding == 1 | L_HNS_binding == 1 |O_HNS_binding) 
 print("total number of genes/blocks")
 length(tmp_d$G_HNS_binding)
 print("total number of rows where HNS binding is the same for all datasets")
@@ -2026,6 +2164,7 @@ sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
 
 
 print("HNS binding and inversions viz")
+print("Using Higashi criteria 1 for HNS binding")
 fake_val <- rep(10,length(cor_dat$block))
 fake_val2 <- rep(9.95,length(cor_dat$block))
 hns_inver <- cbind(cor_dat,fake_val,fake_val2)
