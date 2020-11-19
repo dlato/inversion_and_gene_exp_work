@@ -1048,7 +1048,7 @@ print("Create the DEseq2DataSet object")
 head(raw_deseqW)
 head(sampleData)
 print("DE btwn strains")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ sample + treatment)
+deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
 deseq_results <- DESeq(deseq2Data)
 print("done deseq")
 deseq_results2 <- results(deseq_results, alpha=0.05)
@@ -1397,6 +1397,22 @@ sub_u_dat <- ueda_dat[,c(1,2)]
 colnames(sub_u_dat) <- c("start","end")
 sub_u_dat <- na.omit(sub_u_dat)
 head(sub_u_dat)
+
+
+print("Lang 2007")
+print("all data is an HNS binding site")
+lang_dat <- read.csv("../HNS_protein/raw_data_files/Lang_2007_HNS_binding.csv", header = TRUE)
+sub_l_dat <- na.omit(lang_dat)
+head(sub_l_dat)
+
+print("Oshima 2006")
+oshima_dat <- read.csv("../HNS_protein/raw_data_files/Oshima_2006_HGT_HNS.csv", header = TRUE)
+oshima_dat$Nakamura[is.na(oshima_dat$Nakamura)] <- 0
+oshima_dat$Lawrence[is.na(oshima_dat$Lawrence)] <- 0
+oshima_dat$hns[is.na(oshima_dat$hns)] <- 0
+oshima_dat <- oshima_dat %>% drop_na(start)
+sub_o_dat <- filter(oshima_dat, hns == 1)
+head(sub_o_dat)
 
 print("combine HNS binary info to inversion df")
 print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
