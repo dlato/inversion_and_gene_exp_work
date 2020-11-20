@@ -526,6 +526,7 @@ length(unique(td$block))
 print("complete HEAD")
 head(complete_block_df)
 cor_dat <- complete_block_df
+cor_dat <- within(cor_dat, non_bidir_midpoint <- (end + start) /2)
 #complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 #plot pvalues
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
@@ -1382,6 +1383,7 @@ gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt",
 gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
 colnames(gene_inf) <- c("start","end","gbk_midpoint","gene_name")
 sub_h_df <- merge(sub_h_dat,gene_inf, by = "gene_name")
+hns_viz_h1 <- sub_h_df
 head(sub_h_df)
 #non-coding Higashi
 print("Higashi 2016 non-coding")
@@ -2168,22 +2170,27 @@ print("Using Higashi criteria 1 for HNS binding")
 fake_val <- rep(10,length(cor_dat$block))
 fake_val2 <- rep(9.95,length(cor_dat$block))
 hns_inver <- cbind(cor_dat,fake_val,fake_val2)
-head(hns_inver)
 hns_inver <- hns_inver %>% filter(inversion == 1)
-hns_inver$midpoint = hns_inver$midpoint / 1000000
+hns_inver$non_bidir_midpoint = hns_inver$non_bidir_midpoint / 1000000
+head(hns_inver)
 hns_sig <- hns_inver %>% filter(sig == 1)
-hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
+#hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
+hns_bind <- hns_viz_h1 %>% filter(HNS_binding == TRUE)
+hns_bind$gbk_midpoint = hns_bind$gbk_midpoint / 1000000
+fake_val <- rep(10,length(hns_bind$gbk_midpoint))
+hns_bind <- cbind(hns_bind, fake_val)
+head(hns_bind)
 
 
 override.shape <- c(1,2,16)
 override.size <- c(5,5,10)
-p <- (ggplot(hns_inver, aes(x=midpoint, y=fake_val, colour = strain))
+p <- (ggplot(hns_inver, aes(x=non_bidir_midpoint, y=fake_val, colour = strain))
    #inversions in grey
    + geom_point(size = 10, aes(colour = "#BEBEBE"))
-   + geom_point(data = hns_bind, aes(x=midpoint, y=fake_val,  color = "#2E294E"), size = 3,shape = 1)
+   + geom_point(data = hns_bind, aes(x=gbk_midpoint, y=fake_val,  color = "#2E294E"), size = 3,shape = 1)
    # sig inversions
-   + geom_point(data = hns_sig, aes(x=midpoint, y=fake_val2,  color = "#AA5042"), size = 3,shape = 2)
-   + labs(title= "H-NS Binding and Inversions",x = "Distance from the Origin of Replication (Mbp)", y = "") 
+   + geom_point(data = hns_sig, aes(x=non_bidir_midpoint, y=fake_val2,  color = "#AA5042"), size = 3,shape = 2)
+   + labs(title= "H-NS Binding and Inversions",x = "Genomic Location (Mbp)", y = "") 
    + scale_color_manual(values = c("#2E294E","#AA5042","#BEBEBE"), labels = c("H-NS Binding","Significant Inversion","Inversion"))
    + guides(colour = guide_legend(override.aes = list(shape = override.shape, size = override.size, fill=NA)))
    + scale_y_continuous(limits = c(9.5, 10.5))

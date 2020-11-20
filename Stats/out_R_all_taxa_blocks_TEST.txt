@@ -42927,13 +42927,20 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig
+1           242695.5   0
+2           242695.5   0
+3           242695.5   0
+4           242695.5   0
+5           242695.5   0
+6           255796.0   0
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -42949,16 +42956,16 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding
-13          TRUE
-14          TRUE
-15          TRUE
-16          TRUE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding
+13             386236   0          TRUE
+14             386236   0          TRUE
+15             386236   0          TRUE
+16             386236   0          TRUE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -42980,20 +42987,20 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding
-1             0
-2             0
-3             0
-4             0
-5             0
-6             0
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding
+1           242695.5   0             0
+2           242695.5   0             0
+3           242695.5   0             0
+4           242695.5   0             0
+5           242695.5   0             0
+6           255796.0   0             0
          block   start     end  midpoint gbk_midpoint       block_t_stat
 2020  Block992 3946844 3951536   23446.0        24788  -1.53129358943664
 2021  Block495 1864776 1878953 2053879.5      2046833 -0.969514526632923
@@ -43015,20 +43022,20 @@ sample estimates:
 2023        128.474194777443                27234                   27235
 2024        671.509430753205                24282                   24284
 2025        85.0548804749771                 2856                    2856
-     inversion rev_comp strain           test          pvalue allSig sig
-2020         1        0  K12MG block_w_pvalue 0.2672121480171     no   0
-2021         1        0  K12MG block_w_pvalue 0.2798536831841     no   0
-2022         1        0  K12MG block_w_pvalue 0.2798536831841     no   0
-2023         1        0  K12MG block_w_pvalue 0.0002229557365    yes   1
-2024         1        0  K12MG block_w_pvalue 0.2555487713597     no   0
-2025         1        0  K12MG block_w_pvalue 0.8333333333333     no   0
-     G_HNS_binding
-2020             0
-2021             0
-2022             0
-2023             0
-2024             1
-2025             0
+     inversion rev_comp strain           test          pvalue allSig
+2020         1        0  K12MG block_w_pvalue 0.2672121480171     no
+2021         1        0  K12MG block_w_pvalue 0.2798536831841     no
+2022         1        0  K12MG block_w_pvalue 0.2798536831841     no
+2023         1        0  K12MG block_w_pvalue 0.0002229557365    yes
+2024         1        0  K12MG block_w_pvalue 0.2555487713597     no
+2025         1        0  K12MG block_w_pvalue 0.8333333333333     no
+     non_bidir_midpoint sig G_HNS_binding
+2020          3949190.0   0             0
+2021          1871864.5   0             0
+2022          1871864.5   0             0
+2023          3028713.5   1             0
+2024          3316650.0   0             1
+2025          4055023.0   0             0
       block          start              end             midpoint      
  Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
  Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
@@ -43069,14 +43076,14 @@ sample estimates:
                        3rd Qu.:0.787854432                     
                        Max.   :1.000000000                     
                                                                
-      sig            G_HNS_binding      
- Min.   :0.0000000   Min.   :0.0000000  
- 1st Qu.:0.0000000   1st Qu.:0.0000000  
- Median :0.0000000   Median :0.0000000  
- Mean   :0.1283951   Mean   :0.1071605  
- 3rd Qu.:0.0000000   3rd Qu.:0.0000000  
- Max.   :1.0000000   Max.   :1.0000000  
-                                        
+ non_bidir_midpoint       sig            G_HNS_binding      
+ Min.   : 242695.5   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:1232748.0   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :1995435.0   Median :0.0000000   Median :0.0000000  
+ Mean   :2308559.1   Mean   :0.1283951   Mean   :0.1071605  
+ 3rd Qu.:3421187.0   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :4163643.5   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -43187,20 +43194,20 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding
-1             0
-2             0
-3             0
-4             0
-5             0
-6             0
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding
+1           242695.5   0             0
+2           242695.5   0             0
+3           242695.5   0             0
+4           242695.5   0             0
+5           242695.5   0             0
+6           255796.0   0             0
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -43216,16 +43223,16 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding
-13             1          TRUE
-14             1          TRUE
-15             1          TRUE
-16             1          TRUE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding
+13             386236   0             1          TRUE
+14             386236   0             1          TRUE
+15             386236   0             1          TRUE
+16             386236   0             1          TRUE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -43247,20 +43254,20 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding
-1             0             0
-2             0             0
-3             0             0
-4             0             0
-5             0             0
-6             0             0
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding
+1           242695.5   0             0             0
+2           242695.5   0             0             0
+3           242695.5   0             0             0
+4           242695.5   0             0             0
+5           242695.5   0             0             0
+6           255796.0   0             0             0
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -43378,20 +43385,20 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding
-1             0             0
-2             0             0
-3             0             0
-4             0             0
-5             0             0
-6             0             0
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding
+1           242695.5   0             0             0
+2           242695.5   0             0             0
+3           242695.5   0             0             0
+4           242695.5   0             0             0
+5           242695.5   0             0             0
+6           255796.0   0             0             0
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -43407,16 +43414,16 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding
-13             1             1          FALSE
-14             1             1          FALSE
-15             1             1          FALSE
-16             1             1          FALSE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1          FALSE
+14             386236   0             1             1          FALSE
+15             386236   0             1             1          FALSE
+16             386236   0             1             1          FALSE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -43438,20 +43445,20 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding
-1             0             0              0
-2             0             0              0
-3             0             0              0
-4             0             0              0
-5             0             0              0
-6             0             0              1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -43564,20 +43571,20 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding
-1             0             0              0
-2             0             0              0
-3             0             0              0
-4             0             0              0
-5             0             0              0
-6             0             0              1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -43593,16 +43600,21 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-13             1             1              0             FALSE
-14             1             1              0             FALSE
-15             1             1              0             FALSE
-16             1             1              0             FALSE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1              0
+14             386236   0             1             1              0
+15             386236   0             1             1              0
+16             386236   0             1             1              0
+   H1nc1_HNS_binding
+13             FALSE
+14             FALSE
+15             FALSE
+16             FALSE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -43624,20 +43636,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding
+1                 0
+2                 0
+3                 0
+4                 0
+5                 0
+6                 1
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -43752,20 +43771,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding
+1                 0
+2                 0
+3                 0
+4                 0
+5                 0
+6                 1
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -43781,21 +43807,21 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-13             1             1              0                 0
-14             1             1              0                 0
-15             1             1              0                 0
-16             1             1              0                 0
-   H1nc2_HNS_binding
-13             FALSE
-14             FALSE
-15             FALSE
-16             FALSE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1              0
+14             386236   0             1             1              0
+15             386236   0             1             1              0
+16             386236   0             1             1              0
+   H1nc1_HNS_binding H1nc2_HNS_binding
+13                 0             FALSE
+14                 0             FALSE
+15                 0             FALSE
+16                 0             FALSE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -43817,27 +43843,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding
-1                 0
-2                 0
-3                 0
-4                 0
-5                 0
-6                 1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding
+1                 0                 0
+2                 0                 0
+3                 0                 0
+4                 0                 0
+5                 0                 0
+6                 1                 1
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -43952,27 +43978,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding
-1                 0
-2                 0
-3                 0
-4                 0
-5                 0
-6                 1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding
+1                 0                 0
+2                 0                 0
+3                 0                 0
+4                 0                 0
+5                 0                 0
+6                 1                 1
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -43988,21 +44014,21 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-13             1             1              0                 0
-14             1             1              0                 0
-15             1             1              0                 0
-16             1             1              0                 0
-   H1nc2_HNS_binding H1nc3_HNS_binding
-13                 0             FALSE
-14                 0             FALSE
-15                 0             FALSE
-16                 0             FALSE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1              0
+14             386236   0             1             1              0
+15             386236   0             1             1              0
+16             386236   0             1             1              0
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
+13                 0                 0             FALSE
+14                 0                 0             FALSE
+15                 0                 0             FALSE
+16                 0                 0             FALSE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -44024,27 +44050,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding
-1                 0                 0
-2                 0                 0
-3                 0                 0
-4                 0                 0
-5                 0                 0
-6                 1                 1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
+1                 0                 0                 0
+2                 0                 0                 0
+3                 0                 0                 0
+4                 0                 0                 0
+5                 0                 0                 0
+6                 1                 1                 1
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -44166,27 +44192,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding
-1                 0                 0
-2                 0                 0
-3                 0                 0
-4                 0                 0
-5                 0                 0
-6                 1                 1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
+1                 0                 0                 0
+2                 0                 0                 0
+3                 0                 0                 0
+4                 0                 0                 0
+5                 0                 0                 0
+6                 1                 1                 1
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -44202,21 +44228,21 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-13             1             1              0                 0
-14             1             1              0                 0
-15             1             1              0                 0
-16             1             1              0                 0
-   H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-13                 0                 0          FALSE
-14                 0                 0          FALSE
-15                 0                 0          FALSE
-16                 0                 0          FALSE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1              0
+14             386236   0             1             1              0
+15             386236   0             1             1              0
+16             386236   0             1             1              0
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+13                 0                 0                 0          FALSE
+14                 0                 0                 0          FALSE
+15                 0                 0                 0          FALSE
+16                 0                 0                 0          FALSE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -44238,27 +44264,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-1                 0                 0              0
-2                 0                 0              0
-3                 0                 0              0
-4                 0                 0              0
-5                 0                 0              0
-6                 1                 1              1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -44391,27 +44417,27 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-1                 0                 0              0
-2                 0                 0              0
-3                 0                 0              0
-4                 0                 0              0
-5                 0                 0              0
-6                 1                 1              1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -44427,21 +44453,26 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-13             1             1              0                 0
-14             1             1              0                 0
-15             1             1              0                 0
-16             1             1              0                 0
-   H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-13                 0                 0              0          FALSE
-14                 0                 0              0          FALSE
-15                 0                 0              0          FALSE
-16                 0                 0              0          FALSE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1              0
+14             386236   0             1             1              0
+15             386236   0             1             1              0
+16             386236   0             1             1              0
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+13                 0                 0                 0              0
+14                 0                 0                 0              0
+15                 0                 0                 0              0
+16                 0                 0                 0              0
+   H3_HNS_binding
+13          FALSE
+14          FALSE
+15          FALSE
+16          FALSE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -44463,27 +44494,34 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-1                 0                 0              0              0
-2                 0                 0              0              0
-3                 0                 0              0              0
-4                 0                 0              0              0
-5                 0                 0              0              0
-6                 1                 1              1              1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
+  H3_HNS_binding
+1              0
+2              0
+3              0
+4              0
+5              0
+6              1
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -44609,27 +44647,34 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-1                 0                 0              0              0
-2                 0                 0              0              0
-3                 0                 0              0              0
-4                 0                 0              0              0
-5                 0                 0              0              0
-6                 1                 1              1              1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
+  H3_HNS_binding
+1              0
+2              0
+3              0
+4              0
+5              0
+6              1
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -44645,26 +44690,26 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-13             1             1              0                 0
-14             1             1              0                 0
-15             1             1              0                 0
-16             1             1              0                 0
-   H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-13                 0                 0              0              0
-14                 0                 0              0              0
-15                 0                 0              0              0
-16                 0                 0              0              0
-   L_HNS_binding
-13         FALSE
-14         FALSE
-15         FALSE
-16         FALSE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1              0
+14             386236   0             1             1              0
+15             386236   0             1             1              0
+16             386236   0             1             1              0
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+13                 0                 0                 0              0
+14                 0                 0                 0              0
+15                 0                 0                 0              0
+16                 0                 0                 0              0
+   H3_HNS_binding L_HNS_binding
+13              0         FALSE
+14              0         FALSE
+15              0         FALSE
+16              0         FALSE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -44686,34 +44731,34 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-1                 0                 0              0              0
-2                 0                 0              0              0
-3                 0                 0              0              0
-4                 0                 0              0              0
-5                 0                 0              0              0
-6                 1                 1              1              1
-  L_HNS_binding
-1             0
-2             0
-3             0
-4             0
-5             0
-6             0
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
+  H3_HNS_binding L_HNS_binding
+1              0             0
+2              0             0
+3              0             0
+4              0             0
+5              0             0
+6              1             0
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -44846,34 +44891,34 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-1                 0                 0              0              0
-2                 0                 0              0              0
-3                 0                 0              0              0
-4                 0                 0              0              0
-5                 0                 0              0              0
-6                 1                 1              1              1
-  L_HNS_binding
-1             0
-2             0
-3             0
-4             0
-5             0
-6             0
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
+  H3_HNS_binding L_HNS_binding
+1              0             0
+2              0             0
+3              0             0
+4              0             0
+5              0             0
+6              1             0
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -44889,26 +44934,26 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig sig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-14         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-15         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-16         1        0  K12MG block_w_pvalue 0.2615384615     no   0
-   G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-13             1             1              0                 0
-14             1             1              0                 0
-15             1             1              0                 0
-16             1             1              0                 0
-   H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-13                 0                 0              0              0
-14                 0                 0              0              0
-15                 0                 0              0              0
-16                 0                 0              0              0
-   L_HNS_binding O_HNS_binding
-13             0          TRUE
-14             0          TRUE
-15             0          TRUE
-16             0          TRUE
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13             386236   0             1             1              0
+14             386236   0             1             1              0
+15             386236   0             1             1              0
+16             386236   0             1             1              0
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+13                 0                 0                 0              0
+14                 0                 0                 0              0
+15                 0                 0                 0              0
+16                 0                 0                 0              0
+   H3_HNS_binding L_HNS_binding O_HNS_binding
+13              0             0          TRUE
+14              0             0          TRUE
+15              0             0          TRUE
+16              0             0          TRUE
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -44930,34 +44975,34 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-1                 0                 0              0              0
-2                 0                 0              0              0
-3                 0                 0              0              0
-4                 0                 0              0              0
-5                 0                 0              0              0
-6                 1                 1              1              1
-  L_HNS_binding O_HNS_binding
-1             0             1
-2             0             1
-3             0             1
-4             0             1
-5             0             1
-6             0             1
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           242695.5   0             0             0              0
+2           242695.5   0             0             0              0
+3           242695.5   0             0             0              0
+4           242695.5   0             0             0              0
+5           242695.5   0             0             0              0
+6           255796.0   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
+  H3_HNS_binding L_HNS_binding O_HNS_binding
+1              0             0             1
+2              0             0             1
+3              0             0             1
+4              0             0             1
+5              0             0             1
+6              1             0             1
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -45030,33 +45075,47 @@ cor
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig sig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-2         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-3         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-4         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-5         1        0  K12MG block_w_pvalue 0.6115841073     no   0
-6         1        0  K12MG block_w_pvalue 0.6303030303     no   0
-  G_HNS_binding U_HNS_binding H1_HNS_binding H1nc1_HNS_binding
-1             0             0              0                 0
-2             0             0              0                 0
-3             0             0              0                 0
-4             0             0              0                 0
-5             0             0              0                 0
-6             0             0              1                 1
-  H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding
-1                 0                 0              0              0
-2                 0                 0              0              0
-3                 0                 0              0              0
-4                 0                 0              0              0
-5                 0                 0              0              0
-6                 1                 1              1              1
-  L_HNS_binding O_HNS_binding fake_val fake_val2
-1             0             1       10      9.95
-2             0             1       10      9.95
-3             0             1       10      9.95
-4             0             1       10      9.95
-5             0             1       10      9.95
-6             0             1       10      9.95
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1          0.2426955   0             0             0              0
+2          0.2426955   0             0             0              0
+3          0.2426955   0             0             0              0
+4          0.2426955   0             0             0              0
+5          0.2426955   0             0             0              0
+6          0.2557960   0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 1                 1                 1              1
+  H3_HNS_binding L_HNS_binding O_HNS_binding fake_val fake_val2
+1              0             0             1       10      9.95
+2              0             0             1       10      9.95
+3              0             0             1       10      9.95
+4              0             0             1       10      9.95
+5              0             0             1       10      9.95
+6              1             0             1       10      9.95
+  gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
+1      acrE        TRUE       TRUE           TRUE 3413864 3415021     3.414442
+2      acrR        TRUE       TRUE           TRUE  485761  486408     0.486084
+3      adiC        TRUE       TRUE           TRUE 4335694 4337031     4.336362
+4      adiY        TRUE       TRUE           TRUE 4337168 4337929     4.337548
+5      agaB        TRUE       TRUE           TRUE 3284170 3284646     3.284408
+6      agaC        TRUE       TRUE           TRUE 3284685 3285488     3.285086
+  fake_val
+1       10
+2       10
+3       10
+4       10
+5       10
+6       10
 null device 
           1 
