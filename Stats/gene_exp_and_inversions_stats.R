@@ -467,9 +467,11 @@ block_df_w <- melt(block_df_uniq,
     variable.name="test",
     value.name="pvalue"
 )
+block_df_w$pvalue <- as.numeric(block_df_w$pvalue)
 summary(block_df_w)
 print("non zero pvals") 
 complete_block_df <- block_df_w[which(block_df_w$pvalue != "NA"),]
+summary(complete_block_df)
 complete_block_df <- complete_block_df %>% filter(test == "block_w_pvalue")
 head(complete_block_df)
 print("SAVED complete DATA TO FILE")
@@ -527,6 +529,7 @@ print("complete HEAD")
 head(complete_block_df)
 cor_dat <- complete_block_df
 cor_dat <- within(cor_dat, non_bidir_midpoint <- (end + start) /2)
+summary(cor_dat)
 #complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 #plot pvalues
 p <- ggplot(complete_block_df, aes(x=test, y=pvalue)) + 
@@ -1475,6 +1478,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
+summary(cor_dat)
 ir1 = with(cor_dat, IRanges(start, end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "G_HNS_binding"
@@ -2167,12 +2171,20 @@ sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
 
 print("HNS binding and inversions viz")
 print("Using Higashi criteria 1 for HNS binding")
+inver_cor_d <- within(inver_cor_d, midpoint <- (end1 + start1) /2)
+inver_cor_d$midpoint = inver_cor_d$midpoint / 1000000
+fake_val <- rep(10,length(inver_cor_d$midpoint))
+inver_cor_d <- cbind(inver_cor_d, fake_val)
+inver_cor_d <- filter(inver_cor_d, H1_HNS_binding == 1)
+head(inver_cor_d)
+summary(inver_cor_d)
 fake_val <- rep(10,length(cor_dat$block))
 fake_val2 <- rep(9.95,length(cor_dat$block))
 hns_inver <- cbind(cor_dat,fake_val,fake_val2)
 hns_inver <- hns_inver %>% filter(inversion == 1)
 hns_inver$non_bidir_midpoint = hns_inver$non_bidir_midpoint / 1000000
 head(hns_inver)
+summary(hns_inver)
 hns_sig <- hns_inver %>% filter(sig == 1)
 #hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
 hns_bind <- hns_viz_h1 %>% filter(HNS_binding == TRUE)
@@ -2187,7 +2199,7 @@ override.size <- c(5,5,10)
 p <- (ggplot(hns_inver, aes(x=non_bidir_midpoint, y=fake_val, colour = strain))
    #inversions in grey
    + geom_point(size = 10, aes(colour = "#BEBEBE"))
-   + geom_point(data = hns_bind, aes(x=gbk_midpoint, y=fake_val,  color = "#2E294E"), size = 3,shape = 1)
+   + geom_point(data = inver_cor_d, aes(x=midpoint, y=fake_val,  color = "#2E294E"), size = 3,shape = 1)
    # sig inversions
    + geom_point(data = hns_sig, aes(x=non_bidir_midpoint, y=fake_val2,  color = "#AA5042"), size = 3,shape = 2)
    + labs(title= "H-NS Binding and Inversions",x = "Genomic Location (Mbp)", y = "") 

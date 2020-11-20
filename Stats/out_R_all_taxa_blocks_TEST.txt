@@ -40923,15 +40923,55 @@ Warning messages:
                          3rd Qu.:1.0000000   3rd Qu.:0.0000000                 
                          Max.   :1.0000000   Max.   :1.0000000                 
                                                                                
-             test          pvalue         
- block_w_pvalue:11818   Length:23636      
- block_t_pvalue:11818   Class :character  
-                        Mode  :character  
-                                          
-                                          
-                                          
-                                          
+             test           pvalue        
+ block_w_pvalue:11818   Min.   :0.000129  
+ block_t_pvalue:11818   1st Qu.:0.196674  
+                        Median :0.450903  
+                        Mean   :0.467019  
+                        3rd Qu.:0.717831  
+                        Max.   :1.000000  
+                        NA's   :7477      
 [1] "non zero pvals"
+      block           start              end             midpoint      
+ Block499:  306   Min.   : 213551   Min.   : 220048   Min.   :    345  
+ Block889:  248   1st Qu.:1261756   1st Qu.:1281912   1st Qu.: 482209  
+ Block893:  218   Median :2077614   Median :2091320   Median :1598432  
+ Block869:  204   Mean   :2413560   Mean   :2425135   Mean   :1346415  
+ Block485:  194   3rd Qu.:3512631   3rd Qu.:3530672   3rd Qu.:2141908  
+ Block475:  184   Max.   :4934562   Max.   :4941058   Max.   :2792216  
+ (Other) :14805                                                        
+  gbk_midpoint     block_t_stat       block_t_confinf1   block_t_confinf2  
+ Min.   :    134   Length:16159       Length:16159       Length:16159      
+ 1st Qu.: 484544   Class :character   Class :character   Class :character  
+ Median :1598898   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1346391                                                           
+ 3rd Qu.:2142760                                                           
+ Max.   :2793601                                                           
+                                                                           
+ block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+ Length:16159         Length:16159            Length:16159        
+ Class :character     Class :character        Class :character    
+ Mode  :character     Mode  :character        Mode  :character    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+ block_avg_len_noninvert   inversion    rev_comp             strain    
+ Length:16159            Min.   :1   Min.   :0.0000000   ATCC   :4164  
+ Class :character        1st Qu.:1   1st Qu.:0.0000000   BW25113:4023  
+ Mode  :character        Median :1   Median :0.0000000   K12DH  :3993  
+                         Mean   :1   Mean   :0.2579368   K12MG  :3979  
+                         3rd Qu.:1   3rd Qu.:1.0000000                 
+                         Max.   :1   Max.   :1.0000000                 
+                                                                       
+             test          pvalue           
+ block_w_pvalue:8220   Min.   :0.000128999  
+ block_t_pvalue:7939   1st Qu.:0.196673912  
+                       Median :0.450902875  
+                       Mean   :0.467019000  
+                       3rd Qu.:0.717830657  
+                       Max.   :1.000000000  
+                                            
       block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block1034 535405 540728 1743089.5      1740878 0.675647315217252
 2 Block1034 535405 540728 1743089.5      1742174 0.675647315217252
@@ -40953,13 +40993,13 @@ Warning messages:
 4        157.864520266454                 5323                    5323
 5        157.864520266454                 5323                    5323
 6        345.268235429689                 2608                    2608
-  inversion rev_comp strain           test            pvalue
-1         1        1   ATCC block_w_pvalue 0.932791537667699
-2         1        1   ATCC block_w_pvalue 0.932791537667699
-3         1        1   ATCC block_w_pvalue 0.932791537667699
-4         1        1   ATCC block_w_pvalue 0.932791537667699
-5         1        1   ATCC block_w_pvalue 0.932791537667699
-6         1        1   ATCC block_w_pvalue 0.142857142857143
+  inversion rev_comp strain           test       pvalue
+1         1        1   ATCC block_w_pvalue 0.9327915377
+2         1        1   ATCC block_w_pvalue 0.9327915377
+3         1        1   ATCC block_w_pvalue 0.9327915377
+4         1        1   ATCC block_w_pvalue 0.9327915377
+5         1        1   ATCC block_w_pvalue 0.9327915377
+6         1        1   ATCC block_w_pvalue 0.1428571429
 [1] "SAVED complete DATA TO FILE"
 [1] Var1 Freq
 <0 rows> (or 0-length row.names)
@@ -41002,6 +41042,54 @@ Warning messages:
 4         1        1   ATCC block_w_pvalue 0.9327915377     no
 5         1        1   ATCC block_w_pvalue 0.9327915377     no
 6         1        1   ATCC block_w_pvalue 0.1428571429     no
+      block          start              end             midpoint      
+ Block499: 153   Min.   : 213551   Min.   : 220048   Min.   :    345  
+ Block889: 124   1st Qu.:1263454   1st Qu.:1282024   1st Qu.: 482209  
+ Block893: 109   Median :2077614   Median :2091320   Median :1598432  
+ Block869: 102   Mean   :2413487   Mean   :2424895   Mean   :1346933  
+ Block485:  97   3rd Qu.:3517352   3rd Qu.:3530672   3rd Qu.:2142098  
+ Block475:  92   Max.   :4934562   Max.   :4941058   Max.   :2792216  
+ (Other) :7543                                                        
+  gbk_midpoint       block_t_stat       block_t_confinf1   block_t_confinf2  
+ Min.   :    134.0   Length:8220        Length:8220        Length:8220       
+ 1st Qu.: 484338.5   Class :character   Class :character   Class :character  
+ Median :1598553.0   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1346937.6                                                           
+ 3rd Qu.:2144286.0                                                           
+ Max.   :2793601.0                                                           
+                                                                             
+ block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+ Length:8220          Length:8220             Length:8220         
+ Class :character     Class :character        Class :character    
+ Mode  :character     Mode  :character        Mode  :character    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+ block_avg_len_noninvert   inversion    rev_comp             strain    
+ Length:8220             Min.   :1   Min.   :0.0000000   ATCC   :2116  
+ Class :character        1st Qu.:1   1st Qu.:0.0000000   BW25113:2047  
+ Mode  :character        Median :1   Median :0.0000000   K12DH  :2032  
+                         Mean   :1   Mean   :0.2576642   K12MG  :2025  
+                         3rd Qu.:1   3rd Qu.:1.0000000                 
+                         Max.   :1   Max.   :1.0000000                 
+                                                                       
+             test          pvalue               allSig         
+ block_w_pvalue:8220   Min.   :0.000128999   Length:8220       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466030598                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint 
+ Min.   : 216799.5  
+ 1st Qu.:1268178.0  
+ Median :2084467.0  
+ Mean   :2419190.8  
+ 3rd Qu.:3523205.9  
+ Max.   :4937810.0  
+                    
 null device 
           1 
 [1] "########################"
@@ -42941,6 +43029,54 @@ sample estimates:
 4           242695.5   0
 5           242695.5   0
 6           255796.0   0
+      block          start              end             midpoint      
+ Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
+ Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
+ Block893:  27   Median :1988582   Median :2002288   Median :1639674  
+ Block869:  26   Mean   :2302853   Mean   :2314265   Mean   :1375220  
+ Block485:  25   3rd Qu.:3419108   3rd Qu.:3423266   3rd Qu.:2160175  
+ Block475:  23   Max.   :4160982   Max.   :4166305   Max.   :2792216  
+ (Other) :1855                                                        
+  gbk_midpoint     block_t_stat       block_t_confinf1   block_t_confinf2  
+ Min.   :    489   Length:2025        Length:2025        Length:2025       
+ 1st Qu.: 503868   Class :character   Class :character   Class :character  
+ Median :1641145   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1375295                                                           
+ 3rd Qu.:2158587                                                           
+ Max.   :2792300                                                           
+                                                                           
+ block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+ Length:2025          Length:2025             Length:2025         
+ Class :character     Class :character        Class :character    
+ Mode  :character     Mode  :character        Mode  :character    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+ block_avg_len_noninvert   inversion    rev_comp     strain    
+ Length:2025             Min.   :1   Min.   :0   ATCC   :   0  
+ Class :character        1st Qu.:1   1st Qu.:0   BW25113:   0  
+ Mode  :character        Median :1   Median :0   K12DH  :   0  
+                         Mean   :1   Mean   :0   K12MG  :2025  
+                         3rd Qu.:1   3rd Qu.:0                 
+                         Max.   :1   Max.   :0                 
+                                                               
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig           
+ Min.   : 242695.5   Min.   :0.0000000  
+ 1st Qu.:1232748.0   1st Qu.:0.0000000  
+ Median :1995435.0   Median :0.0000000  
+ Mean   :2308559.1   Mean   :0.1283951  
+ 3rd Qu.:3421187.0   3rd Qu.:0.0000000  
+ Max.   :4163643.5   Max.   :1.0000000  
+                                        
       block  start    end midpoint gbk_midpoint      block_t_stat
 13 Block123 383921 388551  1591259      1589360 0.163737532965995
 14 Block123 383921 388551  1591259      1590736 0.163737532965995
@@ -45054,6 +45190,55 @@ cor
 [1] 5
 [1] "HNS binding and inversions viz"
 [1] "Using Higashi criteria 1 for HNS binding"
+  start1   end1 Inversion G_HNS_binding U_HNS_binding H1_HNS_binding
+1  17258  19597         0             0             0              1
+2  28244  34713         0             0             0              1
+3  34768  44143         0             0             1              1
+4 150902 153677         0             0             1              1
+5 157226 164531         0             0             1              1
+6 173600 183621         0             0             0              1
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 1                 1                 1              1
+2                 1                 1                 1              1
+3                 1                 1                 1              1
+4                 1                 1                 1              1
+5                 1                 1                 1              1
+6                 1                 1                 1              1
+  H3_HNS_binding L_HNS_binding O_HNS_binding  midpoint fake_val
+1              1             0             1 0.0184275       10
+2              1             0             1 0.0314785       10
+3              1             1             1 0.0394555       10
+4              1             0             1 0.1522895       10
+5              1             0             0 0.1608785       10
+6              1             0             1 0.1786105       10
+     start1             end1           Inversion         G_HNS_binding       
+ Min.   :  17258   Min.   :  19597   Min.   :0.0000000   Min.   :0.00000000  
+ 1st Qu.:1384951   1st Qu.:1392048   1st Qu.:0.2500000   1st Qu.:0.00000000  
+ Median :2168296   Median :2169324   Median :1.0000000   Median :0.00000000  
+ Mean   :2299158   Mean   :2307356   Mean   :0.7475728   Mean   :0.07281553  
+ 3rd Qu.:3256286   3rd Qu.:3263923   3rd Qu.:1.0000000   3rd Qu.:0.00000000  
+ Max.   :4603170   Max.   :4606518   Max.   :1.0000000   Max.   :1.00000000  
+ U_HNS_binding       H1_HNS_binding H1nc1_HNS_binding   H1nc2_HNS_binding  
+ Min.   :0.0000000   Min.   :1      Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:1      1st Qu.:1.0000000   1st Qu.:1.0000000  
+ Median :0.0000000   Median :1      Median :1.0000000   Median :1.0000000  
+ Mean   :0.4466019   Mean   :1      Mean   :0.9174757   Mean   :0.9174757  
+ 3rd Qu.:1.0000000   3rd Qu.:1      3rd Qu.:1.0000000   3rd Qu.:1.0000000  
+ Max.   :1.0000000   Max.   :1      Max.   :1.0000000   Max.   :1.0000000  
+ H1nc3_HNS_binding   H2_HNS_binding     H3_HNS_binding     L_HNS_binding      
+ Min.   :0.0000000   Min.   :0.000000   Min.   :0.000000   Min.   :0.0000000  
+ 1st Qu.:1.0000000   1st Qu.:1.000000   1st Qu.:1.000000   1st Qu.:0.0000000  
+ Median :1.0000000   Median :1.000000   Median :1.000000   Median :0.0000000  
+ Mean   :0.9174757   Mean   :0.907767   Mean   :0.907767   Mean   :0.2475728  
+ 3rd Qu.:1.0000000   3rd Qu.:1.000000   3rd Qu.:1.000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.000000   Max.   :1.000000   Max.   :1.0000000  
+ O_HNS_binding          midpoint            fake_val 
+ Min.   :0.0000000   Min.   :0.0184275   Min.   :10  
+ 1st Qu.:1.0000000   1st Qu.:1.3884996   1st Qu.:10  
+ Median :1.0000000   Median :2.1688100   Median :10  
+ Mean   :0.7718447   Mean   :2.3032568   Mean   :10  
+ 3rd Qu.:1.0000000   3rd Qu.:3.2601047   3rd Qu.:10  
+ Max.   :1.0000000   Max.   :4.6048440   Max.   :10  
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
@@ -45103,6 +45288,78 @@ cor
 4              0             0             1       10      9.95
 5              0             0             1       10      9.95
 6              1             0             1       10      9.95
+      block          start              end             midpoint      
+ Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
+ Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
+ Block893:  27   Median :1988582   Median :2002288   Median :1639674  
+ Block869:  26   Mean   :2302853   Mean   :2314265   Mean   :1375220  
+ Block485:  25   3rd Qu.:3419108   3rd Qu.:3423266   3rd Qu.:2160175  
+ Block475:  23   Max.   :4160982   Max.   :4166305   Max.   :2792216  
+ (Other) :1855                                                        
+  gbk_midpoint     block_t_stat       block_t_confinf1   block_t_confinf2  
+ Min.   :    489   Length:2025        Length:2025        Length:2025       
+ 1st Qu.: 503868   Class :character   Class :character   Class :character  
+ Median :1641145   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1375295                                                           
+ 3rd Qu.:2158587                                                           
+ Max.   :2792300                                                           
+                                                                           
+ block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+ Length:2025          Length:2025             Length:2025         
+ Class :character     Class :character        Class :character    
+ Mode  :character     Mode  :character        Mode  :character    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+ block_avg_len_noninvert   inversion    rev_comp     strain    
+ Length:2025             Min.   :1   Min.   :0   ATCC   :   0  
+ Class :character        1st Qu.:1   1st Qu.:0   BW25113:   0  
+ Mode  :character        Median :1   Median :0   K12DH  :   0  
+                         Mean   :1   Mean   :0   K12MG  :2025  
+                         3rd Qu.:1   3rd Qu.:0                 
+                         Max.   :1   Max.   :0                 
+                                                               
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig            G_HNS_binding      
+ Min.   :0.2426955   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:1.2327480   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :1.9954350   Median :0.0000000   Median :0.0000000  
+ Mean   :2.3085591   Mean   :0.1283951   Mean   :0.1071605  
+ 3rd Qu.:3.4211870   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :4.1636435   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ U_HNS_binding       H1_HNS_binding      H1nc1_HNS_binding  
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :1.0000000   Median :1.0000000  
+ Mean   :0.3935802   Mean   :0.5254321   Mean   :0.5037037  
+ 3rd Qu.:1.0000000   3rd Qu.:1.0000000   3rd Qu.:1.0000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     H3_HNS_binding    
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.000000   Min.   :0.000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.000000   1st Qu.:0.000000  
+ Median :1.0000000   Median :1.0000000   Median :1.000000   Median :1.000000  
+ Mean   :0.5037037   Mean   :0.5037037   Mean   :0.502716   Mean   :0.502716  
+ 3rd Qu.:1.0000000   3rd Qu.:1.0000000   3rd Qu.:1.000000   3rd Qu.:1.000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.000000   Max.   :1.000000  
+                                                                              
+ L_HNS_binding       O_HNS_binding         fake_val    fake_val2   
+ Min.   :0.0000000   Min.   :0.000000   Min.   :10   Min.   :9.95  
+ 1st Qu.:0.0000000   1st Qu.:0.000000   1st Qu.:10   1st Qu.:9.95  
+ Median :0.0000000   Median :1.000000   Median :10   Median :9.95  
+ Mean   :0.2681481   Mean   :0.625679   Mean   :10   Mean   :9.95  
+ 3rd Qu.:1.0000000   3rd Qu.:1.000000   3rd Qu.:10   3rd Qu.:9.95  
+ Max.   :1.0000000   Max.   :1.000000   Max.   :10   Max.   :9.95  
+                                                                   
   gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
 1      acrE        TRUE       TRUE           TRUE 3413864 3415021     3.414442
 2      acrR        TRUE       TRUE           TRUE  485761  486408     0.486084
