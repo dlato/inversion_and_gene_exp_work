@@ -1,0 +1,3 @@
+cp R* intree
+retree < retree_in_comms
+mv outtree Strep_chrom_ref_tree_29Aug20
