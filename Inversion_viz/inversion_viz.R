@@ -108,8 +108,8 @@ ps_dat <- bi_dat %>%
 #ps_dat$x <- factor(ps_dat$x, rev(c("U00096", "NC_010473", "NZ_CP009273", "NZ_CP009072")))
 #levels(ps_dat$x) <- list("K12 MG1655"="U00096", "K12 DH10B"="NC_010473", "BW25113"="NZ_CP009273", "ATCC"="NZ_CP009072")
 ps_dat$x <- factor(ps_dat$x, rev(c("U00096000", "NC_010473", "NZ_CP009273", "CP009072")))
-levels(ps_dat$x) <- list("K12 MG1655"="U00096000", "K12 DH10B"="NC_010473", "BW25113"="NZ_CP009273", "ATCC"="CP009072")
-ps_dat$x <- factor(ps_dat$x, rev(c("K12 MG1655", "K12 DH10B", "BW25113", "ATCC")))
+levels(ps_dat$x) <- list("K-12 MG1655"="U00096000", "K-12 DH10B"="NC_010473", "BW25113"="NZ_CP009273", "ATCC"="CP009072")
+ps_dat$x <- factor(ps_dat$x, rev(c("K-12 MG1655", "K-12 DH10B", "BW25113", "ATCC")))
 head(ps_dat)
 summary(ps_dat)
 
