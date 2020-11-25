@@ -2170,6 +2170,33 @@ print("total number of rows where HNS binding is the same for all datasets")
 sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
 
 
+print("HNS and expression in Lang and Higashi (H1)")
+#get blocks where Higashi (H1) or Lang had HNS bound
+l_h_blocks <- cor_dat %>%
+         filter(H1_HNS_binding == 1 | L_HNS_binding == 1) %>%
+         select(block)
+l_h_blocks <- unique(l_h_blocks)
+head(l_h_blocks)
+#get gei_dat that is just ^ blocks
+head(gei_dat)
+l_h_dat <- gei_dat %>%
+           filter(block %in% l_h_blocks)
+head(l_h_dat)
+g_l <- unique(l_h_dat$block)
+identical(g_l, l_h_blocks)
+
+
+print("wolcoxon sign ranked test to see if there is a diff in exp btwn
+HNS bound inversions and HNS bound non-inversions")
+#wilcox.test(l_h_df$norm_exp[l_h_df$inversion == 1], l_h_df$norm_exp[l_h_df$inversion == 0])
+
+print("overlap btwn Higashi (H1) and Lang")
+l_h_overlap <- l_h_df %>%
+         filter(H1_HNS_binding == 1 & L_HNS_binding == 1)
+length(l_h_overlap$Inversion)
+
+
+
 print("HNS binding and inversions viz")
 print("Using Higashi criteria 1 for HNS binding")
 inver_cor_d <- within(inver_cor_d, midpoint <- (end1 + start1) /2)
