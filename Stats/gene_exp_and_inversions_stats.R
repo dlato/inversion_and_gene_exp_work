@@ -2182,7 +2182,7 @@ l_h_blocks <- l_h_blocks[-184]
 l_h_blocks
 class(l_h_blocks)
 print("#get gei_dat that is just ^ blocks")
-gei_dat %>% filter(block == "Block789")
+#gei_dat %>% filter(block == "Block789")
 #gei_dat %>% filter(block == "Block129")
 #gei_dat %>% filter(block == "Block141")
 l_h_dat <- gei_dat %>%
@@ -2193,13 +2193,14 @@ g_l
 print("check if all HNS blocks were grabbed")
 identical(g_l, l_h_blocks)
 
-print("len check")
-#l_h_dat %>% filter(inversion == 0)
-length(l_h_dat$norm_exp[l_h_dat$inversion == 1])
-length(l_h_dat$norm_exp[l_h_dat$inversion == 0])
 
 print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound inversions and HNS bound non-inversions")
 wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
+
+print("Avg inver exp with HNS binding")
+mean(l_h_dat$norm_exp[l_h_dat$inversion == 1])
+print("Avg NON-inver exp with HNS binding")
+mean(l_h_dat$norm_exp[l_h_dat$inversion == 0])
 
 print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig HNS bound inversions and non-sig HNS bound non-inversions")
 #make df with sig diff in gene exp btwn inversions
@@ -2208,8 +2209,19 @@ sig_gei <- l_h_dat %>%
 head(sig_gei)
 wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
 
+
+print("create column with HNS binding and non-binding")
+gei_dat_hns <- gei_dat %>%
+               mutate(HNS = ifelse(block %in% l_h_blocks, 1, 0))
+print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound and HNS un-bound blocks")
+wilcox.test(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1], gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
+print("Avg exp with HNS binding")
+mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1])
+print("Avg exp WITHOUT HNS binding")
+mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
+
 print("overlap btwn Higashi (H1) and Lang")
-l_h_overlap <- l_h_df %>%
+l_h_overlap <- inver_cor_d %>%
          filter(H1_HNS_binding == 1 & L_HNS_binding == 1)
 length(l_h_overlap$Inversion)
 
