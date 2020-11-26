@@ -1424,10 +1424,10 @@ print("combine HNS binary info to inversion df")
 print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
 head(inver_dat_bidir)
 inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
-            select(start,end,inversion)
+            select(start,end,inversion,block)
 #            select(start,end)
 #colnames(inver_cor_d) <- c("start1","end1")
-colnames(inver_cor_d) <- c("start1","end1","Inversion")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block")
 inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
 inver_cor_d <- unique(inver_cor_d)
 head(inver_cor_d)
@@ -1462,7 +1462,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding")
 inver_cor_d$G_HNS_binding <- as.integer(inver_cor_d$G_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -1535,7 +1535,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding")
 inver_cor_d$U_HNS_binding <- as.integer(inver_cor_d$U_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -1605,7 +1605,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding")
 inver_cor_d$H1_HNS_binding <- as.integer(inver_cor_d$H1_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -1682,7 +1682,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding")
 inver_cor_d$H1nc1_HNS_binding <- as.integer(inver_cor_d$H1nc1_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -1759,7 +1759,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding")
 inver_cor_d$H1nc2_HNS_binding <- as.integer(inver_cor_d$H1nc2_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -1836,7 +1836,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding")
 inver_cor_d$H1nc3_HNS_binding <- as.integer(inver_cor_d$H1nc3_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -1905,7 +1905,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding")
 inver_cor_d$H2_HNS_binding <- as.integer(inver_cor_d$H2_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -1974,7 +1974,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding")
 inver_cor_d$H3_HNS_binding <- as.integer(inver_cor_d$H3_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -2042,7 +2042,7 @@ ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
 colnames(inver_cor_d) <-
-c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding")
+c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding")
 inver_cor_d$L_HNS_binding <- as.integer(inver_cor_d$L_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -2109,7 +2109,7 @@ ir1 = with(inver_cor_d, IRanges(start1, end1))
 ir2 = with(hns_cor_d, IRanges(start, end))
 inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
 inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding", "O_HNS_binding")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding", "O_HNS_binding")
 inver_cor_d$O_HNS_binding <- as.integer(inver_cor_d$O_HNS_binding)
 inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
 head(inver_cor_d)
@@ -2172,23 +2172,41 @@ sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
 
 print("HNS and expression in Lang and Higashi (H1)")
 #get blocks where Higashi (H1) or Lang had HNS bound
-l_h_blocks <- cor_dat %>%
+head(inver_cor_d)
+l_h_blocks <- inver_cor_d %>%
          filter(H1_HNS_binding == 1 | L_HNS_binding == 1) %>%
          select(block)
 l_h_blocks <- unique(l_h_blocks)
-head(l_h_blocks)
-#get gei_dat that is just ^ blocks
-head(gei_dat)
+l_h_blocks <- as.character(sort(l_h_blocks$block))
+l_h_blocks <- l_h_blocks[-184]
+l_h_blocks
+class(l_h_blocks)
+print("#get gei_dat that is just ^ blocks")
+gei_dat %>% filter(block == "Block789")
+#gei_dat %>% filter(block == "Block129")
+#gei_dat %>% filter(block == "Block141")
 l_h_dat <- gei_dat %>%
            filter(block %in% l_h_blocks)
-head(l_h_dat)
-g_l <- unique(l_h_dat$block)
+g_l <- as.character(sort(unique(l_h_dat$block)))
+class(g_l)
+g_l
+print("check if all HNS blocks were grabbed")
 identical(g_l, l_h_blocks)
 
+print("len check")
+#l_h_dat %>% filter(inversion == 0)
+length(l_h_dat$norm_exp[l_h_dat$inversion == 1])
+length(l_h_dat$norm_exp[l_h_dat$inversion == 0])
 
-print("wolcoxon sign ranked test to see if there is a diff in exp btwn
-HNS bound inversions and HNS bound non-inversions")
-#wilcox.test(l_h_df$norm_exp[l_h_df$inversion == 1], l_h_df$norm_exp[l_h_df$inversion == 0])
+print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound inversions and HNS bound non-inversions")
+wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
+
+print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig HNS bound inversions and non-sig HNS bound non-inversions")
+#make df with sig diff in gene exp btwn inversions
+sig_gei <- l_h_dat %>%
+    mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
+head(sig_gei)
+wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
 
 print("overlap btwn Higashi (H1) and Lang")
 l_h_overlap <- l_h_df %>%
