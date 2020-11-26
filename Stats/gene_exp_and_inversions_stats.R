@@ -1381,6 +1381,12 @@ head(sub_g_dat)
 print("Higashi 2016 coding")
 file <- "../HNS_protein/raw_data_files/Higashi_2016_HNS_binding_sites_coding.csv"
 higashi_dat <- read.csv(file, header = TRUE)
+h_hgt_dat <- higashi_dat[,c(2,5)]
+colnames(h_hgt_dat) <- c("gene_name","HGT")
+gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
+gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
+colnames(gene_inf) <- c("start","end","gbk_midpoint","gene_name")
+h_hgt_dat  <- merge(h_hgt_dat,gene_inf, by = "gene_name")
 sub_h_dat <- higashi_dat[,c(2,6,7,8)]
 colnames(sub_h_dat) <- c("gene_name","HNS_binding","HNS_cutoff","HNS_transcript")
 gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
@@ -2224,6 +2230,31 @@ print("overlap btwn Higashi (H1) and Lang")
 l_h_overlap <- inver_cor_d %>%
          filter(H1_HNS_binding == 1 & L_HNS_binding == 1)
 length(l_h_overlap$Inversion)
+
+print("##################")
+print("##### HGT and inversions (in the context of K12MG) ######")
+print("##################")
+print("*****filtering HGT data to include all categories of HGT (including nearby genes that are HGT")
+h_hgt_dat <- h_hgt_dat %>% filter(HGT != "x")
+hgt_inver <- gei_dat %>% filter(strain == "K12MG")
+ir1 = with(hgt_inver, IRanges(gbk_start, gbk_end))
+ir2 = with(h_hgt_dat, IRanges(start, end))
+hgt_inver$HGT = countOverlaps(ir1, ir2) != 0
+hgt_inver$HGT <- as.numeric(hgt_inver$HGT)
+hgt_inver <- hgt_inver %>%
+               mutate(sig = ifelse(block_w_pvalue <= 0.05, 1, 0))
+head(hgt_inver)
+summary(hgt_inver)
+print("################################################################################")
+print("correlation test btwn inversion/non-inversion and HGT")
+print("################################################################################")
+cor.test(hgt_inver$inversion, hgt_inver$HGT,
+         method = "pearson")
+print("################################################################################")
+print("correlation test btwn sig inversion/non-sig inversion and HGT")
+print("################################################################################")
+tmp_hgt <- filter(hgt_inver, inversion ==1)
+cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
 
 
 

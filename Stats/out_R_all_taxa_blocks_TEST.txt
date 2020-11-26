@@ -45373,6 +45373,154 @@ alternative hypothesis: true location shift is not equal to 0
 [1] 201.2040597
 [1] "overlap btwn Higashi (H1) and Lang"
 [1] 51
+[1] "##################"
+[1] "##### HGT and inversions (in the context of K12MG) ######"
+[1] "##################"
+[1] "*****filtering HGT data to include all categories of HGT (including nearby genes that are HGT"
+  locus_tag gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id gbk_locus_tag
+1     b0001    thrL       190     255      1205245        thrL              
+2     b0002    thrA       337    2799      1206591        thrA              
+3     b0003    thrB      2801    3733      1208290        thrB              
+4     b0004    thrC      3734    5020      1209400        thrC              
+5     b0007    yaaJ      6529    7959      1212267        yaaJ              
+6     b0009     mog      9306    9893      1214622         mog              
+  gbk_strand     norm_exp  block      taxa start  end rev_comp inversion strain
+1          0  10.19978761 Block1 U00096000     0 5468        0         0  K12MG
+2          0 795.00779745 Block1 U00096000     0 5468        0         0  K12MG
+3          0 332.04580200 Block1 U00096000     0 5468        0         0  K12MG
+4          0 380.08004288 Block1 U00096000     0 5468        0         0  K12MG
+5          1  85.63047504 Block4 U00096000  5692 9904        0         0  K12MG
+6          0 109.29951695 Block4 U00096000  5692 9904        0         0  K12MG
+  gbk_old_locus_tag block_len midpoint block_tax_num block_w_pvalue
+1                        5468  1207757             4             NA
+2                        5468  1207757             4             NA
+3                        5468  1207757             4             NA
+4                        5468  1207757             4             NA
+5                        4212  1212821             4             NA
+6                        4212  1212821             4             NA
+  block_t_pvalue block_t_stat block_t_confinf1 block_t_confinf2
+1             NA           NA               NA               NA
+2             NA           NA               NA               NA
+3             NA           NA               NA               NA
+4             NA           NA               NA               NA
+5             NA           NA               NA               NA
+6             NA           NA               NA               NA
+  block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+1                   NA                      NA                   NA
+2                   NA                      NA                   NA
+3                   NA                      NA                   NA
+4                   NA                      NA                   NA
+5                   NA                      NA                   NA
+6                   NA                      NA                   NA
+  block_avg_len_noninvert HGT sig
+1                      NA   0   0
+2                      NA   0   0
+3                      NA   0   0
+4                      NA   1   0
+5                      NA   1   0
+6                      NA   0   0
+   locus_tag       gene_id       gbk_start          gbk_end       
+ b0001  :   1   aaeA   :   1   Min.   :    190   Min.   :    255  
+ b0002  :   1   aaeB   :   1   1st Qu.:1325272   1st Qu.:1326912  
+ b0003  :   1   aaeR   :   1   Median :2408212   Median :2409120  
+ b0004  :   1   aaeX   :   1   Mean   :2403361   Mean   :2404312  
+ b0007  :   1   aas    :   1   3rd Qu.:3474019   3rd Qu.:3474434  
+ b0009  :   1   aat    :   1   Max.   :4640942   Max.   :4641628  
+ (Other):2904   (Other):2904                                      
+  gbk_midpoint        gbk_gene_id           gbk_locus_tag    gbk_strand       
+ Min.   :    489.0   aaeA   :   1                  :2910   Min.   :0.0000000  
+ 1st Qu.: 529706.2   aaeB   :   1   BW25113_RS00005:   0   1st Qu.:0.0000000  
+ Median :1375424.0   aaeR   :   1   BW25113_RS00010:   0   Median :1.0000000  
+ Mean   :1309292.0   aaeX   :   1   BW25113_RS00015:   0   Mean   :0.5168385  
+ 3rd Qu.:2018873.0   aas    :   1   BW25113_RS00020:   0   3rd Qu.:1.0000000  
+ Max.   :2792300.0   aat    :   1   BW25113_RS00040:   0   Max.   :1.0000000  
+                     (Other):2904   (Other)        :   0                      
+    norm_exp               block               taxa          start        
+ Min.   :   0.00000   Block499:  38   CP009072   :   0   Min.   :      0  
+ 1st Qu.:  22.83955   Block889:  31   NC_010473  :   0   1st Qu.:1318728  
+ Median :  72.14420   Block656:  29   NZ_CP009273:   0   Median :2390012  
+ Mean   : 196.78197   Block893:  27   U00096000  :2910   Mean   :2398111  
+ 3rd Qu.: 168.63512   Block869:  26                      3rd Qu.:3471484  
+ Max.   :7366.74829   Block485:  25                      Max.   :4633235  
+                      (Other) :2734                                       
+      end             rev_comp   inversion             strain    
+ Min.   :   5468   Min.   :0   Min.   :0.0000000   ATCC   :   0  
+ 1st Qu.:1328951   1st Qu.:0   1st Qu.:0.0000000   BW25113:   0  
+ Median :2422621   Median :0   Median :1.0000000   K12DH  :   0  
+ Mean   :2409501   Mean   :0   Mean   :0.6958763   K12MG  :2910  
+ 3rd Qu.:3499176   3rd Qu.:0   3rd Qu.:1.0000000                 
+ Max.   :4641644   Max.   :0   Max.   :1.0000000                 
+                                                                 
+    gbk_old_locus_tag   block_len           midpoint       block_tax_num
+             :2910    Min.   :  175.00   Min.   :   1509   Min.   :4    
+ BW25113_0001:   0    1st Qu.: 5553.00   1st Qu.: 530349   1st Qu.:4    
+ BW25113_0002:   0    Median : 9804.00   Median :1373831   Median :4    
+ BW25113_0003:   0    Mean   :11389.89   Mean   :1309207   Mean   :4    
+ BW25113_0004:   0    3rd Qu.:14887.00   3rd Qu.:2019628   3rd Qu.:4    
+ BW25113_0007:   0    Max.   :38569.00   Max.   :2792216   Max.   :4    
+ (Other)     :   0                                                      
+ block_w_pvalue     block_t_pvalue     block_t_stat       block_t_confinf1  
+ Length:2910        Length:2910        Length:2910        Length:2910       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ block_t_confinf2   block_avg_exp_invert block_avg_exp_noninvert
+ Length:2910        Length:2910          Length:2910            
+ Class :character   Class :character     Class :character       
+ Mode  :character   Mode  :character     Mode  :character       
+                                                                
+                                                                
+                                                                
+                                                                
+ block_avg_len_invert block_avg_len_noninvert      HGT           
+ Length:2910          Length:2910             Min.   :0.0000000  
+ Class :character     Class :character        1st Qu.:0.0000000  
+ Mode  :character     Mode  :character        Median :0.0000000  
+                                              Mean   :0.3103093  
+                                              3rd Qu.:1.0000000  
+                                              Max.   :1.0000000  
+                                                                 
+      sig            
+ Min.   :0.00000000  
+ 1st Qu.:0.00000000  
+ Median :0.00000000  
+ Mean   :0.08934708  
+ 3rd Qu.:0.00000000  
+ Max.   :1.00000000  
+                     
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and HGT"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  hgt_inver$inversion and hgt_inver$HGT
+t = 1.7095734, df = 2908, p-value = 0.08745147
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.004654761109  0.067943905442
+sample estimates:
+          cor 
+0.03168636535 
+
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-sig inversion and HGT"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  tmp_hgt$sig and tmp_hgt$HGT
+t = 1.5381087, df = 2023, p-value = 0.1241784
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.009396355196  0.077621020568
+sample estimates:
+          cor 
+0.03417710567 
+
 [1] "HNS binding and inversions viz"
 [1] "Using Higashi criteria 1 for HNS binding"
   start1   end1 Inversion   block G_HNS_binding U_HNS_binding H1_HNS_binding
