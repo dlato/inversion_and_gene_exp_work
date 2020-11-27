@@ -2177,16 +2177,15 @@ print("total number of rows where HNS binding is the same for all datasets")
 sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
 
 
-print("HNS and expression in Lang and Higashi (H1)")
+print("HNS and expression in Oshima, Lang and Higashi (H1)")
 #get blocks where Higashi (H1) or Lang had HNS bound
 head(inver_cor_d)
 l_h_blocks <- inver_cor_d %>%
-         filter(H1_HNS_binding == 1 | L_HNS_binding == 1) %>%
+         filter(H1_HNS_binding == 1 | L_HNS_binding == 1 | O_HNS_binding ==1) %>%
          select(block)
 l_h_blocks <- unique(l_h_blocks)
 l_h_blocks <- as.character(sort(l_h_blocks$block))
 #l_h_blocks <- l_h_blocks[-184]
-l_h_blocks
 class(l_h_blocks)
 print("#get gei_dat that is just ^ blocks")
 #gei_dat %>% filter(block == "Block789")
@@ -2196,7 +2195,6 @@ l_h_dat <- gei_dat %>%
            filter(block %in% l_h_blocks)
 g_l <- as.character(sort(unique(l_h_dat$block)))
 class(g_l)
-g_l
 print("check if all HNS blocks were grabbed")
 identical(g_l, l_h_blocks)
 
@@ -2227,9 +2225,9 @@ mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1])
 print("Avg exp WITHOUT HNS binding")
 mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
 
-print("overlap btwn Higashi (H1) and Lang")
+print("overlap btwn Higashi (H1) and Lang and Oshima")
 l_h_overlap <- inver_cor_d %>%
-         filter(H1_HNS_binding == 1 & L_HNS_binding == 1)
+         filter(H1_HNS_binding == 1 & L_HNS_binding == 1 & O_HNS_binding == 1)
 length(l_h_overlap$Inversion)
 
 print("##################")
