@@ -42929,13 +42929,13 @@ null device
 4         0   ATCC            DR76_3     19237 1214641.5
 5         0   ATCC            DR76_5     19237 1214641.5
 6         0   ATCC            DR76_6     19237 1214641.5
-   start1  end1 Inversion  block
-1       0  5468         0 Block1
-5    5692  9904         0 Block4
-7    9928 11797         0 Block5
-8   11827 15389         0 Block6
-10  16739 17125         0 Block7
-11  17258 19597         0 Block8
+  start1 end1 Inversion  block
+1    190  255         0 Block1
+2    337 2799         0 Block1
+3   2801 3733         0 Block1
+4   3734 5020         0 Block1
+5   6529 7959         0 Block4
+6   9306 9893         0 Block4
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR GRAINGER 2006 cutoff DATA"
 [1] "################################################################################"
@@ -42968,17 +42968,17 @@ null device
 33 389475 393642
 34 570116 570667
 35 570677 571474
-    start1   end1 Inversion    block overlap
-168 383921 388551         1 Block123    TRUE
-   start1  end1 Inversion  block G_HNS_binding
-1       0  5468         0 Block1             0
-5    5692  9904         0 Block4             0
-7    9928 11797         0 Block5             0
-8   11827 15389         0 Block6             0
-10  16739 17125         0 Block7             0
-11  17258 19597         0 Block8             0
-    start1   end1 Inversion    block G_HNS_binding
-168 383921 388551         1 Block123             1
+[1] start1    end1      Inversion block     overlap  
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding
+1    190  255         0 Block1             0
+2    337 2799         0 Block1             0
+3   2801 3733         0 Block1             0
+4   3734 5020         0 Block1             0
+5   6529 7959         0 Block4             0
+6   9306 9893         0 Block4             0
+[1] start1        end1          Inversion     block         G_HNS_binding
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -42986,13 +42986,13 @@ null device
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$G_HNS_binding
-t = -0.12820302, df = 557, p-value = 0.8980346
+t = -0.47774089, df = 2912, p-value = 0.6328705
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.08832235337  0.07753295605
+ -0.04514908374  0.02746686454
 sample estimates:
-           cor 
--0.00543205598 
+            cor 
+-0.008852780859 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -43283,17 +43283,19 @@ cor
 6   85159  85373
 7  150671 151113
 11 155915 156870
-    start1   end1 Inversion    block G_HNS_binding overlap
-168 383921 388551         1 Block123             1    TRUE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding
-1       0  5468         0 Block1             0             0
-5    5692  9904         0 Block4             0             0
-7    9928 11797         0 Block5             0             0
-8   11827 15389         0 Block6             0             0
-10  16739 17125         0 Block7             0             0
-11  17258 19597         0 Block8             0             0
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding
-168 383921 388551         1 Block123             1             1
+[1] start1        end1          Inversion     block         G_HNS_binding
+[6] overlap      
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding
+1    190  255         0 Block1             0             0
+2    337 2799         0 Block1             0             0
+3   2801 3733         0 Block1             0             0
+4   3734 5020         0 Block1             0             0
+5   6529 7959         0 Block4             0             0
+6   9306 9893         0 Block4             0             0
+[1] start1        end1          Inversion     block         G_HNS_binding
+[6] U_HNS_binding
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -43301,13 +43303,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$U_HNS_binding
-t = -0.60806538, df = 557, p-value = 0.543392
+t = -0.4369407, df = 2912, p-value = 0.6621868
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.10845444153  0.05729645751
+ -0.04439454860  0.02822232901
 sample estimates:
-           cor 
--0.02575600967 
+            cor 
+-0.008096784509 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -43474,17 +43476,19 @@ cor
 33  35377 36162
 32  36271 37824
 93  42403 43173
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding overlap
-168 383921 388551         1 Block123             1             1   FALSE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
+[1] start1        end1          Inversion     block         G_HNS_binding
+[6] U_HNS_binding overlap      
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+[1] start1         end1           Inversion      block          G_HNS_binding 
+[6] U_HNS_binding  H1_HNS_binding
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -43492,13 +43496,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$H1_HNS_binding
-t = 2.4359029, df = 557, p-value = 0.01516713
+t = 2.5343747, df = 2912, p-value = 0.01131679
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.01990652431 0.18403033633
+ 0.01062065344 0.08308266556
 sample estimates:
-         cor 
-0.1026671212 
+          cor 
+0.04691337768 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -43651,28 +43655,26 @@ cor
 31  36271 37824
 86  42403 43173
 124 81958 83529
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    overlap
-168   FALSE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding
-1                  0
-5                  0
-7                  0
-8                  0
-10                 0
-11                 1
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding
-168                 0
+[1] start1         end1           Inversion      block          G_HNS_binding 
+[6] U_HNS_binding  H1_HNS_binding overlap       
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding
+1                 0
+2                 0
+3                 0
+4                 0
+5                 0
+6                 0
+[1] start1            end1              Inversion         block            
+[5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -43680,13 +43682,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$H1nc1_HNS_binding
-t = 2.4156978, df = 557, p-value = 0.01602587
+t = 2.9340834, df = 2912, p-value = 0.003371484
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.01905521314 0.18320741558
+ 0.01801669096 0.09042454364
 sample estimates:
-       cor 
-0.10182439 
+          cor 
+0.05429198923 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -43851,28 +43853,28 @@ cor
 31  36271 37824
 86  42403 43173
 124 81958 83529
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding overlap
-168                 0   FALSE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding H1nc2_HNS_binding
-1                  0                 0
-5                  0                 0
-7                  0                 0
-8                  0                 0
-10                 0                 0
-11                 1                 1
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding
-168                 0                 0
+[1] start1            end1              Inversion         block            
+[5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+[9] overlap          
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding
+1                 0                 0
+2                 0                 0
+3                 0                 0
+4                 0                 0
+5                 0                 0
+6                 0                 0
+[1] start1            end1              Inversion         block            
+[5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+[9] H1nc2_HNS_binding
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -43880,13 +43882,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$H1nc2_HNS_binding
-t = 2.4156978, df = 557, p-value = 0.01602587
+t = 2.9340834, df = 2912, p-value = 0.003371484
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.01905521314 0.18320741558
+ 0.01801669096 0.09042454364
 sample estimates:
-       cor 
-0.10182439 
+          cor 
+0.05429198923 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -44058,28 +44060,28 @@ cor
 31  36271 37824
 86  42403 43173
 124 81958 83529
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding overlap
-168                 0                 0   FALSE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
-1                  0                 0                 0
-5                  0                 0                 0
-7                  0                 0                 0
-8                  0                 0                 0
-10                 0                 0                 0
-11                 1                 1                 1
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
-168                 0                 0                 0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding overlap          
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
+1                 0                 0                 0
+2                 0                 0                 0
+3                 0                 0                 0
+4                 0                 0                 0
+5                 0                 0                 0
+6                 0                 0                 0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -44087,13 +44089,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$H1nc3_HNS_binding
-t = 2.4156978, df = 557, p-value = 0.01602587
+t = 2.9340834, df = 2912, p-value = 0.003371484
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.01905521314 0.18320741558
+ 0.01801669096 0.09042454364
 sample estimates:
-       cor 
-0.10182439 
+          cor 
+0.05429198923 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -44272,28 +44274,28 @@ cor
 31  36271 37824
 84  42403 43173
 121 81958 83529
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding overlap
-168                 0                 0                 0   FALSE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-1                  0                 0                 0              0
-5                  0                 0                 0              0
-7                  0                 0                 0              0
-8                  0                 0                 0              0
-10                 0                 0                 0              0
-11                 1                 1                 1              1
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-168                 0                 0                 0              0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding overlap          
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 0                 0                 0              0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding   
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -44301,13 +44303,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$H2_HNS_binding
-t = 2.4946182, df = 557, p-value = 0.01289787
+t = 2.9564612, df = 2912, p-value = 0.003136914
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.02237979893 0.18641982509
+ 0.01843062532 0.09083521442
 sample estimates:
-         cor 
-0.1051147951 
+          cor 
+0.05470483128 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -44486,39 +44488,35 @@ cor
 31  36271 37824
 84  42403 43173
 121 81958 83529
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-168                 0                 0                 0              0
-    overlap
-168   FALSE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-1                  0                 0                 0              0
-5                  0                 0                 0              0
-7                  0                 0                 0              0
-8                  0                 0                 0              0
-10                 0                 0                 0              0
-11                 1                 1                 1              1
-   H3_HNS_binding
-1               0
-5               0
-7               0
-8               0
-10              0
-11              1
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-168                 0                 0                 0              0
-    H3_HNS_binding
-168              0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding    overlap          
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 0                 0                 0              0
+  H3_HNS_binding
+1              0
+2              0
+3              0
+4              0
+5              0
+6              0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding    H3_HNS_binding   
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -44526,13 +44524,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$H3_HNS_binding
-t = 2.4946182, df = 557, p-value = 0.01289787
+t = 2.9564612, df = 2912, p-value = 0.003136914
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.02237979893 0.18641982509
+ 0.01843062532 0.09083521442
 sample estimates:
-         cor 
-0.1051147951 
+          cor 
+0.05470483128 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -44716,39 +44714,37 @@ cor
 41  478591 479142
 54  522485 526765
 65  527864 528124
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-168                 0                 0                 0              0
-    H3_HNS_binding overlap
-168              0   FALSE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-1                  0                 0                 0              0
-5                  0                 0                 0              0
-7                  0                 0                 0              0
-8                  0                 0                 0              0
-10                 0                 0                 0              0
-11                 1                 1                 1              1
-   H3_HNS_binding L_HNS_binding
-1               0             0
-5               0             0
-7               0             0
-8               0             1
-10              0             0
-11              1             0
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-168                 0                 0                 0              0
-    H3_HNS_binding L_HNS_binding
-168              0             0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding    H3_HNS_binding   
+[13] overlap          
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 0                 0                 0              0
+  H3_HNS_binding L_HNS_binding
+1              0             0
+2              0             0
+3              0             0
+4              0             0
+5              0             0
+6              0             0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding    H3_HNS_binding   
+[13] L_HNS_binding    
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -44756,13 +44752,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$L_HNS_binding
-t = 2.3972485, df = 557, p-value = 0.01684711
+t = 3.0923162, df = 2912, p-value = 0.002004823
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- 0.01827779797 0.18245572545
+ 0.02094326486 0.09332751527
 sample estimates:
-         cor 
-0.1010547062 
+          cor 
+0.05721057424 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -44901,6 +44897,150 @@ sample estimates:
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
+      block          start              end             midpoint      
+ Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
+ Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
+ Block893:  27   Median :1988582   Median :2002288   Median :1639674  
+ Block869:  26   Mean   :2302853   Mean   :2314265   Mean   :1375220  
+ Block485:  25   3rd Qu.:3419108   3rd Qu.:3423266   3rd Qu.:2160175  
+ Block475:  23   Max.   :4160982   Max.   :4166305   Max.   :2792216  
+ (Other) :1855                                                        
+  gbk_midpoint     block_t_stat       block_t_confinf1   block_t_confinf2  
+ Min.   :    489   Length:2025        Length:2025        Length:2025       
+ 1st Qu.: 503868   Class :character   Class :character   Class :character  
+ Median :1641145   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :1375295                                                           
+ 3rd Qu.:2158587                                                           
+ Max.   :2792300                                                           
+                                                                           
+ block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+ Length:2025          Length:2025             Length:2025         
+ Class :character     Class :character        Class :character    
+ Mode  :character     Mode  :character        Mode  :character    
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+ block_avg_len_noninvert   inversion    rev_comp     strain    
+ Length:2025             Min.   :1   Min.   :0   ATCC   :   0  
+ Class :character        1st Qu.:1   1st Qu.:0   BW25113:   0  
+ Mode  :character        Median :1   Median :0   K12DH  :   0  
+                         Mean   :1   Mean   :0   K12MG  :2025  
+                         3rd Qu.:1   3rd Qu.:0                 
+                         Max.   :1   Max.   :0                 
+                                                               
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig            G_HNS_binding      
+ Min.   : 242695.5   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:1232748.0   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :1995435.0   Median :0.0000000   Median :0.0000000  
+ Mean   :2308559.1   Mean   :0.1283951   Mean   :0.1071605  
+ 3rd Qu.:3421187.0   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :4163643.5   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ U_HNS_binding       H1_HNS_binding      H1nc1_HNS_binding  
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :1.0000000   Median :1.0000000  
+ Mean   :0.3935802   Mean   :0.5254321   Mean   :0.5037037  
+ 3rd Qu.:1.0000000   3rd Qu.:1.0000000   3rd Qu.:1.0000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     H3_HNS_binding    
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.000000   Min.   :0.000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.000000   1st Qu.:0.000000  
+ Median :1.0000000   Median :1.0000000   Median :1.000000   Median :1.000000  
+ Mean   :0.5037037   Mean   :0.5037037   Mean   :0.502716   Mean   :0.502716  
+ 3rd Qu.:1.0000000   3rd Qu.:1.0000000   3rd Qu.:1.000000   3rd Qu.:1.000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.000000   Max.   :1.000000  
+                                                                              
+ L_HNS_binding      
+ Min.   :0.0000000  
+ 1st Qu.:0.0000000  
+ Median :0.0000000  
+ Mean   :0.2681481  
+ 3rd Qu.:1.0000000  
+ Max.   :1.0000000  
+                    
+[1] 2025
+[1] "total number of sig blocks"
+[1] 260
+[1] "total number of non-sig blocks"
+[1] 1765
+[1] "total number of LANG sig blocks"
+[1] 53
+[1] "total number of LANG non-sig blocks"
+[1] 490
+      block          sig             L_HNS_binding
+ Block499: 38   Min.   :0.00000000   Min.   :1    
+ Block893: 27   1st Qu.:0.00000000   1st Qu.:1    
+ Block869: 26   Median :0.00000000   Median :1    
+ Block492: 22   Mean   :0.09760589   Mean   :1    
+ Block231: 20   3rd Qu.:0.00000000   3rd Qu.:1    
+ Block829: 20   Max.   :1.00000000   Max.   :1    
+ (Other) :390                                     
+[1] "Lang sig blocks"
+      block sig L_HNS_binding
+1  Block288   1             1
+2  Block288   1             1
+3  Block288   1             1
+4  Block288   1             1
+5  Block288   1             1
+6  Block288   1             1
+7  Block288   1             1
+8  Block288   1             1
+9  Block288   1             1
+10 Block288   1             1
+11 Block289   1             1
+12 Block289   1             1
+13 Block289   1             1
+14 Block289   1             1
+15 Block289   1             1
+16 Block289   1             1
+17 Block289   1             1
+18 Block289   1             1
+19 Block289   1             1
+20 Block289   1             1
+21 Block289   1             1
+22 Block316   1             1
+23 Block316   1             1
+24 Block316   1             1
+25 Block336   1             1
+26 Block336   1             1
+27 Block336   1             1
+28 Block336   1             1
+29 Block336   1             1
+30 Block746   1             1
+31 Block746   1             1
+32 Block746   1             1
+33 Block746   1             1
+34 Block844   1             1
+35 Block844   1             1
+36 Block844   1             1
+37 Block844   1             1
+38 Block844   1             1
+39 Block844   1             1
+40 Block844   1             1
+41 Block860   1             1
+42 Block860   1             1
+43 Block860   1             1
+44 Block860   1             1
+45 Block860   1             1
+46 Block929   1             1
+47 Block929   1             1
+48 Block929   1             1
+49 Block929   1             1
+50 Block929   1             1
+51 Block929   1             1
+52 Block929   1             1
+53 Block844   1             1
 
 	Pearson's product-moment correlation
 
@@ -44960,39 +45100,37 @@ cor
 1040 34781 35392
 1041 35377 36270
 1    40417 41931
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-168                 0                 0                 0              0
-    H3_HNS_binding L_HNS_binding overlap
-168              0             0    TRUE
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-1                  0                 0                 0              0
-5                  0                 0                 0              0
-7                  0                 0                 0              0
-8                  0                 0                 0              0
-10                 0                 0                 0              0
-11                 1                 1                 1              1
-   H3_HNS_binding L_HNS_binding O_HNS_binding
-1               0             0             0
-5               0             0             0
-7               0             0             0
-8               0             1             0
-10              0             0             1
-11              1             0             1
-    start1   end1 Inversion    block G_HNS_binding U_HNS_binding H1_HNS_binding
-168 383921 388551         1 Block123             1             1              0
-    H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-168                 0                 0                 0              0
-    H3_HNS_binding L_HNS_binding O_HNS_binding
-168              0             0             1
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding    H3_HNS_binding   
+[13] L_HNS_binding     overlap          
+<0 rows> (or 0-length row.names)
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 0                 0                 0              0
+  H3_HNS_binding L_HNS_binding O_HNS_binding
+1              0             0             0
+2              0             0             0
+3              0             0             0
+4              0             0             0
+5              0             0             0
+6              0             0             0
+ [1] start1            end1              Inversion         block            
+ [5] G_HNS_binding     U_HNS_binding     H1_HNS_binding    H1nc1_HNS_binding
+ [9] H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding    H3_HNS_binding   
+[13] L_HNS_binding     O_HNS_binding    
+<0 rows> (or 0-length row.names)
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
@@ -45000,13 +45138,13 @@ cor
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$O_HNS_binding
-t = 1.1308636, df = 557, p-value = 0.2585992
+t = 2.1653534, df = 2912, p-value = 0.03044158
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.03520851789  0.13027432218
+ 0.003789102672 0.076294144894
 sample estimates:
-          cor 
-0.04786131466 
+         cor 
+0.0400944024 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_midpoint      block_t_stat
@@ -45177,137 +45315,129 @@ cor
 # A tibble: 10 x 2
    x                     n
    <chr>             <int>
- 1 G_HNS_binding        37
- 2 H1_HNS_binding      206
- 3 H1nc1_HNS_binding   189
- 4 H1nc2_HNS_binding   189
- 5 H1nc3_HNS_binding   189
- 6 H2_HNS_binding      187
- 7 H3_HNS_binding      187
- 8 L_HNS_binding        80
- 9 O_HNS_binding       277
-10 U_HNS_binding       165
+ 1 G_HNS_binding        54
+ 2 H1_HNS_binding      372
+ 3 H1nc1_HNS_binding   344
+ 4 H1nc2_HNS_binding   344
+ 5 H1nc3_HNS_binding   344
+ 6 H2_HNS_binding      341
+ 7 H3_HNS_binding      341
+ 8 L_HNS_binding       115
+ 9 O_HNS_binding       667
+10 U_HNS_binding       276
 [1] "total number of genes/blocks"
-[1] 365
+[1] 990
 [1] "total number of rows where HNS binding is the same for all datasets"
-[1] 5
+[1] 1
 [1] "HNS and expression in Lang and Higashi (H1)"
-   start1  end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
-1       0  5468         0 Block1             0             0              0
-5    5692  9904         0 Block4             0             0              0
-7    9928 11797         0 Block5             0             0              0
-8   11827 15389         0 Block6             0             0              0
-10  16739 17125         0 Block7             0             0              0
-11  17258 19597         0 Block8             0             0              1
-   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
-1                  0                 0                 0              0
-5                  0                 0                 0              0
-7                  0                 0                 0              0
-8                  0                 0                 0              0
-10                 0                 0                 0              0
-11                 1                 1                 1              1
-   H3_HNS_binding L_HNS_binding O_HNS_binding
-1               0             0             0
-5               0             0             0
-7               0             0             0
-8               0             1             0
-10              0             0             1
-11              1             0             1
+  start1 end1 Inversion  block G_HNS_binding U_HNS_binding H1_HNS_binding
+1    190  255         0 Block1             0             0              0
+2    337 2799         0 Block1             0             0              0
+3   2801 3733         0 Block1             0             0              0
+4   3734 5020         0 Block1             0             0              0
+5   6529 7959         0 Block4             0             0              0
+6   9306 9893         0 Block4             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 0                 0                 0              0
+  H3_HNS_binding L_HNS_binding O_HNS_binding
+1              0             0             0
+2              0             0             0
+3              0             0             0
+4              0             0             0
+5              0             0             0
+6              0             0             0
   [1] "Block1000" "Block1004" "Block1008" "Block1014" "Block1017" "Block1023"
   [7] "Block1026" "Block1037" "Block1055" "Block1065" "Block1082" "Block1085"
  [13] "Block1086" "Block1090" "Block1094" "Block1097" "Block11"   "Block1104"
- [19] "Block1113" "Block1127" "Block1128" "Block1133" "Block1135" "Block12"  
- [25] "Block129"  "Block130"  "Block132"  "Block140"  "Block141"  "Block142" 
- [31] "Block149"  "Block150"  "Block151"  "Block153"  "Block208"  "Block214" 
- [37] "Block215"  "Block224"  "Block227"  "Block231"  "Block244"  "Block252" 
- [43] "Block253"  "Block256"  "Block258"  "Block260"  "Block268"  "Block270" 
- [49] "Block271"  "Block279"  "Block283"  "Block284"  "Block285"  "Block286" 
- [55] "Block288"  "Block289"  "Block292"  "Block293"  "Block294"  "Block309" 
- [61] "Block310"  "Block316"  "Block321"  "Block327"  "Block329"  "Block331" 
- [67] "Block332"  "Block333"  "Block335"  "Block336"  "Block337"  "Block338" 
- [73] "Block346"  "Block347"  "Block349"  "Block350"  "Block351"  "Block353" 
- [79] "Block36"   "Block386"  "Block399"  "Block400"  "Block401"  "Block402" 
- [85] "Block404"  "Block41"   "Block413"  "Block418"  "Block423"  "Block425" 
- [91] "Block426"  "Block427"  "Block439"  "Block442"  "Block451"  "Block46"  
- [97] "Block464"  "Block465"  "Block467"  "Block468"  "Block469"  "Block471" 
-[103] "Block475"  "Block480"  "Block481"  "Block482"  "Block484"  "Block485" 
-[109] "Block487"  "Block491"  "Block492"  "Block493"  "Block494"  "Block495" 
-[115] "Block496"  "Block499"  "Block501"  "Block502"  "Block503"  "Block504" 
-[121] "Block507"  "Block508"  "Block509"  "Block512"  "Block513"  "Block520" 
-[127] "Block529"  "Block531"  "Block577"  "Block578"  "Block579"  "Block583" 
-[133] "Block586"  "Block595"  "Block596"  "Block598"  "Block6"    "Block602" 
-[139] "Block604"  "Block606"  "Block607"  "Block608"  "Block61"   "Block611" 
-[145] "Block614"  "Block619"  "Block622"  "Block627"  "Block636"  "Block637" 
-[151] "Block641"  "Block644"  "Block649"  "Block652"  "Block656"  "Block667" 
-[157] "Block668"  "Block671"  "Block675"  "Block677"  "Block681"  "Block700" 
-[163] "Block702"  "Block707"  "Block708"  "Block709"  "Block721"  "Block73"  
-[169] "Block730"  "Block744"  "Block745"  "Block746"  "Block750"  "Block760" 
-[175] "Block762"  "Block763"  "Block765"  "Block767"  "Block768"  "Block773" 
-[181] "Block775"  "Block777"  "Block778"  "Block791"  "Block795"  "Block796" 
-[187] "Block8"    "Block806"  "Block807"  "Block809"  "Block811"  "Block817" 
-[193] "Block818"  "Block823"  "Block829"  "Block838"  "Block844"  "Block847" 
-[199] "Block853"  "Block860"  "Block869"  "Block872"  "Block877"  "Block888" 
-[205] "Block889"  "Block890"  "Block893"  "Block900"  "Block908"  "Block909" 
-[211] "Block910"  "Block913"  "Block920"  "Block928"  "Block929"  "Block930" 
-[217] "Block933"  "Block935"  "Block938"  "Block939"  "Block941"  "Block943" 
-[223] "Block944"  "Block946"  "Block947"  "Block948"  "Block950"  "Block954" 
-[229] "Block966"  "Block967"  "Block975"  "Block981"  "Block986"  "Block988" 
+ [19] "Block1113" "Block1128" "Block1133" "Block1135" "Block12"   "Block129" 
+ [25] "Block130"  "Block140"  "Block141"  "Block142"  "Block149"  "Block150" 
+ [31] "Block151"  "Block153"  "Block208"  "Block214"  "Block215"  "Block224" 
+ [37] "Block231"  "Block244"  "Block252"  "Block253"  "Block256"  "Block258" 
+ [43] "Block260"  "Block268"  "Block270"  "Block271"  "Block279"  "Block283" 
+ [49] "Block284"  "Block285"  "Block286"  "Block288"  "Block289"  "Block292" 
+ [55] "Block294"  "Block309"  "Block310"  "Block327"  "Block329"  "Block331" 
+ [61] "Block332"  "Block333"  "Block335"  "Block336"  "Block337"  "Block338" 
+ [67] "Block346"  "Block347"  "Block350"  "Block351"  "Block353"  "Block36"  
+ [73] "Block386"  "Block399"  "Block400"  "Block401"  "Block402"  "Block41"  
+ [79] "Block413"  "Block418"  "Block423"  "Block425"  "Block426"  "Block427" 
+ [85] "Block439"  "Block442"  "Block451"  "Block46"   "Block464"  "Block467" 
+ [91] "Block468"  "Block469"  "Block471"  "Block475"  "Block480"  "Block481" 
+ [97] "Block482"  "Block484"  "Block485"  "Block487"  "Block491"  "Block492" 
+[103] "Block493"  "Block494"  "Block495"  "Block496"  "Block499"  "Block501" 
+[109] "Block502"  "Block503"  "Block504"  "Block507"  "Block508"  "Block509" 
+[115] "Block512"  "Block513"  "Block520"  "Block529"  "Block531"  "Block577" 
+[121] "Block578"  "Block579"  "Block583"  "Block586"  "Block595"  "Block596" 
+[127] "Block598"  "Block6"    "Block602"  "Block604"  "Block606"  "Block607" 
+[133] "Block608"  "Block61"   "Block611"  "Block614"  "Block619"  "Block622" 
+[139] "Block627"  "Block636"  "Block644"  "Block649"  "Block652"  "Block656" 
+[145] "Block667"  "Block671"  "Block675"  "Block677"  "Block681"  "Block700" 
+[151] "Block702"  "Block707"  "Block708"  "Block709"  "Block721"  "Block730" 
+[157] "Block744"  "Block745"  "Block746"  "Block750"  "Block760"  "Block763" 
+[163] "Block767"  "Block768"  "Block773"  "Block775"  "Block778"  "Block789" 
+[169] "Block795"  "Block796"  "Block8"    "Block806"  "Block807"  "Block809" 
+[175] "Block811"  "Block817"  "Block818"  "Block823"  "Block829"  "Block838" 
+[181] "Block844"  "Block847"  "Block860"  "Block872"  "Block877"  "Block888" 
+[187] "Block889"  "Block890"  "Block893"  "Block900"  "Block908"  "Block913" 
+[193] "Block928"  "Block929"  "Block930"  "Block933"  "Block935"  "Block938" 
+[199] "Block939"  "Block941"  "Block943"  "Block946"  "Block947"  "Block948" 
+[205] "Block954"  "Block966"  "Block967"  "Block981"  "Block986"  "Block988" 
 [1] "character"
 [1] "#get gei_dat that is just ^ blocks"
 [1] "character"
   [1] "Block1000" "Block1004" "Block1008" "Block1014" "Block1017" "Block1023"
   [7] "Block1026" "Block1037" "Block1055" "Block1065" "Block1082" "Block1085"
  [13] "Block1086" "Block1090" "Block1094" "Block1097" "Block11"   "Block1104"
- [19] "Block1113" "Block1127" "Block1128" "Block1133" "Block1135" "Block12"  
- [25] "Block129"  "Block130"  "Block132"  "Block140"  "Block141"  "Block142" 
- [31] "Block149"  "Block150"  "Block151"  "Block153"  "Block208"  "Block214" 
- [37] "Block215"  "Block224"  "Block227"  "Block231"  "Block244"  "Block252" 
- [43] "Block253"  "Block256"  "Block258"  "Block260"  "Block268"  "Block270" 
- [49] "Block271"  "Block279"  "Block283"  "Block284"  "Block285"  "Block286" 
- [55] "Block288"  "Block289"  "Block292"  "Block293"  "Block294"  "Block309" 
- [61] "Block310"  "Block316"  "Block321"  "Block327"  "Block329"  "Block331" 
- [67] "Block332"  "Block333"  "Block335"  "Block336"  "Block337"  "Block338" 
- [73] "Block346"  "Block347"  "Block349"  "Block350"  "Block351"  "Block353" 
- [79] "Block36"   "Block386"  "Block399"  "Block400"  "Block401"  "Block402" 
- [85] "Block404"  "Block41"   "Block413"  "Block418"  "Block423"  "Block425" 
- [91] "Block426"  "Block427"  "Block439"  "Block442"  "Block451"  "Block46"  
- [97] "Block464"  "Block465"  "Block467"  "Block468"  "Block469"  "Block471" 
-[103] "Block475"  "Block480"  "Block481"  "Block482"  "Block484"  "Block485" 
-[109] "Block487"  "Block491"  "Block492"  "Block493"  "Block494"  "Block495" 
-[115] "Block496"  "Block499"  "Block501"  "Block502"  "Block503"  "Block504" 
-[121] "Block507"  "Block508"  "Block509"  "Block512"  "Block513"  "Block520" 
-[127] "Block529"  "Block531"  "Block577"  "Block578"  "Block579"  "Block583" 
-[133] "Block586"  "Block595"  "Block596"  "Block598"  "Block6"    "Block602" 
-[139] "Block604"  "Block606"  "Block607"  "Block608"  "Block61"   "Block611" 
-[145] "Block614"  "Block619"  "Block622"  "Block627"  "Block636"  "Block637" 
-[151] "Block641"  "Block644"  "Block649"  "Block652"  "Block656"  "Block667" 
-[157] "Block668"  "Block671"  "Block675"  "Block677"  "Block681"  "Block700" 
-[163] "Block702"  "Block707"  "Block708"  "Block709"  "Block721"  "Block73"  
-[169] "Block730"  "Block744"  "Block745"  "Block746"  "Block750"  "Block760" 
-[175] "Block762"  "Block763"  "Block765"  "Block767"  "Block768"  "Block773" 
-[181] "Block775"  "Block777"  "Block778"  "Block791"  "Block795"  "Block796" 
-[187] "Block8"    "Block806"  "Block807"  "Block809"  "Block811"  "Block817" 
-[193] "Block818"  "Block823"  "Block829"  "Block838"  "Block844"  "Block847" 
-[199] "Block853"  "Block860"  "Block869"  "Block872"  "Block877"  "Block888" 
-[205] "Block889"  "Block890"  "Block893"  "Block900"  "Block908"  "Block909" 
-[211] "Block910"  "Block913"  "Block920"  "Block928"  "Block929"  "Block930" 
-[217] "Block933"  "Block935"  "Block938"  "Block939"  "Block941"  "Block943" 
-[223] "Block944"  "Block946"  "Block947"  "Block948"  "Block950"  "Block954" 
-[229] "Block966"  "Block967"  "Block975"  "Block981"  "Block986"  "Block988" 
+ [19] "Block1113" "Block1128" "Block1133" "Block1135" "Block12"   "Block129" 
+ [25] "Block130"  "Block140"  "Block141"  "Block142"  "Block149"  "Block150" 
+ [31] "Block151"  "Block153"  "Block208"  "Block214"  "Block215"  "Block224" 
+ [37] "Block231"  "Block244"  "Block252"  "Block253"  "Block256"  "Block258" 
+ [43] "Block260"  "Block268"  "Block270"  "Block271"  "Block279"  "Block283" 
+ [49] "Block284"  "Block285"  "Block286"  "Block288"  "Block289"  "Block292" 
+ [55] "Block294"  "Block309"  "Block310"  "Block327"  "Block329"  "Block331" 
+ [61] "Block332"  "Block333"  "Block335"  "Block336"  "Block337"  "Block338" 
+ [67] "Block346"  "Block347"  "Block350"  "Block351"  "Block353"  "Block36"  
+ [73] "Block386"  "Block399"  "Block400"  "Block401"  "Block402"  "Block41"  
+ [79] "Block413"  "Block418"  "Block423"  "Block425"  "Block426"  "Block427" 
+ [85] "Block439"  "Block442"  "Block451"  "Block46"   "Block464"  "Block467" 
+ [91] "Block468"  "Block469"  "Block471"  "Block475"  "Block480"  "Block481" 
+ [97] "Block482"  "Block484"  "Block485"  "Block487"  "Block491"  "Block492" 
+[103] "Block493"  "Block494"  "Block495"  "Block496"  "Block499"  "Block501" 
+[109] "Block502"  "Block503"  "Block504"  "Block507"  "Block508"  "Block509" 
+[115] "Block512"  "Block513"  "Block520"  "Block529"  "Block531"  "Block577" 
+[121] "Block578"  "Block579"  "Block583"  "Block586"  "Block595"  "Block596" 
+[127] "Block598"  "Block6"    "Block602"  "Block604"  "Block606"  "Block607" 
+[133] "Block608"  "Block61"   "Block611"  "Block614"  "Block619"  "Block622" 
+[139] "Block627"  "Block636"  "Block644"  "Block649"  "Block652"  "Block656" 
+[145] "Block667"  "Block671"  "Block675"  "Block677"  "Block681"  "Block700" 
+[151] "Block702"  "Block707"  "Block708"  "Block709"  "Block721"  "Block730" 
+[157] "Block744"  "Block745"  "Block746"  "Block750"  "Block760"  "Block763" 
+[163] "Block767"  "Block768"  "Block773"  "Block775"  "Block778"  "Block795" 
+[169] "Block796"  "Block8"    "Block806"  "Block807"  "Block809"  "Block811" 
+[175] "Block817"  "Block818"  "Block823"  "Block829"  "Block838"  "Block844" 
+[181] "Block847"  "Block860"  "Block872"  "Block877"  "Block888"  "Block889" 
+[187] "Block890"  "Block893"  "Block900"  "Block908"  "Block913"  "Block928" 
+[193] "Block929"  "Block930"  "Block933"  "Block935"  "Block938"  "Block939" 
+[199] "Block941"  "Block943"  "Block946"  "Block947"  "Block948"  "Block954" 
+[205] "Block966"  "Block967"  "Block981"  "Block986"  "Block988" 
 [1] "check if all HNS blocks were grabbed"
-[1] TRUE
+[1] FALSE
 [1] "wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound inversions and HNS bound non-inversions"
 
 	Wilcoxon rank sum test with continuity correction
 
 data:  l_h_dat$norm_exp[l_h_dat$inversion == 1] and l_h_dat$norm_exp[l_h_dat$inversion == 0]
-W = 4578090.5, p-value = 0.000000002875743
+W = 4031728, p-value = 0.0000001253872
 alternative hypothesis: true location shift is not equal to 0
 
 [1] "Avg inver exp with HNS binding"
-[1] 235.0877568
+[1] 238.7830752
 [1] "Avg NON-inver exp with HNS binding"
-[1] 166.1297151
+[1] 168.5768243
 [1] "wilcoxon sign ranked test to see if there is a diff in exp btwn sig HNS bound inversions and non-sig HNS bound non-inversions"
   locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
 1           DR76_RS00005         1    1278      1205662            
@@ -45355,7 +45485,7 @@ alternative hypothesis: true location shift is not equal to 0
 	Wilcoxon rank sum test with continuity correction
 
 data:  sig_gei$norm_exp[sig_gei$sig == 1] and sig_gei$norm_exp[sig_gei$sig == 0]
-W = 2237626, p-value = 0.7436577
+W = 2015668.5, p-value = 0.7655007
 alternative hypothesis: true location shift is not equal to 0
 
 [1] "create column with HNS binding and non-binding"
@@ -45364,15 +45494,15 @@ alternative hypothesis: true location shift is not equal to 0
 	Wilcoxon rank sum test with continuity correction
 
 data:  gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1] and gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0]
-W = 15518578, p-value < 0.00000000000000022204
+W = 15451624, p-value < 0.00000000000000022204
 alternative hypothesis: true location shift is not equal to 0
 
 [1] "Avg exp with HNS binding"
-[1] 217.1282972
+[1] 219.9898586
 [1] "Avg exp WITHOUT HNS binding"
-[1] 201.2040597
+[1] 199.3249323
 [1] "overlap btwn Higashi (H1) and Lang"
-[1] 51
+[1] 33
 [1] "##################"
 [1] "##### HGT and inversions (in the context of K12MG) ######"
 [1] "##################"
@@ -45523,59 +45653,67 @@ sample estimates:
 
 [1] "HNS binding and inversions viz"
 [1] "Using Higashi criteria 1 for HNS binding"
-  start1   end1 Inversion   block G_HNS_binding U_HNS_binding H1_HNS_binding
-1  17258  19597         0  Block8             0             0              1
-2  28244  34713         0 Block11             0             0              1
-3  34768  44143         0 Block12             0             1              1
-4 150902 153677         0 Block36             0             1              1
-5 157226 164531         0 Block41             0             1              1
-6 173600 183621         0 Block46             0             0              1
+  start1  end1 Inversion   block G_HNS_binding U_HNS_binding H1_HNS_binding
+1  17489 18655         0  Block8             0             0              1
+2  30817 34038         0 Block11             0             0              1
+3  34300 34695         0 Block11             0             0              1
+4  35377 36162         0 Block12             0             0              1
+5  36271 37824         0 Block12             0             0              1
+6  42403 43173         0 Block12             0             1              1
   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
 1                 1                 1                 1              1
-2                 1                 1                 1              1
+2                 0                 0                 0              0
 3                 1                 1                 1              1
 4                 1                 1                 1              1
 5                 1                 1                 1              1
 6                 1                 1                 1              1
   H3_HNS_binding L_HNS_binding O_HNS_binding  midpoint fake_val
-1              1             0             1 0.0184275       10
-2              1             0             1 0.0314785       10
-3              1             1             1 0.0394555       10
-4              1             0             1 0.1522895       10
-5              1             0             0 0.1608785       10
-6              1             0             1 0.1786105       10
+1              1             0             1 0.0180720       10
+2              0             0             0 0.0324275       10
+3              1             0             1 0.0344975       10
+4              1             0             1 0.0357695       10
+5              1             0             0 0.0370475       10
+6              1             1             1 0.0427880       10
      start1             end1           Inversion               block    
- Min.   :  17258   Min.   :  19597   Min.   :0.0000000   Block1000:  1  
- 1st Qu.:1384951   1st Qu.:1392048   1st Qu.:0.2500000   Block1008:  1  
- Median :2168296   Median :2169324   Median :1.0000000   Block1014:  1  
- Mean   :2299158   Mean   :2307356   Mean   :0.7475728   Block1017:  1  
- 3rd Qu.:3256286   3rd Qu.:3263923   3rd Qu.:1.0000000   Block1023:  1  
- Max.   :4603170   Max.   :4606518   Max.   :1.0000000   Block1026:  1  
-                                                         (Other)  :200  
+ Min.   :  17489   Min.   :  18655   Min.   :0.0000000   Block1094:  7  
+ 1st Qu.:1509355   1st Qu.:1510380   1st Qu.:1.0000000   Block485 :  7  
+ Median :2055960   Median :2057044   Median :1.0000000   Block484 :  6  
+ Mean   :2333079   Mean   :2334014   Mean   :0.7526882   Block509 :  6  
+ 3rd Qu.:3267988   3rd Qu.:3269026   3rd Qu.:1.0000000   Block675 :  6  
+ Max.   :4604875   Max.   :4605663   Max.   :1.0000000   Block829 :  6  
+                                                         (Other)  :334  
  G_HNS_binding        U_HNS_binding       H1_HNS_binding H1nc1_HNS_binding  
  Min.   :0.00000000   Min.   :0.0000000   Min.   :1      Min.   :0.0000000  
  1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:1      1st Qu.:1.0000000  
  Median :0.00000000   Median :0.0000000   Median :1      Median :1.0000000  
- Mean   :0.07281553   Mean   :0.4466019   Mean   :1      Mean   :0.9174757  
- 3rd Qu.:0.00000000   3rd Qu.:1.0000000   3rd Qu.:1      3rd Qu.:1.0000000  
+ Mean   :0.02956989   Mean   :0.2231183   Mean   :1      Mean   :0.9247312  
+ 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:1      3rd Qu.:1.0000000  
  Max.   :1.00000000   Max.   :1.0000000   Max.   :1      Max.   :1.0000000  
                                                                             
- H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     H3_HNS_binding    
- Min.   :0.0000000   Min.   :0.0000000   Min.   :0.000000   Min.   :0.000000  
- 1st Qu.:1.0000000   1st Qu.:1.0000000   1st Qu.:1.000000   1st Qu.:1.000000  
- Median :1.0000000   Median :1.0000000   Median :1.000000   Median :1.000000  
- Mean   :0.9174757   Mean   :0.9174757   Mean   :0.907767   Mean   :0.907767  
- 3rd Qu.:1.0000000   3rd Qu.:1.0000000   3rd Qu.:1.000000   3rd Qu.:1.000000  
- Max.   :1.0000000   Max.   :1.0000000   Max.   :1.000000   Max.   :1.000000  
-                                                                              
- L_HNS_binding       O_HNS_binding          midpoint            fake_val 
- Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0184275   Min.   :10  
- 1st Qu.:0.0000000   1st Qu.:1.0000000   1st Qu.:1.3884996   1st Qu.:10  
- Median :0.0000000   Median :1.0000000   Median :2.1688100   Median :10  
- Mean   :0.2475728   Mean   :0.7718447   Mean   :2.3032568   Mean   :10  
- 3rd Qu.:0.0000000   3rd Qu.:1.0000000   3rd Qu.:3.2601047   3rd Qu.:10  
- Max.   :1.0000000   Max.   :1.0000000   Max.   :4.6048440   Max.   :10  
-                                                                         
+ H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:1.0000000   1st Qu.:1.0000000   1st Qu.:1.0000000  
+ Median :1.0000000   Median :1.0000000   Median :1.0000000  
+ Mean   :0.9247312   Mean   :0.9247312   Mean   :0.9166667  
+ 3rd Qu.:1.0000000   3rd Qu.:1.0000000   3rd Qu.:1.0000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ H3_HNS_binding      L_HNS_binding        O_HNS_binding      
+ Min.   :0.0000000   Min.   :0.00000000   Min.   :0.0000000  
+ 1st Qu.:1.0000000   1st Qu.:0.00000000   1st Qu.:0.0000000  
+ Median :1.0000000   Median :0.00000000   Median :1.0000000  
+ Mean   :0.9166667   Mean   :0.08870968   Mean   :0.5725806  
+ 3rd Qu.:1.0000000   3rd Qu.:0.00000000   3rd Qu.:1.0000000  
+ Max.   :1.0000000   Max.   :1.00000000   Max.   :1.0000000  
+                                                             
+    midpoint           fake_val 
+ Min.   :0.018072   Min.   :10  
+ 1st Qu.:1.509868   1st Qu.:10  
+ Median :2.056502   Median :10  
+ Mean   :2.333547   Mean   :10  
+ 3rd Qu.:3.268507   3rd Qu.:10  
+ Max.   :4.605269   Max.   :10  
+                                
     block  start    end  midpoint gbk_midpoint      block_t_stat
 1 Block62 239447 245944 1447718.5      1445602 0.720085166986352
 2 Block62 239447 245944 1447718.5      1447104 0.720085166986352
