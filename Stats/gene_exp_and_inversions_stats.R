@@ -309,7 +309,6 @@ gei_dat$gbk_midpoint <- tmp_pos
 head(gei_dat)
 max(gei_dat$gbk_midpoint)
 min(gei_dat$gbk_midpoint)
-inver_dat_bidir <- gei_dat
 
 print("############    ")
 print("# ALL inversions=1")
@@ -448,9 +447,10 @@ gei_dat <- gei_dat %>% filter(block_tax_num == 4)
 print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 bp_dat <- gei_dat
+inver_dat_bidir <- gei_dat
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp","strain"))
+block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_start","gbk_end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp","strain"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
 
@@ -458,7 +458,7 @@ block_df_uniq <- block_df
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","midpoint","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp", "strain"),
+    id.vars=c("block", "start", "end","midpoint","gbk_start","gbk_end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp", "strain"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -528,7 +528,7 @@ length(unique(td$block))
 print("complete HEAD")
 head(complete_block_df)
 cor_dat <- complete_block_df
-cor_dat <- within(cor_dat, non_bidir_midpoint <- (end + start) /2)
+cor_dat <- within(cor_dat, non_bidir_midpoint <- (gbk_end + gbk_start) /2)
 summary(cor_dat)
 #complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 #plot pvalues
@@ -1481,12 +1481,13 @@ cor.test(inver_cor_d$Inversion, inver_cor_d$G_HNS_binding,
          method = "pearson")
 
 print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#filter by K12 strain and ensure that we are only looking at the wilcoxon test results
+cor_dat <- cor_dat %>% filter(strain == "K12MG") %>% filter(test == "block_w_pvalue")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
 summary(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "G_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -1558,7 +1559,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "U_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -1628,7 +1629,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "H1_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -1705,7 +1706,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc1_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -1782,7 +1783,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc2_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -1859,7 +1860,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc3_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -1928,7 +1929,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "H2_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -1997,7 +1998,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "H3_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -2065,7 +2066,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "L_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -2077,20 +2078,6 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-summary(cor_dat)
-length(cor_dat$sig)
-print("total number of sig blocks")
-length(cor_dat$sig[which(cor_dat$sig ==1)])
-print("total number of non-sig blocks")
-length(cor_dat$sig[which(cor_dat$sig ==0)])
-t_d <- filter(cor_dat, L_HNS_binding == 1) %>% select(block, sig, L_HNS_binding)
-print("total number of LANG sig blocks")
-length(t_d$sig[which(t_d$sig ==1)])
-print("total number of LANG non-sig blocks")
-length(t_d$sig[which(t_d$sig ==0)])
-summary(t_d)
-print("Lang sig blocks")
-t_d %>% filter(sig ==1)
 cor.test(cor_dat$sig, cor_dat$L_HNS_binding,
          method = "pearson")
 
@@ -2146,7 +2133,7 @@ cor_dat <- cor_dat %>% filter(strain == "K12MG")
 cor_dat <- cor_dat %>%
     mutate(sig = if_else(pvalue <= 0.05, 1, 0))
 head(cor_dat)
-ir1 = with(cor_dat, IRanges(start, end))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
 cor_dat$overlap = countOverlaps(ir1, ir2) != 0
 names(cor_dat)[names(cor_dat)=="overlap"] <- "O_HNS_binding"
 cor_dat[which(cor_dat$start == 383921),]
@@ -2198,7 +2185,7 @@ l_h_blocks <- inver_cor_d %>%
          select(block)
 l_h_blocks <- unique(l_h_blocks)
 l_h_blocks <- as.character(sort(l_h_blocks$block))
-l_h_blocks <- l_h_blocks[-184]
+#l_h_blocks <- l_h_blocks[-184]
 l_h_blocks
 class(l_h_blocks)
 print("#get gei_dat that is just ^ blocks")
