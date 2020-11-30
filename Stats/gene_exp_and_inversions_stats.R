@@ -1031,6 +1031,7 @@ sampleData <- tibble::rownames_to_column(sampleData, "sample")
 rownames(sampleData) <- sampleData$sample
 sampleData$sample<-as.factor(gsub("^.*\\_G","",sampleData$sample))
 sampleData
+write.table(sampleData, 'deseqExpDesign.csv', sep = ",")
 m1 <- model.matrix(~ expID + expID:ind.n + expID:treatment, sampleData)
 all.zero <- apply(m1, 2, function(x) all(x==0))
 idx <- which(all.zero)
