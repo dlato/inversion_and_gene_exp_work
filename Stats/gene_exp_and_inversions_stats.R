@@ -2235,6 +2235,7 @@ print("##################")
 print("##### HGT and inversions (in the context of K12MG) ######")
 print("##################")
 print("*****filtering HGT data to include all categories of HGT (including nearby genes that are HGT")
+print("Higashi HGT")
 h_hgt_dat <- h_hgt_dat %>% filter(HGT != "x")
 hgt_inver <- gei_dat %>% filter(strain == "K12MG")
 ir1 = with(hgt_inver, IRanges(gbk_start, gbk_end))
@@ -2255,6 +2256,32 @@ print("correlation test btwn sig inversion/non-sig inversion and HGT")
 print("################################################################################")
 tmp_hgt <- filter(hgt_inver, inversion ==1)
 cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+
+print("*****filtering HGT data to include all categories of HGT ")
+print("Oshima HGT")
+o_hgt_dat <- sub_o_df %>% filter(Nakamura == 1 | Lawrence == 1)
+head(o_hgt_dat)
+hgt_inver <- gei_dat %>% filter(strain == "K12MG")
+ir1 = with(hgt_inver, IRanges(gbk_start, gbk_end))
+ir2 = with(o_hgt_dat, IRanges(start, end))
+hgt_inver$HGT = countOverlaps(ir1, ir2) != 0
+hgt_inver$HGT <- as.numeric(hgt_inver$HGT)
+hgt_inver <- hgt_inver %>%
+               mutate(sig = ifelse(block_w_pvalue <= 0.05, 1, 0))
+head(hgt_inver)
+summary(hgt_inver)
+print("################################################################################")
+print("correlation test btwn inversion/non-inversion and HGT")
+print("################################################################################")
+cor.test(hgt_inver$inversion, hgt_inver$HGT,
+         method = "pearson")
+print("################################################################################")
+print("correlation test btwn sig inversion/non-sig inversion and HGT")
+print("################################################################################")
+tmp_hgt <- filter(hgt_inver, inversion ==1)
+cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+
+
 
 
 
