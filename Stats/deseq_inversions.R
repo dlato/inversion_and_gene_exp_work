@@ -30,7 +30,7 @@ raw_deseqW <- raw_dat %>%
 print("read in experimental design")
 sample_file <- "deseq_ExpDesign.csv"
 sampleData <- read.csv(sample_file, header = TRUE)
-head(sampleData)
+sampleData
 print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
 raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
 all(colnames(raw_deseqW) == rownames(sampleData))
