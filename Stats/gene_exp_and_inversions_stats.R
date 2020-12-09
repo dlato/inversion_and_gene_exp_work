@@ -2291,6 +2291,7 @@ inver_cor_d$midpoint = inver_cor_d$midpoint / 1000000
 fake_val <- rep(10,length(inver_cor_d$midpoint))
 inver_cor_d <- cbind(inver_cor_d, fake_val)
 inver_cor_d <- filter(inver_cor_d, H1_HNS_binding == 1)
+print("inver_cor_d")
 head(inver_cor_d)
 summary(inver_cor_d)
 fake_val <- rep(10,length(cor_dat$block))
@@ -2298,9 +2299,12 @@ fake_val2 <- rep(9.95,length(cor_dat$block))
 hns_inver <- cbind(cor_dat,fake_val,fake_val2)
 hns_inver <- hns_inver %>% filter(inversion == 1)
 hns_inver$non_bidir_midpoint = hns_inver$non_bidir_midpoint / 1000000
+print("hns_inver")
 head(hns_inver)
 summary(hns_inver)
 hns_sig <- hns_inver %>% filter(sig == 1)
+print("hns_sig")
+head(hns_sig)
 #hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
 hns_bind <- hns_viz_h1 %>% filter(HNS_binding == TRUE)
 hns_bind$gbk_midpoint = hns_bind$gbk_midpoint / 1000000
@@ -2335,6 +2339,27 @@ p <- (ggplot(hns_inver, aes(x=non_bidir_midpoint, y=fake_val, colour = strain))
 pdf("hns_all_inversions.pdf")
 p
 dev.off()
+
+
+###############NEW HNS GRAPH HISTOGRAM
+fake2 <- rep(0.025,length(hns_inver$non_bidir_midpoint)) 
+hns_inver <- cbind(hns_inver,fake2)
+p <- (ggplot(inver_cor_d, aes(x=midpoint))
+  + geom_density(alpha=0.5, aes(fill = "#2E294E"))
+  + geom_density(data = hns_sig, aes(x=non_bidir_midpoint, fill = "#AA5042"),alpha=0.4)
+#  + geom_density(data = hns_inver, aes(x=non_bidir_midpoint),alpha=0.4, fill = "#BEBEBE")
+  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=10)
+   + labs(title= "H-NS Binding and Inversions",x = "Genomic Location (Mbp)", y = "Density") 
+   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
+   + scale_fill_manual(values = c("#2E294E","#AA5042","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
+#  + scale_fill_manual(name = "", labels = c("H-NS Binding", "Significant Inversions"))
+  + theme(legend.position = "top")
+)
+pdf("hns_all_inversions_hist.pdf")
+p
+dev.off()
+
+
 
 #gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
 #group_by(x)%>%

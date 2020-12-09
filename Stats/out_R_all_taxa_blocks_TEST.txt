@@ -45670,6 +45670,7 @@ sample estimates:
 
 [1] "HNS binding and inversions viz"
 [1] "Using Higashi criteria 1 for HNS binding"
+[1] "inver_cor_d"
   start1  end1 Inversion   block G_HNS_binding U_HNS_binding H1_HNS_binding
 1  17489 18655         0  Block8             0             0              1
 2  30817 34038         0 Block11             0             0              1
@@ -45723,6 +45724,7 @@ sample estimates:
  3rd Qu.:0.00000000   3rd Qu.:1.000000   3rd Qu.:3.270418   3rd Qu.:10  
  Max.   :1.00000000   Max.   :1.000000   Max.   :4.605269   Max.   :10  
                                                                         
+[1] "hns_inver"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
 2 Block62 239447 245944 1447718.5    240859  243303      1447104
@@ -45852,6 +45854,56 @@ sample estimates:
  3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:10   3rd Qu.:9.95  
  Max.   :1.00000000   Max.   :1.0000000   Max.   :10   Max.   :9.95  
                                                                      
+[1] "hns_sig"
+     block   start     end  midpoint gbk_start gbk_end gbk_midpoint
+1 Block164  573295  574469 1778905.0    573371  573733      1778575
+2 Block164  573295  574469 1778905.0    573956  574339      1779170
+3 Block232  893570  896159 2099887.5    893784  894896      2099363
+4 Block232  893570  896159 2099887.5    894991  896124      2100580
+5 Block288 1121296 1130843 2331092.5   1121561 1122607      2327107
+6 Block288 1121296 1130843 2331092.5   1122713 1123273      2328016
+       block_t_stat  block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1    2.590184763836 -18.8880033774803 76.0569364582568     28.9224244350358
+2    2.590184763836 -18.8880033774803 76.0569364582568     28.9224244350358
+3 -2.19125319012863 -70.1448019405607 2.80579729118866     14.6104321384824
+4 -2.19125319012863 -70.1448019405607 2.80579729118866     14.6104321384824
+5  1.55965738342637 -18.9820824279134 138.407252535964     155.814904590049
+6  1.55965738342637 -18.9820824279134 138.407252535964     155.814904590049
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1       0.337957894647502                 1172                    1174
+2       0.337957894647502                 1172                    1174
+3        48.2799344631685                 2588                    2589
+4        48.2799344631685                 2588                    2589
+5        96.1023195360237                 9547                    9547
+6        96.1023195360237                 9547                    9547
+  inversion rev_comp strain           test         pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.015858766989    yes
+2         1        0  K12MG block_w_pvalue 0.015858766989    yes
+3         1        0  K12MG block_w_pvalue 0.047619047619    yes
+4         1        0  K12MG block_w_pvalue 0.047619047619    yes
+5         1        0  K12MG block_w_pvalue 0.006110880274    yes
+6         1        0  K12MG block_w_pvalue 0.006110880274    yes
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1          0.5735520   1             0             1              0
+2          0.5741475   1             0             0              0
+3          0.8943400   1             0             0              0
+4          0.8955575   1             0             0              0
+5          1.1220840   1             0             0              0
+6          1.1229930   1             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 0                 0                 0              0
+  H3_HNS_binding L_HNS_binding O_HNS_binding fake_val fake_val2
+1              0             0             1       10      9.95
+2              0             0             1       10      9.95
+3              0             0             0       10      9.95
+4              0             0             0       10      9.95
+5              0             0             0       10      9.95
+6              0             0             0       10      9.95
   gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
 1      acrE        TRUE       TRUE           TRUE 3413864 3415021     3.414442
 2      acrR        TRUE       TRUE           TRUE  485761  486408     0.486084
@@ -45866,5 +45918,7 @@ sample estimates:
 4       10
 5       10
 6       10
+null device 
+          1 
 null device 
           1 
