@@ -664,7 +664,7 @@ p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
 ##  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
    + scale_y_continuous(trans='log10')
    + scale_x_continuous(limits = c(0, 3))
-   + labs(title= "Average Gene Expression within Alignment Blocks",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
+   + labs(title= "",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
    #colour for legend
    + guides(colour = guide_legend(override.aes = list(shape = override.shape, linetype = override.linetype, fill=NA,unit(3,"line"))))
    + scale_shape(guide = FALSE)
