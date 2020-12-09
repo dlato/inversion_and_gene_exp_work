@@ -45508,7 +45508,7 @@ sample estimates:
           cor 
 0.03417710567 
 
-[1] "*****filtering HGT data to include all categories of HGT (including nearby genes that are HGT"
+[1] "*****filtering HGT data to include all categories of HGT "
 [1] "Oshima HGT"
     X locus_tag gene lengthnt  start    end strand                   product
 1  33     b0056 yabP      651  58474  59124      + orf, hypothetical protein

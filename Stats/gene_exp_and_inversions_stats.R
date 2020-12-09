@@ -647,12 +647,12 @@ override.shape <- c(16, 16, 17)
 override.linetype <- c(0,1, 3)
 print("GRAPH IS ONLY WITH INVERTED BLOCKS THAT WERE ABLE TO BE TESTED")
 #cols <- c("block_avg_exp_noninvert" = "#3d405b","block_avg_exp_invert" = "#e07a5f")
-p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class, shape= class))
+p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
 #  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
    #non-sig pts in light grey, un-filled
-   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.7 ,show.legend = FALSE )
+   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.5 ,show.legend = FALSE, size=2.5 )
    #sig pts
-   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class))
+   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class), size=2.5)
    + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess")
    + scale_linetype_manual(values=c("solid", "dotted"))
 #   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"),limits = "Inverted Sequences", "Non-inverted Sequences")
