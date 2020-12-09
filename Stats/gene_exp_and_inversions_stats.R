@@ -657,8 +657,7 @@ p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
    + scale_linetype_manual(values=c("solid", "dotted"))
 #   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"),limits = "Inverted Sequences", "Non-inverted Sequences")
 #   + scale_color_manual(values = c("#BEBEBE","#e07a5f" = "block_avg_exp_invert" ,"#3d405b"= "block_avg_exp_noninvert" ),limits = "block_avg_exp_invert", "block_avg_exp_noninvert",limits =c("Inversion","No Inversion"))
-   + scale_color_manual(values =
-c("#BEBEBE","#e07a5f","#3d405b"),labels =c("Non-significant","Inverted","Non-inverted"))
+   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"),labels =c("Non-significant","Inverted","Non-inverted"))
 ##               position = position_jitter(width = 0.05)) +
 ##  geom_point(size = 3) +
 #   + geom_point(size = 2, alpha=0.4)
