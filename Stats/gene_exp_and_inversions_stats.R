@@ -2501,6 +2501,33 @@ tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
 tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
 print("tot_gene_subs_10kb")
 write.csv(tot_gene_subs_10kb)
+######################################################
+# PLOT
+######################################################
+# WEIGHTED SUBS PER SITE
+###########################
+options(scipen=3)
+tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
+subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
+  + geom_histogram(stat = "identity", fill= "blue")
+#  geom_histogram(stat = "identity", fill= "#FE5F55")
+  + labs(x = "Distance from the Origin of Replication (Mbp)", y = "Number of H-NS Binding Sites per 10Kbp")
+##FOR PRESENTATION ONLY: NEXT LINE
+#  + labs(x = "", y = "")
+  + ggtitle("H-NS binding")
+#   + geom_vline(xintercept = 0, colour = "red")
+ + scale_x_continuous(labels = function(x) ifelse(x ==0, "0", x))
+ + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
+)
+###########################
+pdf("hns_hist.pdf")
+subs_hist
+#grid.newpage()
+#grid.draw(rbind(ggplotGrob(gene_num_hist), ggplotGrob(exp_bar_top), size = "last"))
+## next line adds border
+#grid.rect(width = 0.99, height = 0.99, gp = gpar(lwd = 2, col = "black", fill = NA))
+dev.off()
+###########################
 
 
 
