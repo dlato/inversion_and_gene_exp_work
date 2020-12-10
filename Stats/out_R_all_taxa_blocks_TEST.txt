@@ -242,8 +242,62 @@
 4         0   ATCC            DR76_3     19237 1214641.5
 5         0   ATCC            DR76_5     19237 1214641.5
 6         0   ATCC            DR76_6     19237 1214641.5
+   locus_tag       gene_id       gbk_start          gbk_end       
+        :3112          :2971   Min.   :      1   Min.   :    255  
+ b0001  :   2   asnC   :   3   1st Qu.:1267551   1st Qu.:1268104  
+ b0002  :   2   aaeA   :   2   Median :2403896   Median :2404952  
+ b0003  :   2   aaeR   :   2   Mean   :2414366   Mean   :2415307  
+ b0004  :   2   aaeX   :   2   3rd Qu.:3537421   3rd Qu.:3538118  
+ b0007  :   2   aas    :   2   Max.   :5129459   Max.   :5130511  
+ (Other):8864   (Other):9004                                      
+  gbk_midpoint        gbk_gene_id           gbk_locus_tag    gbk_strand       
+ Min.   :    134.0          :6841                  :6026   Min.   :0.0000000  
+ 1st Qu.: 563197.5   rrf    :   6   BW25113_RS04685:   2   1st Qu.:0.0000000  
+ Median :1359594.5   aceF   :   4   BW25113_RS00005:   1   Median :1.0000000  
+ Mean   :1306097.4   asnB   :   4   BW25113_RS00010:   1   Mean   :0.5190222  
+ 3rd Qu.:1990163.5   atpC   :   4   BW25113_RS00015:   1   3rd Qu.:1.0000000  
+ Max.   :2793601.0   bcsA   :   4   BW25113_RS00020:   1   Max.   :1.0000000  
+                     (Other):5123   (Other)        :5954                      
+    norm_exp                block                taxa          start        
+ Min.   :    0.00000   Block499:  153   CP009072   :3112   Min.   :      0  
+ 1st Qu.:   10.87214   Block889:  124   NC_010473  :2989   1st Qu.:1256733  
+ Median :   47.42725   Block656:  115   NZ_CP009273:2971   Median :2390012  
+ Mean   :  207.69959   Block893:  109   U00096000  :2914   Mean   :2409180  
+ 3rd Qu.:  148.21953   Block869:  102                      3rd Qu.:3534124  
+ Max.   :20648.29736   Block485:   97                      Max.   :5129412  
+                       (Other) :11286                                       
+      end             rev_comp           inversion             strain    
+ Min.   :   5468   Min.   :0.0000000   Min.   :0.0000000   ATCC   :3112  
+ 1st Qu.:1274804   1st Qu.:0.0000000   1st Qu.:0.0000000   BW25113:2971  
+ Median :2416100   Median :0.0000000   Median :1.0000000   K12DH  :2989  
+ Mean   :2420451   Mean   :0.1814617   Mean   :0.6977307   K12MG  :2914  
+ 3rd Qu.:3543201   3rd Qu.:0.0000000   3rd Qu.:1.0000000                 
+ Max.   :5130766   Max.   :1.0000000   Max.   :1.0000000                 
+                                                                         
+    gbk_old_locus_tag   block_len           midpoint        
+             :6021    Min.   :   96.00   Min.   :    345.0  
+ BW25113_0903:   2    1st Qu.: 5468.00   1st Qu.: 562410.5  
+ BW25113_0001:   1    Median : 9662.00   Median :1360843.5  
+ BW25113_0002:   1    Mean   :11270.39   Mean   :1306083.4  
+ BW25113_0003:   1    3rd Qu.:14177.00   3rd Qu.:1988839.5  
+ BW25113_0004:   1    Max.   :38569.00   Max.   :2792216.5  
+ (Other)     :5959                                          
 [1] 2793601
 [1] 134
+[1] "############    "
+[1] "# Total number of inversions identified"
+[1] "############    "
+[1] 417
+[1] "############    "
+[1] "# Total number of inversions identified in ATCC"
+[1] "############    "
+[1] 12
+[1] "############    "
+[1] "# Total number of inversions identified in DH"
+[1] "############    "
+[1] 5
+[1] "intersect"
+[1] 399
 [1] "############    "
 [1] "# ALL inversions=1"
 [1] "############    "
