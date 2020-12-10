@@ -2453,6 +2453,7 @@ print("checking order")
 head(hns_bind)
 tail(hns_bind)
 
+sig_rows_to_split_dat <- vector()
 for (i in chunks) {
   subs_rows <-
 which(abs(hns_bind$gbk_midpoint-i)==min(abs(hns_bind$gbk_midpoint-i)))
@@ -2501,15 +2502,113 @@ tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
 tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
 print("tot_gene_subs_10kb")
 write.csv(tot_gene_subs_10kb)
+
+#####################################################
+print("sig inversions hist data")
+#####################################################
+#all sig inversions data is the inver_dat_bidir df
+inver_dat_bidir$block_w_pvalue <- as.numeric(inver_dat_bidir$block_w_pvalue)
+sig_id <- inver_dat_bidir %>%
+          select(start,end,strain,block,inversion,block_w_pvalue) %>%
+          filter(strain == "K12MG") %>%
+          filter(block_w_pvalue <= 0.05)
+sig_id <- unique(sig_id)
+sig_id <- within(sig_id, midpoint <- (end + start) /2)
+colnames(sig_id)[colnames(sig_id) == "midpoint"] <- "midpoint"
+head(sig_id)
+sig_id <- sig_id %>% select(inversion,midpoint)
+head(sig_id)
+
+#add in fake data for chunks so it will split properly
+#len_of_chunks <- length(chunks_pos_NOzero)
+len_of_chunks <- length(chunks)
+finv <- rep(as.numeric(1), len_of_chunks)
+#fake_dat <- cbind(chunks_pos_NOzero, fhns)
+fake_dat <- cbind(chunks, finv)
+colnames(fake_dat) <- c("midpoint","inversion")
+head(fake_dat)
+#add fake data to orig data
+sig_bind <- rbind(sig_id,fake_dat)
+head(sig_bind)
+tail(sig_bind)
+sig_bind$gbk_midpoint <- as.numeric(sig_bind$midpoint)
+sig_bind$HNS_binding <- as.numeric(sig_bind$inversion)
+
+
+#order the data by positions, only if its NOT strep
+if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
+        ord_pos <- order(sig_bind$gbk_midpoint)
+        sig_bind$HNS_binding <- sig_bind$HNS_binding[ord_pos]
+        sig_bind$gbk_midpoint <- sig_bind$gbk_midpoint[ord_pos]
+}
+print("SAVED BIDIRECTIONAL DATA TO FILE")
+write.table(sig_bind, 'sig_bind.csv', sep = ",")
+
+print("checking order")
+head(sig_bind)
+tail(sig_bind)
+
+for (i in chunks) {
+  sig_rows <-
+which(abs(sig_bind$gbk_midpoint-i)==min(abs(sig_bind$gbk_midpoint-i)))
+# finding the closest number to each 10kb without going over it
+  sig_max_row <- max(sig_rows)
+  sig_rows_to_split_dat <- c(sig_rows_to_split_dat, sig_max_row)
+}#for
+
+#split data by the above specified rows
+#sometimes the closest number was technically in the next 10kb chunk of seq
+#but its fine.
+data_just_sig <- sig_bind$inversion
+list_dat_sets_just_sig <- split(data_just_sig, findInterval(1:nrow(sig_bind), sig_rows_to_split_dat))
+list_dat_sets_just_sig
+print("split sig into 10kb chunks")
+
+
+##########
+#add up all sig in each 10kb section
+##########
+list_tot_add_sig_10kb <- lapply(list_dat_sets_just_sig, sum)
+tot_gene_sig_10kb <- as.data.frame(matrix(unlist(list_tot_add_sig_10kb), byrow = F))
+print("head/tail of total_sig")
+head(tot_gene_sig_10kb)
+tail(tot_gene_sig_10kb)
+nrow(tot_gene_sig_10kb)
+#length(chunks_pos_NOzero)
+length(chunks)
+class(tot_gene_sig_10kb)
+#remove last element if lengths do not match (for cbind later)
+#if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
+if (nrow(tot_gene_sig_10kb) == length(chunks)) {
+    tot_gene_sig_10kb <- tot_gene_sig_10kb
+} else {
+    tot_gene_sig_10kb <- tot_gene_sig_10kb[-nrow(tot_gene_sig_10kb),]
+    tot_gene_sig_10kb <- tot_gene_sig_10kb[-1]
+}
+
+#tot_gene_sig_10kb <- as.data.frame(cbind(tot_gene_sig_10kb, chunks_pos_NOzero))
+tot_gene_sig_10kb <- as.data.frame(cbind(tot_gene_sig_10kb, chunks))
+head(tot_gene_sig_10kb)
+tail(tot_gene_sig_10kb)
+#subtract 1 from HNS binding column (bc of the fake data that was added)
+tot_gene_sig_10kb$V1 <- tot_gene_sig_10kb$V1 -1
+#add 10000 to each bar so that it represents all pts within that chunk of the genome
+tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks +10000
+print("tot_gene_sig_10kb")
+write.csv(tot_gene_sig_10kb)
+
 ######################################################
 # PLOT
 ######################################################
-# WEIGHTED SUBS PER SITE
-###########################
 options(scipen=3)
 tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
+tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks / 1000000
 subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
-  + geom_histogram(stat = "identity", fill= "blue")
+  + geom_histogram(stat = "identity", fill= "#2E294E", alpha = 0.9)
+  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1),stat = "identity", fill= "#AA5042")
+  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=10)
+   + scale_fill_manual(values = c("#2E294E","#AA5042","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
+  + theme(legend.position = "top")
 #  geom_histogram(stat = "identity", fill= "#FE5F55")
   + labs(x = "Distance from the Origin of Replication (Mbp)", y = "Number of H-NS Binding Sites per 10Kbp")
 ##FOR PRESENTATION ONLY: NEXT LINE
