@@ -4,7 +4,7 @@ python3 non_cod_positions_Higashi_2016.py ../HNS_protein/raw_data_files/Higashi_
 
 
 #new data excluding blast and aln mismatches
-Rscript gene_exp_and_inversions_stats.R ../Sample_final_df.csv 5130767 3925744 1588773 E.coli Chromosome ../new_dataframes/raw_exp.csv ../Gene_Maps/ATCC_K12MG_K12DH_BW_gene_map.txt ../inversion_block_info_all.txt 10000 --save > out_R_all_taxa_blocks.txt
+Rscript gene_exp_and_inversions_stats.R ../Sample_final_df.csv 5130767 3925744 1588773 E.coli Chromosome ../new_dataframes/raw_exp.csv ../Gene_Maps/ATCC_K12MG_K12DH_BW_gene_map.txt ../inversion_block_info_all.txt 100000 --save > out_R_all_taxa_blocks.txt
 #analysis with old data (not excluding blast and aln mismatches)
 #Rscript gene_exp_and_inversions_stats.R ../Strains_df/all_strains.csv 5130767 3925744 1588773 E.coli Chromosome ../Sample_final_df_RawExp.csv ../Gene_Maps/ATCC_K12MG_K12DH_BW_gene_map.txt ../inversion_block_info_all.txt --save > out_R_all_taxa_blocks.txt
 
