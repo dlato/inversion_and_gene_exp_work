@@ -1,6 +1,7 @@
 #test script for inversions and gene expression analysis
 #library(tidyverse)
 library(dplyr)
+library(plyr)
 library(tidyr)
 library("stringr")
 #library(broom)
@@ -2362,7 +2363,7 @@ p
 dev.off()
 
 
-###############NEW HNS GRAPH HISTOGRAM
+###############NEW HNS GRAPH Density plot
 fake2 <- rep(0.025,length(hns_inver$non_bidir_midpoint)) 
 hns_inver <- cbind(hns_inver,fake2)
 p <- (ggplot(inver_cor_d, aes(x=midpoint))
@@ -2380,6 +2381,169 @@ pdf("hns_all_inversions_hist.pdf")
 p
 dev.off()
 
+##################################################################################
+##################################################################################
+print("### HNS GRAPH HISTOGRAM")
+##################################################################################
+##################################################################################
+
+#all HNS binding data is the hns_bind df
+head(hns_bind)
+hns_bind <- hns_bind %>% select(gbk_midpoint,HNS_binding)
+hns_bind$HNS_binding <- as.numeric(hns_bind$HNS_binding)
+hns_bind$gbk_midpoint <- hns_bind$gbk_midpoint *1000000
+head(hns_bind)
+#new min and max for the scaled positions (rounded to chunk len
+#specified in args)
+chunklen <- as.numeric(args[10])
+print("chunklen")
+chunklen
+#nmin_pos <- round_any(min(hns_sig$non_bidir_midpoint), chunklen, f=floor)
+nmin_pos <- 0
+print("min (rounded)")
+nmin_pos
+#nmax_pos <- max(hns_sig$non_bidir_midpoint)
+nmax_pos <- as.numeric(args[2])
+print("max (rounded)")
+nmax_pos
+
+#expty vec to hold the rows that split the dat into X kb chunks
+subs_rows_to_split_dat <- vector()
+#create vector of chunks
+chunk_len_of_genome <- round_any(nmax_pos, chunklen, f=ceiling)
+chunk_len_of_genome
+chunks <- seq(nmin_pos, chunk_len_of_genome, chunklen)
+chunks
+##checking if the lengths are equal for the later bind
+#if (length(unlist(tot_gene_subs_10kb)) == length(chunks)) {
+#    chunks_pos_NOzero <- chunks
+#} else {
+    chunks_pos_NOzero <- chunks[which(chunks != 0)]
+#}
+chunks_pos_NOzero
+
+#add in fake data for chunks so it will split properly
+#len_of_chunks <- length(chunks_pos_NOzero)
+len_of_chunks <- length(chunks)
+fhns <- rep(as.numeric(1), len_of_chunks)
+#fake_dat <- cbind(chunks_pos_NOzero, fhns)
+fake_dat <- cbind(chunks, fhns)
+colnames(fake_dat) <- c("gbk_midpoint","HNS_binding")
+head(fake_dat)
+head(hns_bind)
+#add fake data to orig data
+hns_bind <- rbind(hns_bind,fake_dat)
+head(hns_bind)
+tail(hns_bind)
+hns_bind$gbk_midpoint <- as.numeric(hns_bind$gbk_midpoint)
+hns_bind$HNS_binding <- as.numeric(hns_bind$HNS_binding)
+head(hns_bind)
+
+
+#order the data by positions, only if its NOT strep
+if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
+        ord_pos <- order(hns_bind$gbk_midpoint)
+        hns_bind$HNS_binding <- hns_bind$HNS_binding[ord_pos]
+        hns_bind$gbk_midpoint <- hns_bind$gbk_midpoint[ord_pos]
+}
+print("SAVED BIDIRECTIONAL DATA TO FILE")
+write.table(hns_bind, 'hns_bind.csv', sep = ",")
+
+print("checking order")
+head(hns_bind)
+tail(hns_bind)
+
+for (i in chunks) {
+  subs_rows <-
+which(abs(hns_bind$gbk_midpoint-i)==min(abs(hns_bind$gbk_midpoint-i)))
+# finding the closest number to each 10kb without going over it
+  subs_max_row <- max(subs_rows)
+  subs_rows_to_split_dat <- c(subs_rows_to_split_dat, subs_max_row)
+}#for
+
+#split data by the above specified rows
+#sometimes the closest number was technically in the next 10kb chunk of seq
+#but its fine.
+data_just_subs <- hns_bind$HNS_binding
+list_dat_sets_just_subs <- split(data_just_subs, findInterval(1:nrow(hns_bind), subs_rows_to_split_dat))
+list_dat_sets_just_subs
+print("split subs into 10kb chunks")
+
+
+##########
+#add up all subs in each 10kb section
+##########
+list_tot_add_subs_10kb <- lapply(list_dat_sets_just_subs, sum)
+tot_gene_subs_10kb <- as.data.frame(matrix(unlist(list_tot_add_subs_10kb), byrow = F))
+print("head/tail of total_subs")
+head(tot_gene_subs_10kb)
+tail(tot_gene_subs_10kb)
+nrow(tot_gene_subs_10kb)
+#length(chunks_pos_NOzero)
+length(chunks)
+class(tot_gene_subs_10kb)
+#remove last element if lengths do not match (for cbind later)
+#if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
+if (nrow(tot_gene_subs_10kb) == length(chunks)) {
+    tot_gene_subs_10kb <- tot_gene_subs_10kb
+} else {
+    tot_gene_subs_10kb <- tot_gene_subs_10kb[-nrow(tot_gene_subs_10kb),]
+    tot_gene_subs_10kb <- tot_gene_subs_10kb[-1]
+}
+
+#tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks_pos_NOzero))
+tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks))
+head(tot_gene_subs_10kb)
+tail(tot_gene_subs_10kb)
+#subtract 1 from HNS binding column (bc of the fake data that was added)
+tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
+#add 10000 to each bar so that it represents all pts within that chunk of the genome
+tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
+print("tot_gene_subs_10kb")
+write.csv(tot_gene_subs_10kb)
+
+
+
+#################
+###########
+##get total number of sites in each 10kb section
+###########
+#list_freq <- lapply(list_dat_sets_just_subs, table)
+#list_freq
+#list_freq_sum <- lapply(list_freq, sum)
+#list_freq_sum
+#tot_num_sites <- as.data.frame(matrix(unlist(list_freq_sum), byrow=F))
+#tot_num_sites
+#length(tot_num_sites)
+##remove last element if lengths do not match (for cbind later)
+#if (nrow(tot_num_sites) == length(chunks_pos_NOzero)) {
+#    tot_num_sites <- tot_num_sites
+#} else {
+#    tot_num_sites <- tot_num_sites[-nrow(tot_num_sites),]
+#    tot_num_sites <- tot_num_sites[-1]
+#}
+#freq_dat <- as.data.frame(cbind(tot_num_sites,chunks_pos_NOzero))
+#print("freq_dat")
+#head(freq_dat)
+#tail(freq_dat)
+#write.csv(freq_dat,"hns_freq_dat.csv")
+############
+###weighted dataframe
+############
+#weighted_data <- cbind(tot_gene_subs_10kb,freq_dat)
+#colnames(weighted_data) <- c("tot_gene_subs_10kb", "chunks_pos_NOzero", "tot_num_sites", "chunks_pos_NOzero")
+#head(weighted_data)
+#tail(weighted_data)
+#length(weighted_data$tot_gene_subs_10kb)
+#length(weighted_data$tot_num_sites)
+#weighted_data$weighted_subs <- weighted_data$tot_gene_subs_10kb / weighted_data$tot_num_sites
+#head(weighted_data)
+#tail(weighted_data)
+#
+#weighted_data <- weighted_data[-2]
+#head(weighted_data)
+#tail(weighted_data)
+#write.csv(weighted_data,"weighted_dat.csv")
 
 
 #gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
