@@ -285,20 +285,6 @@
 [1] 2793601
 [1] 134
 [1] "############    "
-[1] "# Total number of inversions identified"
-[1] "############    "
-[1] 417
-[1] "############    "
-[1] "# Total number of inversions identified in ATCC"
-[1] "############    "
-[1] 12
-[1] "############    "
-[1] "# Total number of inversions identified in DH"
-[1] "############    "
-[1] 5
-[1] "intersect"
-[1] 399
-[1] "############    "
 [1] "# ALL inversions=1"
 [1] "############    "
 [1] "#Wilcox signed-rank test                                                                     "
@@ -41172,6 +41158,16 @@ null device
 [1] 379
 [1] "percent of inverted blocks"
 [1] 68.28828829
+[1] "############    "
+[1] "# Total number of inversions identified in DH (and ATCC)"
+[1] "############    "
+[1] 2
+[1] "############    "
+[1] "# Total number of inversions identified in ONLY ATCC"
+[1] "############    "
+[1] 377
+[1] "# percent of inverted blocks that were only ATCC"
+[1] 99.47229551
 [1] "number of blocks that were tested"
 [1] 379
 [1] "percent of blocks that were tested"
@@ -42313,103 +42309,6 @@ Number of Fisher Scoring iterations: 4
 [1] "## DESeq expression comparison"
 [1] "#############                 "
 [1] "getting total combos of inversions"
-  ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
-1               1               1                  0                  0
-2               1               1                  0                  0
-3               1               1                  0                  0
-4               1               1                  0                  0
-5               1               1                  0                  0
-6               1               1                  0                  0
-  BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
-1                  0                0                0                0
-2                  0                0                0                0
-3                  0                0                0                0
-4                  0                0                0                0
-5                  0                0                0                0
-6                  0                0                0                0
-  K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
-1                   0                   0                   0
-2                   0                   0                   0
-3                   0                   0                   0
-4                   0                   0                   0
-5                   0                   0                   0
-6                   0                   0                   0
-  K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
-1                   0                0                0                  0
-2                   0                0                0                  0
-3                   0                0                0                  0
-4                   0                0                0                  0
-5                   0                0                0                  0
-6                   0                0                0                  0
-  K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
-1                  0                0                0                0
-2                  0                0                0                0
-3                  0                0                0                0
-4                  0                0                0                0
-5                  0                0                0                0
-6                  0                0                0                0
-[1] "############    "
-[1] "# Total number of inversions identified"
-[1] "############    "
-[1] 1928
-  ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
-1               1               1                  0                  0
-2               1               1                  0                  0
-3               1               1                  0                  0
-4               1               1                  0                  0
-5               1               1                  0                  0
-6               1               1                  0                  0
-  BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
-1                  0                0                0                0
-2                  0                0                0                0
-3                  0                0                0                0
-4                  0                0                0                0
-5                  0                0                0                0
-6                  0                0                0                0
-  K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
-1                   0                   0                   0
-2                   0                   0                   0
-3                   0                   0                   0
-4                   0                   0                   0
-5                   0                   0                   0
-6                   0                   0                   0
-  K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
-1                   0                0                0                  0
-2                   0                0                0                  0
-3                   0                0                0                  0
-4                   0                0                0                  0
-5                   0                0                0                  0
-6                   0                0                0                  0
-  K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
-1                  0                0                0                0
-2                  0                0                0                0
-3                  0                0                0                0
-4                  0                0                0                0
-5                  0                0                0                0
-6                  0                0                0                0
-[1] "############    "
-[1] "# Total number of inversions identified in ATCC"
-[1] "############    "
-[1] 1926
-  ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
-1               1               1                  0                  0
-2               1               1                  0                  0
-  BW25113_GSE73673_8 BW25113_GSE85914 K12DH_GSE98890_1 K12DH_GSE98890_2
-1                  0                0                1                1
-2                  0                0                1                1
-  K12MG_GSE114917_LP1 K12MG_GSE114917_LP2 K12MG_GSE114917_LP3
-1                   0                   0                   0
-2                   0                   0                   0
-  K12MG_GSE114917_LP4 K12MG_GSE40313_1 K12MG_GSE40313_2 K12MG_GSE54199_DNA
-1                   0                0                0                  0
-2                   0                0                0                  0
-  K12MG_GSE54199_RNA K12MG_GSE60522_1 K12MG_GSE60522_2 K12MG_GSE60522_3
-1                  0                0                0                0
-2                  0                0                0                0
-[1] "############    "
-[1] "# Total number of inversions identified in DH and ATCC (DH does\nnot have any inversions by itself)"
-[1] "############    "
-[1] 2
      ATCC_GSE94978_1 ATCC_GSE94978_2 BW25113_GSE73673_6 BW25113_GSE73673_7
 1                  1               1                  0                  0
 102                0               0                  0                  0
