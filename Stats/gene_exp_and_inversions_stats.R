@@ -668,23 +668,14 @@ k12_df_sig %>% filter(block == "Block164")
 override.shape <- c(16, 16, 17)
 override.linetype <- c(0,1, 3)
 print("GRAPH IS ONLY WITH INVERTED BLOCKS THAT WERE ABLE TO BE TESTED")
-#cols <- c("block_avg_exp_noninvert" = "#3d405b","block_avg_exp_invert" = "#e07a5f")
 p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
-#  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
    #non-sig pts in light grey, un-filled
    + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.5 ,show.legend = FALSE, size=2.5 )
    #sig pts
    + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess")
    + scale_linetype_manual(values=c("solid", "dotted"))
    + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class), size=2.5)
-#   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"),limits = "Inverted Sequences", "Non-inverted Sequences")
-#   + scale_color_manual(values = c("#BEBEBE","#e07a5f" = "block_avg_exp_invert" ,"#3d405b"= "block_avg_exp_noninvert" ),limits = "block_avg_exp_invert", "block_avg_exp_noninvert",limits =c("Inversion","No Inversion"))
-#   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"),labels =c("Non-significant","Inverted","Non-inverted"))
    + scale_color_manual(values = c("#BEBEBE","#5E85BA","#2E294E"),labels =c("Non-significant","Inverted","Non-inverted"))
-##               position = position_jitter(width = 0.05)) +
-##  geom_point(size = 3) +
-#   + geom_point(size = 2, alpha=0.4)
-##  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
    + scale_y_continuous(trans='log10')
    + scale_x_continuous(limits = c(0, 3))
    + labs(title= "Average Gene Expression within Alignment Blocks",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
@@ -692,11 +683,37 @@ p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
    + guides(colour = guide_legend(override.aes = list(shape = override.shape, linetype = override.linetype, fill=NA,unit(3,"line"))))
    + scale_shape(guide = FALSE)
    + scale_linetype(guide = FALSE)
-#   + guides(color=guide_legend(override.aes=list(fill=NA)))
-#   + guides(fill = FALSE)
-#   + scale_colour_manual(values = cols, limits = "Inverted Sequences", "Non-inverted Sequences")
-#   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
 )
+
+########################################
+# layered graph for presentation
+########################################
+#k12_df_all <- k12_df %>% filter(sig == "no" | sig =="yes")
+#k12_df_non_sig <- k12_df %>% filter(sig == "no") %>% filter(class == "block_avg_exp_invert")
+#k12_df_sig <- k12_df %>% filter(sig == "yes") %>% filter(class == "block_avg_exp_invert")
+#k12_df_all$midpoint = k12_df_all$midpoint / 1000000
+#k12_df_sig$midpoint = k12_df_sig$midpoint / 1000000
+#k12_df_non_sig$midpoint = k12_df_non_sig$midpoint / 1000000
+#summary(k12_df_sig)
+#p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
+#   #non-sig pts in light grey, un-filled
+#   + geom_point(data = k12_df_all,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0 ,show.legend = FALSE, size=2.5 )
+#   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.5 ,show.legend = FALSE, size=2.5 )
+#   #sig pts
+##   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess")
+#   + scale_linetype_manual(values=c("solid", "dotted"))
+#   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class), size=2.5)
+#   + scale_color_manual(values = c("#BEBEBE","#5E85BA","#2E294E"),labels =c("Non-significant","Inverted","Non-inverted"))
+#   + scale_y_continuous(trans='log10')
+#   + scale_x_continuous(limits = c(0, 3))
+#   + labs(title= "",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
+#   #colour for legend
+#   + guides(colour = guide_legend(override.aes = list(shape = override.shape, linetype = override.linetype, fill=NA,unit(3,"line"))))
+#   + scale_shape(guide = FALSE)
+#   + scale_linetype(guide = FALSE)
+#   + theme(legend.position = "none")
+#)
+
 pdf("genome_pos_inversions_k12.pdf")
 p
 dev.off()
