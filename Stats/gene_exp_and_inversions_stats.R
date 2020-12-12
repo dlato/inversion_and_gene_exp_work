@@ -2624,7 +2624,7 @@ subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
 #   + scale_fill_manual(values = c("#AA5042","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
   + theme(legend.position = "top")
 #  geom_histogram(stat = "identity", fill= "#FE5F55")
-  + labs(x = "Distance from the Origin of Replication (Mbp)", y = "Number per 100Kbp")
+  + labs(x = "Genomic Position (Mbp)", y = "Number per 100Kbp")
 ##FOR PRESENTATION ONLY: NEXT LINE
 #  + labs(x = "", y = "")
   + ggtitle("H-NS Binding and Inversions")
