@@ -607,6 +607,49 @@ length(unique(up$block))
 print("percent of SIG blocks with inversions len < noninversion len")
 (length(unique(up$block)) / length(unique(df$block))) *100
 
+
+print("################")
+print("# diff in exp inver/non-inver PER STRAIN")
+print("################")
+print("K12 MG")
+print("################")
+mg_d <- gei_dat %>% filter(strain == "K12MG")
+print("INVERSIONS col")
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+print("################")
+print("BW")
+print("################")
+mg_d <- gei_dat %>% filter(strain == "BW25113")
+print("INVERSIONS col")
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+print("################")
+print("K12 DH")
+print("################")
+mg_d <- gei_dat %>% filter(strain == "K12DH")
+print("INVERSIONS col")
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+print("REVCOMP col")
+wilcox.test(mg_d$norm_exp[mg_d$rev_comp == 1], mg_d$norm_exp[mg_d$rev_comp == 0])
+print("################")
+print("ATCC")
+print("################")
+mg_d <- gei_dat %>% filter(strain == "ATCC")
+print("INVERSIONS col")
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+print("REVCOMP col")
+wilcox.test(mg_d$norm_exp[mg_d$rev_comp == 1], mg_d$norm_exp[mg_d$rev_comp == 0])
+print("average inverted exp")
+td <- mg_d %>% filter(rev_comp == 1)
+summary(td$norm_exp)
+print("average non-inverted exp")
+td <- mg_d %>% filter(rev_comp == 0)
+summary(td$norm_exp)
+
+
+
+
+
+
 #make df with sig diff in gene exp btwn inversions
 blocks_new <- complete_block_df %>%
     mutate(sig = if_else(pvalue <= 0.05, 'yes', 'no'))

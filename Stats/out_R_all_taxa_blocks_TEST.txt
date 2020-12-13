@@ -41199,6 +41199,74 @@ null device
 [1] 31
 [1] "percent of SIG blocks with inversions len < noninversion len"
 [1] 96.875
+[1] "################"
+[1] "# diff in exp inver/non-inver PER STRAIN"
+[1] "################"
+[1] "K12 MG"
+[1] "################"
+[1] "INVERSIONS col"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  mg_d$norm_exp[mg_d$inversion == 1] and mg_d$norm_exp[mg_d$inversion == 0]
+W = 926754.5, p-value = 0.1410248
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "################"
+[1] "BW"
+[1] "################"
+[1] "INVERSIONS col"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  mg_d$norm_exp[mg_d$inversion == 1] and mg_d$norm_exp[mg_d$inversion == 0]
+W = 954512.5, p-value = 0.03449071
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "################"
+[1] "K12 DH"
+[1] "################"
+[1] "INVERSIONS col"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  mg_d$norm_exp[mg_d$inversion == 1] and mg_d$norm_exp[mg_d$inversion == 0]
+W = 927521.5, p-value = 0.3875724
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "REVCOMP col"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  mg_d$norm_exp[mg_d$rev_comp == 1] and mg_d$norm_exp[mg_d$rev_comp == 0]
+W = 3827, p-value = 0.4505129
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "################"
+[1] "ATCC"
+[1] "################"
+[1] "INVERSIONS col"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  mg_d$norm_exp[mg_d$inversion == 1] and mg_d$norm_exp[mg_d$inversion == 0]
+W = 1037272, p-value = 0.01489731
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "REVCOMP col"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  mg_d$norm_exp[mg_d$rev_comp == 1] and mg_d$norm_exp[mg_d$rev_comp == 0]
+W = 1037272, p-value = 0.01489731
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "average inverted exp"
+        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+    0.017593    16.647660    62.607790   246.395300   184.109300 20575.500000 
+[1] "average non-inverted exp"
+       Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
+    0.00000    12.45437    55.55233   213.10780   171.71780 20648.30000 
 [1] "head sig_blocks"
        block   start     end  midpoint gbk_start gbk_end gbk_midpoint
 263 Block950  980233  982886 2186582.5    980846  981055      2185973
