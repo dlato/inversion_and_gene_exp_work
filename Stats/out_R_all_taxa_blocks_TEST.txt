@@ -41232,6 +41232,9 @@ Length  Class   Mode
 [1] 8
 [1] "percent of SIG blocks with inversions exp < noninversion exp"
 [1] 25
+[1] "range of fold difference in exp for inversions exp < noninversion exp"
+       Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
+0.009856342 0.108635300 0.261597000 0.298354900 0.385256000 0.754082500 
 [1] "####################"
 [1] "BLOCK LENGTH INFO"
 [1] "####################"
@@ -41396,19 +41399,19 @@ alternative hypothesis: true location shift is not equal to 0
 306 Block938 1037383 1045391 2246410.0   1039658 1039885      2244794
 307 Block938 1037383 1045391 2246410.0   1039903 1040922      2245435
          block_t_stat  block_t_confinf1  block_t_confinf2 block_avg_exp_invert
-263 -3.62312665036473 -120.574660998906 -28.3784333427305      32.814642862324
-264 -3.62312665036473 -120.574660998906 -28.3784333427305      32.814642862324
-265 -3.62312665036473 -120.574660998906 -28.3784333427305      32.814642862324
-305 -1.66683301041188 -993.134273665136  116.424138602891     17.4539487324039
-306 -1.66683301041188 -993.134273665136  116.424138602891     17.4539487324039
-307 -1.66683301041188 -993.134273665136  116.424138602891     17.4539487324039
+263 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
+264 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
+265 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
+305 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
+306 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
+307 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
     block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
-263        107.291190033143                 2653                    2655
-264        107.291190033143                 2653                    2655
-265        107.291190033143                 2653                    2655
-305        455.809016263526                 8008                    8009
-306        455.809016263526                 8008                    8009
-307        455.809016263526                 8008                    8009
+263             107.2911900                 2653                    2655
+264             107.2911900                 2653                    2655
+265             107.2911900                 2653                    2655
+305             455.8090163                 8008                    8009
+306             455.8090163                 8008                    8009
+307             455.8090163                 8008                    8009
     inversion rev_comp strain           test         pvalue allSig sig  class
 263         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
 264         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
@@ -41417,9 +41420,9 @@ alternative hypothesis: true location shift is not equal to 0
 306         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
 307         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
     exp_reg
-263      up
-264      up
-265      up
+263    down
+264    down
+265    down
 305    down
 306    down
 307    down
@@ -41620,9 +41623,11 @@ W = 4293494.5, p-value = 0.0000000000004728148
 alternative hypothesis: true location shift is not equal to 0
 
 [1] "mean block length: sig blocks"
-[1] 12079.0057
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+ 1172.00  8009.00 10297.00 12079.01 13830.00 27235.00 
 [1] "mean block length: non-sig blocks"
-[1] 11310.02902
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+  285.00  5172.00  9662.00 11310.03 14945.00 38569.00 
 [1] "diff btwn POSITION of inversions that have sig gene exp or not?"
 
 	Wilcoxon rank sum test with continuity correction
