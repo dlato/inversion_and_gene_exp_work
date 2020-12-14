@@ -2419,7 +2419,7 @@ dev.off()
 
 
 ###############NEW HNS GRAPH Density plot
-fake2 <- rep(0.1,length(hns_inver$non_bidir_midpoint)) 
+fake2 <- rep(-1,length(hns_inver$non_bidir_midpoint)) 
 hns_inver <- cbind(hns_inver,fake2)
 p <- (ggplot(inver_cor_d, aes(x=midpoint))
   + geom_density(alpha=0.2, aes(fill = "#2E294E"))
