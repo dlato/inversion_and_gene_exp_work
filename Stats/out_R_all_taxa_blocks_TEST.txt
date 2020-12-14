@@ -41166,6 +41166,16 @@ null device
 [1] "# Total number of inversions identified in ONLY ATCC"
 [1] "############    "
 [1] 377
+[1] "############    "
+[1] "# average expression in ALL INVERTED blocks"
+[1] "############    "
+       Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
+    0.00000    12.55244    50.31850   211.25970   149.17290 20575.50000 
+[1] "############    "
+[1] "# average expression in ALL NON-INVERTED blocks"
+[1] "############    "
+        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+    0.000000     8.957518    44.042810   207.375100   151.643500 20648.300000 
 [1] "# percent of inverted blocks that were only ATCC"
 [1] 99.47229551
 [1] "number of blocks that were tested"
@@ -41176,18 +41186,52 @@ null device
 [1] 32
 [1] "percent of SIG tested blocks"
 [1] 8.443271768
+[1] "############    "
+[1] "# average expression in SIG INVERTED seqs"
+[1] "############    "
+Length  Class   Mode 
+     0   NULL   NULL 
+[1] "############    "
+[1] "# average expression in SIG NON-INVERTED seqs"
+[1] "############    "
+Length  Class   Mode 
+     0   NULL   NULL 
 [1] "gene exp averages in sig blocks"
 [1] "####################"
 [1] "GENE EXP UP/DOWN INFO"
 [1] "####################"
 [1] "number of SIG blocks with inversion gene exp > noninversions gene exp"
-[1] 18
+[1] 24
 [1] "percent of SIG blocks with inversions exp > noninversion exp"
-[1] 56.25
+[1] 75
+[1] "range of fold difference in exp for inversions exp > noninversion exp"
+       block        pvalue block_avg_exp_invert block_avg_exp_noninvert
+312 Block935 0.01234317204          226.7388758             65.79472363
+313 Block935 0.01234317204          226.7388758             65.79472363
+314 Block935 0.01234317204          226.7388758             65.79472363
+315 Block935 0.01234317204          226.7388758             65.79472363
+316 Block935 0.01234317204          226.7388758             65.79472363
+317 Block935 0.01234317204          226.7388758             65.79472363
+    block_avg_len_invert block_avg_len_noninvert rev_comp inversion exp_reg
+312                23936                   23938        1         1      up
+313                23936                   23938        1         1      up
+314                23936                   23938        1         1      up
+315                23936                   23938        1         1      up
+316                23936                   23938        1         1      up
+317                23936                   23938        1         1      up
+    len_reg      new.col
+312   short 0.2901783975
+313   short 0.2901783975
+314   short 0.2901783975
+315   short 0.2901783975
+316   short 0.2901783975
+317   short 0.2901783975
+      Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
+0.01168498 0.10630820 0.32081820 0.34230790 0.54334440 0.78699770 
 [1] "number of SIG blocks with inversion gene exp < noninversions gene exp"
-[1] 14
+[1] 8
 [1] "percent of SIG blocks with inversions exp < noninversion exp"
-[1] 43.75
+[1] 25
 [1] "####################"
 [1] "BLOCK LENGTH INFO"
 [1] "####################"

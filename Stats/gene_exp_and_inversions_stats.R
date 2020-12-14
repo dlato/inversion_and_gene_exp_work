@@ -562,6 +562,16 @@ print("############    ")
 tmp2 <- filter(tmp, strain == "ATCC" & rev_comp == 1)
 atcc_b <- unique(tmp2$block)
 length(atcc_b) - length(dh_b)
+print("############    ")
+print("# average expression in ALL INVERTED blocks")
+print("############    ")
+tmp_avg <- gei_dat %>% filter(inversion == 1)
+summary(tmp_avg$norm_exp)
+print("############    ")
+print("# average expression in ALL NON-INVERTED blocks")
+print("############    ")
+tmp_avg <- gei_dat %>% filter(inversion == 0)
+summary(tmp_avg$norm_exp)
 print("# percent of inverted blocks that were only ATCC")
 ((length(atcc_b) - length(dh_b)) / length(unique(tmp$block))) * 100
 print("number of blocks that were tested")
@@ -573,9 +583,25 @@ tmp <- complete_block_df[which(complete_block_df$pvalue <= 0.05),]
 length(unique(tmp$block))
 print("percent of SIG tested blocks")
 (length(unique(tmp$block)) / length(unique(complete_block_df$block))) * 100
+print("############    ")
+print("# average expression in SIG INVERTED seqs")
+print("############    ")
+tmp <- complete_block_df[which(complete_block_df$pvalue <= 0.05),]
+tmp_sig <- tmp %>% filter(rev_comp == 1)
+summary(tmp_sig$norm_exp)
+print("############    ")
+print("# average expression in SIG NON-INVERTED seqs")
+print("############    ")
+tmp <- complete_block_df[which(complete_block_df$pvalue <= 0.05),]
+tmp_sig <- tmp %>% filter(rev_comp == 0)
+summary(tmp_sig$norm_exp)
 
 print("gene exp averages in sig blocks")
 tmp2 <- subset(tmp,select = c("block","pvalue","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","rev_comp","inversion"))
+tmp2$block_avg_exp_invert <- as.numeric(tmp2$block_avg_exp_invert)
+tmp2$block_avg_exp_noninvert <- as.numeric(tmp2$block_avg_exp_noninvert)
+tmp2$block_avg_len_invert <- as.numeric(tmp2$block_avg_len_invert)
+tmp2$block_avg_exp_noninvert <- as.numeric(tmp2$block_avg_exp_noninvert)
 df <- tmp2 %>%
   mutate(exp_reg = ifelse(block_avg_exp_invert > block_avg_exp_noninvert, "up", "down"))
 df <- df %>%
@@ -588,6 +614,10 @@ up <- df[which(df$exp_reg == "up"),]
 length(unique(up$block))
 print("percent of SIG blocks with inversions exp > noninversion exp")
 (length(unique(up$block)) / length(unique(df$block))) *100
+print("range of fold difference in exp for inversions exp > noninversion exp")
+up_r <- transform(up, new.col = block_avg_exp_noninvert / block_avg_exp_invert)
+head(up_r)
+summary(unique(up_r$new.col))
 print("number of SIG blocks with inversion gene exp < noninversions gene exp")
 up <- df[which(df$exp_reg == "down"),]
 length(unique(up$block))
