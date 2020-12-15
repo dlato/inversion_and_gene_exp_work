@@ -45498,17 +45498,17 @@ alternative hypothesis: true location shift is not equal to 0
 5                   NA                      NA                   NA
 6                   NA                      NA                   NA
   block_avg_len_noninvert sig
-1                      NA   0
-2                      NA   0
-3                      NA   0
-4                      NA   0
-5                      NA   0
-6                      NA   0
+1                      NA  NA
+2                      NA  NA
+3                      NA  NA
+4                      NA  NA
+5                      NA  NA
+6                      NA  NA
 
 	Wilcoxon rank sum test with continuity correction
 
 data:  sig_gei$norm_exp[sig_gei$sig == 1] and sig_gei$norm_exp[sig_gei$sig == 0]
-W = 2819184, p-value = 0.8271948
+W = 1867062, p-value = 0.2336306
 alternative hypothesis: true location shift is not equal to 0
 
 [1] "create column with HNS binding and non-binding"
@@ -45567,12 +45567,12 @@ alternative hypothesis: true location shift is not equal to 0
 5                   NA                      NA                   NA
 6                   NA                      NA                   NA
   block_avg_len_noninvert HGT sig
-1                      NA   0   0
-2                      NA   0   0
-3                      NA   0   0
-4                      NA   1   0
-5                      NA   1   0
-6                      NA   0   0
+1                      NA   0  NA
+2                      NA   0  NA
+3                      NA   0  NA
+4                      NA   1  NA
+5                      NA   1  NA
+6                      NA   0  NA
    locus_tag       gene_id       gbk_start          gbk_end       
  b0001  :   1   aaeA   :   1   Min.   :    190   Min.   :    255  
  b0002  :   1   aaeB   :   1   1st Qu.:1325272   1st Qu.:1326912  
@@ -45613,14 +45613,14 @@ alternative hypothesis: true location shift is not equal to 0
  BW25113_0004:   0    3rd Qu.:14887.00   3rd Qu.:2019628   3rd Qu.:4    
  BW25113_0007:   0    Max.   :38569.00   Max.   :2792216   Max.   :4    
  (Other)     :   0                                                      
- block_w_pvalue     block_t_pvalue     block_t_stat       block_t_confinf1  
- Length:2910        Length:2910        Length:2910        Length:2910       
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
+ block_w_pvalue      block_t_pvalue     block_t_stat       block_t_confinf1  
+ Min.   :0.0001290   Length:2910        Length:2910        Length:2910       
+ 1st Qu.:0.1686979   Class :character   Class :character   Class :character  
+ Median :0.4461538   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :0.4660577                                                           
+ 3rd Qu.:0.7878544                                                           
+ Max.   :1.0000000                                                           
+ NA's   :885                                                                 
  block_t_confinf2   block_avg_exp_invert block_avg_exp_noninvert
  Length:2910        Length:2910          Length:2910            
  Class :character   Class :character     Class :character       
@@ -45637,14 +45637,14 @@ alternative hypothesis: true location shift is not equal to 0
                                               3rd Qu.:1.0000000  
                                               Max.   :1.0000000  
                                                                  
-      sig            
- Min.   :0.00000000  
- 1st Qu.:0.00000000  
- Median :0.00000000  
- Mean   :0.08934708  
- 3rd Qu.:0.00000000  
- Max.   :1.00000000  
-                     
+      sig           
+ Min.   :0.0000000  
+ 1st Qu.:0.0000000  
+ Median :0.0000000  
+ Mean   :0.1283951  
+ 3rd Qu.:0.0000000  
+ Max.   :1.0000000  
+ NA's   :885        
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and HGT"
 [1] "################################################################################"
@@ -45727,12 +45727,12 @@ sample estimates:
 5                   NA                      NA                   NA
 6                   NA                      NA                   NA
   block_avg_len_noninvert HGT sig
-1                      NA   0   0
-2                      NA   0   0
-3                      NA   0   0
-4                      NA   0   0
-5                      NA   0   0
-6                      NA   0   0
+1                      NA   0  NA
+2                      NA   0  NA
+3                      NA   0  NA
+4                      NA   0  NA
+5                      NA   0  NA
+6                      NA   0  NA
    locus_tag       gene_id       gbk_start          gbk_end       
  b0001  :   1   aaeA   :   1   Min.   :    190   Min.   :    255  
  b0002  :   1   aaeB   :   1   1st Qu.:1325272   1st Qu.:1326912  
@@ -45773,14 +45773,14 @@ sample estimates:
  BW25113_0004:   0    3rd Qu.:14887.00   3rd Qu.:2019628   3rd Qu.:4    
  BW25113_0007:   0    Max.   :38569.00   Max.   :2792216   Max.   :4    
  (Other)     :   0                                                      
- block_w_pvalue     block_t_pvalue     block_t_stat       block_t_confinf1  
- Length:2910        Length:2910        Length:2910        Length:2910       
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
+ block_w_pvalue      block_t_pvalue     block_t_stat       block_t_confinf1  
+ Min.   :0.0001290   Length:2910        Length:2910        Length:2910       
+ 1st Qu.:0.1686979   Class :character   Class :character   Class :character  
+ Median :0.4461538   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :0.4660577                                                           
+ 3rd Qu.:0.7878544                                                           
+ Max.   :1.0000000                                                           
+ NA's   :885                                                                 
  block_t_confinf2   block_avg_exp_invert block_avg_exp_noninvert
  Length:2910        Length:2910          Length:2910            
  Class :character   Class :character     Class :character       
@@ -45797,14 +45797,14 @@ sample estimates:
                                               3rd Qu.:0.0000000  
                                               Max.   :1.0000000  
                                                                  
-      sig            
- Min.   :0.00000000  
- 1st Qu.:0.00000000  
- Median :0.00000000  
- Mean   :0.08934708  
- 3rd Qu.:0.00000000  
- Max.   :1.00000000  
-                     
+      sig           
+ Min.   :0.0000000  
+ 1st Qu.:0.0000000  
+ Median :0.0000000  
+ Mean   :0.1283951  
+ 3rd Qu.:0.0000000  
+ Max.   :1.0000000  
+ NA's   :885        
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and HGT"
 [1] "################################################################################"
@@ -47035,3 +47035,159 @@ sample estimates:
   x                 n
   <chr>         <int>
 1 G_Fis_binding   205
+[1] "Fis and expression in Garinger"
+  start1 end1 Inversion  block G_Fis_Binding G_Fis_binding
+1    190  255         0 Block1          TRUE             1
+2    337 2799         0 Block1         FALSE             0
+3   2801 3733         0 Block1         FALSE             0
+4   3734 5020         0 Block1         FALSE             0
+5   6529 7959         0 Block4         FALSE             0
+6   9306 9893         0 Block4         FALSE             0
+[1] "character"
+[1] "#get gei_dat that is just ^ blocks"
+   locus_tag       gene_id       gbk_start          gbk_end       
+        :3045          :2936   Min.   :      1   Min.   :    255  
+ b0001  :   2   asnC   :   3   1st Qu.:1279152   1st Qu.:1280074  
+ b0002  :   2   aaeA   :   2   Median :2407628   Median :2408464  
+ b0003  :   2   aaeR   :   2   Mean   :2417385   Mean   :2418329  
+ b0004  :   2   aaeX   :   2   3rd Qu.:3532094   3rd Qu.:3533268  
+ b0007  :   2   aas    :   2   Max.   :5129459   Max.   :5130511  
+ (Other):8763   (Other):8871                                      
+  gbk_midpoint        gbk_gene_id           gbk_locus_tag    gbk_strand       
+ Min.   :    134.0          :6699                  :5955   Min.   :0.0000000  
+ 1st Qu.: 557827.2   aceF   :   4   BW25113_RS04685:   2   1st Qu.:0.0000000  
+ Median :1357530.0   asnB   :   4   BW25113_RS00005:   1   Median :1.0000000  
+ Mean   :1306472.5   atpC   :   4   BW25113_RS00010:   1   Mean   :0.5187003  
+ 3rd Qu.:1997732.2   bcsA   :   4   BW25113_RS00015:   1   3rd Qu.:1.0000000  
+ Max.   :2793601.0   bssR   :   4   BW25113_RS00020:   1   Max.   :1.0000000  
+                     (Other):5099   (Other)        :5857                      
+    norm_exp                block                taxa          start        
+ Min.   :    0.00000   Block499:  153   CP009072   :3045   Min.   :      0  
+ 1st Qu.:   11.40895   Block889:  124   NC_010473  :2927   1st Qu.:1274997  
+ Median :   48.49768   Block656:  115   NZ_CP009273:2936   Median :2390012  
+ Mean   :  210.07706   Block893:  109   U00096000  :2910   Mean   :2412142  
+ 3rd Qu.:  149.78892   Block869:  102                      3rd Qu.:3527891  
+ Max.   :20648.29736   Block485:   97                      Max.   :5129412  
+                       (Other) :11118                                       
+      end             rev_comp           inversion             strain    
+ Min.   :   5468   Min.   :0.0000000   Min.   :0.0000000   ATCC   :3045  
+ 1st Qu.:1282024   1st Qu.:0.0000000   1st Qu.:0.0000000   BW25113:2936  
+ Median :2422388   Median :0.0000000   Median :1.0000000   K12DH  :2927  
+ Mean   :2423527   Mean   :0.1792181   Mean   :0.6955492   K12MG  :2910  
+ 3rd Qu.:3536560   3rd Qu.:0.0000000   3rd Qu.:1.0000000                 
+ Max.   :5130766   Max.   :1.0000000   Max.   :1.0000000                 
+                                                                         
+    gbk_old_locus_tag   block_len           midpoint         block_tax_num
+             :5950    Min.   :  175.00   Min.   :    345.0   Min.   :4    
+ BW25113_0903:   2    1st Qu.: 5553.00   1st Qu.: 557225.5   1st Qu.:4    
+ BW25113_0001:   1    Median : 9804.00   Median :1357737.5   Median :4    
+ BW25113_0002:   1    Mean   :11385.82   Mean   :1306457.3   Mean   :4    
+ BW25113_0003:   1    3rd Qu.:14887.00   3rd Qu.:1999176.5   3rd Qu.:4    
+ BW25113_0004:   1    Max.   :38569.00   Max.   :2792216.5   Max.   :4    
+ (Other)     :5862                                                        
+ block_w_pvalue     block_t_pvalue     block_t_stat       block_t_confinf1  
+ Min.   :0.000129   Length:11818       Length:11818       Length:11818      
+ 1st Qu.:0.168698   Class :character   Class :character   Class :character  
+ Median :0.446154   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :0.466031                                                           
+ 3rd Qu.:0.787854                                                           
+ Max.   :1.000000                                                           
+ NA's   :3598                                                               
+ block_t_confinf2   block_avg_exp_invert block_avg_exp_noninvert
+ Length:11818       Length:11818         Length:11818           
+ Class :character   Class :character     Class :character       
+ Mode  :character   Mode  :character     Mode  :character       
+                                                                
+                                                                
+                                                                
+                                                                
+ block_avg_len_invert block_avg_len_noninvert
+ Length:11818         Length:11818           
+ Class :character     Class :character       
+ Mode  :character     Mode  :character       
+                                             
+                                             
+                                             
+                                             
+[1] "character"
+[1] "check if all Fis blocks were grabbed"
+[1] TRUE
+[1] "wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound inversions and Fis bound non-inversions"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  l_h_dat$norm_exp[l_h_dat$inversion == 1] and l_h_dat$norm_exp[l_h_dat$inversion == 0]
+W = 6890889.5, p-value = 1.518033e-11
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "Avg inver exp with Fis binding"
+[1] 367.249376
+[1] "Avg NON-inver exp with Fis binding"
+[1] 269.2516967
+[1] "wilcoxon sign ranked test to see if there is a diff in exp btwn sig Fis bound inversions and non-sig Fis bound non-inversions"
+  locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1           DR76_RS00195     45421   46353      1250910            
+2           DR76_RS00200     46527   47114      1251843            
+3           DR76_RS00205     47284   47862      1252596            
+4           DR76_RS00210     47982   48743      1253385            
+5           DR76_RS00215     48796   50232      1254537            
+6           DR76_RS00220     50456   50539      1255520            
+  gbk_locus_tag gbk_strand      norm_exp    block     taxa start   end rev_comp
+1                        1 131.223343912 Block617 CP009072 45420 47942        0
+2                        1   5.333126322 Block617 CP009072 45420 47942        0
+3                        0  71.052368182 Block617 CP009072 45420 47942        0
+4                        1  15.959640940 Block618 CP009072 47950 50540        0
+5                        1   7.032559022 Block618 CP009072 47950 50540        0
+6                        0   3.182223432 Block618 CP009072 47950 50540        0
+  inversion strain gbk_old_locus_tag block_len midpoint block_tax_num
+1         0   ATCC           DR76_38      2522  1251704             4
+2         0   ATCC           DR76_39      2522  1251704             4
+3         0   ATCC           DR76_40      2522  1251704             4
+4         0   ATCC                        2590  1254268             4
+5         0   ATCC           DR76_43      2590  1254268             4
+6         0   ATCC                        2590  1254268             4
+  block_w_pvalue block_t_pvalue block_t_stat block_t_confinf1 block_t_confinf2
+1             NA             NA           NA               NA               NA
+2             NA             NA           NA               NA               NA
+3             NA             NA           NA               NA               NA
+4             NA             NA           NA               NA               NA
+5             NA             NA           NA               NA               NA
+6             NA             NA           NA               NA               NA
+  block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+1                   NA                      NA                   NA
+2                   NA                      NA                   NA
+3                   NA                      NA                   NA
+4                   NA                      NA                   NA
+5                   NA                      NA                   NA
+6                   NA                      NA                   NA
+  block_avg_len_noninvert sig
+1                      NA  NA
+2                      NA  NA
+3                      NA  NA
+4                      NA  NA
+5                      NA  NA
+6                      NA  NA
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  sig_gei$norm_exp[sig_gei$sig == 1] and sig_gei$norm_exp[sig_gei$sig == 0]
+W = 296280, p-value = 0.0001079628
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "Avg exp with Fis binding (sig)"
+[1] 353.6058435
+[1] "Avg exp with Fis binding (nonsig)"
+[1] 369.7325836
+[1] "create column with Fis binding and non-binding"
+[1] "wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound and Fis un-bound blocks"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1] and gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0]
+W = 15945296, p-value < 2.2204e-16
+alternative hypothesis: true location shift is not equal to 0
+
+[1] "Avg exp with Fis binding"
+[1] 338.4585843
+[1] "Avg exp WITHOUT Fis binding"
+[1] 161.6478551

@@ -2303,6 +2303,7 @@ print("#get gei_dat that is just ^ blocks")
 #gei_dat %>% filter(block == "Block789")
 #gei_dat %>% filter(block == "Block129")
 #gei_dat %>% filter(block == "Block141")
+gei_dat$block_w_pvalue <- as.numeric(gei_dat$block_w_pvalue)
 l_h_dat <- gei_dat %>%
            filter(block %in% l_h_blocks)
 g_l <- as.character(sort(unique(l_h_dat$block)))
@@ -2807,3 +2808,54 @@ inver_cor_d %>%
 gather(x, value, G_Fis_binding)%>%
 group_by(x)%>%
 tally(value == 1)
+
+print("Fis and expression in Garinger")
+head(inver_cor_d)
+g_blocks <- inver_cor_d %>%
+         filter(G_Fis_binding == 1) %>%
+         select(block)
+g_blocks <- unique(g_blocks)
+g_blocks <- as.character(sort(g_blocks$block))
+class(g_blocks)
+print("#get gei_dat that is just ^ blocks")
+gei_dat$block_w_pvalue <- as.numeric(gei_dat$block_w_pvalue)
+summary(gei_dat)
+g_dat <- gei_dat %>%
+           filter(block %in% g_blocks)
+g_l <- as.character(sort(unique(g_dat$block)))
+class(g_l)
+print("check if all Fis blocks were grabbed")
+identical(g_l, g_blocks)
+
+print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound inversions and Fis bound non-inversions")
+wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
+
+print("Avg inver exp with Fis binding")
+mean(g_dat$norm_exp[g_dat$inversion == 1])
+print("Avg NON-inver exp with Fis binding")
+mean(g_dat$norm_exp[g_dat$inversion == 0])
+
+print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig Fis bound inversions and non-sig Fis bound non-inversions")
+#make df with sig diff in gene exp btwn inversions
+g_dat$block_w_pvalue <- as.numeric(g_dat$block_w_pvalue)
+g_dat$norm_exp <- as.numeric(g_dat$norm_exp)
+sig_gei <- g_dat %>%
+    mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
+head(sig_gei)
+wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
+print("Avg exp with Fis binding (sig)")
+flt_sig <- sig_gei %>% filter(sig != "NA")
+mean(flt_sig$norm_exp[flt_sig$sig == 1])
+print("Avg exp with Fis binding (nonsig)")
+mean(flt_sig$norm_exp[flt_sig$sig == 0])
+
+print("create column with Fis binding and non-binding")
+gei_dat_fis <- gei_dat %>%
+               mutate(Fis = ifelse(block %in% g_blocks, 1, 0))
+print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound and Fis un-bound blocks")
+wilcox.test(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1], gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
+print("Avg exp with Fis binding")
+mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1])
+print("Avg exp WITHOUT Fis binding")
+mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
+
