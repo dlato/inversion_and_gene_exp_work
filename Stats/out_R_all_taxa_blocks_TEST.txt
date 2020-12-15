@@ -47029,3 +47029,9 @@ sample estimates:
           cor 
 0.06809172827 
 
+[1] "checking overlap between Fis binding sites in all datasets"
+[1] "total Fis binding sites for each dataset"
+# A tibble: 1 x 2
+  x                 n
+  <chr>         <int>
+1 G_Fis_binding   205

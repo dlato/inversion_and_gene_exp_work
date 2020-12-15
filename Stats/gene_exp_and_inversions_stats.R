@@ -2801,3 +2801,9 @@ print("#########################################################################
 cor.test(cor_dat$sig, cor_dat$G_Fis_binding,
          method = "pearson")
 
+print("checking overlap between Fis binding sites in all datasets")
+print("total Fis binding sites for each dataset")
+inver_cor_d %>%
+gather(x, value, G_Fis_binding)%>%
+group_by(x)%>%
+tally(value == 1)
