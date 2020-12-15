@@ -2993,8 +2993,8 @@ options(scipen=3)
 tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
 #tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks / 1000000
 subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
-  + geom_histogram(stat = "identity", aes(fill= "#2E294E"), alpha = 0.8)
-  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1, fill= "#AA5042"),stat = "identity")
+  + geom_histogram(stat = "identity", aes(fill= "#2E294E"), alpha = 0.7)
+  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1, fill= "#AA5042"),stat = "identity", alpha = 0.6)
   + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=5)
    + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
    + scale_fill_manual(values = c("#788AA3","#2E294E","#42474C" ), labels = c("Fis Binding","Significant Inversion"))
