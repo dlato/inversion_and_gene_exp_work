@@ -2739,6 +2739,7 @@ sub_g_dat <- sub_g_dat %>%
              filter(gene_name != "Between convergent ORFs") %>%
              filter(start != "N/A")
 head(sub_g_dat)
+fis_bind <- sub_g_dat
 #find overlap btwn Fis binding and inversions
 inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
             select(gbk_start,gbk_end,inversion,block)
@@ -2859,3 +2860,161 @@ mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1])
 print("Avg exp WITHOUT Fis binding")
 mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
 
+##################################################################################
+##################################################################################
+print("### Fis GRAPH HISTOGRAM")
+##################################################################################
+##################################################################################
+
+#all Fis binding data is the fis_bind df
+fis_bind$start <- as.numeric(as.character(fis_bind$start))
+fis_bind$end <- as.numeric(as.character(fis_bind$end))
+fis_bind <- within(fis_bind, gbk_midpoint <- (end + start) /2)
+Fis_binding <- rep("TRUE", length(fis_bind$start))
+fis_bind <- cbind(fis_bind,Fis_binding)
+head(fis_bind)
+fis_bind <- fis_bind %>% select(gbk_midpoint,Fis_binding)
+fis_bind$Fis_binding <- as.numeric(fis_bind$Fis_binding)
+head(fis_bind)
+#new min and max for the scaled positions (rounded to chunk len
+#specified in args)
+chunklen <- as.numeric(args[10])
+print("chunklen")
+chunklen
+#nmin_pos <- round_any(min(fis_sig$non_bidir_midpoint), chunklen, f=floor)
+nmin_pos <- 0
+print("min (rounded)")
+nmin_pos
+#nmax_pos <- max(fis_sig$non_bidir_midpoint)
+nmax_pos <- as.numeric(args[2])
+print("max (rounded)")
+nmax_pos
+
+#expty vec to hold the rows that split the dat into X kb chunks
+subs_rows_to_split_dat <- vector()
+#create vector of chunks
+chunk_len_of_genome <- round_any(nmax_pos, chunklen, f=ceiling)
+chunk_len_of_genome
+chunks <- seq(nmin_pos, chunk_len_of_genome, chunklen)
+chunks
+##checking if the lengths are equal for the later bind
+#if (length(unlist(tot_gene_subs_10kb)) == length(chunks)) {
+#    chunks_pos_NOzero <- chunks
+#} else {
+    chunks_pos_NOzero <- chunks[which(chunks != 0)]
+#}
+chunks_pos_NOzero
+
+#add in fake data for chunks so it will split properly
+#len_of_chunks <- length(chunks_pos_NOzero)
+len_of_chunks <- length(chunks)
+ffis <- rep(as.numeric(1), len_of_chunks)
+#fake_dat <- cbind(chunks_pos_NOzero, ffis)
+fake_dat <- cbind(chunks, ffis)
+colnames(fake_dat) <- c("gbk_midpoint","Fis_binding")
+head(fake_dat)
+head(fis_bind)
+#add fake data to orig data
+fis_bind <- rbind(fis_bind,fake_dat)
+head(fis_bind)
+tail(fis_bind)
+fis_bind$gbk_midpoint <- as.numeric(fis_bind$gbk_midpoint)
+fis_bind$Fis_binding <- as.numeric(fis_bind$Fis_binding)
+head(fis_bind)
+
+
+#order the data by positions, only if its NOT strep
+if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
+        ord_pos <- order(fis_bind$gbk_midpoint)
+        fis_bind$Fis_binding <- fis_bind$Fis_binding[ord_pos]
+        fis_bind$gbk_midpoint <- fis_bind$gbk_midpoint[ord_pos]
+}
+print("SAVED BIDIRECTIONAL DATA TO FILE")
+write.table(fis_bind, 'fis_bind.csv', sep = ",")
+
+print("checking order")
+head(fis_bind)
+tail(fis_bind)
+
+sig_rows_to_split_dat <- vector()
+for (i in chunks) {
+  subs_rows <-
+which(abs(fis_bind$gbk_midpoint-i)==min(abs(fis_bind$gbk_midpoint-i)))
+# finding the closest number to each 10kb without going over it
+  subs_max_row <- max(subs_rows)
+  subs_rows_to_split_dat <- c(subs_rows_to_split_dat, subs_max_row)
+}#for
+
+#split data by the above specified rows
+#sometimes the closest number was technically in the next 10kb chunk of seq
+#but its fine.
+data_just_subs <- fis_bind$Fis_binding
+list_dat_sets_just_subs <- split(data_just_subs, findInterval(1:nrow(fis_bind), subs_rows_to_split_dat))
+list_dat_sets_just_subs
+print("split subs into 10kb chunks")
+
+
+##########
+#add up all subs in each 10kb section
+##########
+list_tot_add_subs_10kb <- lapply(list_dat_sets_just_subs, sum)
+tot_gene_subs_10kb <- as.data.frame(matrix(unlist(list_tot_add_subs_10kb), byrow = F))
+print("head/tail of total_subs")
+head(tot_gene_subs_10kb)
+tail(tot_gene_subs_10kb)
+nrow(tot_gene_subs_10kb)
+#length(chunks_pos_NOzero)
+length(chunks)
+class(tot_gene_subs_10kb)
+#remove last element if lengths do not match (for cbind later)
+#if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
+if (nrow(tot_gene_subs_10kb) == length(chunks)) {
+    tot_gene_subs_10kb <- tot_gene_subs_10kb
+} else {
+    tot_gene_subs_10kb <- tot_gene_subs_10kb[-nrow(tot_gene_subs_10kb),]
+    tot_gene_subs_10kb <- tot_gene_subs_10kb[-1]
+}
+
+#tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks_pos_NOzero))
+tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks))
+head(tot_gene_subs_10kb)
+tail(tot_gene_subs_10kb)
+#subtract 1 from Fis binding column (bc of the fake data that was added)
+tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
+#add 10000 to each bar so that it represents all pts within that chunk of the genome
+tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
+print("tot_gene_subs_10kb")
+write.csv(tot_gene_subs_10kb)
+
+######################################################
+# PLOT
+######################################################
+options(scipen=3)
+tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
+#tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks / 1000000
+subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
+  + geom_histogram(stat = "identity", aes(fill= "#2E294E"), alpha = 0.8)
+  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1, fill= "#AA5042"),stat = "identity")
+  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=5)
+   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
+   + scale_fill_manual(values = c("#788AA3","#2E294E","#42474C" ), labels = c("Fis Binding","Significant Inversion"))
+#   + scale_fill_manual(values = c("#AA5042","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
+  + theme(legend.position = "top")
+#  geom_histogram(stat = "identity", fill= "#FE5F55")
+  + labs(x = "Genomic Position (Mbp)", y = "Number per 100Kbp")
+##FOR PRESENTATION ONLY: NEXT LINE
+#  + labs(x = "", y = "")
+  + ggtitle("Fis Binding and Inversions")
+#   + geom_vline(xintercept = 0, colour = "red")
+ + scale_x_continuous(labels = function(x) ifelse(x ==0, "0", x))
+ + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
+)
+###########################
+pdf("fis_hist.pdf")
+subs_hist
+#grid.newpage()
+#grid.draw(rbind(ggplotGrob(gene_num_hist), ggplotGrob(exp_bar_top), size = "last"))
+## next line adds border
+#grid.rect(width = 0.99, height = 0.99, gp = gpar(lwd = 2, col = "black", fill = NA))
+dev.off()
+###########################
