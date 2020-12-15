@@ -1485,7 +1485,7 @@ gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt",
 gene_inf <- gene_inf %>% select(gbk_strand,gbk_gene_id)
 colnames(gene_inf) <- c("gbk_strand","gene_name")
 head(gene_inf)
-sub_g_dat <- merge(sub_g_dat,gene_inf, by = "gene_name")
+#sub_g_dat <- merge(sub_g_dat,gene_inf, by = "gene_name")
 head(sub_g_dat)
 
 #below has to be combined with gene info file for K12MG
@@ -2721,350 +2721,83 @@ dev.off()
 ###########################
 
 
-
-#################
-###########
-##get total number of sites in each 10kb section
-###########
-#list_freq <- lapply(list_dat_sets_just_subs, table)
-#list_freq
-#list_freq_sum <- lapply(list_freq, sum)
-#list_freq_sum
-#tot_num_sites <- as.data.frame(matrix(unlist(list_freq_sum), byrow=F))
-#tot_num_sites
-#length(tot_num_sites)
-##remove last element if lengths do not match (for cbind later)
-#if (nrow(tot_num_sites) == length(chunks_pos_NOzero)) {
-#    tot_num_sites <- tot_num_sites
-#} else {
-#    tot_num_sites <- tot_num_sites[-nrow(tot_num_sites),]
-#    tot_num_sites <- tot_num_sites[-1]
-#}
-#freq_dat <- as.data.frame(cbind(tot_num_sites,chunks_pos_NOzero))
-#print("freq_dat")
-#head(freq_dat)
-#tail(freq_dat)
-#write.csv(freq_dat,"hns_freq_dat.csv")
-############
-###weighted dataframe
-############
-#weighted_data <- cbind(tot_gene_subs_10kb,freq_dat)
-#colnames(weighted_data) <- c("tot_gene_subs_10kb", "chunks_pos_NOzero", "tot_num_sites", "chunks_pos_NOzero")
-#head(weighted_data)
-#tail(weighted_data)
-#length(weighted_data$tot_gene_subs_10kb)
-#length(weighted_data$tot_num_sites)
-#weighted_data$weighted_subs <- weighted_data$tot_gene_subs_10kb / weighted_data$tot_num_sites
-#head(weighted_data)
-#tail(weighted_data)
-#
-#weighted_data <- weighted_data[-2]
-#head(weighted_data)
-#tail(weighted_data)
-#write.csv(weighted_data,"weighted_dat.csv")
+print("#############################")
+print("Fis binding")
+print("#############################")
+#load in data
+print("Grainger 2006 (cod and non-cod)")
+g_dat <- read.csv("../fis_binding/Grainger_2006_fis_binding.csv", header = TRUE)
+sub_g_dat <- g_dat %>%
+             select(Gene_name,Coordinates)
+colnames(sub_g_dat) <- c("gene_name","Coords")
+coords <- str_split_fixed(sub_g_dat$Coords, "-", 2)
+colnames(coords) <- c("start","end")
+sub_g_dat <- cbind(sub_g_dat,coords)
+sub_g_dat <- sub_g_dat %>%
+             select(gene_name,start,end) %>%
+             filter(gene_name != "Between convergent ORFs") %>%
+             filter(start != "N/A")
+head(sub_g_dat)
+#find overlap btwn Fis binding and inversions
+inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
+            select(gbk_start,gbk_end,inversion,block)
+#            select(start,end)
+#colnames(inver_cor_d) <- c("start1","end1")
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block")
+inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
+inver_cor_d <- unique(inver_cor_d)
+head(inver_cor_d)
+sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
+sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
+hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
+colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+class2 <- rep("G_Fis_Binding",length(hns_dat$start))
+hns_dat <- cbind(hns_dat,class2)
+hns_cor_d <- hns_dat
+head(hns_cor_d)
+hns_cor_d <- hns_cor_d %>% select(start,end)
+summary(hns_cor_d)
+hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+print("fis bind")
+head(hns_cor_d)
 
 
-#gather(x, value, G_HNS_binding:H3_HNS_binding)%>%
-#group_by(x)%>%
-#tally(value == 1)
+ir1 = with(inver_cor_d, IRanges(start1, end1))
+ir2 = with(hns_cor_d, IRanges(start, end))
+inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+head(inver_cor_d)
+colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_Fis_Binding")
+inver_cor_d$G_Fis_binding <- as.integer(inver_cor_d$G_Fis_Binding)
+inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+head(inver_cor_d)
+inver_cor_d[which(inver_cor_d$start1 == 190),]
 
-##print("combine all the hns binding info into one df")
-###except W3 bc it has different gene names
-##hns_bind <- merge(sub_g_dat,sub_h_df, by = "gene_name")
-##head(hns_bind)
-#
-#print ("merge HNS with K12 MG data")
-#k12MG_df <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
-#            select(midpoint,rev_comp)
-#colnames(k12MG_df) <- c("midpoint","class2")
-#k12MG_df$class2 <- as.character(k12MG_df$class2)
-#head(k12MG_df)
-#summary(k12MG_df)
-##inver_k12mg <- k12MG_df %>% filter(class == "block_avg_exp_invert")
-##class2 <- rep("Inversion",length(inver_k12mg$class))
-##inver_k12mg <- cbind(inver_k12mg,class2)
-##inver_k12mg <- inver_k12mg %>% select(midpoint, class2)
-##inver_k12mg <- k12MG_df %>% select(midpoint, class)
-##change names in class col
-#cor_inver_df <- k12MG_df
-#inver_k12mg <- k12MG_df %>% 
-#    mutate(class2 = recode(class2, 
-#                      "0" = "No Inversion", 
-#                      "1" = "Inversion"))
-##lst <- c(1 = "Inversion", 0 = "No Inversion")
-##inver_k12mg <- k12MG_df
-##inver_k12mg$class2 <- as.character(lst[inver_k12mg$rev_comp])
-##inver_k12mg <- inver_k12mg %>% select(midpoint,class2)
-#print("inver_k12mg head")
-#inver_k12mg <- unique(inver_k12mg)
-#head(inver_k12mg)
-#
-#head(sub_g_dat)
-#sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
-#sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
-#hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
-#colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
-#class2 <- rep("HNS_Binding",length(hns_dat$start))
-#hns_dat <- cbind(hns_dat,class2)
-#hns_cor_d <- hns_dat
-#hns_dat <- hns_dat %>% select(midpoint, class2,gbk_strand)
-#head(hns_dat)
-#
-##print("check higashi non coding overlap with data")
-##head(sub_hnc_dat)
-##sub_hnc_dat <- sub_hnc_dat %>% filter(HNS == "True")
-##head(sub_hnc_dat)
-##sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
-##sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
-##hns_dat <- within(sub_hnc_dat, midpoint <- (end + start) /2)
-##colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
-##class2 <- rep("HNS_Binding",length(hns_dat$start))
-##hns_dat <- cbind(hns_dat,class2)
-##hns_cor_d <- hns_dat
-##hns_dat <- hns_dat %>% select(start,end, class2)
-##hns_dat <- hns_dat[complete.cases(hns_dat),]
-##head(hns_dat)
-##hns_cor_d <- hns_dat
-##
-##
-##print("get new df with non-cod hns binding + inversions + sig block info")
-##inver_cor_d <- inver_tmp_k12 %>% 
-##            select(start,end,inversion)
-##colnames(inver_cor_d) <- c("start1","end1","Inversion")
-##inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
-##inver_cor_d <- unique(inver_cor_d)
-##head(inver_cor_d)
-##
-##ir1 = with(inver_cor_d, IRanges(start1, end1))
-##ir2 = with(hns_cor_d, IRanges(start, end))
-##print("did ir1 and ir2")
-##inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-##inver_cor_d[which(inver_cor_d$start1 == 383921),]
-##colnames(inver_cor_d) <- c("start","end","Inversion","HNS_binding")
-##inver_cor_d$HNS_binding <- as.integer(inver_cor_d$HNS_binding)
-##inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-##head(inver_cor_d)
-###inver_cor_d[which(inver_cor_d$start == 383921),]
-#
-#print("################################################################################")
-#print("#ORIGIN SCALING AND BIDIRECTIONALITY HNS                                            ")
-#print("################################################################################")
-##first scaling things to the origin (if necessary)
-#max_pos <- as.numeric(args[2])
-#print("max_pos")
-#max_pos
-#oriC_pos <- as.numeric(args[3])
-#print("oriC")
-#oriC_pos
-#terminus <- as.numeric(args[4])
-#print("ter")
-#terminus
-#new_pos <- hns_dat$midpoint
-#tmp_pos <- hns_dat$midpoint
-#print("MIN POS")
-#min(hns_dat$midpoint)
-#
-#if (bac_name == "E.coli" | replicon == "pSymA") {
-#  to_shift_ter <- max_pos - oriC_pos
-#  shifted_ter <-terminus + to_shift_ter
-#  terminus <- shifted_ter
-#}
-#print("shifted ter")
-#terminus
-#
-#if (replicon == "pSymB") {
-#  shifted_ter <- terminus - oriC_pos
-#  terminus <- shifted_ter
-#}
-#
-#if (bac_name == "E.coli" | replicon == "pSymA" | replicon == "pSymB")
-#{
-#  for(i in 1:length(tmp_pos)) {
-#    if (tmp_pos[i] >= oriC_pos) {
-#      new_pos[i] <- tmp_pos[i] - oriC_pos
-#    } else {
-#      tmp_end <- max_pos - oriC_pos
-#      new_pos[i] <- tmp_pos[i] + tmp_end
-#    }
-#  }
-#  tmp_pos <- new_pos
-#}
-#
-#
-##now accounting for the bidirectionality. if things are between the start pos and
-##the terminus then they will stay as the same position. If not, then they will be
-##changed to a new position starting at 1 and going to the terminus
-#new_pos2 <- tmp_pos
-##also have to account for bidirectional replicaion in the strand, in
-##the left replichore a complemented gene (1) is actually on the leading
-##strand. so for the left replichore, all 0 -> 1, and 1 -> 0
-#new_strand <- hns_dat$gbk_strand
-#if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name ==
-#"S.meliloti") {
-#  for(i in 1:length(tmp_pos)) {
-#    #left replichore
-#    if (tmp_pos[i] > terminus) {
-#      new_pos2[i] <- max_pos - tmp_pos[i]
-#      # making sure the strand column accounts for bidirectional rep
-#      if (hns_dat$gbk_strand[i] == 0) {
-#        new_strand[i] <- 1
-#      } else {
-#        new_strand[i] <- 0
-#      }
-#    } else {
-#    }
-#  }
-#  tmp_pos <- new_pos2
-#
-#  print("max tmp_pos")
-#  max(tmp_pos)
-#}
-#
-#
-#if (bac_name == "Streptomyces") {
-#  for(i in 1:length(tmp_pos)) {
-#    # right replichore
-#    if (tmp_pos[i] >= oriC_pos) {
-#      new_pos[i] <- tmp_pos[i] - oriC_pos
-#    }#if btwn origin and end of genome
-#    # left replichore
-#    if (tmp_pos[i] <= oriC_pos) {
-#      new_pos[i] <- -1 * (oriC_pos - tmp_pos[i])
-#      # making sure the strand column accounts for bidirectional rep
-#      if (hns_dat$gbk_strand[i] == 0) {
-#        new_strand[i] <- 1
-#      } else {
-#        new_strand[i] <- 0
-#      }
-#    }#if btwn origin and beginning of genome
-#    if (tmp_pos[i] == oriC_pos) {
-#      new_pos[i] <- 0
-#    }#if equal to origin
-#  }
-#  tmp_pos <- new_pos
-#}
-#
-#
-#hns_dat$gbk_strand <- new_strand
-#
-#hns_dat$midpoint <- tmp_pos
-#head(hns_dat)
-#max(hns_dat$midpoint)
-#min(hns_dat$midpoint)
-#hns_dat <- hns_dat %>% select(midpoint,class2)
-#
-#hns_inver <- rbind(inver_k12mg,hns_dat)
-#head(hns_inver)
-#tail(hns_inver)
-#
-#print("combine HNS binary info to inversion df")
-#print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
-#head(inver_dat_bidir)
-#inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
-#            select(start,end,inversion)
-##            select(start,end)
-##colnames(inver_cor_d) <- c("start1","end1")
-#colnames(inver_cor_d) <- c("start1","end1","Inversion")
-#inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
-#inver_cor_d <- unique(inver_cor_d)
-#head(inver_cor_d)
-#write.table(inver_cor_d, 'inver_cor_data.csv', sep = "\t")
-#
-#print("hns")
-#head(hns_cor_d)
-##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-#hns_cor_d <- hns_cor_d %>% select(start,end)
-#summary(hns_cor_d)
-##hns_cor_d <- hns_cor_d %>% 
-##    mutate(class2 = recode(class2, 
-##                      "No_HNS_Binding" = "0", 
-##                      "HNS_Binding" = "1"))
-#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-#head(hns_cor_d)
-#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-#
-#
-#ir1 = with(inver_cor_d, IRanges(start1, end1))
-#ir2 = with(hns_cor_d, IRanges(start, end))
-#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-#inver_cor_d[which(inver_cor_d$start1 == 383921),]
-#colnames(inver_cor_d) <- c("start","end","Inversion","HNS_binding")
-#inver_cor_d$HNS_binding <- as.integer(inver_cor_d$HNS_binding)
-#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-#head(inver_cor_d)
-#inver_cor_d[which(inver_cor_d$start == 383921),]
-#
-#print("################################################################################")
-#print("correlation test btwn inversion/non-inversion and hns binding")
-#print("################################################################################")
-#cor.test(inver_cor_d$Inversion, inver_cor_d$HNS_binding,
-#         method = "pearson")
-#
-#print("get new df with hns binding + inversions + sig block info")
-#cor_dat <- cor_dat %>% filter(strain == "K12MG")
-#cor_dat <- cor_dat %>%
-#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-#head(cor_dat)
-#ir1 = with(cor_dat, IRanges(start, end))
-#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-#names(cor_dat)[names(cor_dat)=="overlap"] <- "HNS_binding"
-#cor_dat[which(cor_dat$start == 383921),]
-#cor_dat$HNS_binding <- as.integer(cor_dat$HNS_binding)
-#cor_dat$sig <- as.integer(cor_dat$sig)
-#head(cor_dat)
-#
-#
-#print("################################################################################")
-#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-#print("################################################################################")
-#cor.test(cor_dat$sig, cor_dat$HNS_binding,
-#         method = "pearson")
-#
-#
-#print("################################################################################")
-#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-#print("################################################################################")
-##cor_dat <- cor_dat %>% filter(inversion == 1)
-#cor.test(cor_dat$inversion, cor_dat$HNS_binding,
-#         method = "pearson")
-#
-#
-#print("test plot of HNS binding and inversions")
-#pdf("hns_inver_plot_test.pdf")
-#ggplot(hns_inver, aes(x=midpoint, y=class2, color=class2))+
-##  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
-##               position = position_jitter(width = 0.05)) +
-##  geom_point(size = 3) +
-#  geom_point(size = 2, alpha=0.4)
-##  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
-#dev.off()
-#
-#
-#
-#
-##print("###############################################################################")
-##print("INVERSION VISUALIZATION PARALLEL SETS")
-##print("###############################################################################")
-##print("read in block info file")
-##file_name <- as.character(args[9])
-##block_inf <- read.table(file_name,sep = "\t", header = FALSE)
-##colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
-##print("make column of midpoint of each block")
-##block_inf <- within(block_inf, midpoint <- (end + start) /2)
-##colnames(block_inf)[colnames(block_inf) == "midpoint"] <- "midpoint"
-##head(block_inf)
-##bi_dat <- block_inf %>% select(block,strain,midpoint)
-##bi_dat <-  spread(bi_dat, strain, midpoint)
-##head(bi_dat)
-##
-##print("test parallel sets plot")
-##ps <- bi_dat %>%
-##  gather_set_data(2:3) %>%
-##head(ps)
-###  ggplot(aes(x, id = id, split = y, value = 1))  +
-###  geom_parallel_sets(aes(fill = engine)) 
-###pdf("parallel_sets.pdf")
-###ps
-###dev.off()
-##
-##
+print("################################################################################")
+print("correlation test btwn inversion/non-inversion and fis binding")
+print("################################################################################")
+cor.test(inver_cor_d$Inversion, inver_cor_d$G_Fis_binding,
+         method = "pearson")
+
+print("get new df with hns binding + inversions + sig block info")
+#filter by K12 strain and ensure that we are only looking at the wilcoxon test results
+cor_dat <- cor_dat %>% filter(strain == "K12MG") %>% filter(test == "block_w_pvalue")
+cor_dat <- cor_dat %>%
+    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+names(cor_dat)[names(cor_dat)=="overlap"] <- "G_Fis_binding"
+cor_dat[which(cor_dat$start == 383921),]
+cor_dat$G_Fis_binding <- as.integer(cor_dat$G_Fis_binding)
+cor_dat$sig <- as.integer(cor_dat$sig)
+cor_dat$inversion <- as.integer(cor_dat$inversion)
+head(cor_dat)
+tail(cor_dat)
+summary(cor_dat)
+
+
+print("################################################################################")
+print("correlation test btwn sig inversion/non-inversion and fis binding ALL BLOCKS")
+print("################################################################################")
+cor.test(cor_dat$sig, cor_dat$G_Fis_binding,
+         method = "pearson")
+

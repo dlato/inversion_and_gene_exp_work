@@ -43051,13 +43051,13 @@ null device
 4          0      thrC
 5          0      yaaX
 6          1      yaaA
-  gene_name   start     end gbk_strand
-1      appY  582904  583653          0
-2      arpA 4217880 4220066          1
-3      arpB 1801118 1803017          0
-4      cmtB 3076906 3077349          1
-5      cspI 1636479 1636691          1
-6      elaD 2380733 2381944          0
+  gene_name  start    end
+1      yafF 239100 239378
+2      yahA 331595 332683
+3      hemB 387977 388951
+4      yaiT 389475 393642
+5      ybcL 570116 570667
+6      ybcM 570677 571474
 [1] "Higashi 2016 coding"
   gene_name HNS_binding HNS_cutoff HNS_transcript   start     end gbk_midpoint
 1      aaeA       FALSE      FALSE          FALSE 3388194 3389126      3388660
@@ -43161,34 +43161,34 @@ null device
 [1] "CORRELATION TESTS FOR GRAINGER 2006 cutoff DATA"
 [1] "################################################################################"
 [1] "hns"
-  gene_name   start     end gbk_strand
-1      appY  582904  583653          0
-2      arpA 4217880 4220066          1
-3      arpB 1801118 1803017          0
-4      cmtB 3076906 3077349          1
-5      cspI 1636479 1636691          1
-6      elaD 2380733 2381944          0
-  gene_name   start     end gbk_strand  midpoint        class2
-1      appY  582904  583653          0  583278.5 G_HNS_Binding
-2      arpA 4217880 4220066          1 4218973.0 G_HNS_Binding
-3      arpB 1801118 1803017          0 1802067.5 G_HNS_Binding
-4      cmtB 3076906 3077349          1 3077127.5 G_HNS_Binding
-5      cspI 1636479 1636691          1 1636585.0 G_HNS_Binding
-6      elaD 2380733 2381944          0 2381338.5 G_HNS_Binding
+  gene_name  start    end
+1      yafF 239100 239378
+2      yahA 331595 332683
+3      hemB 387977 388951
+4      yaiT 389475 393642
+5      ybcL 570116 570667
+6      ybcM 570677 571474
+  gene_name  start    end midpoint        class2
+1      yafF 239100 239378 239239.0 G_HNS_Binding
+2      yahA 331595 332683 332139.0 G_HNS_Binding
+3      hemB 387977 388951 388464.0 G_HNS_Binding
+4      yaiT 389475 393642 391558.5 G_HNS_Binding
+5      ybcL 570116 570667 570391.5 G_HNS_Binding
+6      ybcM 570677 571474 571075.5 G_HNS_Binding
      start              end         
  Min.   : 239100   Min.   : 239378  
- 1st Qu.:1264032   1st Qu.:1266590  
- Median :2145324   Median :2146392  
- Mean   :2413919   Mean   :2415022  
- 3rd Qu.:3420005   3rd Qu.:3421194  
+ 1st Qu.:1531562   1st Qu.:1532007  
+ Median :2205372   Median :2206606  
+ Mean   :2447068   Mean   :2448166  
+ 3rd Qu.:3626706   3rd Qu.:3628018  
  Max.   :4569935   Max.   :4571500  
-    start    end
-31 239100 239378
-32 331595 332683
-17 387977 388951
-33 389475 393642
-34 570116 570667
-35 570677 571474
+   start    end
+1 239100 239378
+2 331595 332683
+3 387977 388951
+4 389475 393642
+5 570116 570667
+6 570677 571474
 [1] start1    end1      Inversion block     overlap  
 <0 rows> (or 0-length row.names)
   start1 end1 Inversion  block G_HNS_binding
@@ -43207,13 +43207,13 @@ null device
 	Pearson's product-moment correlation
 
 data:  inver_cor_d$Inversion and inver_cor_d$G_HNS_binding
-t = -0.56679774, df = 2908, p-value = 0.5708954
+t = -0.25104106, df = 2908, p-value = 0.8018001
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.04682798566  0.02583553188
+ -0.04098408297  0.03168587862
 sample estimates:
-           cor 
--0.01051010172 
+            cor 
+-0.004655248311 
 
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
@@ -43454,7 +43454,7 @@ sample estimates:
  Min.   :0.0000000   Min.   :0.00000000  
  1st Qu.:0.0000000   1st Qu.:0.00000000  
  Median :0.0000000   Median :0.00000000  
- Mean   :0.1283951   Mean   :0.01728395  
+ Mean   :0.1283951   Mean   :0.02222222  
  3rd Qu.:0.0000000   3rd Qu.:0.00000000  
  Max.   :1.0000000   Max.   :1.00000000  
                                          
@@ -43465,13 +43465,13 @@ sample estimates:
 	Pearson's product-moment correlation
 
 data:  cor_dat$sig and cor_dat$G_HNS_binding
-t = 0.25787507, df = 2023, p-value = 0.7965296
+t = 0.10009529, df = 2023, p-value = 0.9202786
 alternative hypothesis: true correlation is not equal to 0
 95 percent confidence interval:
- -0.03783562637  0.04928045973
+ -0.04133804586  0.04578046782
 sample estimates:
            cor 
-0.005733294838 
+0.002225433559 
 
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
@@ -45408,7 +45408,7 @@ cor
 # A tibble: 10 x 2
    x                     n
    <chr>             <int>
- 1 G_HNS_binding        53
+ 1 G_HNS_binding        66
  2 H1_HNS_binding      371
  3 H1nc1_HNS_binding   343
  4 H1nc2_HNS_binding   343
@@ -45419,7 +45419,7 @@ cor
  9 O_HNS_binding       664
 10 U_HNS_binding       275
 [1] "total number of genes/blocks"
-[1] 986
+[1] 988
 [1] "total number of rows where HNS binding is the same for all datasets"
 [1] 1
 [1] "HNS and expression in Oshima, Lang and Higashi (H1)"
@@ -45867,14 +45867,14 @@ sample estimates:
  3rd Qu.:3269850   3rd Qu.:3270986   3rd Qu.:1.0000000   Block675 :  6  
  Max.   :4604875   Max.   :4605663   Max.   :1.0000000   Block829 :  6  
                                                          (Other)  :333  
- G_HNS_binding       U_HNS_binding       H1_HNS_binding H1nc1_HNS_binding  
- Min.   :0.0000000   Min.   :0.0000000   Min.   :1      Min.   :0.0000000  
- 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:1      1st Qu.:1.0000000  
- Median :0.0000000   Median :0.0000000   Median :1      Median :1.0000000  
- Mean   :0.0296496   Mean   :0.2237197   Mean   :1      Mean   :0.9245283  
- 3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:1      3rd Qu.:1.0000000  
- Max.   :1.0000000   Max.   :1.0000000   Max.   :1      Max.   :1.0000000  
-                                                                           
+ G_HNS_binding        U_HNS_binding       H1_HNS_binding H1nc1_HNS_binding  
+ Min.   :0.00000000   Min.   :0.0000000   Min.   :1      Min.   :0.0000000  
+ 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:1      1st Qu.:1.0000000  
+ Median :0.00000000   Median :0.0000000   Median :1      Median :1.0000000  
+ Mean   :0.03234501   Mean   :0.2237197   Mean   :1      Mean   :0.9245283  
+ 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:1      3rd Qu.:1.0000000  
+ Max.   :1.00000000   Max.   :1.0000000   Max.   :1      Max.   :1.0000000  
+                                                                            
  H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     H3_HNS_binding    
  Min.   :0.0000000   Min.   :0.0000000   Min.   :0.000000   Min.   :0.000000  
  1st Qu.:1.0000000   1st Qu.:1.0000000   1st Qu.:1.000000   1st Qu.:1.000000  
@@ -45993,7 +45993,7 @@ sample estimates:
  Min.   :0.0000000   Min.   :0.00000000   Min.   :0.00000000  
  1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.00000000  
  Median :0.0000000   Median :0.00000000   Median :0.00000000  
- Mean   :0.1283951   Mean   :0.01728395   Mean   :0.09283951  
+ Mean   :0.1283951   Mean   :0.02222222   Mean   :0.09283951  
  3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.00000000  
  Max.   :1.0000000   Max.   :1.00000000   Max.   :1.00000000  
                                                               
@@ -46729,3 +46729,303 @@ $`53`
 "53",0,5210000
 null device 
           1 
+[1] "#############################"
+[1] "Fis binding"
+[1] "#############################"
+[1] "Grainger 2006 (cod and non-cod)"
+  gene_name  start    end
+1      thrL    190    255
+2      carA  29651  30799
+3      srrA 107705 108217
+4      yafF 239100 239378
+5      ykgC 317900 319225
+6      yahA 331595 332683
+  start1 end1 Inversion  block
+1    190  255         0 Block1
+2    337 2799         0 Block1
+3   2801 3733         0 Block1
+4   3734 5020         0 Block1
+5   6529 7959         0 Block4
+6   9306 9893         0 Block4
+  gene_name  start    end midpoint        class2
+1      thrL    190    255    222.5 G_Fis_Binding
+2      carA  29651  30799  30225.0 G_Fis_Binding
+3      srrA 107705 108217 107961.0 G_Fis_Binding
+4      yafF 239100 239378 239239.0 G_Fis_Binding
+5      ykgC 317900 319225 318562.5 G_Fis_Binding
+6      yahA 331595 332683 332139.0 G_Fis_Binding
+     start              end         
+ Min.   :    190   Min.   :    255  
+ 1st Qu.:1374877   1st Qu.:1375620  
+ Median :2102250   Median :2103305  
+ Mean   :2347220   Mean   :2348267  
+ 3rd Qu.:3351134   3rd Qu.:3352969  
+ Max.   :4603373   Max.   :4603609  
+[1] "fis bind"
+   start    end
+1    190    255
+2  29651  30799
+3 107705 108217
+4 239100 239378
+5 317900 319225
+6 331595 332683
+  start1 end1 Inversion  block overlap
+1    190  255         0 Block1    TRUE
+2    337 2799         0 Block1   FALSE
+3   2801 3733         0 Block1   FALSE
+4   3734 5020         0 Block1   FALSE
+5   6529 7959         0 Block4   FALSE
+6   9306 9893         0 Block4   FALSE
+  start1 end1 Inversion  block G_Fis_Binding G_Fis_binding
+1    190  255         0 Block1          TRUE             1
+2    337 2799         0 Block1         FALSE             0
+3   2801 3733         0 Block1         FALSE             0
+4   3734 5020         0 Block1         FALSE             0
+5   6529 7959         0 Block4         FALSE             0
+6   9306 9893         0 Block4         FALSE             0
+  start1 end1 Inversion  block G_Fis_Binding G_Fis_binding
+1    190  255         0 Block1          TRUE             1
+[1] "################################################################################"
+[1] "correlation test btwn inversion/non-inversion and fis binding"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  inver_cor_d$Inversion and inver_cor_d$G_Fis_binding
+t = 1.7869076, df = 2908, p-value = 0.07405656
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.003221454288  0.069370478048
+sample estimates:
+          cor 
+0.03311818953 
+
+[1] "get new df with hns binding + inversions + sig block info"
+      block  start    end midpoint gbk_start gbk_end gbk_midpoint
+13 Block123 383921 388551  1591259    384059  384616      1589360
+14 Block123 383921 388551  1591259    385232  386194      1590736
+15 Block123 383921 388551  1591259    386207  386974      1591613
+16 Block123 383921 388551  1591259    386971  387798      1592407
+        block_t_stat  block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+13 0.163737532965995 -1.71587409814233 1.99773344766049     2.09340259108493
+14 0.163737532965995 -1.71587409814233 1.99773344766049     2.09340259108493
+15 0.163737532965995 -1.71587409814233 1.99773344766049     2.09340259108493
+16 0.163737532965995 -1.71587409814233 1.99773344766049     2.09340259108493
+   block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+13        1.95247291632585                 4622                    4630
+14        1.95247291632585                 4622                    4630
+15        1.95247291632585                 4622                    4630
+16        1.95247291632585                 4622                    4630
+   inversion rev_comp strain           test       pvalue allSig
+13         1        0  K12MG block_w_pvalue 0.2615384615     no
+14         1        0  K12MG block_w_pvalue 0.2615384615     no
+15         1        0  K12MG block_w_pvalue 0.2615384615     no
+16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+13           384337.5   0             0             1              0
+14           385713.0   0             0             0              0
+15           386590.5   0             0             0              0
+16           387384.5   0             0             0              0
+   H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+13                 0                 0                 0              0
+14                 0                 0                 0              0
+15                 0                 0                 0              0
+16                 0                 0                 0              0
+   H3_HNS_binding L_HNS_binding O_HNS_binding G_Fis_binding
+13              0             0             1         FALSE
+14              0             0             1         FALSE
+15              0             0             0         FALSE
+16              0             0             0         FALSE
+    block  start    end  midpoint gbk_start gbk_end gbk_midpoint
+1 Block62 239447 245944 1447718.5    240343  240816      1445602
+2 Block62 239447 245944 1447718.5    240859  243303      1447104
+3 Block62 239447 245944 1447718.5    243543  244121      1448855
+4 Block62 239447 245944 1447718.5    244327  245094      1449733
+5 Block62 239447 245944 1447718.5    245065  245805      1450458
+6 Block73 253686 257906 1460819.0    254259  255716      1460010
+       block_t_stat  block_t_confinf1 block_t_confinf2 block_avg_exp_invert
+1 0.720085166986352  -158.36415207118 277.192745947071     188.204357673068
+2 0.720085166986352  -158.36415207118 277.192745947071     188.204357673068
+3 0.720085166986352  -158.36415207118 277.192745947071     188.204357673068
+4 0.720085166986352  -158.36415207118 277.192745947071     188.204357673068
+5 0.720085166986352  -158.36415207118 277.192745947071     188.204357673068
+6 0.502231451227166 -1330.67278886447 1770.15866002198     530.785775608208
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1        128.790060735123                 6496                    6497
+2        128.790060735123                 6496                    6497
+3        128.790060735123                 6496                    6497
+4        128.790060735123                 6496                    6497
+5        128.790060735123                 6496                    6497
+6         311.04284002945                 4220                    4220
+  inversion rev_comp strain           test       pvalue allSig
+1         1        0  K12MG block_w_pvalue 0.6115841073     no
+2         1        0  K12MG block_w_pvalue 0.6115841073     no
+3         1        0  K12MG block_w_pvalue 0.6115841073     no
+4         1        0  K12MG block_w_pvalue 0.6115841073     no
+5         1        0  K12MG block_w_pvalue 0.6115841073     no
+6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
+1           240579.5   0             0             0              0
+2           242081.0   0             0             0              0
+3           243832.0   0             0             0              0
+4           244710.5   0             0             0              0
+5           245435.0   0             0             0              0
+6           254987.5   0             0             0              0
+  H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding H2_HNS_binding
+1                 0                 0                 0              0
+2                 0                 0                 0              0
+3                 0                 0                 0              0
+4                 0                 0                 0              0
+5                 0                 0                 0              0
+6                 0                 0                 0              0
+  H3_HNS_binding L_HNS_binding O_HNS_binding G_Fis_binding
+1              0             0             0             0
+2              0             0             0             0
+3              0             0             0             0
+4              0             0             1             0
+5              0             0             1             0
+6              0             0             0             0
+         block   start     end  midpoint gbk_start gbk_end gbk_midpoint
+2020  Block992 3946844 3951536   23446.0   3950507 3950557        24788
+2021  Block495 1864776 1878953 2053879.5   1878874 1878948      2046833
+2022  Block495 1864776 1878953 2053879.5   1878773 1878871      2046922
+2023  Block778 3015096 3042331  897030.5   3032817 3032942       892865
+2024  Block864 3304508 3328792  609094.0   3307853 3307933       617851
+2025 Block1011 4053595 4056451  129279.0   4053647 4053757       127958
+           block_t_stat   block_t_confinf1 block_t_confinf2
+2020  -1.53129358943664  -183.220273888678 29.1456865359047
+2021 -0.969514526632923   -125.39466244931  43.582796718746
+2022 -0.969514526632923   -125.39466244931  43.582796718746
+2023   2.06880147668458 -0.445257694882861 1045.81784778266
+2024  0.625892365489686  -377.527417021115 715.961206834327
+2025  -0.93705109631993  -95.3984724377516 41.1998287850472
+     block_avg_exp_invert block_avg_exp_noninvert block_avg_len_invert
+2020     29.9115264614212        106.948820137808                 4692
+2021     67.6006045372277         108.50653740251                14177
+2022     67.6006045372277         108.50653740251                14177
+2023     651.160489821333        128.474194777443                27234
+2024     840.726325659811        671.509430753205                24282
+2025     57.9555586486249        85.0548804749771                 2856
+     block_avg_len_noninvert inversion rev_comp strain           test
+2020                    4692         1        0  K12MG block_w_pvalue
+2021                   14177         1        0  K12MG block_w_pvalue
+2022                   14177         1        0  K12MG block_w_pvalue
+2023                   27235         1        0  K12MG block_w_pvalue
+2024                   24284         1        0  K12MG block_w_pvalue
+2025                    2856         1        0  K12MG block_w_pvalue
+              pvalue allSig non_bidir_midpoint sig G_HNS_binding U_HNS_binding
+2020 0.2672121480171     no          3950532.0   0             0             0
+2021 0.2798536831841     no          1878911.0   0             0             0
+2022 0.2798536831841     no          1878822.0   0             0             0
+2023 0.0002229557365    yes          3032879.5   1             0             0
+2024 0.2555487713597     no          3307893.0   0             0             0
+2025 0.8333333333333     no          4053702.0   0             0             0
+     H1_HNS_binding H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
+2020              0                 0                 0                 0
+2021              0                 0                 0                 0
+2022              0                 0                 0                 0
+2023              0                 0                 0                 0
+2024              0                 0                 0                 0
+2025              0                 0                 0                 0
+     H2_HNS_binding H3_HNS_binding L_HNS_binding O_HNS_binding G_Fis_binding
+2020              0              0             0             0             0
+2021              0              0             0             1             0
+2022              0              0             0             1             0
+2023              0              0             0             0             0
+2024              0              0             0             0             0
+2025              0              0             0             0             0
+      block          start              end             midpoint      
+ Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
+ Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
+ Block893:  27   Median :1988582   Median :2002288   Median :1639674  
+ Block869:  26   Mean   :2302853   Mean   :2314265   Mean   :1375220  
+ Block485:  25   3rd Qu.:3419108   3rd Qu.:3423266   3rd Qu.:2160175  
+ Block475:  23   Max.   :4160982   Max.   :4166305   Max.   :2792216  
+ (Other) :1855                                                        
+   gbk_start          gbk_end         gbk_midpoint     block_t_stat      
+ Min.   : 240343   Min.   : 240816   Min.   :    489   Length:2025       
+ 1st Qu.:1231186   1st Qu.:1232454   1st Qu.: 503868   Class :character  
+ Median :1995818   Median :1996042   Median :1641145   Mode  :character  
+ Mean   :2308101   Mean   :2309034   Mean   :1375295                     
+ 3rd Qu.:3421325   3rd Qu.:3422428   3rd Qu.:2158587                     
+ Max.   :4165428   Max.   :4166285   Max.   :2792300                     
+                                                                         
+ block_t_confinf1   block_t_confinf2   block_avg_exp_invert
+ Length:2025        Length:2025        Length:2025         
+ Class :character   Class :character   Class :character    
+ Mode  :character   Mode  :character   Mode  :character    
+                                                           
+                                                           
+                                                           
+                                                           
+ block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+ Length:2025             Length:2025          Length:2025            
+ Class :character        Class :character     Class :character       
+ Mode  :character        Mode  :character     Mode  :character       
+                                                                     
+                                                                     
+                                                                     
+                                                                     
+   inversion    rev_comp     strain                 test     
+ Min.   :1   Min.   :0   ATCC   :   0   block_w_pvalue:2025  
+ 1st Qu.:1   1st Qu.:0   BW25113:   0   block_t_pvalue:   0  
+ Median :1   Median :0   K12DH  :   0                        
+ Mean   :1   Mean   :0   K12MG  :2025                        
+ 3rd Qu.:1   3rd Qu.:0                                       
+ Max.   :1   Max.   :0                                       
+                                                             
+     pvalue               allSig          non_bidir_midpoint 
+ Min.   :0.000128999   Length:2025        Min.   : 240579.5  
+ 1st Qu.:0.168697912   Class :character   1st Qu.:1231820.0  
+ Median :0.446153846   Mode  :character   Median :1995930.0  
+ Mean   :0.466057741                      Mean   :2308567.6  
+ 3rd Qu.:0.787854432                      3rd Qu.:3421876.5  
+ Max.   :1.000000000                      Max.   :4165856.5  
+                                                             
+      sig            G_HNS_binding        U_HNS_binding       
+ Min.   :0.0000000   Min.   :0.00000000   Min.   :0.00000000  
+ 1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.00000000  
+ Median :0.0000000   Median :0.00000000   Median :0.00000000  
+ Mean   :0.1283951   Mean   :0.02222222   Mean   :0.09283951  
+ 3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.00000000  
+ Max.   :1.0000000   Max.   :1.00000000   Max.   :1.00000000  
+                                                              
+ H1_HNS_binding      H1nc1_HNS_binding   H1nc2_HNS_binding  
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.1377778   Mean   :0.1293827   Mean   :0.1293827  
+ 3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ H1nc3_HNS_binding   H2_HNS_binding      H3_HNS_binding     
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.1293827   Mean   :0.1283951   Mean   :0.1283951  
+ 3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ L_HNS_binding        O_HNS_binding       G_Fis_binding       
+ Min.   :0.00000000   Min.   :0.0000000   Min.   :0.00000000  
+ 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:0.00000000  
+ Median :0.00000000   Median :0.0000000   Median :0.00000000  
+ Mean   :0.04691358   Mean   :0.2390123   Mean   :0.07604938  
+ 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:0.00000000  
+ Max.   :1.00000000   Max.   :1.0000000   Max.   :1.00000000  
+                                                              
+[1] "################################################################################"
+[1] "correlation test btwn sig inversion/non-inversion and fis binding ALL BLOCKS"
+[1] "################################################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$sig and cor_dat$G_Fis_binding
+t = 3.0697389, df = 2023, p-value = 0.002170925
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.02460523621 0.11132101787
+sample estimates:
+          cor 
+0.06809172827 
+
