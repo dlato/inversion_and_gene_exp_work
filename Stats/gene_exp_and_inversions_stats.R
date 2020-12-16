@@ -678,539 +678,538 @@ print("average non-inverted exp")
 td <- mg_d %>% filter(rev_comp == 0)
 summary(td$norm_exp)
 
+print("#####################")
+print("# Variance in Expression Analysis")
+print("#####################")
+all_bs <- gei_dat
+all_bs$block_w_pvalue <- as.numeric(all_bs$block_w_pvalue)
+all_bs$block_avg_exp_invert <- as.numeric(all_bs$block_avg_exp_invert)
+all_bs$block_avg_exp_noninvert <- as.numeric(all_bs$block_avg_exp_noninvert)
+head(all_bs)
+summary(all_bs)
+print("Variance of inverted blocks")
+var(all_bs$norm_exp[which(all_bs$inversion == 1)])
+print("Variance of non-inverted blocks")
+var(all_bs$norm_exp[which(all_bs$inversion == 0)])
+print("Variance of revcomp blocks")
+var(all_bs$norm_exp[which(all_bs$rev_comp == 1)])
+print("Variance of nonrevcomp blocks")
+var(all_bs$norm_exp[which(all_bs$rev_comp == 0)])
+#sig dataframe
+sig_bs <- all_bs %>% filter(!is.na(block_w_pvalue)) %>%
+          mutate(sig = if_else(block_w_pvalue <= 0.05, 'yes', 'no'))
+print("Variance of sig blocks")
+var(sig_bs$norm_exp[which(sig_bs$sig == "yes")])
+print("Variance of nonsig blocks")
+var(sig_bs$norm_exp[which(sig_bs$sig == "no")])
+#ATCC df
+print("Variance of inver ATCC blocks")
+atcc_bs <- all_bs %>% filter(strain == "ATCC")
+var(atcc_bs$norm_exp[which(atcc_bs$rev_comp== 1)])
+print("Variance of non-inver ATCC blocks")
+var(atcc_bs$norm_exp[which(atcc_bs$rev_comp == 0)])
+
+print("#############")
+print("Fligner-Killeen test")
+print("#############")
+#tests for homogeneity of variances, non-parametric
+all_bs$inversion <- as.factor(all_bs$inversion)
+all_bs$rev_comp <- as.factor(all_bs$rev_comp)
+sig_bs$sig <- as.factor(sig_bs$sig)
+atcc_bs$rev_comp <- as.factor(atcc_bs$rev_comp)
+print("test varaiances btwn inversions and non-inversions")
+fligner.test(norm_exp ~ inversion, data = all_bs)
+print("test varaiances btwn rev_comp non-rev_comp")
+fligner.test(norm_exp ~ rev_comp, data = all_bs)
+print("test varaiances btwn sig invers and non-sig invers")
+fligner.test(norm_exp ~ sig, data = sig_bs)
+print("test varaiances btwn ATCC invers and ATCC non-invers")
+fligner.test(norm_exp ~ rev_comp, data = atcc_bs)
 
 
-
-
-
-#make df with sig diff in gene exp btwn inversions
-blocks_new <- complete_block_df %>%
-    mutate(sig = if_else(pvalue <= 0.05, 'yes', 'no'))
-#complete_block_df[which(complete_block_df$pvalue <=0.05),]
-#complete_block_df$sig <- which(complete_block_df$pvalue <=0.05)
-blocks_new$class <- rep("BlockX",length(blocks_new$block))
-sig_blocks <- blocks_new[which(blocks_new$sig == "yes"),]
-print("head sig_blocks")
-head(sig_blocks)
-summary(sig_blocks)
-sig_blocks$block_avg_exp_invert <- as.numeric(sig_blocks$block_avg_exp_invert)
-sig_blocks$block_avg_exp_noninvert <- as.numeric(sig_blocks$block_avg_exp_noninvert)
-reg_df <- sig_blocks %>%
-  mutate(exp_reg = ifelse(block_avg_exp_invert > block_avg_exp_noninvert, "up", "down"))
-head(reg_df)
-pdf("scatter_plot_test.pdf")
-ggplot(reg_df, aes(x=gbk_midpoint, y=strain, color=exp_reg))+
-#  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
-#               position = position_jitter(width = 0.05)) +
-#  geom_point(size = 3) +
-  geom_point(size = 2, alpha=0.4)
-#  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
-dev.off()
-
-print("###################")
-print("df with avg inversion info, only K12")
-print("###################")
-full_blocks_new_df <- blocks_new
-#k12_df <- reg_df %>%
-k12_df <- blocks_new %>%
-          filter(strain == "K12MG") %>%
-        gather(class, avg_exp, block_avg_exp_invert:block_avg_exp_noninvert, factor_key = TRUE)
-k12_df$avg_exp <- as.numeric(k12_df$avg_exp)
-head(k12_df)
-summary(k12_df) 
-print("###################")
-print("2 data pts per block")
-print("###################")
-#I think midpoint is for the block and gbk_midpoint is for each gene
-k12_df <- k12_df %>% select(block, midpoint,sig,class,avg_exp)
-k12_df <- unique(k12_df)
-head(k12_df)
-k12_df[which(k12_df$block == "Block62"),]
-k12_df_non_sig <- k12_df %>% filter(sig == "no")
-head(k12_df_non_sig)
-k12_df_sig <- k12_df %>% filter(sig == "yes")
-head(k12_df_sig)
-k12MG_df <- k12_df
-#adjust genomic position to be in Mbp
-k12_df_sig$midpoint = k12_df_sig$midpoint / 1000000
-k12_df_non_sig$midpoint = k12_df_non_sig$midpoint / 1000000
-print("TEST HEAD")
-head(k12_df_sig)
-k12_df_sig %>% filter(block == "Block164")
-override.shape <- c(16, 16, 17)
-override.linetype <- c(0,1, 3)
-print("GRAPH IS ONLY WITH INVERTED BLOCKS THAT WERE ABLE TO BE TESTED")
-p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
-   #non-sig pts in light grey, un-filled
-   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.5 ,show.legend = FALSE, size=2.5 )
-   #sig pts
-   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess")
-   + scale_linetype_manual(values=c("solid", "dotted"))
-   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class), size=2.5)
-   + scale_color_manual(values = c("#BEBEBE","#5E85BA","#2E294E"),labels =c("Non-significant","Inverted","Non-inverted"))
-   + scale_y_continuous(trans='log10')
-   + scale_x_continuous(limits = c(0, 3))
-   + labs(title= "Average Gene Expression within Alignment Blocks",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
-   #colour for legend
-   + guides(colour = guide_legend(override.aes = list(shape = override.shape, linetype = override.linetype, fill=NA,unit(3,"line"))))
-   + scale_shape(guide = FALSE)
-   + scale_linetype(guide = FALSE)
-)
-
-########################################
-# layered graph for presentation
-########################################
-#k12_df_all <- k12_df %>% filter(sig == "no" | sig =="yes")
-#k12_df_non_sig <- k12_df %>% filter(sig == "no") %>% filter(class == "block_avg_exp_invert")
-#k12_df_sig <- k12_df %>% filter(sig == "yes") %>% filter(class == "block_avg_exp_invert")
-#k12_df_all$midpoint = k12_df_all$midpoint / 1000000
+##make df with sig diff in gene exp btwn inversions
+#blocks_new <- complete_block_df %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 'yes', 'no'))
+##complete_block_df[which(complete_block_df$pvalue <=0.05),]
+##complete_block_df$sig <- which(complete_block_df$pvalue <=0.05)
+#blocks_new$class <- rep("BlockX",length(blocks_new$block))
+#sig_blocks <- blocks_new[which(blocks_new$sig == "yes"),]
+#print("head sig_blocks")
+#head(sig_blocks)
+#summary(sig_blocks)
+#sig_blocks$block_avg_exp_invert <- as.numeric(sig_blocks$block_avg_exp_invert)
+#sig_blocks$block_avg_exp_noninvert <- as.numeric(sig_blocks$block_avg_exp_noninvert)
+#reg_df <- sig_blocks %>%
+#  mutate(exp_reg = ifelse(block_avg_exp_invert > block_avg_exp_noninvert, "up", "down"))
+#head(reg_df)
+#pdf("scatter_plot_test.pdf")
+#ggplot(reg_df, aes(x=gbk_midpoint, y=strain, color=exp_reg))+
+##  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
+##               position = position_jitter(width = 0.05)) +
+##  geom_point(size = 3) +
+#  geom_point(size = 2, alpha=0.4)
+##  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
+#dev.off()
+#
+#print("###################")
+#print("df with avg inversion info, only K12")
+#print("###################")
+#full_blocks_new_df <- blocks_new
+##k12_df <- reg_df %>%
+#k12_df <- blocks_new %>%
+#          filter(strain == "K12MG") %>%
+#        gather(class, avg_exp, block_avg_exp_invert:block_avg_exp_noninvert, factor_key = TRUE)
+#k12_df$avg_exp <- as.numeric(k12_df$avg_exp)
+#head(k12_df)
+#summary(k12_df) 
+#print("###################")
+#print("2 data pts per block")
+#print("###################")
+##I think midpoint is for the block and gbk_midpoint is for each gene
+#k12_df <- k12_df %>% select(block, midpoint,sig,class,avg_exp)
+#k12_df <- unique(k12_df)
+#head(k12_df)
+#k12_df[which(k12_df$block == "Block62"),]
+#k12_df_non_sig <- k12_df %>% filter(sig == "no")
+#head(k12_df_non_sig)
+#k12_df_sig <- k12_df %>% filter(sig == "yes")
+#head(k12_df_sig)
+#k12MG_df <- k12_df
+##adjust genomic position to be in Mbp
 #k12_df_sig$midpoint = k12_df_sig$midpoint / 1000000
 #k12_df_non_sig$midpoint = k12_df_non_sig$midpoint / 1000000
-#summary(k12_df_sig)
+#print("TEST HEAD")
+#head(k12_df_sig)
+#k12_df_sig %>% filter(block == "Block164")
+#override.shape <- c(16, 16, 17)
+#override.linetype <- c(0,1, 3)
+#print("GRAPH IS ONLY WITH INVERTED BLOCKS THAT WERE ABLE TO BE TESTED")
 #p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
 #   #non-sig pts in light grey, un-filled
-#   + geom_point(data = k12_df_all,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0 ,show.legend = FALSE, size=2.5 )
 #   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.5 ,show.legend = FALSE, size=2.5 )
 #   #sig pts
-##   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess")
+#   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess")
 #   + scale_linetype_manual(values=c("solid", "dotted"))
 #   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class), size=2.5)
 #   + scale_color_manual(values = c("#BEBEBE","#5E85BA","#2E294E"),labels =c("Non-significant","Inverted","Non-inverted"))
 #   + scale_y_continuous(trans='log10')
 #   + scale_x_continuous(limits = c(0, 3))
-#   + labs(title= "",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
+#   + labs(title= "Average Gene Expression within Alignment Blocks",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
 #   #colour for legend
 #   + guides(colour = guide_legend(override.aes = list(shape = override.shape, linetype = override.linetype, fill=NA,unit(3,"line"))))
 #   + scale_shape(guide = FALSE)
 #   + scale_linetype(guide = FALSE)
-#   + theme(legend.position = "none")
 #)
-
-pdf("genome_pos_inversions_k12.pdf")
-p
-dev.off()
-
-#print("##############")
-#print("boxplot test data")
-#print("##############")
-#head(bp_dat)
-#bp_dat$rev_comp <- as.factor(bp_dat$rev_comp)
-#sig_blocks <- k12_df_sig$block
-#bp_sig <- bp_dat %>% filter(block == sig_blocks) 
-#head(bp_sig)
-#tail(bp_sig)
 #
-#p <- (ggplot(bp_sig, aes(x=block, y=norm_exp, color=rev_comp))
-#   + geom_boxplot() 
-###  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
+#########################################
+## layered graph for presentation
+#########################################
+##k12_df_all <- k12_df %>% filter(sig == "no" | sig =="yes")
+##k12_df_non_sig <- k12_df %>% filter(sig == "no") %>% filter(class == "block_avg_exp_invert")
+##k12_df_sig <- k12_df %>% filter(sig == "yes") %>% filter(class == "block_avg_exp_invert")
+##k12_df_all$midpoint = k12_df_all$midpoint / 1000000
+##k12_df_sig$midpoint = k12_df_sig$midpoint / 1000000
+##k12_df_non_sig$midpoint = k12_df_non_sig$midpoint / 1000000
+##summary(k12_df_sig)
+##p <- (ggplot(k12_df_sig, aes(x=midpoint, y=avg_exp, color=class,shape= class))
 ##   #non-sig pts in light grey, un-filled
-##   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y = avg_exp, color = "#BEBEBE"), alpha=0.7, shape=1)
+##   + geom_point(data = k12_df_all,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0 ,show.legend = FALSE, size=2.5 )
+##   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y =avg_exp,colour = "#BEBEBE",shape=class), alpha=0.5 ,show.legend = FALSE, size=2.5 )
 ##   #sig pts
-##   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class))
-###   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color =class),span=0.5, method = "loess")
-##   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"))
-####               position = position_jitter(width = 0.05)) +
-####  geom_point(size = 3) +
-###   + geom_point(size = 2, alpha=0.4)
-####  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
-#   + scale_y_continuous(trans='log10')
-##   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
-#)
-#pdf("genome_pos_inversions_k12_boxplot.pdf")
+###   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color=class,linetype=class),span=0.5, method = "loess")
+##   + scale_linetype_manual(values=c("solid", "dotted"))
+##   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class), size=2.5)
+##   + scale_color_manual(values = c("#BEBEBE","#5E85BA","#2E294E"),labels =c("Non-significant","Inverted","Non-inverted"))
+##   + scale_y_continuous(trans='log10')
+##   + scale_x_continuous(limits = c(0, 3))
+##   + labs(title= "",x = "Distance from the Origin of Replication (Mbp)", y = "Average Gene Expression (CPM)") 
+##   #colour for legend
+##   + guides(colour = guide_legend(override.aes = list(shape = override.shape, linetype = override.linetype, fill=NA,unit(3,"line"))))
+##   + scale_shape(guide = FALSE)
+##   + scale_linetype(guide = FALSE)
+##   + theme(legend.position = "none")
+##)
+#
+#pdf("genome_pos_inversions_k12.pdf")
 #p
 #dev.off()
-
-print("###################")
-print("# info about sig inversion blocks")
-print("###################")
-head(blocks_new)
-blocks_new$length <- blocks_new$end - blocks_new$start
-head(blocks_new)
-print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
-wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
-print("mean block length: sig blocks")
-summary(blocks_new$length[blocks_new$sig == "yes"])
-print("mean block length: non-sig blocks")
-summary(blocks_new$length[blocks_new$sig == "no"])
-print("diff btwn POSITION of inversions that have sig gene exp or not?")
-wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
-sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
-sub_blocks_new <- unique(sub_blocks_new)
-print("unique df")
-head(sub_blocks_new)
-tail(sub_blocks_new)
-wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
-
-
-print("###################")
-print("# Distance from the origin info:")
-print("###################")
-print("# LOGISTIC REGRESSION on rev_comp and dist (midpoint)")
-print("###################")
-#glm with logit link
-log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_rev_mid))
-print("###################")
-print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
-print("###################")
-#glm with logit link
-log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_rev_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
-print("###################")
-#glm with logit link
-log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_inv_mid))
-print("###################")
-print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
-print("###################")
-#glm with logit link
-log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
-print(summary(log_reg_inv_gbk))
-print("#################################################################")
-print("SIG diff in gene exp blocks")
-print("###################")
-print("# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, sig_blocks, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_mid))
-print("###################")
-print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, sig_blocks, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on all blocks sig and dist (gbk_midpoint)")
-print("###################")
-sig_df <- blocks_new %>% 
-    mutate(sig = recode(sig, 
-                      "yes" = "1", 
-                      "no" = "0"))
-sig_df$sig <- as.integer(as.character(sig_df$sig))
-summary(sig_df)
-#glm with logit link
-sig_log_reg_rev_gbk= glm(sig ~ gbk_midpoint, family=binomial, sig_df, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_gbk))
-
-print("###################")
-print("# LOGISTIC REGRESSION on all blocks sig and dist (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_rev_gbk= glm(sig ~ midpoint, family=binomial, sig_df, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_gbk))
-
-print("###################")
-print("# LOGISTIC REGRESSION on inverted blocks sig and dist (gbk_midpoint)")
-print("###################")
-sig_df <- sig_df %>% filter(inversion == 1)
-#glm with logit link
-sig_log_reg_rev_gbk= glm(sig ~ gbk_midpoint, family=binomial, sig_df, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_gbk))
-
-print("###################")
-print("# LOGISTIC REGRESSION on inverted blocks sig and dist (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_rev_gbk= glm(sig ~ midpoint, family=binomial, sig_df, control = list(maxit=1000))
-print(summary(sig_log_reg_rev_gbk))
-
-
-
-
-print("###################")
-print("# LOGISTIC REGRESSION on STRAINS")
-print("# ALL BLOCKS")
-print("###################")
-print("K12MG")
-tmp_bd <- gei_dat %>% filter(strain == "K12MG")
-head(tmp_bd)
-print("###################")
-print("# LOGISTIC REGRESSION on K12MG rev_comp (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on K12MG inversion (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-
-print("K12DH")
-tmp_bd <- gei_dat %>% filter(strain == "K12DH")
-head(tmp_bd)
-print("###################")
-print("# LOGISTIC REGRESSION on K12DH rev_comp (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on K12DH inversion (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-
-print("BW25113")
-tmp_bd <- gei_dat %>% filter(strain == "BW25113")
-head(tmp_bd)
-print("###################")
-print("# LOGISTIC REGRESSION on BW25113 rev_comp (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on BW25113 inversion (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-
-
-print("ATCC")
-tmp_bd <- gei_dat %>% filter(strain == "ATCC")
-head(tmp_bd)
-print("###################")
-print("# LOGISTIC REGRESSION on ATCC rev_comp (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-print("###################")
-print("# LOGISTIC REGRESSION on ATCC inversion (midpoint)")
-print("###################")
-#glm with logit link
-sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
-print(summary(sig_log_reg_inv_gbk))
-
-
-
-print("#############                 ")
-print("## DESeq expression comparison")
-print("#############                 ")
-print("getting total combos of inversions")
+#
+##print("##############")
+##print("boxplot test data")
+##print("##############")
+##head(bp_dat)
+##bp_dat$rev_comp <- as.factor(bp_dat$rev_comp)
+##sig_blocks <- k12_df_sig$block
+##bp_sig <- bp_dat %>% filter(block == sig_blocks) 
+##head(bp_sig)
+##tail(bp_sig)
+##
+##p <- (ggplot(bp_sig, aes(x=block, y=norm_exp, color=rev_comp))
+##   + geom_boxplot() 
+####  geom_jitter(aes(tt, val), data = df, colour = I("red"), 
+###   #non-sig pts in light grey, un-filled
+###   + geom_point(data = k12_df_non_sig,aes(x=midpoint,y = avg_exp, color = "#BEBEBE"), alpha=0.7, shape=1)
+###   #sig pts
+###   + geom_point(data = k12_df_sig,aes(x=midpoint,y = avg_exp, color = class))
+####   + geom_smooth(data=k12_df_sig,aes(x=midpoint,y = avg_exp,color =class),span=0.5, method = "loess")
+###   + scale_color_manual(values = c("#BEBEBE","#e07a5f","#3d405b"))
+#####               position = position_jitter(width = 0.05)) +
+#####  geom_point(size = 3) +
+####   + geom_point(size = 2, alpha=0.4)
+#####  geom_errorbar(aes(ymin=val-sd, ymax=val+sd), width = 0.01, size = 1)
+##   + scale_y_continuous(trans='log10')
+###   + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
+##)
+##pdf("genome_pos_inversions_k12_boxplot.pdf")
+##p
+##dev.off()
+#
+#print("###################")
+#print("# info about sig inversion blocks")
+#print("###################")
 #head(blocks_new)
-#inver_combos <- blocks_new %>% select(block,rev_comp,strain)
-#inver_combos <- unique(inver_combos)
-#print("test less taxa blocks")
+#blocks_new$length <- blocks_new$end - blocks_new$start
+#head(blocks_new)
+#print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
+#wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
+#print("mean block length: sig blocks")
+#summary(blocks_new$length[blocks_new$sig == "yes"])
+#print("mean block length: non-sig blocks")
+#summary(blocks_new$length[blocks_new$sig == "no"])
+#print("diff btwn POSITION of inversions that have sig gene exp or not?")
+#wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
+#sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
+#sub_blocks_new <- unique(sub_blocks_new)
+#print("unique df")
+#head(sub_blocks_new)
+#tail(sub_blocks_new)
+#wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
+#
+#
+#print("###################")
+#print("# Distance from the origin info:")
+#print("###################")
+#print("# LOGISTIC REGRESSION on rev_comp and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_rev_mid))
+#print("###################")
+#print("# LOGISTIC REGRESSION on rev_comp and dist (gbk_midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_rev_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on inversions and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_inv_mid = glm(inversion ~ midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_inv_mid))
+#print("###################")
+#print("# LOGISTIC REGRESSION on inversions and dist (gbk_midpoint)")
+#print("###################")
+##glm with logit link
+#log_reg_inv_gbk= glm(inversion ~ gbk_midpoint, family=binomial, gei_dat, control = list(maxit=1000))
+#print(summary(log_reg_inv_gbk))
+#print("#################################################################")
+#print("SIG diff in gene exp blocks")
+#print("###################")
+#print("# LOGISTIC REGRESSION on SIG rev_comp and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_rev_mid = glm(rev_comp ~ midpoint, family=binomial, sig_blocks, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_mid))
+#print("###################")
+#print("# LOGISTIC REGRESSION on SIG rev_comp and dist (gbk_midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_rev_gbk= glm(rev_comp ~ gbk_midpoint, family=binomial, sig_blocks, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on all blocks sig and dist (gbk_midpoint)")
+#print("###################")
+#sig_df <- blocks_new %>% 
+#    mutate(sig = recode(sig, 
+#                      "yes" = "1", 
+#                      "no" = "0"))
+#sig_df$sig <- as.integer(as.character(sig_df$sig))
+#summary(sig_df)
+##glm with logit link
+#sig_log_reg_rev_gbk= glm(sig ~ gbk_midpoint, family=binomial, sig_df, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_gbk))
+#
+#print("###################")
+#print("# LOGISTIC REGRESSION on all blocks sig and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_rev_gbk= glm(sig ~ midpoint, family=binomial, sig_df, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_gbk))
+#
+#print("###################")
+#print("# LOGISTIC REGRESSION on inverted blocks sig and dist (gbk_midpoint)")
+#print("###################")
+#sig_df <- sig_df %>% filter(inversion == 1)
+##glm with logit link
+#sig_log_reg_rev_gbk= glm(sig ~ gbk_midpoint, family=binomial, sig_df, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_gbk))
+#
+#print("###################")
+#print("# LOGISTIC REGRESSION on inverted blocks sig and dist (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_rev_gbk= glm(sig ~ midpoint, family=binomial, sig_df, control = list(maxit=1000))
+#print(summary(sig_log_reg_rev_gbk))
+#
+#
+#
+#
+#print("###################")
+#print("# LOGISTIC REGRESSION on STRAINS")
+#print("# ALL BLOCKS")
+#print("###################")
 #print("K12MG")
-#inver_combos %>% filter(strain == "K12MG") %>% filter(rev_comp == 1)
+#tmp_bd <- gei_dat %>% filter(strain == "K12MG")
+#head(tmp_bd)
+#print("###################")
+#print("# LOGISTIC REGRESSION on K12MG rev_comp (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on K12MG inversion (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#
 #print("K12DH")
-#inver_combos %>% filter(strain == "K12MG") %>% filter(rev_comp == 1)
+#tmp_bd <- gei_dat %>% filter(strain == "K12DH")
+#head(tmp_bd)
+#print("###################")
+#print("# LOGISTIC REGRESSION on K12DH rev_comp (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on K12DH inversion (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#
 #print("BW25113")
-#inver_combos %>% filter(strain == "BW25113") %>% filter(rev_comp == 1)
+#tmp_bd <- gei_dat %>% filter(strain == "BW25113")
+#head(tmp_bd)
+#print("###################")
+#print("# LOGISTIC REGRESSION on BW25113 rev_comp (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on BW25113 inversion (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#
+#
 #print("ATCC")
-#inver_combos %>% filter(strain == "ATCC") %>% filter(rev_comp == 1)
-#taxa_order_combo <- as.vector(unlist(unique(inver_combos$strain)))
-#print("order of taxa for inversion combos")
-#taxa_order_combo
-#rev1 <- inver_combos %>% filter(rev_comp == 1)
-#rev1
-#r2 <- inver_combos %>%
-#         group_by(block) %>% 
-#         summarise(combo = toString(rev_comp))
-##         summarise(combo = list(rev_comp))
-#r2 <- r2 %>%
-#    ungroup %>%
-#     unnest()
-#r2
+#tmp_bd <- gei_dat %>% filter(strain == "ATCC")
+#head(tmp_bd)
+#print("###################")
+#print("# LOGISTIC REGRESSION on ATCC rev_comp (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(rev_comp ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
+#print("###################")
+#print("# LOGISTIC REGRESSION on ATCC inversion (midpoint)")
+#print("###################")
+##glm with logit link
+#sig_log_reg_inv_gbk= glm(inversion ~ midpoint, family=binomial, tmp_bd, control = list(maxit=1000))
+#print(summary(sig_log_reg_inv_gbk))
 #
-#r2[which(r2$block == "Block62"),]
-#uniq_combos <- as.data.frame(unique(r2$combo))
-#colnames(uniq_combos) <- "pattern"
-#head(uniq_combos)
-#print("inver_combos")
-#uniq_combos <- uniq_combos %>% separate(pattern,
-#                taxa_order_combo,", ")
-#inver_combos_df <- as.data.frame(t(uniq_combos))
-##colnames(inver_combos_df) <- c("A","B")
-#inver_combos_df <- tibble::rownames_to_column(inver_combos_df, "strain")
+#
+#
+#print("#############                 ")
+#print("## DESeq expression comparison")
+#print("#############                 ")
+#print("getting total combos of inversions")
+##head(blocks_new)
+##inver_combos <- blocks_new %>% select(block,rev_comp,strain)
+##inver_combos <- unique(inver_combos)
+##print("test less taxa blocks")
+##print("K12MG")
+##inver_combos %>% filter(strain == "K12MG") %>% filter(rev_comp == 1)
+##print("K12DH")
+##inver_combos %>% filter(strain == "K12MG") %>% filter(rev_comp == 1)
+##print("BW25113")
+##inver_combos %>% filter(strain == "BW25113") %>% filter(rev_comp == 1)
+##print("ATCC")
+##inver_combos %>% filter(strain == "ATCC") %>% filter(rev_comp == 1)
+##taxa_order_combo <- as.vector(unlist(unique(inver_combos$strain)))
+##print("order of taxa for inversion combos")
+##taxa_order_combo
+##rev1 <- inver_combos %>% filter(rev_comp == 1)
+##rev1
+##r2 <- inver_combos %>%
+##         group_by(block) %>% 
+##         summarise(combo = toString(rev_comp))
+###         summarise(combo = list(rev_comp))
+##r2 <- r2 %>%
+##    ungroup %>%
+##     unnest()
+##r2
+##
+##r2[which(r2$block == "Block62"),]
+##uniq_combos <- as.data.frame(unique(r2$combo))
+##colnames(uniq_combos) <- "pattern"
+##head(uniq_combos)
+##print("inver_combos")
+##uniq_combos <- uniq_combos %>% separate(pattern,
+##                taxa_order_combo,", ")
+##inver_combos_df <- as.data.frame(t(uniq_combos))
+###colnames(inver_combos_df) <- c("A","B")
+##inver_combos_df <- tibble::rownames_to_column(inver_combos_df, "strain")
+##inver_combos_df
+#
+##read in the rev_comp data file:
+#rev_comp_inf <- read.csv("../new_dataframes/raw_rev_comp.csv", header = TRUE)
+#rev_comp_inf <- subset(rev_comp_inf, select = -c(1:4))
+#inver_combos_df <- unique(rev_comp_inf)
 #inver_combos_df
-
-#read in the rev_comp data file:
-rev_comp_inf <- read.csv("../new_dataframes/raw_rev_comp.csv", header = TRUE)
-rev_comp_inf <- subset(rev_comp_inf, select = -c(1:4))
-inver_combos_df <- unique(rev_comp_inf)
-inver_combos_df
-inver_combo <- rownames(inver_combos_df)
-inver_combos_df <- cbind(inver_combo=inver_combo, inver_combos_df)
-inver_combos_df <- gather(inver_combos_df, sample, treatment, ATCC_GSE94978_1:K12MG_GSE60522_3, factor_key=TRUE)
-#get strain info from sample ids
-inver_combos_df$strain <- gsub("_.*","",inver_combos_df$sample)
-#get experiment info from sample ids
-inver_combos_df$tmp_expID <- gsub("^.*_G","G",inver_combos_df$sample)
-inver_combos_df$expID <- gsub("_.*","",inver_combos_df$tmp_expID)
-inver_combos_df <- inver_combos_df %>% select(inver_combo,treatment,sample,strain,expID)
-inver_combos_df$expID <- as.factor(inver_combos_df$expID)
-head(inver_combos_df)
-
-##set up raw exp df
-##this will need to be changed once the real data comes in
-##********************
-print("read in raw data file of all combined experiements")
-raw_file <- as.character(args[7])
-raw_dat <- read.csv(raw_file, header = TRUE)
-#ensure that all raw values are integers
-raw_dat <- raw_dat %>% 
-                mutate_at(seq(5,23,1), as.integer)
-head(raw_dat)
-#dealing with one K12 gene that matches to multiple ATCC genes: b3894
-raw_dat <- raw_dat[-44,]
-print("duplicates")
-n_occur <- data.frame(table(raw_dat$MG_names))
-raw_dat[raw_dat$MG_names %in% n_occur$Var1[n_occur$Freq > 1],]
-#make df with JUST expression and experiment values
-raw_deseq <- raw_dat %>% select(MG_names,ATCC_GSE94978_1:K12MG_GSE60522_3)
-head(raw_deseq)
-raw_deseqW <- raw_deseq
-rownames(raw_deseqW) <- raw_deseq$MG_names
-raw_deseqW <- raw_deseqW[,-1]
-head(raw_deseqW)
-
-
-
-#print(unique(raw_dat$replicates))
-##make df with JUST expression and experiment values
-##raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp","strain","exp"))
-#raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_exp)
-#head(raw_deseq)
-##raw_deseq[c(564,2602,189,2264),]
-##raw_deseqW <- spread(raw_deseq,replicates, raw_ex)
-##head(raw_deseqW)
+#inver_combo <- rownames(inver_combos_df)
+#inver_combos_df <- cbind(inver_combo=inver_combo, inver_combos_df)
+#inver_combos_df <- gather(inver_combos_df, sample, treatment, ATCC_GSE94978_1:K12MG_GSE60522_3, factor_key=TRUE)
+##get strain info from sample ids
+#inver_combos_df$strain <- gsub("_.*","",inver_combos_df$sample)
+##get experiment info from sample ids
+#inver_combos_df$tmp_expID <- gsub("^.*_G","G",inver_combos_df$sample)
+#inver_combos_df$expID <- gsub("_.*","",inver_combos_df$tmp_expID)
+#inver_combos_df <- inver_combos_df %>% select(inver_combo,treatment,sample,strain,expID)
+#inver_combos_df$expID <- as.factor(inver_combos_df$expID)
+#head(inver_combos_df)
 #
-#print("#toy df with just K12MG experiments")
-##raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
-#raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_exp,strain)
-#raw_deseq$raw_exp <- as.integer(raw_deseq$raw_exp)
-#raw_deseqSubset <- raw_deseq[grep("K12MG", raw_deseq$strain), ]
-#head(raw_deseqSubset)
-#raw_deseqSubset <- raw_deseqSubset[c(-2602,-222,-2264,-5660,-3280,-5322),]
-#raw_deseqW <- spread(raw_deseqSubset,replicates, raw_exp)
-#raw_deseqW <- raw_deseqW[complete.cases(raw_deseqW),]
+###set up raw exp df
+###this will need to be changed once the real data comes in
+###********************
+#print("read in raw data file of all combined experiements")
+#raw_file <- as.character(args[7])
+#raw_dat <- read.csv(raw_file, header = TRUE)
+##ensure that all raw values are integers
+#raw_dat <- raw_dat %>% 
+#                mutate_at(seq(5,23,1), as.integer)
+#head(raw_dat)
+##dealing with one K12 gene that matches to multiple ATCC genes: b3894
+#raw_dat <- raw_dat[-44,]
+#print("duplicates")
+#n_occur <- data.frame(table(raw_dat$MG_names))
+#raw_dat[raw_dat$MG_names %in% n_occur$Var1[n_occur$Freq > 1],]
+##make df with JUST expression and experiment values
+#raw_deseq <- raw_dat %>% select(MG_names,ATCC_GSE94978_1:K12MG_GSE60522_3)
+#head(raw_deseq)
+#raw_deseqW <- raw_deseq
+#rownames(raw_deseqW) <- raw_deseq$MG_names
+#raw_deseqW <- raw_deseqW[,-1]
 #head(raw_deseqW)
 #
-#print("get file with sample info: ALL TAXA")
-#exp_info <- raw_dat %>% select(replicates,strain,exp)
-#exp_info <- unique(exp_info)
-#treatment_A <- c()
-#for(i in 1:length(exp_info$replicate)) {
-#    st <- exp_info$strain[i]
-#    inver_p <- inver_combos_df$A[which(inver_combos_df$strain == st)]
-#    treatment_A <- c(treatment_A,as.numeric(as.character(inver_p)))
-#}
-#treatment_B <- c()
-#for(i in 1:length(exp_info$replicate)) {
-#    st <- exp_info$strain[i]
-#    inver_p <- inver_combos_df$B[which(inver_combos_df$strain == st)]
-#    treatment_B <- c(treatment_B,as.numeric(as.character(inver_p)))
-#}
-#exp_info <- cbind(exp_info,treatment_A,treatment_B)
-#exp_info
 #
-#print("toy sample info: only DH")
-#sample_inf <- exp_info %>% filter(strain == "K12MG")
-#sample_inf$treatment_A[2] <- 1
-#class(sample_inf$starin)
-##sample_inf$strain[4] <- "FAKE"
-##sample_inf$strain <- replace(sample_inf$strain, 4, "FAKE")
-#sample_inf
 #
-print("#############################################################")
-print("DESeq on inversion combo 1")
-print("#############################################################")
-print("re-format sample info info format DESeq can recognize")
-#sampleData <- inver_combos_df %>% filter(inver_combo == 1)
-sampleData <- inver_combos_df %>% filter(inver_combo == 2179)
-sampleData <- sampleData %>% select(sample, strain, expID, treatment)
-colnames(sampleData) <- c("replicates","strain","expID","treatment")
-rownames(sampleData) <- sampleData$replicates
-sampleData$expID <- factor(sampleData$expID)
-sampleData$treatment <- factor(sampleData$treatment)
-sampleData$replicates <- factor(sampleData$replicates)
-sampleData$strain <- factor(sampleData$strain)
-sampleData <- sampleData[,-1]
-ind.n <- factor(c(1,2,1,2,3,1,1,2,1,2,3,4,1,2,1,2,1,2,3))
-sampleData$ind.n <- ind.n
-#sampleData <- sampleData %>% select(expID, treatment)
-sampleData <- tibble::rownames_to_column(sampleData, "sample")
-rownames(sampleData) <- sampleData$sample
-sampleData$sample<-as.factor(gsub("^.*\\_G","",sampleData$sample))
-sampleData
-write.table(sampleData, 'deseqExpDesign.csv', sep = ",")
-m1 <- model.matrix(~ expID + expID:ind.n + expID:treatment, sampleData)
-all.zero <- apply(m1, 2, function(x) all(x==0))
-idx <- which(all.zero)
-m1 <- m1[,-idx]
-m1
-m1 <- as.data.frame(m1)
-print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
-raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
-head(raw_deseqW)
-all(colnames(raw_deseqW) == rownames(sampleData))
-print("Order the treatments so that it is sensible: non-inversion (control) -> inversion")
-sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
-print("#############                 ")
-print("## DESeq analysis accounting for experiment effect")
-print("#############                 ")
-print("Create the DEseq2DataSet object")
-#sampleData <- sampleData[c(1,3,4,7),]
-#raw_deseqW <- raw_deseqW %>% 
-#              select(ATCC_GSE94978_1,BW25113_GSE73673_6,BW25113_GSE73673_7,K12DH_GSE98890_1)
-head(raw_deseqW)
-head(sampleData)
-print("DE btwn strains")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
-deseq_results <- DESeq(deseq2Data)
-print("done deseq")
-deseq_results2 <- results(deseq_results, alpha=0.05)
-# alpha = 0.05 is the  "cut-off" for significance (not really - I will
-# discuss).
-print("summary")
-summary(deseq_results2)
-print("DE btwn experiments")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  expID)
-deseq_results <- DESeq(deseq2Data)
-print("done deseq")
-deseq_results2 <- results(deseq_results,alpha=0.05)
-# alpha = 0.05 is the  "cut-off" for significance (not really - I will
-# discuss).
-print("summary")
-summary(deseq_results2)
-print("DE btwn treatments")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  treatment)
-deseq_results <- DESeq(deseq2Data)
-print("done deseq")
-str(deseq_results)
-deseq_results2 <- results(deseq_results, contrast = c("treatment", 1,0),  alpha=0.05)
-# alpha = 0.05 is the  "cut-off" for significance (not really - I will
-# discuss).
-deseq_results2 <- deseq_results2[order(deseq_results2$pvalue),]
-print("summary")
-summary(deseq_results2)
-print("check PCA")
-for_pca <- rlog(deseq_results, 
-                blind = TRUE)
-pdf("DESeq_all_tax_2Nov20.pdf")
-plotPCA(for_pca, 
-        intgroup=c("expID"),
-        ntop = 10000) 
-dev.off()
-print("check pvalue dist")
-pdf("DESeqtreatment_pval_dist.pdf")
-ggplot(data = as.data.frame(deseq_results2), aes(x = pvalue)) + 
-  geom_histogram(bins = 100)
-dev.off()
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain + treatment)
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + expID:ind.n + expID:treatment)
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=m1, design= ~ expIDGSE94978:treatment1 + expIDGSE98890:treatment1)
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=m1)
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
+##print(unique(raw_dat$replicates))
+###make df with JUST expression and experiment values
+###raw_deseq <- subset(raw_dat, select = c("Locus_tag","gene_id","inversion","replicates","raw_exp","strain","exp"))
+##raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_exp)
+##head(raw_deseq)
+###raw_deseq[c(564,2602,189,2264),]
+###raw_deseqW <- spread(raw_deseq,replicates, raw_ex)
+###head(raw_deseqW)
+##
+##print("#toy df with just K12MG experiments")
+###raw_deseq <- subset(raw_dat, select = c("gene_id","inversion","replicates","raw_exp"))
+##raw_deseq <- raw_dat %>% select(gene_id,replicates,raw_exp,strain)
+##raw_deseq$raw_exp <- as.integer(raw_deseq$raw_exp)
+##raw_deseqSubset <- raw_deseq[grep("K12MG", raw_deseq$strain), ]
+##head(raw_deseqSubset)
+##raw_deseqSubset <- raw_deseqSubset[c(-2602,-222,-2264,-5660,-3280,-5322),]
+##raw_deseqW <- spread(raw_deseqSubset,replicates, raw_exp)
+##raw_deseqW <- raw_deseqW[complete.cases(raw_deseqW),]
+##head(raw_deseqW)
+##
+##print("get file with sample info: ALL TAXA")
+##exp_info <- raw_dat %>% select(replicates,strain,exp)
+##exp_info <- unique(exp_info)
+##treatment_A <- c()
+##for(i in 1:length(exp_info$replicate)) {
+##    st <- exp_info$strain[i]
+##    inver_p <- inver_combos_df$A[which(inver_combos_df$strain == st)]
+##    treatment_A <- c(treatment_A,as.numeric(as.character(inver_p)))
+##}
+##treatment_B <- c()
+##for(i in 1:length(exp_info$replicate)) {
+##    st <- exp_info$strain[i]
+##    inver_p <- inver_combos_df$B[which(inver_combos_df$strain == st)]
+##    treatment_B <- c(treatment_B,as.numeric(as.character(inver_p)))
+##}
+##exp_info <- cbind(exp_info,treatment_A,treatment_B)
+##exp_info
+##
+##print("toy sample info: only DH")
+##sample_inf <- exp_info %>% filter(strain == "K12MG")
+##sample_inf$treatment_A[2] <- 1
+##class(sample_inf$starin)
+###sample_inf$strain[4] <- "FAKE"
+###sample_inf$strain <- replace(sample_inf$strain, 4, "FAKE")
+##sample_inf
+##
+#print("#############################################################")
+#print("DESeq on inversion combo 1")
+#print("#############################################################")
+#print("re-format sample info info format DESeq can recognize")
+##sampleData <- inver_combos_df %>% filter(inver_combo == 1)
+#sampleData <- inver_combos_df %>% filter(inver_combo == 2179)
+#sampleData <- sampleData %>% select(sample, strain, expID, treatment)
+#colnames(sampleData) <- c("replicates","strain","expID","treatment")
+#rownames(sampleData) <- sampleData$replicates
+#sampleData$expID <- factor(sampleData$expID)
+#sampleData$treatment <- factor(sampleData$treatment)
+#sampleData$replicates <- factor(sampleData$replicates)
+#sampleData$strain <- factor(sampleData$strain)
+#sampleData <- sampleData[,-1]
+#ind.n <- factor(c(1,2,1,2,3,1,1,2,1,2,3,4,1,2,1,2,1,2,3))
+#sampleData$ind.n <- ind.n
+##sampleData <- sampleData %>% select(expID, treatment)
+#sampleData <- tibble::rownames_to_column(sampleData, "sample")
+#rownames(sampleData) <- sampleData$sample
+#sampleData$sample<-as.factor(gsub("^.*\\_G","",sampleData$sample))
+#sampleData
+#write.table(sampleData, 'deseqExpDesign.csv', sep = ",")
+#m1 <- model.matrix(~ expID + expID:ind.n + expID:treatment, sampleData)
+#all.zero <- apply(m1, 2, function(x) all(x==0))
+#idx <- which(all.zero)
+#m1 <- m1[,-idx]
+#m1
+#m1 <- as.data.frame(m1)
+#print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
+#raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
+#head(raw_deseqW)
+#all(colnames(raw_deseqW) == rownames(sampleData))
+#print("Order the treatments so that it is sensible: non-inversion (control) -> inversion")
+#sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
+#print("#############                 ")
+#print("## DESeq analysis accounting for experiment effect")
+#print("#############                 ")
+#print("Create the DEseq2DataSet object")
+##sampleData <- sampleData[c(1,3,4,7),]
+##raw_deseqW <- raw_deseqW %>% 
+##              select(ATCC_GSE94978_1,BW25113_GSE73673_6,BW25113_GSE73673_7,K12DH_GSE98890_1)
+#head(raw_deseqW)
+#head(sampleData)
+#print("DE btwn strains")
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
 #deseq_results <- DESeq(deseq2Data)
 #print("done deseq")
 #deseq_results2 <- results(deseq_results, alpha=0.05)
@@ -1218,69 +1217,44 @@ dev.off()
 ## discuss).
 #print("summary")
 #summary(deseq_results2)
-##deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
-## Coerce to a data frame
-#deseq2ResDF <- as.data.frame(deseq_results2)
-#
-## Examine this data frame
-#head(deseq2ResDF)
-#
-## Set a boolean column for significance
-#deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1, "Significant", NA)
-#
-## Plot the results similar to DEseq2
-#p <- (ggplot(deseq2ResDF, aes(baseMean, log2FoldChange, colour=significant))
-#+ geom_point(size=1) + scale_y_continuous(limits=c(-3, 3), oob=squish)
-#+ scale_x_log10() 
-#+ geom_hline(yintercept = 0, colour="tomato1",size=2) 
-#+ labs(x="Mean of Normalized Counts", y="Log Fold Change") 
-#+ scale_colour_manual(name="q-value", values=("Significant"="red"),na.value="grey50") 
-#)
-#
+#print("DE btwn experiments")
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  expID)
+#deseq_results <- DESeq(deseq2Data)
+#print("done deseq")
+#deseq_results2 <- results(deseq_results,alpha=0.05)
+## alpha = 0.05 is the  "cut-off" for significance (not really - I will
+## discuss).
+#print("summary")
+#summary(deseq_results2)
+#print("DE btwn treatments")
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  treatment)
+#deseq_results <- DESeq(deseq2Data)
+#print("done deseq")
+#str(deseq_results)
+#deseq_results2 <- results(deseq_results, contrast = c("treatment", 1,0),  alpha=0.05)
+## alpha = 0.05 is the  "cut-off" for significance (not really - I will
+## discuss).
+#deseq_results2 <- deseq_results2[order(deseq_results2$pvalue),]
+#print("summary")
+#summary(deseq_results2)
+#print("check PCA")
+#for_pca <- rlog(deseq_results, 
+#                blind = TRUE)
 #pdf("DESeq_all_tax_2Nov20.pdf")
-##plotMA(deseq_results2)
-#p
+#plotPCA(for_pca, 
+#        intgroup=c("expID"),
+#        ntop = 10000) 
 #dev.off()
-#
-#
-#
-#
-#
-#
-##sampleData <- sample_inf
-##rownames(sampleData) <- sampleData$replicate
-###keep <- c("treatment_A","exp","strain")
-###sampleData <- sampleData[,keep]
-##colnames(sampleData) <- c("replicates","strain","expID","treatment")
-##sampleData$expID <- factor(sampleData$expID)
-##sampleData$treatment <- factor(sampleData$treatment)
-##sampleData$replicates <- factor(sampleData$replicates)
-##sampleData$strain <- factor(sampleData$strain)
-##sampleData
-##print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
-##raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
-##head(raw_deseqW)
-##all(colnames(raw_deseqW) == rownames(sampleData))
-##print("Order the treatments so that it is sensible: non-inversion (basically control) -> inversion")
-##sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
-##print("#############                 ")
-##print("## DESeq looking at experiment effect")
-##print("#############                 ")
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID)
-##deseq_results <- DESeq(deseq2Data)
-##print("done deseq")
-##deseq_results2 <- results(deseq_results, alpha=0.05)
-### alpha = 0.05 is the  "cut-off" for significance (not really - I will
-### discuss).
-##print("summary")
-##summary(deseq_results2)
-##print("we see that a lot of genes are differentially expressed (up or down reg), therefore we need to account for experiment effects")
-##
-##print("#############                 ")
-##print("## DESeq analysis accounting for experiment effect")
-##print("#############                 ")
-##print("Create the DEseq2DataSet object")
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + treatment)
+#print("check pvalue dist")
+#pdf("DESeqtreatment_pval_dist.pdf")
+#ggplot(data = as.data.frame(deseq_results2), aes(x = pvalue)) + 
+#  geom_histogram(bins = 100)
+#dev.off()
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain + treatment)
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + expID:ind.n + expID:treatment)
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=m1, design= ~ expIDGSE94978:treatment1 + expIDGSE98890:treatment1)
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=m1)
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
 ##deseq_results <- DESeq(deseq2Data)
 ##print("done deseq")
 ##deseq_results2 <- results(deseq_results, alpha=0.05)
@@ -1296,8 +1270,7 @@ dev.off()
 ##head(deseq2ResDF)
 ##
 ### Set a boolean column for significance
-##deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1,
-##"Significant", NA)
+##deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1, "Significant", NA)
 ##
 ### Plot the results similar to DEseq2
 ##p <- (ggplot(deseq2ResDF, aes(baseMean, log2FoldChange, colour=significant))
@@ -1308,1713 +1281,1784 @@ dev.off()
 ##+ scale_colour_manual(name="q-value", values=("Significant"="red"),na.value="grey50") 
 ##)
 ##
-##pdf("DESeq_K12MG_DE_genes_8Oct2020.pdf")
+##pdf("DESeq_all_tax_2Nov20.pdf")
 ###plotMA(deseq_results2)
 ##p
 ##dev.off()
-##print("#############                 ")
-##print("## DESeq without accounting for experiment effect")
-##print("#############                 ")
-##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
-##deseq_results <- DESeq(deseq2Data)
-##print("done deseq")
-##deseq_results2 <- results(deseq_results, alpha=0.05)
-### alpha = 0.05 is the  "cut-off" for significance (not really - I will
-### discuss).
-##print("summary")
-##summary(deseq_results2)
 ##
 ##
 ##
 ##
-###deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
-####load.model <- formula(~ expID+ strain + treatment)
-###test_rep_effects <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design=load.model)
-###test_rep_effects2 <- DESeq(test_rep_effects)
+##
+##
+###sampleData <- sample_inf
+###rownames(sampleData) <- sampleData$replicate
+####keep <- c("treatment_A","exp","strain")
+####sampleData <- sampleData[,keep]
+###colnames(sampleData) <- c("replicates","strain","expID","treatment")
+###sampleData$expID <- factor(sampleData$expID)
+###sampleData$treatment <- factor(sampleData$treatment)
+###sampleData$replicates <- factor(sampleData$replicates)
+###sampleData$strain <- factor(sampleData$strain)
+###sampleData
+###print("Put the columns of the count data in the same order as rows names of the sample info, then make sure it worked")
+###raw_deseqW <- raw_deseqW[,unique(rownames(sampleData))]
+###head(raw_deseqW)
+###all(colnames(raw_deseqW) == rownames(sampleData))
+###print("Order the treatments so that it is sensible: non-inversion (basically control) -> inversion")
+###sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
+###print("#############                 ")
+###print("## DESeq looking at experiment effect")
+###print("#############                 ")
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID)
+###deseq_results <- DESeq(deseq2Data)
 ###print("done deseq")
-###test_rep_effects2_results <- results(test_rep_effects2, alpha=0.05)
+###deseq_results2 <- results(deseq_results, alpha=0.05)
 #### alpha = 0.05 is the  "cut-off" for significance (not really - I will
 #### discuss).
 ###print("summary")
-###summary(test_rep_effects2_results)
-#### 2 genes which may show  evidence of lane effects, but this is a bit
-#### incomplete for the full data set.
-###print("plot results")
-###pdf("exp_effect_deseq.pdf")
-###plotMA(test_rep_effects2_results)
-###dev.off()
+###summary(deseq_results2)
+###print("we see that a lot of genes are differentially expressed (up or down reg), therefore we need to account for experiment effects")
 ###
-####ians test for lane effects
-###for_pca <- rlog(test_rep_effects2, 
-###                blind = TRUE)
+###print("#############                 ")
+###print("## DESeq analysis accounting for experiment effect")
+###print("#############                 ")
+###print("Create the DEseq2DataSet object")
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + treatment)
+###deseq_results <- DESeq(deseq2Data)
+###print("done deseq")
+###deseq_results2 <- results(deseq_results, alpha=0.05)
+#### alpha = 0.05 is the  "cut-off" for significance (not really - I will
+#### discuss).
+###print("summary")
+###summary(deseq_results2)
+####deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
+#### Coerce to a data frame
+###deseq2ResDF <- as.data.frame(deseq_results2)
 ###
-###pdf("PCA_effect_deseq.pdf")
-###plotPCA(for_pca, 
-###        intgroup=c("expID"),
-###        ntop = 500) 
-###dev.off()
-####head(test_rep_effects2_results)
-##
-### We now fit the simple model
-###rownames(raw_deseqW) <- raw_deseqW$gene_id
-###raw_deseqW <- raw_deseqW[,c(-1,-2)]
-###inversion <- raw_deseqW$inversion
-###head(raw_deseqW)
-###tail(raw_deseqW)
-#### set up experimental design
-###experimental_design = data.frame(
-###  sample_names = colnames(raw_deseqW),  # sample name
-####  individual = factor(colnames(exp_df)), # each individual strain
-###  treatment = factor(inversion)  # inversion = 1 or no inversion = 0
-####  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
+#### Examine this data frame
+###head(deseq2ResDF)
+###
+#### Set a boolean column for significance
+###deseq2ResDF$significant <- ifelse(deseq2ResDF$padj < .1,
+###"Significant", NA)
+###
+#### Plot the results similar to DEseq2
+###p <- (ggplot(deseq2ResDF, aes(baseMean, log2FoldChange, colour=significant))
+###+ geom_point(size=1) + scale_y_continuous(limits=c(-3, 3), oob=squish)
+###+ scale_x_log10() 
+###+ geom_hline(yintercept = 0, colour="tomato1",size=2) 
+###+ labs(x="Mean of Normalized Counts", y="Log Fold Change") 
+###+ scale_colour_manual(name="q-value", values=("Significant"="red"),na.value="grey50") 
 ###)
-###DESeq_data <- DESeqDataSetFromMatrix(raw_deseqW, experimental_design, design = formula(~ treatment))
+###
+###pdf("DESeq_K12MG_DE_genes_8Oct2020.pdf")
+####plotMA(deseq_results2)
+###p
+###dev.off()
+###print("#############                 ")
+###print("## DESeq without accounting for experiment effect")
+###print("#############                 ")
+###deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
+###deseq_results <- DESeq(deseq2Data)
+###print("done deseq")
+###deseq_results2 <- results(deseq_results, alpha=0.05)
+#### alpha = 0.05 is the  "cut-off" for significance (not really - I will
+#### discuss).
+###print("summary")
+###summary(deseq_results2)
 ###
 ###
 ###
-####read in gene mapping file to tell us which genes are homologous
-###gmap_file <- as.character(args[8])
-###gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
-####reshape
-###gmaps <- subset(gmap, select = c("V2","V4","V6","V8"))
-###colnames(gmaps) <- c("CP009072","CP009273","NC_010473","U00096000") 
 ###
-####tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
-####DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
-####MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
-####DH <- data.frame(DH[!duplicated(DH[ , c("gene_id")]),])
-####levels(DH$strain) <- c(levels(DH$strain), "K12DH_i")
-####DH$strain[DH$inversion == 1] <- "K12DH_i"
-####MG <- data.frame(MG[!duplicated(MG[ , c("gene_id")]),])
-####levels(MG$strain) <- c(levels(MG$strain), "K12MG_i")
-####MG$strain[MG$inversion == 1] <- "K12MG_i"
-####gene_names <- unique(MG$gene_id)
-####DH <- unique(DH[which(DH$gene_id %in% gene_names),])
-####exp_df <- rbind(DH,MG)
-####exp_df <- spread(exp_df, strain, norm_exp)
-####rownames(exp_df) <- exp_df$gene_id
-####exp_df <- exp_df[,-1]
-#####inversions_col <- exp_df$inversion
-####exp_df <- exp_df[,-1]
-#####********************
-####t_count = 1
-####t <- vector(mode='character', length = length(colnames(exp_df)))
-####for (l in colnames(exp_df)) {
-####  tmp_vec <- strsplit(l, "_")
-####  tmp_l <- length(unlist(tmp_vec))
-####  if (tmp_l > 1){
-####    t[t_count] <- "inversion"
-####  } else {
-####    t[t_count] <- "none"
-####  }
-####  t_count <- t_count +1
-####}
-#####deal with NA values
-####exp_df <- exp_df %>% replace(is.na(.), 0)
+####deseq2Data <- DESeqDataSetFromTximport(countData=raw_deseqW, colData=sampleData, design= ~ treatment)
+#####load.model <- formula(~ expID+ strain + treatment)
+####test_rep_effects <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design=load.model)
+####test_rep_effects2 <- DESeq(test_rep_effects)
+####print("done deseq")
+####test_rep_effects2_results <- results(test_rep_effects2, alpha=0.05)
+##### alpha = 0.05 is the  "cut-off" for significance (not really - I will
+##### discuss).
+####print("summary")
+####summary(test_rep_effects2_results)
+##### 2 genes which may show  evidence of lane effects, but this is a bit
+##### incomplete for the full data set.
+####print("plot results")
+####pdf("exp_effect_deseq.pdf")
+####plotMA(test_rep_effects2_results)
+####dev.off()
 ####
-####print(t)
+#####ians test for lane effects
+####for_pca <- rlog(test_rep_effects2, 
+####                blind = TRUE)
+####
+####pdf("PCA_effect_deseq.pdf")
+####plotPCA(for_pca, 
+####        intgroup=c("expID"),
+####        ntop = 500) 
+####dev.off()
+#####head(test_rep_effects2_results)
+###
+#### We now fit the simple model
+####rownames(raw_deseqW) <- raw_deseqW$gene_id
+####raw_deseqW <- raw_deseqW[,c(-1,-2)]
+####inversion <- raw_deseqW$inversion
+####head(raw_deseqW)
+####tail(raw_deseqW)
 ##### set up experimental design
 ####experimental_design = data.frame(
-####  sample_names = colnames(exp_df),  # sample name
+####  sample_names = colnames(raw_deseqW),  # sample name
 #####  individual = factor(colnames(exp_df)), # each individual strain
-####  treatment = factor(t)  # inversion = 1 or no inversion = 0
+####  treatment = factor(inversion)  # inversion = 1 or no inversion = 0
 #####  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
 ####)
+####DESeq_data <- DESeqDataSetFromMatrix(raw_deseqW, experimental_design, design = formula(~ treatment))
 ####
-####DESeq_data <- DESeqDataSetFromMatrix(exp_df, experimental_design, design = formula(~ treatment))
 ####
+####
+#####read in gene mapping file to tell us which genes are homologous
+####gmap_file <- as.character(args[8])
+####gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
+#####reshape
+####gmaps <- subset(gmap, select = c("V2","V4","V6","V8"))
+####colnames(gmaps) <- c("CP009072","CP009273","NC_010473","U00096000") 
+####
+#####tmp_df <- gei_dat[,c("norm_exp","gene_id","strain","inversion")]
+#####DH <- tmp_df[which(tmp_df$strain == "K12DH"),]
+#####MG <- unique(tmp_df[which(tmp_df$strain == "K12MG"),])
+#####DH <- data.frame(DH[!duplicated(DH[ , c("gene_id")]),])
+#####levels(DH$strain) <- c(levels(DH$strain), "K12DH_i")
+#####DH$strain[DH$inversion == 1] <- "K12DH_i"
+#####MG <- data.frame(MG[!duplicated(MG[ , c("gene_id")]),])
+#####levels(MG$strain) <- c(levels(MG$strain), "K12MG_i")
+#####MG$strain[MG$inversion == 1] <- "K12MG_i"
+#####gene_names <- unique(MG$gene_id)
+#####DH <- unique(DH[which(DH$gene_id %in% gene_names),])
+#####exp_df <- rbind(DH,MG)
+#####exp_df <- spread(exp_df, strain, norm_exp)
+#####rownames(exp_df) <- exp_df$gene_id
+#####exp_df <- exp_df[,-1]
+######inversions_col <- exp_df$inversion
+#####exp_df <- exp_df[,-1]
+######********************
+#####t_count = 1
+#####t <- vector(mode='character', length = length(colnames(exp_df)))
+#####for (l in colnames(exp_df)) {
+#####  tmp_vec <- strsplit(l, "_")
+#####  tmp_l <- length(unlist(tmp_vec))
+#####  if (tmp_l > 1){
+#####    t[t_count] <- "inversion"
+#####  } else {
+#####    t[t_count] <- "none"
+#####  }
+#####  t_count <- t_count +1
+#####}
+######deal with NA values
+#####exp_df <- exp_df %>% replace(is.na(.), 0)
+#####
+#####print(t)
+###### set up experimental design
+#####experimental_design = data.frame(
+#####  sample_names = colnames(exp_df),  # sample name
+######  individual = factor(colnames(exp_df)), # each individual strain
+#####  treatment = factor(t)  # inversion = 1 or no inversion = 0
+######  lane = factor(parse_names[,3])      # Which lane on the Illumina flowcell.
+#####)
+#####
+#####DESeq_data <- DESeqDataSetFromMatrix(exp_df, experimental_design, design = formula(~ treatment))
+#####
+####
+####
+################
+##### ALL inversions
+################
+####
+####
+####
+#####t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
+#####
+#####test_inver <- gei_dat %>% filter(inversion == 1)
+#####test_revcomp <- gei_dat %>% filter(rev_comp == 1)
+#####
+#####gei_dat %>% filter(block == "Block800") %>%
+#####  filter(rev_comp == 1)
+#####gei_dat %>% filter(block == "Block800") %>%
+#####  filter(rev_comp == 0)
+#####
+#####gei_dat %>% select(block, inversion, rev_comp, norm_exp) %>%
+#####  group_by(block, rev_comp)
+#####
+#####gei_dat %>%
+#####  select(filter(rev_comp == 1),block, norm_exp, inversion)
+#####
+#####
+#####gei_dat %>%
+#####  filter(block == "Block800" && block == "Block799") %>%
+#####  group_by(block) %>%
+#####  do(tidy(t.test(norm_exp ~ rev_comp, data = .)))
+#####
+######inverted rows we want
+#####gei_dat[gei_dat$block %in% gei_dat$block[gei_dat$rev_comp == 1],]
+#####gei_dat %>%
+#####  filter(rev_comp == 1)
+#####
 ###
 ###
-###############
-#### ALL inversions
-###############
-###
-###
-###
-####t.test(gei_dat$norm_exp[gei_dat$block == "Block800",], gei_dat$norm_exp[gei_dat$block == "Block800",])
-####
-####test_inver <- gei_dat %>% filter(inversion == 1)
-####test_revcomp <- gei_dat %>% filter(rev_comp == 1)
-####
-####gei_dat %>% filter(block == "Block800") %>%
-####  filter(rev_comp == 1)
-####gei_dat %>% filter(block == "Block800") %>%
-####  filter(rev_comp == 0)
-####
-####gei_dat %>% select(block, inversion, rev_comp, norm_exp) %>%
-####  group_by(block, rev_comp)
-####
-####gei_dat %>%
-####  select(filter(rev_comp == 1),block, norm_exp, inversion)
-####
-####
-####gei_dat %>%
-####  filter(block == "Block800" && block == "Block799") %>%
-####  group_by(block) %>%
-####  do(tidy(t.test(norm_exp ~ rev_comp, data = .)))
-####
-#####inverted rows we want
-####gei_dat[gei_dat$block %in% gei_dat$block[gei_dat$rev_comp == 1],]
-####gei_dat %>%
-####  filter(rev_comp == 1)
-####
-##
-##
-##################################################
-print("HNS BINDING")
-print("##################################################")
-
-
-#read in the data
-#and format
-
-# K12 MG1655
-print("Grainger 2006 cutoff")
-graniger_dat <- read.csv("../HNS_protein/raw_data_files/Grainger_2006_HNS_binding_cutoff_coding_and_noncoding.csv", header = TRUE)
-sub_g_dat <- graniger_dat %>%
-             select(Gene.name,Coordinates)
-colnames(sub_g_dat) <- c("gene_name","Coords")
-coords <- str_split_fixed(sub_g_dat$Coords, "-", 2)
-colnames(coords) <- c("start","end")
-sub_g_dat <- cbind(sub_g_dat,coords)
-sub_g_dat <- sub_g_dat %>%
-             select(gene_name,start,end) %>%
-             filter(gene_name != "Between convergent ORFs") %>%
-             filter(start != "N/A")
-gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
-gene_inf <- gene_inf %>% select(gbk_strand,gbk_gene_id)
-colnames(gene_inf) <- c("gbk_strand","gene_name")
-head(gene_inf)
-#sub_g_dat <- merge(sub_g_dat,gene_inf, by = "gene_name")
-head(sub_g_dat)
-
-#below has to be combined with gene info file for K12MG
-# W3
-print("Higashi 2016 coding")
-file <- "../HNS_protein/raw_data_files/Higashi_2016_HNS_binding_sites_coding.csv"
-higashi_dat <- read.csv(file, header = TRUE)
-h_hgt_dat <- higashi_dat[,c(2,5)]
-colnames(h_hgt_dat) <- c("gene_name","HGT")
-gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
-gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
-colnames(gene_inf) <- c("start","end","gbk_midpoint","gene_name")
-h_hgt_dat  <- merge(h_hgt_dat,gene_inf, by = "gene_name")
-sub_h_dat <- higashi_dat[,c(2,6,7,8)]
-colnames(sub_h_dat) <- c("gene_name","HNS_binding","HNS_cutoff","HNS_transcript")
-gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
-gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
-colnames(gene_inf) <- c("start","end","gbk_midpoint","gene_name")
-sub_h_df <- merge(sub_h_dat,gene_inf, by = "gene_name")
-hns_viz_h1 <- sub_h_df
-head(sub_h_df)
-#non-coding Higashi
-print("Higashi 2016 non-coding")
-file <- "../HNS_protein/raw_data_files/higashi_nc_dat.csv"
-higashi_nc_dat <- read.csv(file, header = TRUE)
-sub_hnc_dat <- higashi_nc_dat[,c(6,7,8,10,11)]
-head(sub_hnc_dat)
-
-# W3
-print("Ueda 2013")
-ueda_dat <- read.csv("../HNS_protein/raw_data_files/Ueda_2013_HNS_binding_sites_W3110.csv", header = TRUE)
-sub_u_dat <- ueda_dat[,c(1,2)]
-colnames(sub_u_dat) <- c("start","end")
-sub_u_dat <- na.omit(sub_u_dat)
-head(sub_u_dat)
-
-
-print("Lang 2007")
-print("all data is an HNS binding site")
-lang_dat <- read.csv("../HNS_protein/raw_data_files/Lang_2007_HNS_binding.csv", header = TRUE)
-sub_l_df <- na.omit(lang_dat)
-head(sub_l_df)
-
-print("Oshima 2006")
-oshima_dat <- read.csv("../HNS_protein/raw_data_files/Oshima_2006_HGT_HNS.csv", header = TRUE)
-oshima_dat$Nakamura[is.na(oshima_dat$Nakamura)] <- 0
-oshima_dat$Lawrence[is.na(oshima_dat$Lawrence)] <- 0
-oshima_dat$hns[is.na(oshima_dat$hns)] <- 0
-oshima_dat <- oshima_dat %>% drop_na(start)
-sub_o_df <- filter(oshima_dat, hns == 1)
-head(sub_o_df)
-
-print("combine HNS binary info to inversion df")
-print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
-head(inver_dat_bidir)
-inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
-            select(gbk_start,gbk_end,inversion,block)
+###################################################
+#print("HNS BINDING")
+#print("##################################################")
+#
+#
+##read in the data
+##and format
+#
+## K12 MG1655
+#print("Grainger 2006 cutoff")
+#graniger_dat <- read.csv("../HNS_protein/raw_data_files/Grainger_2006_HNS_binding_cutoff_coding_and_noncoding.csv", header = TRUE)
+#sub_g_dat <- graniger_dat %>%
+#             select(Gene.name,Coordinates)
+#colnames(sub_g_dat) <- c("gene_name","Coords")
+#coords <- str_split_fixed(sub_g_dat$Coords, "-", 2)
+#colnames(coords) <- c("start","end")
+#sub_g_dat <- cbind(sub_g_dat,coords)
+#sub_g_dat <- sub_g_dat %>%
+#             select(gene_name,start,end) %>%
+#             filter(gene_name != "Between convergent ORFs") %>%
+#             filter(start != "N/A")
+#gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
+#gene_inf <- gene_inf %>% select(gbk_strand,gbk_gene_id)
+#colnames(gene_inf) <- c("gbk_strand","gene_name")
+#head(gene_inf)
+##sub_g_dat <- merge(sub_g_dat,gene_inf, by = "gene_name")
+#head(sub_g_dat)
+#
+##below has to be combined with gene info file for K12MG
+## W3
+#print("Higashi 2016 coding")
+#file <- "../HNS_protein/raw_data_files/Higashi_2016_HNS_binding_sites_coding.csv"
+#higashi_dat <- read.csv(file, header = TRUE)
+#h_hgt_dat <- higashi_dat[,c(2,5)]
+#colnames(h_hgt_dat) <- c("gene_name","HGT")
+#gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
+#gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
+#colnames(gene_inf) <- c("start","end","gbk_midpoint","gene_name")
+#h_hgt_dat  <- merge(h_hgt_dat,gene_inf, by = "gene_name")
+#sub_h_dat <- higashi_dat[,c(2,6,7,8)]
+#colnames(sub_h_dat) <- c("gene_name","HNS_binding","HNS_cutoff","HNS_transcript")
+#gene_inf <- read.table("../Genomes/Ecoli_K12_MG1655_chrom_U00096_gene_info.txt", header = TRUE)
+#gene_inf <- gene_inf %>% select(gbk_start,gbk_end,gbk_midpoint,gbk_gene_id)
+#colnames(gene_inf) <- c("start","end","gbk_midpoint","gene_name")
+#sub_h_df <- merge(sub_h_dat,gene_inf, by = "gene_name")
+#hns_viz_h1 <- sub_h_df
+#head(sub_h_df)
+##non-coding Higashi
+#print("Higashi 2016 non-coding")
+#file <- "../HNS_protein/raw_data_files/higashi_nc_dat.csv"
+#higashi_nc_dat <- read.csv(file, header = TRUE)
+#sub_hnc_dat <- higashi_nc_dat[,c(6,7,8,10,11)]
+#head(sub_hnc_dat)
+#
+## W3
+#print("Ueda 2013")
+#ueda_dat <- read.csv("../HNS_protein/raw_data_files/Ueda_2013_HNS_binding_sites_W3110.csv", header = TRUE)
+#sub_u_dat <- ueda_dat[,c(1,2)]
+#colnames(sub_u_dat) <- c("start","end")
+#sub_u_dat <- na.omit(sub_u_dat)
+#head(sub_u_dat)
+#
+#
+#print("Lang 2007")
+#print("all data is an HNS binding site")
+#lang_dat <- read.csv("../HNS_protein/raw_data_files/Lang_2007_HNS_binding.csv", header = TRUE)
+#sub_l_df <- na.omit(lang_dat)
+#head(sub_l_df)
+#
+#print("Oshima 2006")
+#oshima_dat <- read.csv("../HNS_protein/raw_data_files/Oshima_2006_HGT_HNS.csv", header = TRUE)
+#oshima_dat$Nakamura[is.na(oshima_dat$Nakamura)] <- 0
+#oshima_dat$Lawrence[is.na(oshima_dat$Lawrence)] <- 0
+#oshima_dat$hns[is.na(oshima_dat$hns)] <- 0
+#oshima_dat <- oshima_dat %>% drop_na(start)
+#sub_o_df <- filter(oshima_dat, hns == 1)
+#head(sub_o_df)
+#
+#print("combine HNS binary info to inversion df")
+#print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
+#head(inver_dat_bidir)
+#inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
+#            select(gbk_start,gbk_end,inversion,block)
+##            select(start,end)
+##colnames(inver_cor_d) <- c("start1","end1")
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block")
+#inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
+#inver_cor_d <- unique(inver_cor_d)
+#head(inver_cor_d)
+#write.table(inver_cor_d, 'inver_cor_data.csv', sep = "\t")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR GRAINGER 2006 cutoff DATA")
+#print("################################################################################")
+#print("hns")
+#head(sub_g_dat)
+#sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
+#sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
+#hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
+#colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+#class2 <- rep("G_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding")
+#inver_cor_d$G_HNS_binding <- as.integer(inver_cor_d$G_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$G_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+##filter by K12 strain and ensure that we are only looking at the wilcoxon test results
+#cor_dat <- cor_dat %>% filter(strain == "K12MG") %>% filter(test == "block_w_pvalue")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#summary(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "G_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$G_HNS_binding <- as.integer(cor_dat$G_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#cor_dat$inversion <- as.integer(cor_dat$inversion)
+#head(cor_dat)
+#tail(cor_dat)
+#summary(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$G_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$G_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR UEDA 2013 cutoff DATA")
+#print("################################################################################")
+#print("hns")
+#head(sub_u_dat)
+#sub_u_dat$start <- as.numeric(as.character(sub_u_dat$start))
+#sub_u_dat$end <- as.numeric(as.character(sub_u_dat$end))
+#hns_dat <- within(sub_u_dat, midpoint <- (end + start) /2)
+#colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+#class2 <- rep("U_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding")
+#inver_cor_d$U_HNS_binding <- as.integer(inver_cor_d$U_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$U_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "U_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$U_HNS_binding <- as.integer(cor_dat$U_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$U_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$U_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding DATA")
+#print("################################################################################")
+#print("hns")
+#head(sub_h_df)
+#sub_h_df <- sub_h_df %>%
+#            filter(HNS_binding == TRUE)
+#sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
+#sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
+#hns_dat <- sub_h_df
+#class2 <- rep("H1_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding")
+#inver_cor_d$H1_HNS_binding <- as.integer(inver_cor_d$H1_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$H1_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "H1_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$H1_HNS_binding <- as.integer(cor_dat$H1_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$H1_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$H1_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING DATA")
+#print("################################################################################")
+#print("hns")
+#sub_hnc_dat <- sub_hnc_dat %>%
+#            filter(HNS == TRUE) %>%
 #            select(start,end)
-#colnames(inver_cor_d) <- c("start1","end1")
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block")
-inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
-inver_cor_d <- unique(inver_cor_d)
-head(inver_cor_d)
-write.table(inver_cor_d, 'inver_cor_data.csv', sep = "\t")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR GRAINGER 2006 cutoff DATA")
-print("################################################################################")
-print("hns")
-head(sub_g_dat)
-sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
-sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
-hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
-colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
-class2 <- rep("G_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding")
-inver_cor_d$G_HNS_binding <- as.integer(inver_cor_d$G_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$G_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-#filter by K12 strain and ensure that we are only looking at the wilcoxon test results
-cor_dat <- cor_dat %>% filter(strain == "K12MG") %>% filter(test == "block_w_pvalue")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-summary(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "G_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$G_HNS_binding <- as.integer(cor_dat$G_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-cor_dat$inversion <- as.integer(cor_dat$inversion)
-head(cor_dat)
-tail(cor_dat)
-summary(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$G_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$G_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR UEDA 2013 cutoff DATA")
-print("################################################################################")
-print("hns")
-head(sub_u_dat)
-sub_u_dat$start <- as.numeric(as.character(sub_u_dat$start))
-sub_u_dat$end <- as.numeric(as.character(sub_u_dat$end))
-hns_dat <- within(sub_u_dat, midpoint <- (end + start) /2)
-colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
-class2 <- rep("U_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding")
-inver_cor_d$U_HNS_binding <- as.integer(inver_cor_d$U_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$U_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "U_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$U_HNS_binding <- as.integer(cor_dat$U_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$U_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$U_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding DATA")
-print("################################################################################")
-print("hns")
-head(sub_h_df)
-sub_h_df <- sub_h_df %>%
-            filter(HNS_binding == TRUE)
-sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
-sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
-hns_dat <- sub_h_df
-class2 <- rep("H1_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding")
-inver_cor_d$H1_HNS_binding <- as.integer(inver_cor_d$H1_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "H1_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$H1_HNS_binding <- as.integer(cor_dat$H1_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING DATA")
-print("################################################################################")
-print("hns")
-sub_hnc_dat <- sub_hnc_dat %>%
-            filter(HNS == TRUE) %>%
-            select(start,end)
-sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
-sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
-#combine coding higashi with non-cod criteria 1
-sub_h_df <- sub_h_df %>%
-            filter(HNS_transcript == TRUE)
-tmp_df <- sub_h_df %>% select(start,end)
-tmp_df$start <- as.numeric(tmp_df$start)
-tmp_df$end <- as.numeric(tmp_df$end)
-tmp_df <- rbind(tmp_df,sub_hnc_dat)
-hns_dat <- tmp_df
-class2 <- rep("H1nc1_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding")
-inver_cor_d$H1nc1_HNS_binding <- as.integer(inver_cor_d$H1nc1_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc1_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc1_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$H1nc1_HNS_binding <- as.integer(cor_dat$H1nc1_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1nc1_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1nc1_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 2 DATA")
-print("################################################################################")
-print("hns")
-sub_hnc_dat <- sub_hnc_dat %>%
-            filter(TtoT == TRUE) %>%
-            select(start,end)
-sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
-sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
-#combine coding higashi with non-cod criteria 1
-sub_h_df <- sub_h_df %>%
-            filter(HNS_transcript == TRUE) 
-tmp_df <- sub_h_df %>% select(start,end)
-tmp_df$start <- as.numeric(tmp_df$start)
-tmp_df$end <- as.numeric(tmp_df$end)
-tmp_df <- rbind(tmp_df,sub_hnc_dat)
-hns_dat <- tmp_df
-class2 <- rep("H1nc2_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding")
-inver_cor_d$H1nc2_HNS_binding <- as.integer(inver_cor_d$H1nc2_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc2_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc2_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$H1nc2_HNS_binding <- as.integer(cor_dat$H1nc2_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1nc2_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1nc2_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 3 DATA")
-print("################################################################################")
-print("hns")
-sub_hnc_dat <- sub_hnc_dat %>%
-            filter(known_promoter == TRUE) %>%
-            select(start,end)
-sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
-sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
-#combine coding higashi with non-cod criteria 1
-sub_h_df <- sub_h_df %>%
-            filter(HNS_transcript == TRUE) 
-tmp_df <- sub_h_df %>% select(start,end)
-tmp_df$start <- as.numeric(tmp_df$start)
-tmp_df$end <- as.numeric(tmp_df$end)
-tmp_df <- rbind(tmp_df,sub_hnc_dat)
-hns_dat <- tmp_df
-class2 <- rep("H1nc3_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding")
-inver_cor_d$H1nc3_HNS_binding <- as.integer(inver_cor_d$H1nc3_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc3_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc3_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$H1nc3_HNS_binding <- as.integer(cor_dat$H1nc3_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1nc3_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1nc3_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Higashi 2016 criteria 2: HNS cutoff DATA")
-print("################################################################################")
-print("hns")
-sub_h_df <- sub_h_df %>%
-            filter(HNS_cutoff == TRUE)
-sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
-sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
-hns_dat <- sub_h_df
-class2 <- rep("H2_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding")
-inver_cor_d$H2_HNS_binding <- as.integer(inver_cor_d$H2_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H2_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "H2_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$H2_HNS_binding <- as.integer(cor_dat$H2_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H2_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H2_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Higashi 2016 criteria 3: HNS transcript DATA")
-print("################################################################################")
-print("hns")
-sub_h_df <- sub_h_df %>%
-            filter(HNS_transcript == TRUE)
-sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
-sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
-hns_dat <- sub_h_df
-class2 <- rep("H3_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding")
-inver_cor_d$H3_HNS_binding <- as.integer(inver_cor_d$H3_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H3_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "H3_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$H3_HNS_binding <- as.integer(cor_dat$H3_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H3_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H3_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Lang 2007: composite data")
-print("################################################################################")
-print("hns")
-sub_l_df$start <- as.numeric(as.character(sub_l_df$start))
-sub_l_df$end <- as.numeric(as.character(sub_l_df$end))
-hns_dat <- sub_l_df
-class2 <- rep("L_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <-
-c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding")
-inver_cor_d$L_HNS_binding <- as.integer(inver_cor_d$L_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$L_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "L_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$L_HNS_binding <- as.integer(cor_dat$L_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$L_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$L_HNS_binding,
-         method = "pearson")
-
-print("################################################################################")
-print("CORRELATION TESTS FOR Oshima 2006: composite data")
-print("################################################################################")
-print("hns")
-sub_o_df$start <- as.numeric(as.character(sub_o_df$start))
-sub_o_df$end <- as.numeric(as.character(sub_o_df$end))
-hns_dat <- sub_o_df
-class2 <- rep("O_HNS_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% select(start,end,class2)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-#hns_cor_d <- hns_cor_d %>% 
-#    mutate(class2 = recode(class2, 
-#                      "No_HNS_Binding" = "0", 
-#                      "HNS_Binding" = "1"))
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-head(hns_cor_d)
-write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-inver_cor_d[which(inver_cor_d$start1 == 383921),]
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding", "O_HNS_binding")
-inver_cor_d$O_HNS_binding <- as.integer(inver_cor_d$O_HNS_binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start == 383921),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and hns binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$O_HNS_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-cor_dat <- cor_dat %>% filter(strain == "K12MG")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-head(cor_dat)
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "O_HNS_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$O_HNS_binding <- as.integer(cor_dat$O_HNS_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-head(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$O_HNS_binding,
-         method = "pearson")
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
-print("################################################################################")
-#cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$O_HNS_binding,
-         method = "pearson")
-
-
-
-
-
-
-
-print("checking overlap between HNS binding sites in all datasets")
-print("total HNS binding sites for each dataset")
-inver_cor_d %>%
-gather(x, value, G_HNS_binding:O_HNS_binding)%>%
-group_by(x)%>%
-tally(value == 1)
-
-tmp_d <- inver_cor_d%>% select(G_HNS_binding:O_HNS_binding) %>% 
-         filter( G_HNS_binding ==1 | U_HNS_binding == 1 | H1_HNS_binding == 1 | H1nc1_HNS_binding == 1| H1nc2_HNS_binding == 1 | H1nc3_HNS_binding == 1| H2_HNS_binding == 1 | H3_HNS_binding == 1 | L_HNS_binding == 1 |O_HNS_binding) 
-print("total number of genes/blocks")
-length(tmp_d$G_HNS_binding)
-print("total number of rows where HNS binding is the same for all datasets")
-sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
-
-
-print("HNS and expression in Oshima, Lang and Higashi (H1)")
-#get blocks where Higashi (H1) or Lang had HNS bound
-head(inver_cor_d)
-l_h_blocks <- inver_cor_d %>%
-         filter(H1_HNS_binding == 1 | L_HNS_binding == 1 | O_HNS_binding ==1) %>%
-         select(block)
-l_h_blocks <- unique(l_h_blocks)
-l_h_blocks <- as.character(sort(l_h_blocks$block))
-#l_h_blocks <- l_h_blocks[-184]
-class(l_h_blocks)
-print("#get gei_dat that is just ^ blocks")
-#gei_dat %>% filter(block == "Block789")
-#gei_dat %>% filter(block == "Block129")
-#gei_dat %>% filter(block == "Block141")
-gei_dat$block_w_pvalue <- as.numeric(gei_dat$block_w_pvalue)
-l_h_dat <- gei_dat %>%
-           filter(block %in% l_h_blocks)
-g_l <- as.character(sort(unique(l_h_dat$block)))
-class(g_l)
-print("check if all HNS blocks were grabbed")
-identical(g_l, l_h_blocks)
-
-
-print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound inversions and HNS bound non-inversions")
-wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
-
-print("Avg inver exp with HNS binding")
-mean(l_h_dat$norm_exp[l_h_dat$inversion == 1])
-print("Avg NON-inver exp with HNS binding")
-mean(l_h_dat$norm_exp[l_h_dat$inversion == 0])
-
-print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig HNS bound inversions and non-sig HNS bound non-inversions")
-#make df with sig diff in gene exp btwn inversions
-sig_gei <- l_h_dat %>%
-    mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
-head(sig_gei)
-wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
-
-
-print("create column with HNS binding and non-binding")
-gei_dat_hns <- gei_dat %>%
-               mutate(HNS = ifelse(block %in% l_h_blocks, 1, 0))
-print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound and HNS un-bound blocks")
-wilcox.test(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1], gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
-print("Avg exp with HNS binding")
-mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1])
-print("Avg exp WITHOUT HNS binding")
-mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
-
-print("overlap btwn Higashi (H1) and Lang and Oshima")
-l_h_overlap <- inver_cor_d %>%
-         filter(H1_HNS_binding == 1 & L_HNS_binding == 1 & O_HNS_binding == 1)
-length(l_h_overlap$Inversion)
-
-print("##################")
-print("##### HGT and inversions (in the context of K12MG) ######")
-print("##################")
-print("*****filtering HGT data to include all categories of HGT (including nearby genes that are HGT")
-print("Higashi HGT")
-h_hgt_dat <- h_hgt_dat %>% filter(HGT != "x")
-hgt_inver <- gei_dat %>% filter(strain == "K12MG")
-ir1 = with(hgt_inver, IRanges(gbk_start, gbk_end))
-ir2 = with(h_hgt_dat, IRanges(start, end))
-hgt_inver$HGT = countOverlaps(ir1, ir2) != 0
-hgt_inver$HGT <- as.numeric(hgt_inver$HGT)
-hgt_inver <- hgt_inver %>%
-               mutate(sig = ifelse(block_w_pvalue <= 0.05, 1, 0))
-head(hgt_inver)
-summary(hgt_inver)
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and HGT")
-print("################################################################################")
-cor.test(hgt_inver$inversion, hgt_inver$HGT,
-         method = "pearson")
-print("################################################################################")
-print("correlation test btwn sig inversion/non-sig inversion and HGT")
-print("################################################################################")
-tmp_hgt <- filter(hgt_inver, inversion ==1)
-cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
-
-print("*****filtering HGT data to include all categories of HGT ")
-print("Oshima HGT")
-o_hgt_dat <- sub_o_df %>% filter(Nakamura == 1 | Lawrence == 1)
-head(o_hgt_dat)
-hgt_inver <- gei_dat %>% filter(strain == "K12MG")
-ir1 = with(hgt_inver, IRanges(gbk_start, gbk_end))
-ir2 = with(o_hgt_dat, IRanges(start, end))
-hgt_inver$HGT = countOverlaps(ir1, ir2) != 0
-hgt_inver$HGT <- as.numeric(hgt_inver$HGT)
-hgt_inver <- hgt_inver %>%
-               mutate(sig = ifelse(block_w_pvalue <= 0.05, 1, 0))
-head(hgt_inver)
-summary(hgt_inver)
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and HGT")
-print("################################################################################")
-cor.test(hgt_inver$inversion, hgt_inver$HGT,
-         method = "pearson")
-print("################################################################################")
-print("correlation test btwn sig inversion/non-sig inversion and HGT")
-print("################################################################################")
-tmp_hgt <- filter(hgt_inver, inversion ==1)
-cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
-
-
-
-
-
-print("HNS binding and inversions viz")
-print("Using Higashi criteria 1 for HNS binding")
-inver_cor_d <- within(inver_cor_d, midpoint <- (end1 + start1) /2)
-inver_cor_d$midpoint = inver_cor_d$midpoint / 1000000
-fake_val <- rep(10,length(inver_cor_d$midpoint))
-inver_cor_d <- cbind(inver_cor_d, fake_val)
-inver_cor_d <- filter(inver_cor_d, H1_HNS_binding == 1)
-print("inver_cor_d")
-head(inver_cor_d)
-summary(inver_cor_d)
-fake_val <- rep(10,length(cor_dat$block))
-fake_val2 <- rep(9.95,length(cor_dat$block))
-hns_inver <- cbind(cor_dat,fake_val,fake_val2)
-hns_inver <- hns_inver %>% filter(inversion == 1)
-hns_inver$non_bidir_midpoint = hns_inver$non_bidir_midpoint / 1000000
-print("hns_inver")
-head(hns_inver)
-summary(hns_inver)
-hns_sig <- hns_inver %>% filter(sig == 1)
-print("hns_sig")
-head(hns_sig)
-#hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
-hns_bind <- hns_viz_h1 %>% filter(HNS_binding == TRUE)
-hns_bind$gbk_midpoint = hns_bind$gbk_midpoint / 1000000
-fake_val <- rep(10,length(hns_bind$gbk_midpoint))
-hns_bind <- cbind(hns_bind, fake_val)
-head(hns_bind)
-
-
-override.shape <- c(1,2,16)
-override.size <- c(5,5,10)
-p <- (ggplot(hns_inver, aes(x=non_bidir_midpoint, y=fake_val, colour = strain))
-   #inversions in grey
-   + geom_point(size = 10, aes(colour = "#BEBEBE"))
-   + geom_point(data = inver_cor_d, aes(x=midpoint, y=fake_val,  color = "#2E294E"), size = 3,shape = 1)
-   # sig inversions
-   + geom_point(data = hns_sig, aes(x=non_bidir_midpoint, y=fake_val2,  color = "#AA5042"), size = 3,shape = 2)
-   + labs(title= "H-NS Binding and Inversions",x = "Genomic Location (Mbp)", y = "") 
-   + scale_color_manual(values = c("#2E294E","#AA5042","#BEBEBE"), labels = c("H-NS Binding","Significant Inversion","Inversion"))
-   + guides(colour = guide_legend(override.aes = list(shape = override.shape, size = override.size, fill=NA)))
-   + scale_y_continuous(limits = c(9.5, 10.5))
-   + theme(axis.text.y = element_blank(),
-          legend.position = c(.95, .95),
-          legend.justification = c("right", "top"),
-          legend.box.just = "right",
-          legend.margin = margin(6, 6, 6, 6),
-          axis.ticks.y = element_blank(),
-          axis.title.y = element_blank(),
-          panel.grid.major.y = element_blank(),
-          panel.grid.minor.y = element_blank()
-          )
-)
-pdf("hns_all_inversions.pdf")
-p
-dev.off()
-
-
-###############NEW HNS GRAPH Density plot
-fake2 <- rep(-1,length(hns_inver$non_bidir_midpoint)) 
-hns_inver <- cbind(hns_inver,fake2)
-p <- (ggplot(inver_cor_d, aes(x=midpoint))
-  + geom_density(alpha=0.2, aes(fill = "#2E294E"))
-  + geom_density(data = hns_sig, aes(x=non_bidir_midpoint, fill = "#AA5042"),alpha=0.4)
-#  + geom_density(data = hns_inver, aes(x=non_bidir_midpoint),alpha=0.4, fill = "#BEBEBE")
-  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=10)
-   + labs(title= "H-NS Binding and Inversions",x = "Genomic Location (Mbp)", y = "Density") 
-   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
-   + scale_fill_manual(values = c("#2E294E","#AA5042","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
-#  + scale_fill_manual(name = "", labels = c("H-NS Binding", "Significant Inversions"))
-  + theme(legend.position = "top")
-)
-pdf("hns_all_inversions_hist.pdf")
-p
-dev.off()
-
-##################################################################################
-##################################################################################
-print("### HNS GRAPH HISTOGRAM")
-##################################################################################
-##################################################################################
-
-#all HNS binding data is the hns_bind df
-head(hns_bind)
-hns_bind <- hns_bind %>% select(gbk_midpoint,HNS_binding)
-hns_bind$HNS_binding <- as.numeric(hns_bind$HNS_binding)
-hns_bind$gbk_midpoint <- hns_bind$gbk_midpoint *1000000
-head(hns_bind)
-#new min and max for the scaled positions (rounded to chunk len
-#specified in args)
-chunklen <- as.numeric(args[10])
-print("chunklen")
-chunklen
-#nmin_pos <- round_any(min(hns_sig$non_bidir_midpoint), chunklen, f=floor)
-nmin_pos <- 0
-print("min (rounded)")
-nmin_pos
-#nmax_pos <- max(hns_sig$non_bidir_midpoint)
-nmax_pos <- as.numeric(args[2])
-print("max (rounded)")
-nmax_pos
-
-#expty vec to hold the rows that split the dat into X kb chunks
-subs_rows_to_split_dat <- vector()
-#create vector of chunks
-chunk_len_of_genome <- round_any(nmax_pos, chunklen, f=ceiling)
-chunk_len_of_genome
-chunks <- seq(nmin_pos, chunk_len_of_genome, chunklen)
-chunks
-##checking if the lengths are equal for the later bind
-#if (length(unlist(tot_gene_subs_10kb)) == length(chunks)) {
-#    chunks_pos_NOzero <- chunks
-#} else {
-    chunks_pos_NOzero <- chunks[which(chunks != 0)]
-#}
-chunks_pos_NOzero
-
-#add in fake data for chunks so it will split properly
-#len_of_chunks <- length(chunks_pos_NOzero)
-len_of_chunks <- length(chunks)
-fhns <- rep(as.numeric(1), len_of_chunks)
-#fake_dat <- cbind(chunks_pos_NOzero, fhns)
-fake_dat <- cbind(chunks, fhns)
-colnames(fake_dat) <- c("gbk_midpoint","HNS_binding")
-head(fake_dat)
-head(hns_bind)
-#add fake data to orig data
-hns_bind <- rbind(hns_bind,fake_dat)
-head(hns_bind)
-tail(hns_bind)
-hns_bind$gbk_midpoint <- as.numeric(hns_bind$gbk_midpoint)
-hns_bind$HNS_binding <- as.numeric(hns_bind$HNS_binding)
-head(hns_bind)
-
-
-#order the data by positions, only if its NOT strep
-if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
-        ord_pos <- order(hns_bind$gbk_midpoint)
-        hns_bind$HNS_binding <- hns_bind$HNS_binding[ord_pos]
-        hns_bind$gbk_midpoint <- hns_bind$gbk_midpoint[ord_pos]
-}
-print("SAVED BIDIRECTIONAL DATA TO FILE")
-write.table(hns_bind, 'hns_bind.csv', sep = ",")
-
-print("checking order")
-head(hns_bind)
-tail(hns_bind)
-
-sig_rows_to_split_dat <- vector()
-for (i in chunks) {
-  subs_rows <-
-which(abs(hns_bind$gbk_midpoint-i)==min(abs(hns_bind$gbk_midpoint-i)))
-# finding the closest number to each 10kb without going over it
-  subs_max_row <- max(subs_rows)
-  subs_rows_to_split_dat <- c(subs_rows_to_split_dat, subs_max_row)
-}#for
-
-#split data by the above specified rows
-#sometimes the closest number was technically in the next 10kb chunk of seq
-#but its fine.
-data_just_subs <- hns_bind$HNS_binding
-list_dat_sets_just_subs <- split(data_just_subs, findInterval(1:nrow(hns_bind), subs_rows_to_split_dat))
-list_dat_sets_just_subs
-print("split subs into 10kb chunks")
-
-
-##########
-#add up all subs in each 10kb section
-##########
-list_tot_add_subs_10kb <- lapply(list_dat_sets_just_subs, sum)
-tot_gene_subs_10kb <- as.data.frame(matrix(unlist(list_tot_add_subs_10kb), byrow = F))
-print("head/tail of total_subs")
-head(tot_gene_subs_10kb)
-tail(tot_gene_subs_10kb)
-nrow(tot_gene_subs_10kb)
-#length(chunks_pos_NOzero)
-length(chunks)
-class(tot_gene_subs_10kb)
-#remove last element if lengths do not match (for cbind later)
-#if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
-if (nrow(tot_gene_subs_10kb) == length(chunks)) {
-    tot_gene_subs_10kb <- tot_gene_subs_10kb
-} else {
-    tot_gene_subs_10kb <- tot_gene_subs_10kb[-nrow(tot_gene_subs_10kb),]
-    tot_gene_subs_10kb <- tot_gene_subs_10kb[-1]
-}
-
-#tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks_pos_NOzero))
-tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks))
-head(tot_gene_subs_10kb)
-tail(tot_gene_subs_10kb)
-#subtract 1 from HNS binding column (bc of the fake data that was added)
-tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
-#add 10000 to each bar so that it represents all pts within that chunk of the genome
-tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
-print("tot_gene_subs_10kb")
-write.csv(tot_gene_subs_10kb)
-
-#####################################################
-print("sig inversions hist data")
-#####################################################
-#all sig inversions data is the inver_dat_bidir df
-inver_dat_bidir$block_w_pvalue <- as.numeric(inver_dat_bidir$block_w_pvalue)
-sig_id <- inver_dat_bidir %>%
-          select(start,end,strain,block,inversion,block_w_pvalue) %>%
-          filter(strain == "K12MG") %>%
-          filter(block_w_pvalue <= 0.05)
-sig_id <- unique(sig_id)
-sig_id <- within(sig_id, midpoint <- (end + start) /2)
-colnames(sig_id)[colnames(sig_id) == "midpoint"] <- "midpoint"
-head(sig_id)
-sig_id <- sig_id %>% select(inversion,midpoint)
-head(sig_id)
-
-#add in fake data for chunks so it will split properly
-#len_of_chunks <- length(chunks_pos_NOzero)
-len_of_chunks <- length(chunks)
-finv <- rep(as.numeric(1), len_of_chunks)
-#fake_dat <- cbind(chunks_pos_NOzero, fhns)
-fake_dat <- cbind(chunks, finv)
-colnames(fake_dat) <- c("midpoint","inversion")
-head(fake_dat)
-#add fake data to orig data
-sig_bind <- rbind(sig_id,fake_dat)
-head(sig_bind)
-tail(sig_bind)
-sig_bind$gbk_midpoint <- as.numeric(sig_bind$midpoint)
-sig_bind$HNS_binding <- as.numeric(sig_bind$inversion)
-
-
-#order the data by positions, only if its NOT strep
-if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
-        ord_pos <- order(sig_bind$gbk_midpoint)
-        sig_bind$HNS_binding <- sig_bind$HNS_binding[ord_pos]
-        sig_bind$gbk_midpoint <- sig_bind$gbk_midpoint[ord_pos]
-}
-print("SAVED BIDIRECTIONAL DATA TO FILE")
-write.table(sig_bind, 'sig_bind.csv', sep = ",")
-
-print("checking order")
-head(sig_bind)
-tail(sig_bind)
-
-for (i in chunks) {
-  sig_rows <-
-which(abs(sig_bind$gbk_midpoint-i)==min(abs(sig_bind$gbk_midpoint-i)))
-# finding the closest number to each 10kb without going over it
-  sig_max_row <- max(sig_rows)
-  sig_rows_to_split_dat <- c(sig_rows_to_split_dat, sig_max_row)
-}#for
-
-#split data by the above specified rows
-#sometimes the closest number was technically in the next 10kb chunk of seq
-#but its fine.
-data_just_sig <- sig_bind$inversion
-list_dat_sets_just_sig <- split(data_just_sig, findInterval(1:nrow(sig_bind), sig_rows_to_split_dat))
-list_dat_sets_just_sig
-print("split sig into 10kb chunks")
-
-
-##########
-#add up all sig in each 10kb section
-##########
-list_tot_add_sig_10kb <- lapply(list_dat_sets_just_sig, sum)
-tot_gene_sig_10kb <- as.data.frame(matrix(unlist(list_tot_add_sig_10kb), byrow = F))
-print("head/tail of total_sig")
-head(tot_gene_sig_10kb)
-tail(tot_gene_sig_10kb)
-nrow(tot_gene_sig_10kb)
-#length(chunks_pos_NOzero)
-length(chunks)
-class(tot_gene_sig_10kb)
-#remove last element if lengths do not match (for cbind later)
-#if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
-if (nrow(tot_gene_sig_10kb) == length(chunks)) {
-    tot_gene_sig_10kb <- tot_gene_sig_10kb
-} else {
-    tot_gene_sig_10kb <- tot_gene_sig_10kb[-nrow(tot_gene_sig_10kb),]
-    tot_gene_sig_10kb <- tot_gene_sig_10kb[-1]
-}
-
-#tot_gene_sig_10kb <- as.data.frame(cbind(tot_gene_sig_10kb, chunks_pos_NOzero))
-tot_gene_sig_10kb <- as.data.frame(cbind(tot_gene_sig_10kb, chunks))
-head(tot_gene_sig_10kb)
-tail(tot_gene_sig_10kb)
-#subtract 1 from HNS binding column (bc of the fake data that was added)
-tot_gene_sig_10kb$V1 <- tot_gene_sig_10kb$V1 -1
-#add 10000 to each bar so that it represents all pts within that chunk of the genome
-tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks +10000
-print("tot_gene_sig_10kb")
-write.csv(tot_gene_sig_10kb)
-
-######################################################
-# PLOT
-######################################################
-options(scipen=3)
-tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
-tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks / 1000000
-subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
-  + geom_histogram(stat = "identity", aes(fill= "#2E294E"), alpha = 0.8)
-  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1, fill= "#AA5042"),stat = "identity")
-  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=5)
-   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
-   + scale_fill_manual(values = c("#788AA3","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
-#   + scale_fill_manual(values = c("#AA5042","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
-  + theme(legend.position = "top")
-#  geom_histogram(stat = "identity", fill= "#FE5F55")
-  + labs(x = "Genomic Position (Mbp)", y = "Number per 100Kbp")
-##FOR PRESENTATION ONLY: NEXT LINE
-#  + labs(x = "", y = "")
-  + ggtitle("H-NS Binding and Inversions")
-#   + geom_vline(xintercept = 0, colour = "red")
- + scale_x_continuous(labels = function(x) ifelse(x ==0, "0", x))
- + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
-)
-###########################
-pdf("hns_hist.pdf")
-subs_hist
-#grid.newpage()
-#grid.draw(rbind(ggplotGrob(gene_num_hist), ggplotGrob(exp_bar_top), size = "last"))
-## next line adds border
-#grid.rect(width = 0.99, height = 0.99, gp = gpar(lwd = 2, col = "black", fill = NA))
-dev.off()
-###########################
-
-
-print("#############################")
-print("Fis binding")
-print("#############################")
-#load in data
-print("Grainger 2006 (cod and non-cod)")
-g_dat <- read.csv("../fis_binding/Grainger_2006_fis_binding.csv", header = TRUE)
-sub_g_dat <- g_dat %>%
-             select(Gene_name,Coordinates)
-colnames(sub_g_dat) <- c("gene_name","Coords")
-coords <- str_split_fixed(sub_g_dat$Coords, "-", 2)
-colnames(coords) <- c("start","end")
-sub_g_dat <- cbind(sub_g_dat,coords)
-sub_g_dat <- sub_g_dat %>%
-             select(gene_name,start,end) %>%
-             filter(gene_name != "Between convergent ORFs") %>%
-             filter(start != "N/A")
-head(sub_g_dat)
-fis_bind <- sub_g_dat
-#find overlap btwn Fis binding and inversions
-inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
-            select(gbk_start,gbk_end,inversion,block)
+#sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+#sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
+##combine coding higashi with non-cod criteria 1
+#sub_h_df <- sub_h_df %>%
+#            filter(HNS_transcript == TRUE)
+#tmp_df <- sub_h_df %>% select(start,end)
+#tmp_df$start <- as.numeric(tmp_df$start)
+#tmp_df$end <- as.numeric(tmp_df$end)
+#tmp_df <- rbind(tmp_df,sub_hnc_dat)
+#hns_dat <- tmp_df
+#class2 <- rep("H1nc1_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding")
+#inver_cor_d$H1nc1_HNS_binding <- as.integer(inver_cor_d$H1nc1_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc1_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc1_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$H1nc1_HNS_binding <- as.integer(cor_dat$H1nc1_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$H1nc1_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$H1nc1_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 2 DATA")
+#print("################################################################################")
+#print("hns")
+#sub_hnc_dat <- sub_hnc_dat %>%
+#            filter(TtoT == TRUE) %>%
 #            select(start,end)
-#colnames(inver_cor_d) <- c("start1","end1")
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block")
-inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
-inver_cor_d <- unique(inver_cor_d)
-head(inver_cor_d)
-sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
-sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
-hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
-colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
-class2 <- rep("G_Fis_Binding",length(hns_dat$start))
-hns_dat <- cbind(hns_dat,class2)
-hns_cor_d <- hns_dat
-head(hns_cor_d)
-hns_cor_d <- hns_cor_d %>% select(start,end)
-summary(hns_cor_d)
-hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
-print("fis bind")
-head(hns_cor_d)
-
-
-ir1 = with(inver_cor_d, IRanges(start1, end1))
-ir2 = with(hns_cor_d, IRanges(start, end))
-inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
-head(inver_cor_d)
-colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_Fis_Binding")
-inver_cor_d$G_Fis_binding <- as.integer(inver_cor_d$G_Fis_Binding)
-inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
-head(inver_cor_d)
-inver_cor_d[which(inver_cor_d$start1 == 190),]
-
-print("################################################################################")
-print("correlation test btwn inversion/non-inversion and fis binding")
-print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$G_Fis_binding,
-         method = "pearson")
-
-print("get new df with hns binding + inversions + sig block info")
-#filter by K12 strain and ensure that we are only looking at the wilcoxon test results
-cor_dat <- cor_dat %>% filter(strain == "K12MG") %>% filter(test == "block_w_pvalue")
-cor_dat <- cor_dat %>%
-    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
-ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
-cor_dat$overlap = countOverlaps(ir1, ir2) != 0
-names(cor_dat)[names(cor_dat)=="overlap"] <- "G_Fis_binding"
-cor_dat[which(cor_dat$start == 383921),]
-cor_dat$G_Fis_binding <- as.integer(cor_dat$G_Fis_binding)
-cor_dat$sig <- as.integer(cor_dat$sig)
-cor_dat$inversion <- as.integer(cor_dat$inversion)
-head(cor_dat)
-tail(cor_dat)
-summary(cor_dat)
-
-
-print("################################################################################")
-print("correlation test btwn sig inversion/non-inversion and fis binding ALL BLOCKS")
-print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$G_Fis_binding,
-         method = "pearson")
-
-print("checking overlap between Fis binding sites in all datasets")
-print("total Fis binding sites for each dataset")
-inver_cor_d %>%
-gather(x, value, G_Fis_binding)%>%
-group_by(x)%>%
-tally(value == 1)
-
-print("Fis and expression in Garinger")
-head(inver_cor_d)
-g_blocks <- inver_cor_d %>%
-         filter(G_Fis_binding == 1) %>%
-         select(block)
-g_blocks <- unique(g_blocks)
-g_blocks <- as.character(sort(g_blocks$block))
-class(g_blocks)
-print("#get gei_dat that is just ^ blocks")
-gei_dat$block_w_pvalue <- as.numeric(gei_dat$block_w_pvalue)
-summary(gei_dat)
-g_dat <- gei_dat %>%
-           filter(block %in% g_blocks)
-g_l <- as.character(sort(unique(g_dat$block)))
-class(g_l)
-print("check if all Fis blocks were grabbed")
-identical(g_l, g_blocks)
-
-print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound inversions and Fis bound non-inversions")
-wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
-
-print("Avg inver exp with Fis binding")
-mean(g_dat$norm_exp[g_dat$inversion == 1])
-print("Avg NON-inver exp with Fis binding")
-mean(g_dat$norm_exp[g_dat$inversion == 0])
-
-print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig Fis bound inversions and non-sig Fis bound non-inversions")
-#make df with sig diff in gene exp btwn inversions
-g_dat$block_w_pvalue <- as.numeric(g_dat$block_w_pvalue)
-g_dat$norm_exp <- as.numeric(g_dat$norm_exp)
-sig_gei <- g_dat %>%
-    mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
-head(sig_gei)
-wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
-print("Avg exp with Fis binding (sig)")
-flt_sig <- sig_gei %>% filter(sig != "NA")
-mean(flt_sig$norm_exp[flt_sig$sig == 1])
-print("Avg exp with Fis binding (nonsig)")
-mean(flt_sig$norm_exp[flt_sig$sig == 0])
-
-print("create column with Fis binding and non-binding")
-gei_dat_fis <- gei_dat %>%
-               mutate(Fis = ifelse(block %in% g_blocks, 1, 0))
-print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound and Fis un-bound blocks")
-wilcox.test(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1], gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
-print("Avg exp with Fis binding")
-mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1])
-print("Avg exp WITHOUT Fis binding")
-mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
-
-##################################################################################
-##################################################################################
-print("### Fis GRAPH HISTOGRAM")
-##################################################################################
-##################################################################################
-
-#all Fis binding data is the fis_bind df
-fis_bind$start <- as.numeric(as.character(fis_bind$start))
-fis_bind$end <- as.numeric(as.character(fis_bind$end))
-fis_bind <- within(fis_bind, gbk_midpoint <- (end + start) /2)
-Fis_binding <- rep("TRUE", length(fis_bind$start))
-fis_bind <- cbind(fis_bind,Fis_binding)
-head(fis_bind)
-fis_bind <- fis_bind %>% select(gbk_midpoint,Fis_binding)
-fis_bind$Fis_binding <- as.numeric(fis_bind$Fis_binding)
-head(fis_bind)
-#new min and max for the scaled positions (rounded to chunk len
-#specified in args)
-chunklen <- as.numeric(args[10])
-print("chunklen")
-chunklen
-#nmin_pos <- round_any(min(fis_sig$non_bidir_midpoint), chunklen, f=floor)
-nmin_pos <- 0
-print("min (rounded)")
-nmin_pos
-#nmax_pos <- max(fis_sig$non_bidir_midpoint)
-nmax_pos <- as.numeric(args[2])
-print("max (rounded)")
-nmax_pos
-
-#expty vec to hold the rows that split the dat into X kb chunks
-subs_rows_to_split_dat <- vector()
-#create vector of chunks
-chunk_len_of_genome <- round_any(nmax_pos, chunklen, f=ceiling)
-chunk_len_of_genome
-chunks <- seq(nmin_pos, chunk_len_of_genome, chunklen)
-chunks
-##checking if the lengths are equal for the later bind
-#if (length(unlist(tot_gene_subs_10kb)) == length(chunks)) {
-#    chunks_pos_NOzero <- chunks
-#} else {
-    chunks_pos_NOzero <- chunks[which(chunks != 0)]
+#sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+#sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
+##combine coding higashi with non-cod criteria 1
+#sub_h_df <- sub_h_df %>%
+#            filter(HNS_transcript == TRUE) 
+#tmp_df <- sub_h_df %>% select(start,end)
+#tmp_df$start <- as.numeric(tmp_df$start)
+#tmp_df$end <- as.numeric(tmp_df$end)
+#tmp_df <- rbind(tmp_df,sub_hnc_dat)
+#hns_dat <- tmp_df
+#class2 <- rep("H1nc2_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding")
+#inver_cor_d$H1nc2_HNS_binding <- as.integer(inver_cor_d$H1nc2_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc2_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc2_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$H1nc2_HNS_binding <- as.integer(cor_dat$H1nc2_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$H1nc2_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$H1nc2_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 3 DATA")
+#print("################################################################################")
+#print("hns")
+#sub_hnc_dat <- sub_hnc_dat %>%
+#            filter(known_promoter == TRUE) %>%
+#            select(start,end)
+#sub_hnc_dat$start <- as.numeric(as.character(sub_hnc_dat$start))
+#sub_hnc_dat$end <- as.numeric(as.character(sub_hnc_dat$end))
+##combine coding higashi with non-cod criteria 1
+#sub_h_df <- sub_h_df %>%
+#            filter(HNS_transcript == TRUE) 
+#tmp_df <- sub_h_df %>% select(start,end)
+#tmp_df$start <- as.numeric(tmp_df$start)
+#tmp_df$end <- as.numeric(tmp_df$end)
+#tmp_df <- rbind(tmp_df,sub_hnc_dat)
+#hns_dat <- tmp_df
+#class2 <- rep("H1nc3_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding")
+#inver_cor_d$H1nc3_HNS_binding <- as.integer(inver_cor_d$H1nc3_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc3_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "H1nc3_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$H1nc3_HNS_binding <- as.integer(cor_dat$H1nc3_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$H1nc3_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$H1nc3_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Higashi 2016 criteria 2: HNS cutoff DATA")
+#print("################################################################################")
+#print("hns")
+#sub_h_df <- sub_h_df %>%
+#            filter(HNS_cutoff == TRUE)
+#sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
+#sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
+#hns_dat <- sub_h_df
+#class2 <- rep("H2_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding")
+#inver_cor_d$H2_HNS_binding <- as.integer(inver_cor_d$H2_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$H2_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "H2_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$H2_HNS_binding <- as.integer(cor_dat$H2_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$H2_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$H2_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Higashi 2016 criteria 3: HNS transcript DATA")
+#print("################################################################################")
+#print("hns")
+#sub_h_df <- sub_h_df %>%
+#            filter(HNS_transcript == TRUE)
+#sub_h_df$start <- as.numeric(as.character(sub_h_df$start))
+#sub_h_df$end <- as.numeric(as.character(sub_h_df$end))
+#hns_dat <- sub_h_df
+#class2 <- rep("H3_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding")
+#inver_cor_d$H3_HNS_binding <- as.integer(inver_cor_d$H3_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$H3_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "H3_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$H3_HNS_binding <- as.integer(cor_dat$H3_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$H3_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$H3_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Lang 2007: composite data")
+#print("################################################################################")
+#print("hns")
+#sub_l_df$start <- as.numeric(as.character(sub_l_df$start))
+#sub_l_df$end <- as.numeric(as.character(sub_l_df$end))
+#hns_dat <- sub_l_df
+#class2 <- rep("L_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <-
+#c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding")
+#inver_cor_d$L_HNS_binding <- as.integer(inver_cor_d$L_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$L_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "L_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$L_HNS_binding <- as.integer(cor_dat$L_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$L_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$L_HNS_binding,
+#         method = "pearson")
+#
+#print("################################################################################")
+#print("CORRELATION TESTS FOR Oshima 2006: composite data")
+#print("################################################################################")
+#print("hns")
+#sub_o_df$start <- as.numeric(as.character(sub_o_df$start))
+#sub_o_df$end <- as.numeric(as.character(sub_o_df$end))
+#hns_dat <- sub_o_df
+#class2 <- rep("O_HNS_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% select(start,end,class2)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+##hns_cor_d <- hns_cor_d %>% 
+##    mutate(class2 = recode(class2, 
+##                      "No_HNS_Binding" = "0", 
+##                      "HNS_Binding" = "1"))
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#head(hns_cor_d)
+#write.table(hns_cor_d, 'hns_cor_data.csv', sep = "\t")
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#inver_cor_d[which(inver_cor_d$start1 == 383921),]
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_HNS_binding","U_HNS_binding","H1_HNS_binding","H1nc1_HNS_binding","H1nc2_HNS_binding","H1nc3_HNS_binding","H2_HNS_binding","H3_HNS_binding","L_HNS_binding", "O_HNS_binding")
+#inver_cor_d$O_HNS_binding <- as.integer(inver_cor_d$O_HNS_binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start == 383921),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and hns binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$O_HNS_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+#cor_dat <- cor_dat %>% filter(strain == "K12MG")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#head(cor_dat)
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "O_HNS_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$O_HNS_binding <- as.integer(cor_dat$O_HNS_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#head(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$O_HNS_binding,
+#         method = "pearson")
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
+#print("################################################################################")
+##cor_dat <- cor_dat %>% filter(inversion == 1)
+#cor.test(cor_dat$inversion, cor_dat$O_HNS_binding,
+#         method = "pearson")
+#
+#
+#
+#
+#
+#
+#
+#print("checking overlap between HNS binding sites in all datasets")
+#print("total HNS binding sites for each dataset")
+#inver_cor_d %>%
+#gather(x, value, G_HNS_binding:O_HNS_binding)%>%
+#group_by(x)%>%
+#tally(value == 1)
+#
+#tmp_d <- inver_cor_d%>% select(G_HNS_binding:O_HNS_binding) %>% 
+#         filter( G_HNS_binding ==1 | U_HNS_binding == 1 | H1_HNS_binding == 1 | H1nc1_HNS_binding == 1| H1nc2_HNS_binding == 1 | H1nc3_HNS_binding == 1| H2_HNS_binding == 1 | H3_HNS_binding == 1 | L_HNS_binding == 1 |O_HNS_binding) 
+#print("total number of genes/blocks")
+#length(tmp_d$G_HNS_binding)
+#print("total number of rows where HNS binding is the same for all datasets")
+#sum(apply(tmp_d, 1, function(x) length(unique(x))==1))
+#
+#
+#print("HNS and expression in Oshima, Lang and Higashi (H1)")
+##get blocks where Higashi (H1) or Lang had HNS bound
+#head(inver_cor_d)
+#l_h_blocks <- inver_cor_d %>%
+#         filter(H1_HNS_binding == 1 | L_HNS_binding == 1 | O_HNS_binding ==1) %>%
+#         select(block)
+#l_h_blocks <- unique(l_h_blocks)
+#l_h_blocks <- as.character(sort(l_h_blocks$block))
+##l_h_blocks <- l_h_blocks[-184]
+#class(l_h_blocks)
+#print("#get gei_dat that is just ^ blocks")
+##gei_dat %>% filter(block == "Block789")
+##gei_dat %>% filter(block == "Block129")
+##gei_dat %>% filter(block == "Block141")
+#gei_dat$block_w_pvalue <- as.numeric(gei_dat$block_w_pvalue)
+#l_h_dat <- gei_dat %>%
+#           filter(block %in% l_h_blocks)
+#g_l <- as.character(sort(unique(l_h_dat$block)))
+#class(g_l)
+#print("check if all HNS blocks were grabbed")
+#identical(g_l, l_h_blocks)
+#
+#
+#print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound inversions and HNS bound non-inversions")
+#wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
+#
+#print("Avg inver exp with HNS binding")
+#mean(l_h_dat$norm_exp[l_h_dat$inversion == 1])
+#print("Avg NON-inver exp with HNS binding")
+#mean(l_h_dat$norm_exp[l_h_dat$inversion == 0])
+#
+#print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig HNS bound inversions and non-sig HNS bound non-inversions")
+##make df with sig diff in gene exp btwn inversions
+#sig_gei <- l_h_dat %>%
+#    mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
+#head(sig_gei)
+#wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
+#
+#
+#print("create column with HNS binding and non-binding")
+#gei_dat_hns <- gei_dat %>%
+#               mutate(HNS = ifelse(block %in% l_h_blocks, 1, 0))
+#print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound and HNS un-bound blocks")
+#wilcox.test(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1], gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
+#print("Avg exp with HNS binding")
+#mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1])
+#print("Avg exp WITHOUT HNS binding")
+#mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
+#
+#print("overlap btwn Higashi (H1) and Lang and Oshima")
+#l_h_overlap <- inver_cor_d %>%
+#         filter(H1_HNS_binding == 1 & L_HNS_binding == 1 & O_HNS_binding == 1)
+#length(l_h_overlap$Inversion)
+#
+#print("##################")
+#print("##### HGT and inversions (in the context of K12MG) ######")
+#print("##################")
+#print("*****filtering HGT data to include all categories of HGT (including nearby genes that are HGT")
+#print("Higashi HGT")
+#h_hgt_dat <- h_hgt_dat %>% filter(HGT != "x")
+#hgt_inver <- gei_dat %>% filter(strain == "K12MG")
+#ir1 = with(hgt_inver, IRanges(gbk_start, gbk_end))
+#ir2 = with(h_hgt_dat, IRanges(start, end))
+#hgt_inver$HGT = countOverlaps(ir1, ir2) != 0
+#hgt_inver$HGT <- as.numeric(hgt_inver$HGT)
+#hgt_inver <- hgt_inver %>%
+#               mutate(sig = ifelse(block_w_pvalue <= 0.05, 1, 0))
+#head(hgt_inver)
+#summary(hgt_inver)
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and HGT")
+#print("################################################################################")
+#cor.test(hgt_inver$inversion, hgt_inver$HGT,
+#         method = "pearson")
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-sig inversion and HGT")
+#print("################################################################################")
+#tmp_hgt <- filter(hgt_inver, inversion ==1)
+#cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+#
+#print("*****filtering HGT data to include all categories of HGT ")
+#print("Oshima HGT")
+#o_hgt_dat <- sub_o_df %>% filter(Nakamura == 1 | Lawrence == 1)
+#head(o_hgt_dat)
+#hgt_inver <- gei_dat %>% filter(strain == "K12MG")
+#ir1 = with(hgt_inver, IRanges(gbk_start, gbk_end))
+#ir2 = with(o_hgt_dat, IRanges(start, end))
+#hgt_inver$HGT = countOverlaps(ir1, ir2) != 0
+#hgt_inver$HGT <- as.numeric(hgt_inver$HGT)
+#hgt_inver <- hgt_inver %>%
+#               mutate(sig = ifelse(block_w_pvalue <= 0.05, 1, 0))
+#head(hgt_inver)
+#summary(hgt_inver)
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and HGT")
+#print("################################################################################")
+#cor.test(hgt_inver$inversion, hgt_inver$HGT,
+#         method = "pearson")
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-sig inversion and HGT")
+#print("################################################################################")
+#tmp_hgt <- filter(hgt_inver, inversion ==1)
+#cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+#
+#
+#
+#
+#
+#print("HNS binding and inversions viz")
+#print("Using Higashi criteria 1 for HNS binding")
+#inver_cor_d <- within(inver_cor_d, midpoint <- (end1 + start1) /2)
+#inver_cor_d$midpoint = inver_cor_d$midpoint / 1000000
+#fake_val <- rep(10,length(inver_cor_d$midpoint))
+#inver_cor_d <- cbind(inver_cor_d, fake_val)
+#inver_cor_d <- filter(inver_cor_d, H1_HNS_binding == 1)
+#print("inver_cor_d")
+#head(inver_cor_d)
+#summary(inver_cor_d)
+#fake_val <- rep(10,length(cor_dat$block))
+#fake_val2 <- rep(9.95,length(cor_dat$block))
+#hns_inver <- cbind(cor_dat,fake_val,fake_val2)
+#hns_inver <- hns_inver %>% filter(inversion == 1)
+#hns_inver$non_bidir_midpoint = hns_inver$non_bidir_midpoint / 1000000
+#print("hns_inver")
+#head(hns_inver)
+#summary(hns_inver)
+#hns_sig <- hns_inver %>% filter(sig == 1)
+#print("hns_sig")
+#head(hns_sig)
+##hns_bind <- hns_inver %>% filter(H1_HNS_binding == 1)
+#hns_bind <- hns_viz_h1 %>% filter(HNS_binding == TRUE)
+#hns_bind$gbk_midpoint = hns_bind$gbk_midpoint / 1000000
+#fake_val <- rep(10,length(hns_bind$gbk_midpoint))
+#hns_bind <- cbind(hns_bind, fake_val)
+#head(hns_bind)
+#
+#
+#override.shape <- c(1,2,16)
+#override.size <- c(5,5,10)
+#p <- (ggplot(hns_inver, aes(x=non_bidir_midpoint, y=fake_val, colour = strain))
+#   #inversions in grey
+#   + geom_point(size = 10, aes(colour = "#BEBEBE"))
+#   + geom_point(data = inver_cor_d, aes(x=midpoint, y=fake_val,  color = "#2E294E"), size = 3,shape = 1)
+#   # sig inversions
+#   + geom_point(data = hns_sig, aes(x=non_bidir_midpoint, y=fake_val2,  color = "#AA5042"), size = 3,shape = 2)
+#   + labs(title= "H-NS Binding and Inversions",x = "Genomic Location (Mbp)", y = "") 
+#   + scale_color_manual(values = c("#2E294E","#AA5042","#BEBEBE"), labels = c("H-NS Binding","Significant Inversion","Inversion"))
+#   + guides(colour = guide_legend(override.aes = list(shape = override.shape, size = override.size, fill=NA)))
+#   + scale_y_continuous(limits = c(9.5, 10.5))
+#   + theme(axis.text.y = element_blank(),
+#          legend.position = c(.95, .95),
+#          legend.justification = c("right", "top"),
+#          legend.box.just = "right",
+#          legend.margin = margin(6, 6, 6, 6),
+#          axis.ticks.y = element_blank(),
+#          axis.title.y = element_blank(),
+#          panel.grid.major.y = element_blank(),
+#          panel.grid.minor.y = element_blank()
+#          )
+#)
+#pdf("hns_all_inversions.pdf")
+#p
+#dev.off()
+#
+#
+################NEW HNS GRAPH Density plot
+#fake2 <- rep(-1,length(hns_inver$non_bidir_midpoint)) 
+#hns_inver <- cbind(hns_inver,fake2)
+#p <- (ggplot(inver_cor_d, aes(x=midpoint))
+#  + geom_density(alpha=0.2, aes(fill = "#2E294E"))
+#  + geom_density(data = hns_sig, aes(x=non_bidir_midpoint, fill = "#AA5042"),alpha=0.4)
+##  + geom_density(data = hns_inver, aes(x=non_bidir_midpoint),alpha=0.4, fill = "#BEBEBE")
+#  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=10)
+#   + labs(title= "H-NS Binding and Inversions",x = "Genomic Location (Mbp)", y = "Density") 
+#   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
+#   + scale_fill_manual(values = c("#2E294E","#AA5042","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
+##  + scale_fill_manual(name = "", labels = c("H-NS Binding", "Significant Inversions"))
+#  + theme(legend.position = "top")
+#)
+#pdf("hns_all_inversions_hist.pdf")
+#p
+#dev.off()
+#
+###################################################################################
+###################################################################################
+#print("### HNS GRAPH HISTOGRAM")
+###################################################################################
+###################################################################################
+#
+##all HNS binding data is the hns_bind df
+#head(hns_bind)
+#hns_bind <- hns_bind %>% select(gbk_midpoint,HNS_binding)
+#hns_bind$HNS_binding <- as.numeric(hns_bind$HNS_binding)
+#hns_bind$gbk_midpoint <- hns_bind$gbk_midpoint *1000000
+#head(hns_bind)
+##new min and max for the scaled positions (rounded to chunk len
+##specified in args)
+#chunklen <- as.numeric(args[10])
+#print("chunklen")
+#chunklen
+##nmin_pos <- round_any(min(hns_sig$non_bidir_midpoint), chunklen, f=floor)
+#nmin_pos <- 0
+#print("min (rounded)")
+#nmin_pos
+##nmax_pos <- max(hns_sig$non_bidir_midpoint)
+#nmax_pos <- as.numeric(args[2])
+#print("max (rounded)")
+#nmax_pos
+#
+##expty vec to hold the rows that split the dat into X kb chunks
+#subs_rows_to_split_dat <- vector()
+##create vector of chunks
+#chunk_len_of_genome <- round_any(nmax_pos, chunklen, f=ceiling)
+#chunk_len_of_genome
+#chunks <- seq(nmin_pos, chunk_len_of_genome, chunklen)
+#chunks
+###checking if the lengths are equal for the later bind
+##if (length(unlist(tot_gene_subs_10kb)) == length(chunks)) {
+##    chunks_pos_NOzero <- chunks
+##} else {
+#    chunks_pos_NOzero <- chunks[which(chunks != 0)]
+##}
+#chunks_pos_NOzero
+#
+##add in fake data for chunks so it will split properly
+##len_of_chunks <- length(chunks_pos_NOzero)
+#len_of_chunks <- length(chunks)
+#fhns <- rep(as.numeric(1), len_of_chunks)
+##fake_dat <- cbind(chunks_pos_NOzero, fhns)
+#fake_dat <- cbind(chunks, fhns)
+#colnames(fake_dat) <- c("gbk_midpoint","HNS_binding")
+#head(fake_dat)
+#head(hns_bind)
+##add fake data to orig data
+#hns_bind <- rbind(hns_bind,fake_dat)
+#head(hns_bind)
+#tail(hns_bind)
+#hns_bind$gbk_midpoint <- as.numeric(hns_bind$gbk_midpoint)
+#hns_bind$HNS_binding <- as.numeric(hns_bind$HNS_binding)
+#head(hns_bind)
+#
+#
+##order the data by positions, only if its NOT strep
+#if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
+#        ord_pos <- order(hns_bind$gbk_midpoint)
+#        hns_bind$HNS_binding <- hns_bind$HNS_binding[ord_pos]
+#        hns_bind$gbk_midpoint <- hns_bind$gbk_midpoint[ord_pos]
 #}
-chunks_pos_NOzero
-
-#add in fake data for chunks so it will split properly
-#len_of_chunks <- length(chunks_pos_NOzero)
-len_of_chunks <- length(chunks)
-ffis <- rep(as.numeric(1), len_of_chunks)
-#fake_dat <- cbind(chunks_pos_NOzero, ffis)
-fake_dat <- cbind(chunks, ffis)
-colnames(fake_dat) <- c("gbk_midpoint","Fis_binding")
-head(fake_dat)
-head(fis_bind)
-#add fake data to orig data
-fis_bind <- rbind(fis_bind,fake_dat)
-head(fis_bind)
-tail(fis_bind)
-fis_bind$gbk_midpoint <- as.numeric(fis_bind$gbk_midpoint)
-fis_bind$Fis_binding <- as.numeric(fis_bind$Fis_binding)
-head(fis_bind)
-
-
-#order the data by positions, only if its NOT strep
-if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
-        ord_pos <- order(fis_bind$gbk_midpoint)
-        fis_bind$Fis_binding <- fis_bind$Fis_binding[ord_pos]
-        fis_bind$gbk_midpoint <- fis_bind$gbk_midpoint[ord_pos]
-}
-print("SAVED BIDIRECTIONAL DATA TO FILE")
-write.table(fis_bind, 'fis_bind.csv', sep = ",")
-
-print("checking order")
-head(fis_bind)
-tail(fis_bind)
-
-sig_rows_to_split_dat <- vector()
-for (i in chunks) {
-  subs_rows <-
-which(abs(fis_bind$gbk_midpoint-i)==min(abs(fis_bind$gbk_midpoint-i)))
-# finding the closest number to each 10kb without going over it
-  subs_max_row <- max(subs_rows)
-  subs_rows_to_split_dat <- c(subs_rows_to_split_dat, subs_max_row)
-}#for
-
-#split data by the above specified rows
-#sometimes the closest number was technically in the next 10kb chunk of seq
-#but its fine.
-data_just_subs <- fis_bind$Fis_binding
-list_dat_sets_just_subs <- split(data_just_subs, findInterval(1:nrow(fis_bind), subs_rows_to_split_dat))
-list_dat_sets_just_subs
-print("split subs into 10kb chunks")
-
-
-##########
-#add up all subs in each 10kb section
-##########
-list_tot_add_subs_10kb <- lapply(list_dat_sets_just_subs, sum)
-tot_gene_subs_10kb <- as.data.frame(matrix(unlist(list_tot_add_subs_10kb), byrow = F))
-print("head/tail of total_subs")
-head(tot_gene_subs_10kb)
-tail(tot_gene_subs_10kb)
-nrow(tot_gene_subs_10kb)
-#length(chunks_pos_NOzero)
-length(chunks)
-class(tot_gene_subs_10kb)
-#remove last element if lengths do not match (for cbind later)
-#if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
-if (nrow(tot_gene_subs_10kb) == length(chunks)) {
-    tot_gene_subs_10kb <- tot_gene_subs_10kb
-} else {
-    tot_gene_subs_10kb <- tot_gene_subs_10kb[-nrow(tot_gene_subs_10kb),]
-    tot_gene_subs_10kb <- tot_gene_subs_10kb[-1]
-}
-
-#tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks_pos_NOzero))
-tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks))
-head(tot_gene_subs_10kb)
-tail(tot_gene_subs_10kb)
-#subtract 1 from Fis binding column (bc of the fake data that was added)
-tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
-#add 10000 to each bar so that it represents all pts within that chunk of the genome
-tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
-print("tot_gene_subs_10kb")
-write.csv(tot_gene_subs_10kb)
-
+#print("SAVED BIDIRECTIONAL DATA TO FILE")
+#write.table(hns_bind, 'hns_bind.csv', sep = ",")
+#
+#print("checking order")
+#head(hns_bind)
+#tail(hns_bind)
+#
+#sig_rows_to_split_dat <- vector()
+#for (i in chunks) {
+#  subs_rows <-
+#which(abs(hns_bind$gbk_midpoint-i)==min(abs(hns_bind$gbk_midpoint-i)))
+## finding the closest number to each 10kb without going over it
+#  subs_max_row <- max(subs_rows)
+#  subs_rows_to_split_dat <- c(subs_rows_to_split_dat, subs_max_row)
+#}#for
+#
+##split data by the above specified rows
+##sometimes the closest number was technically in the next 10kb chunk of seq
+##but its fine.
+#data_just_subs <- hns_bind$HNS_binding
+#list_dat_sets_just_subs <- split(data_just_subs, findInterval(1:nrow(hns_bind), subs_rows_to_split_dat))
+#list_dat_sets_just_subs
+#print("split subs into 10kb chunks")
+#
+#
+###########
+##add up all subs in each 10kb section
+###########
+#list_tot_add_subs_10kb <- lapply(list_dat_sets_just_subs, sum)
+#tot_gene_subs_10kb <- as.data.frame(matrix(unlist(list_tot_add_subs_10kb), byrow = F))
+#print("head/tail of total_subs")
+#head(tot_gene_subs_10kb)
+#tail(tot_gene_subs_10kb)
+#nrow(tot_gene_subs_10kb)
+##length(chunks_pos_NOzero)
+#length(chunks)
+#class(tot_gene_subs_10kb)
+##remove last element if lengths do not match (for cbind later)
+##if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
+#if (nrow(tot_gene_subs_10kb) == length(chunks)) {
+#    tot_gene_subs_10kb <- tot_gene_subs_10kb
+#} else {
+#    tot_gene_subs_10kb <- tot_gene_subs_10kb[-nrow(tot_gene_subs_10kb),]
+#    tot_gene_subs_10kb <- tot_gene_subs_10kb[-1]
+#}
+#
+##tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks_pos_NOzero))
+#tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks))
+#head(tot_gene_subs_10kb)
+#tail(tot_gene_subs_10kb)
+##subtract 1 from HNS binding column (bc of the fake data that was added)
+#tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
+##add 10000 to each bar so that it represents all pts within that chunk of the genome
+#tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
+#print("tot_gene_subs_10kb")
+#write.csv(tot_gene_subs_10kb)
+#
 ######################################################
-# PLOT
+#print("sig inversions hist data")
 ######################################################
-options(scipen=3)
-tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
+##all sig inversions data is the inver_dat_bidir df
+#inver_dat_bidir$block_w_pvalue <- as.numeric(inver_dat_bidir$block_w_pvalue)
+#sig_id <- inver_dat_bidir %>%
+#          select(start,end,strain,block,inversion,block_w_pvalue) %>%
+#          filter(strain == "K12MG") %>%
+#          filter(block_w_pvalue <= 0.05)
+#sig_id <- unique(sig_id)
+#sig_id <- within(sig_id, midpoint <- (end + start) /2)
+#colnames(sig_id)[colnames(sig_id) == "midpoint"] <- "midpoint"
+#head(sig_id)
+#sig_id <- sig_id %>% select(inversion,midpoint)
+#head(sig_id)
+#
+##add in fake data for chunks so it will split properly
+##len_of_chunks <- length(chunks_pos_NOzero)
+#len_of_chunks <- length(chunks)
+#finv <- rep(as.numeric(1), len_of_chunks)
+##fake_dat <- cbind(chunks_pos_NOzero, fhns)
+#fake_dat <- cbind(chunks, finv)
+#colnames(fake_dat) <- c("midpoint","inversion")
+#head(fake_dat)
+##add fake data to orig data
+#sig_bind <- rbind(sig_id,fake_dat)
+#head(sig_bind)
+#tail(sig_bind)
+#sig_bind$gbk_midpoint <- as.numeric(sig_bind$midpoint)
+#sig_bind$HNS_binding <- as.numeric(sig_bind$inversion)
+#
+#
+##order the data by positions, only if its NOT strep
+#if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
+#        ord_pos <- order(sig_bind$gbk_midpoint)
+#        sig_bind$HNS_binding <- sig_bind$HNS_binding[ord_pos]
+#        sig_bind$gbk_midpoint <- sig_bind$gbk_midpoint[ord_pos]
+#}
+#print("SAVED BIDIRECTIONAL DATA TO FILE")
+#write.table(sig_bind, 'sig_bind.csv', sep = ",")
+#
+#print("checking order")
+#head(sig_bind)
+#tail(sig_bind)
+#
+#for (i in chunks) {
+#  sig_rows <-
+#which(abs(sig_bind$gbk_midpoint-i)==min(abs(sig_bind$gbk_midpoint-i)))
+## finding the closest number to each 10kb without going over it
+#  sig_max_row <- max(sig_rows)
+#  sig_rows_to_split_dat <- c(sig_rows_to_split_dat, sig_max_row)
+#}#for
+#
+##split data by the above specified rows
+##sometimes the closest number was technically in the next 10kb chunk of seq
+##but its fine.
+#data_just_sig <- sig_bind$inversion
+#list_dat_sets_just_sig <- split(data_just_sig, findInterval(1:nrow(sig_bind), sig_rows_to_split_dat))
+#list_dat_sets_just_sig
+#print("split sig into 10kb chunks")
+#
+#
+###########
+##add up all sig in each 10kb section
+###########
+#list_tot_add_sig_10kb <- lapply(list_dat_sets_just_sig, sum)
+#tot_gene_sig_10kb <- as.data.frame(matrix(unlist(list_tot_add_sig_10kb), byrow = F))
+#print("head/tail of total_sig")
+#head(tot_gene_sig_10kb)
+#tail(tot_gene_sig_10kb)
+#nrow(tot_gene_sig_10kb)
+##length(chunks_pos_NOzero)
+#length(chunks)
+#class(tot_gene_sig_10kb)
+##remove last element if lengths do not match (for cbind later)
+##if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
+#if (nrow(tot_gene_sig_10kb) == length(chunks)) {
+#    tot_gene_sig_10kb <- tot_gene_sig_10kb
+#} else {
+#    tot_gene_sig_10kb <- tot_gene_sig_10kb[-nrow(tot_gene_sig_10kb),]
+#    tot_gene_sig_10kb <- tot_gene_sig_10kb[-1]
+#}
+#
+##tot_gene_sig_10kb <- as.data.frame(cbind(tot_gene_sig_10kb, chunks_pos_NOzero))
+#tot_gene_sig_10kb <- as.data.frame(cbind(tot_gene_sig_10kb, chunks))
+#head(tot_gene_sig_10kb)
+#tail(tot_gene_sig_10kb)
+##subtract 1 from HNS binding column (bc of the fake data that was added)
+#tot_gene_sig_10kb$V1 <- tot_gene_sig_10kb$V1 -1
+##add 10000 to each bar so that it represents all pts within that chunk of the genome
+#tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks +10000
+#print("tot_gene_sig_10kb")
+#write.csv(tot_gene_sig_10kb)
+#
+#######################################################
+## PLOT
+#######################################################
+#options(scipen=3)
+#tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
 #tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks / 1000000
-subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
-  + geom_histogram(stat = "identity", aes(fill= "#2E294E"), alpha = 0.7)
-  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1, fill= "#AA5042"),stat = "identity", alpha = 0.6)
-  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=5)
-   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
-   + scale_fill_manual(values = c("#788AA3","#2E294E","#42474C" ), labels = c("Fis Binding","Significant Inversion"))
-#   + scale_fill_manual(values = c("#AA5042","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
-  + theme(legend.position = "top")
-#  geom_histogram(stat = "identity", fill= "#FE5F55")
-  + labs(x = "Genomic Position (Mbp)", y = "Number per 100Kbp")
-##FOR PRESENTATION ONLY: NEXT LINE
-#  + labs(x = "", y = "")
-  + ggtitle("Fis Binding and Inversions")
-#   + geom_vline(xintercept = 0, colour = "red")
- + scale_x_continuous(labels = function(x) ifelse(x ==0, "0", x))
- + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
-)
-###########################
-pdf("fis_hist.pdf")
-subs_hist
-#grid.newpage()
-#grid.draw(rbind(ggplotGrob(gene_num_hist), ggplotGrob(exp_bar_top), size = "last"))
-## next line adds border
-#grid.rect(width = 0.99, height = 0.99, gp = gpar(lwd = 2, col = "black", fill = NA))
-dev.off()
-###########################
+#subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
+#  + geom_histogram(stat = "identity", aes(fill= "#2E294E"), alpha = 0.8)
+#  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1, fill= "#AA5042"),stat = "identity")
+#  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=5)
+#   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
+#   + scale_fill_manual(values = c("#788AA3","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
+##   + scale_fill_manual(values = c("#AA5042","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
+#  + theme(legend.position = "top")
+##  geom_histogram(stat = "identity", fill= "#FE5F55")
+#  + labs(x = "Genomic Position (Mbp)", y = "Number per 100Kbp")
+###FOR PRESENTATION ONLY: NEXT LINE
+##  + labs(x = "", y = "")
+#  + ggtitle("H-NS Binding and Inversions")
+##   + geom_vline(xintercept = 0, colour = "red")
+# + scale_x_continuous(labels = function(x) ifelse(x ==0, "0", x))
+# + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
+#)
+############################
+#pdf("hns_hist.pdf")
+#subs_hist
+##grid.newpage()
+##grid.draw(rbind(ggplotGrob(gene_num_hist), ggplotGrob(exp_bar_top), size = "last"))
+### next line adds border
+##grid.rect(width = 0.99, height = 0.99, gp = gpar(lwd = 2, col = "black", fill = NA))
+#dev.off()
+############################
+#
+#
+#print("#############################")
+#print("Fis binding")
+#print("#############################")
+##load in data
+#print("Grainger 2006 (cod and non-cod)")
+#g_dat <- read.csv("../fis_binding/Grainger_2006_fis_binding.csv", header = TRUE)
+#sub_g_dat <- g_dat %>%
+#             select(Gene_name,Coordinates)
+#colnames(sub_g_dat) <- c("gene_name","Coords")
+#coords <- str_split_fixed(sub_g_dat$Coords, "-", 2)
+#colnames(coords) <- c("start","end")
+#sub_g_dat <- cbind(sub_g_dat,coords)
+#sub_g_dat <- sub_g_dat %>%
+#             select(gene_name,start,end) %>%
+#             filter(gene_name != "Between convergent ORFs") %>%
+#             filter(start != "N/A")
+#head(sub_g_dat)
+#fis_bind <- sub_g_dat
+##find overlap btwn Fis binding and inversions
+#inver_cor_d <- inver_dat_bidir %>% filter(strain == "K12MG") %>%
+#            select(gbk_start,gbk_end,inversion,block)
+##            select(start,end)
+##colnames(inver_cor_d) <- c("start1","end1")
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block")
+#inver_cor_d$Inversion <- as.character(inver_cor_d$Inversion)
+#inver_cor_d <- unique(inver_cor_d)
+#head(inver_cor_d)
+#sub_g_dat$start <- as.numeric(as.character(sub_g_dat$start))
+#sub_g_dat$end <- as.numeric(as.character(sub_g_dat$end))
+#hns_dat <- within(sub_g_dat, midpoint <- (end + start) /2)
+#colnames(hns_dat)[colnames(hns_dat) == "midpoint"] <- "midpoint"
+#class2 <- rep("G_Fis_Binding",length(hns_dat$start))
+#hns_dat <- cbind(hns_dat,class2)
+#hns_cor_d <- hns_dat
+#head(hns_cor_d)
+#hns_cor_d <- hns_cor_d %>% select(start,end)
+#summary(hns_cor_d)
+#hns_cor_d <- hns_cor_d[order(hns_cor_d$start),]
+#print("fis bind")
+#head(hns_cor_d)
+#
+#
+#ir1 = with(inver_cor_d, IRanges(start1, end1))
+#ir2 = with(hns_cor_d, IRanges(start, end))
+#inver_cor_d$overlap = countOverlaps(ir1, ir2) != 0
+#head(inver_cor_d)
+#colnames(inver_cor_d) <- c("start1","end1","Inversion","block","G_Fis_Binding")
+#inver_cor_d$G_Fis_binding <- as.integer(inver_cor_d$G_Fis_Binding)
+#inver_cor_d$Inversion <- as.integer(inver_cor_d$Inversion)
+#head(inver_cor_d)
+#inver_cor_d[which(inver_cor_d$start1 == 190),]
+#
+#print("################################################################################")
+#print("correlation test btwn inversion/non-inversion and fis binding")
+#print("################################################################################")
+#cor.test(inver_cor_d$Inversion, inver_cor_d$G_Fis_binding,
+#         method = "pearson")
+#
+#print("get new df with hns binding + inversions + sig block info")
+##filter by K12 strain and ensure that we are only looking at the wilcoxon test results
+#cor_dat <- cor_dat %>% filter(strain == "K12MG") %>% filter(test == "block_w_pvalue")
+#cor_dat <- cor_dat %>%
+#    mutate(sig = if_else(pvalue <= 0.05, 1, 0))
+#ir1 = with(cor_dat, IRanges(gbk_start, gbk_end))
+#cor_dat$overlap = countOverlaps(ir1, ir2) != 0
+#names(cor_dat)[names(cor_dat)=="overlap"] <- "G_Fis_binding"
+#cor_dat[which(cor_dat$start == 383921),]
+#cor_dat$G_Fis_binding <- as.integer(cor_dat$G_Fis_binding)
+#cor_dat$sig <- as.integer(cor_dat$sig)
+#cor_dat$inversion <- as.integer(cor_dat$inversion)
+#head(cor_dat)
+#tail(cor_dat)
+#summary(cor_dat)
+#
+#
+#print("################################################################################")
+#print("correlation test btwn sig inversion/non-inversion and fis binding ALL BLOCKS")
+#print("################################################################################")
+#cor.test(cor_dat$sig, cor_dat$G_Fis_binding,
+#         method = "pearson")
+#
+#print("checking overlap between Fis binding sites in all datasets")
+#print("total Fis binding sites for each dataset")
+#inver_cor_d %>%
+#gather(x, value, G_Fis_binding)%>%
+#group_by(x)%>%
+#tally(value == 1)
+#
+#print("Fis and expression in Garinger")
+#head(inver_cor_d)
+#g_blocks <- inver_cor_d %>%
+#         filter(G_Fis_binding == 1) %>%
+#         select(block)
+#g_blocks <- unique(g_blocks)
+#g_blocks <- as.character(sort(g_blocks$block))
+#class(g_blocks)
+#print("#get gei_dat that is just ^ blocks")
+#gei_dat$block_w_pvalue <- as.numeric(gei_dat$block_w_pvalue)
+#summary(gei_dat)
+#g_dat <- gei_dat %>%
+#           filter(block %in% g_blocks)
+#g_l <- as.character(sort(unique(g_dat$block)))
+#class(g_l)
+#print("check if all Fis blocks were grabbed")
+#identical(g_l, g_blocks)
+#
+#print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound inversions and Fis bound non-inversions")
+#wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
+#
+#print("Avg inver exp with Fis binding")
+#mean(g_dat$norm_exp[g_dat$inversion == 1])
+#print("Avg NON-inver exp with Fis binding")
+#mean(g_dat$norm_exp[g_dat$inversion == 0])
+#
+#print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig Fis bound inversions and non-sig Fis bound non-inversions")
+##make df with sig diff in gene exp btwn inversions
+#g_dat$block_w_pvalue <- as.numeric(g_dat$block_w_pvalue)
+#g_dat$norm_exp <- as.numeric(g_dat$norm_exp)
+#sig_gei <- g_dat %>%
+#    mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
+#head(sig_gei)
+#wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
+#print("Avg exp with Fis binding (sig)")
+#flt_sig <- sig_gei %>% filter(sig != "NA")
+#mean(flt_sig$norm_exp[flt_sig$sig == 1])
+#print("Avg exp with Fis binding (nonsig)")
+#mean(flt_sig$norm_exp[flt_sig$sig == 0])
+#
+#print("create column with Fis binding and non-binding")
+#gei_dat_fis <- gei_dat %>%
+#               mutate(Fis = ifelse(block %in% g_blocks, 1, 0))
+#print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound and Fis un-bound blocks")
+#wilcox.test(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1], gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
+#print("Avg exp with Fis binding")
+#mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1])
+#print("Avg exp WITHOUT Fis binding")
+#mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
+#
+###################################################################################
+###################################################################################
+#print("### Fis GRAPH HISTOGRAM")
+###################################################################################
+###################################################################################
+#
+##all Fis binding data is the fis_bind df
+#fis_bind$start <- as.numeric(as.character(fis_bind$start))
+#fis_bind$end <- as.numeric(as.character(fis_bind$end))
+#fis_bind <- within(fis_bind, gbk_midpoint <- (end + start) /2)
+#Fis_binding <- rep("TRUE", length(fis_bind$start))
+#fis_bind <- cbind(fis_bind,Fis_binding)
+#head(fis_bind)
+#fis_bind <- fis_bind %>% select(gbk_midpoint,Fis_binding)
+#fis_bind$Fis_binding <- as.numeric(fis_bind$Fis_binding)
+#head(fis_bind)
+##new min and max for the scaled positions (rounded to chunk len
+##specified in args)
+#chunklen <- as.numeric(args[10])
+#print("chunklen")
+#chunklen
+##nmin_pos <- round_any(min(fis_sig$non_bidir_midpoint), chunklen, f=floor)
+#nmin_pos <- 0
+#print("min (rounded)")
+#nmin_pos
+##nmax_pos <- max(fis_sig$non_bidir_midpoint)
+#nmax_pos <- as.numeric(args[2])
+#print("max (rounded)")
+#nmax_pos
+#
+##expty vec to hold the rows that split the dat into X kb chunks
+#subs_rows_to_split_dat <- vector()
+##create vector of chunks
+#chunk_len_of_genome <- round_any(nmax_pos, chunklen, f=ceiling)
+#chunk_len_of_genome
+#chunks <- seq(nmin_pos, chunk_len_of_genome, chunklen)
+#chunks
+###checking if the lengths are equal for the later bind
+##if (length(unlist(tot_gene_subs_10kb)) == length(chunks)) {
+##    chunks_pos_NOzero <- chunks
+##} else {
+#    chunks_pos_NOzero <- chunks[which(chunks != 0)]
+##}
+#chunks_pos_NOzero
+#
+##add in fake data for chunks so it will split properly
+##len_of_chunks <- length(chunks_pos_NOzero)
+#len_of_chunks <- length(chunks)
+#ffis <- rep(as.numeric(1), len_of_chunks)
+##fake_dat <- cbind(chunks_pos_NOzero, ffis)
+#fake_dat <- cbind(chunks, ffis)
+#colnames(fake_dat) <- c("gbk_midpoint","Fis_binding")
+#head(fake_dat)
+#head(fis_bind)
+##add fake data to orig data
+#fis_bind <- rbind(fis_bind,fake_dat)
+#head(fis_bind)
+#tail(fis_bind)
+#fis_bind$gbk_midpoint <- as.numeric(fis_bind$gbk_midpoint)
+#fis_bind$Fis_binding <- as.numeric(fis_bind$Fis_binding)
+#head(fis_bind)
+#
+#
+##order the data by positions, only if its NOT strep
+#if (bac_name == "E.coli" | bac_name == "B.subtilis" | bac_name == "S.meliloti"| bac_name == "Streptomyces") {
+#        ord_pos <- order(fis_bind$gbk_midpoint)
+#        fis_bind$Fis_binding <- fis_bind$Fis_binding[ord_pos]
+#        fis_bind$gbk_midpoint <- fis_bind$gbk_midpoint[ord_pos]
+#}
+#print("SAVED BIDIRECTIONAL DATA TO FILE")
+#write.table(fis_bind, 'fis_bind.csv', sep = ",")
+#
+#print("checking order")
+#head(fis_bind)
+#tail(fis_bind)
+#
+#sig_rows_to_split_dat <- vector()
+#for (i in chunks) {
+#  subs_rows <-
+#which(abs(fis_bind$gbk_midpoint-i)==min(abs(fis_bind$gbk_midpoint-i)))
+## finding the closest number to each 10kb without going over it
+#  subs_max_row <- max(subs_rows)
+#  subs_rows_to_split_dat <- c(subs_rows_to_split_dat, subs_max_row)
+#}#for
+#
+##split data by the above specified rows
+##sometimes the closest number was technically in the next 10kb chunk of seq
+##but its fine.
+#data_just_subs <- fis_bind$Fis_binding
+#list_dat_sets_just_subs <- split(data_just_subs, findInterval(1:nrow(fis_bind), subs_rows_to_split_dat))
+#list_dat_sets_just_subs
+#print("split subs into 10kb chunks")
+#
+#
+###########
+##add up all subs in each 10kb section
+###########
+#list_tot_add_subs_10kb <- lapply(list_dat_sets_just_subs, sum)
+#tot_gene_subs_10kb <- as.data.frame(matrix(unlist(list_tot_add_subs_10kb), byrow = F))
+#print("head/tail of total_subs")
+#head(tot_gene_subs_10kb)
+#tail(tot_gene_subs_10kb)
+#nrow(tot_gene_subs_10kb)
+##length(chunks_pos_NOzero)
+#length(chunks)
+#class(tot_gene_subs_10kb)
+##remove last element if lengths do not match (for cbind later)
+##if (nrow(tot_gene_subs_10kb) == length(chunks_pos_NOzero)) {
+#if (nrow(tot_gene_subs_10kb) == length(chunks)) {
+#    tot_gene_subs_10kb <- tot_gene_subs_10kb
+#} else {
+#    tot_gene_subs_10kb <- tot_gene_subs_10kb[-nrow(tot_gene_subs_10kb),]
+#    tot_gene_subs_10kb <- tot_gene_subs_10kb[-1]
+#}
+#
+##tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks_pos_NOzero))
+#tot_gene_subs_10kb <- as.data.frame(cbind(tot_gene_subs_10kb, chunks))
+#head(tot_gene_subs_10kb)
+#tail(tot_gene_subs_10kb)
+##subtract 1 from Fis binding column (bc of the fake data that was added)
+#tot_gene_subs_10kb$V1 <- tot_gene_subs_10kb$V1 -1
+##add 10000 to each bar so that it represents all pts within that chunk of the genome
+#tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks +10000
+#print("tot_gene_subs_10kb")
+#write.csv(tot_gene_subs_10kb)
+#
+#######################################################
+## PLOT
+#######################################################
+#options(scipen=3)
+#tot_gene_subs_10kb$chunks <- tot_gene_subs_10kb$chunks / 1000000
+##tot_gene_sig_10kb$chunks <- tot_gene_sig_10kb$chunks / 1000000
+#subs_hist <- (ggplot(tot_gene_subs_10kb, aes(x = chunks, y = V1))
+#  + geom_histogram(stat = "identity", aes(fill= "#2E294E"), alpha = 0.7)
+#  + geom_histogram(data = tot_gene_sig_10kb, aes(x=chunks, y=V1, fill= "#AA5042"),stat = "identity", alpha = 0.6)
+#  + geom_point(data = hns_inver, aes(x = non_bidir_midpoint,y=fake2,colour = "#42474C"), size=5)
+#   + scale_color_manual(values = c("#42474C"), labels = c("Inversion"))
+#   + scale_fill_manual(values = c("#788AA3","#2E294E","#42474C" ), labels = c("Fis Binding","Significant Inversion"))
+##   + scale_fill_manual(values = c("#AA5042","#2E294E","#42474C" ), labels = c("H-NS Binding","Significant Inversion"))
+#  + theme(legend.position = "top")
+##  geom_histogram(stat = "identity", fill= "#FE5F55")
+#  + labs(x = "Genomic Position (Mbp)", y = "Number per 100Kbp")
+###FOR PRESENTATION ONLY: NEXT LINE
+##  + labs(x = "", y = "")
+#  + ggtitle("Fis Binding and Inversions")
+##   + geom_vline(xintercept = 0, colour = "red")
+# + scale_x_continuous(labels = function(x) ifelse(x ==0, "0", x))
+# + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
+#)
+############################
+#pdf("fis_hist.pdf")
+#subs_hist
+##grid.newpage()
+##grid.draw(rbind(ggplotGrob(gene_num_hist), ggplotGrob(exp_bar_top), size = "last"))
+### next line adds border
+##grid.rect(width = 0.99, height = 0.99, gp = gpar(lwd = 2, col = "black", fill = NA))
+#dev.off()
+############################
