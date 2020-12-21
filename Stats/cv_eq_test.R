@@ -4,6 +4,36 @@
 library(cvequality)
 library(dplyr)
 library(plyr)
+library(ggplot2)
+#set theme
+theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
+            #change size of facet header text
+            theme(strip.text = element_text(size =10.49)) +
+            theme(plot.title = element_text(hjust = 0.5, size = 18),
+                  panel.background = element_rect(fill = "white", colour = NA),
+                  panel.grid.major = element_line(colour = "grey90", size = 0.2),
+                  panel.grid.minor = element_line(colour = "grey98", size = 0.5),
+                  panel.spacing = unit(0.25, "lines"),
+                  axis.text=element_text(size=18),
+                  axis.title = element_text(size = 18),
+                  #plot margins
+                  #plot.margin = unit(c(0.5,0.5,0.5,0.5), "cm"),
+                  #for second legend on y-axis
+                  axis.text.y.right = element_text(size=18),
+                  legend.title = element_blank(),
+                  legend.text = element_text(size = 18),
+                  #change the colour of facet label background
+                  strip.background = element_rect(fill = "#E6E1EA"),
+                  #remove space between facest
+                  panel.spacing.x=unit(0, "lines"),
+#                  legend.key = element_blank(),
+                  legend.background=element_blank(),
+                  #legend background
+                  legend.key = element_rect(fill = NA),
+#                  legend.position="none")
+                  legend.position="top")
+)
+
 
 #read in dat
 g_dat <- read.table("Stats/inversions_gene_exp_wtest_data.csv", sep = "\t")
@@ -74,8 +104,8 @@ p<- (ggplot(g_dat, aes(x=norm_exp, fill=inversion))
    + labs(title= "Distribution of Gene Expression",x = "Gene Expression (CPM)", y = "Density") 
    + scale_x_continuous(trans = 'log10', labels = function(x) ifelse(x ==0, "0", x))
    + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
-   + scale_color_manual(values = c("#788AA3","#2E294E"), labels = c("Inversion","Non-Inversion"))
-   + scale_fill_manual(values = c("#788AA3","#2E294E"), labels = c("Inversion","Non-Inversion"))
+   + scale_color_manual(values = c("#2E294E","#788AA3"), labels = c("Non-Inversion","Inversion"))
+   + scale_fill_manual(values = c("#2E294E","#788AA3"), labels = c("Non-Inversion","Inversion"))
 
 )
 pdf("Stats/all_exp_dist.pdf")
@@ -97,8 +127,8 @@ p<- (ggplot(atcc_d, aes(x=norm_exp, fill=rev_comp))
    + labs(title= ecolT,x = "Gene Expression (CPM)", y = "Density") 
    + scale_x_continuous(trans = 'log10', labels = function(x) ifelse(x ==0, "0", x))
    + scale_y_continuous(labels = function(x) ifelse(x ==0,"0", x))
-   + scale_color_manual(values = c("#788AA3","#2E294E"), labels = c("Inversion","Non-Inversion"))
-   + scale_fill_manual(values = c("#788AA3","#2E294E"), labels = c("Inversion","Non-Inversion"))
+   + scale_color_manual(values = c("#2E294E","#788AA3"), labels = c("Non-Inversion","Inversion"))
+   + scale_fill_manual(values = c("#2E294E","#788AA3"), labels = c("Non-Inversion","Inversion"))
 
 )
 pdf("Stats/ATCC_exp_dist.pdf")
