@@ -41200,34 +41200,37 @@ Length  Class   Mode
 [1] "####################"
 [1] "GENE EXP UP/DOWN INFO"
 [1] "####################"
+[1] "range of fold difference in exp for ALL SIG blocks"
+       Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
+ 0.00985634  1.14150900  2.36070800  8.88661600  4.20649000 85.57996000 
 [1] "number of SIG blocks with inversion gene exp > noninversions gene exp"
 [1] 24
 [1] "percent of SIG blocks with inversions exp > noninversion exp"
 [1] 75
 [1] "range of fold difference in exp for inversions exp > noninversion exp"
-       block        pvalue block_avg_exp_invert block_avg_exp_noninvert
-312 Block935 0.01234317204          226.7388758             65.79472363
-313 Block935 0.01234317204          226.7388758             65.79472363
-314 Block935 0.01234317204          226.7388758             65.79472363
-315 Block935 0.01234317204          226.7388758             65.79472363
-316 Block935 0.01234317204          226.7388758             65.79472363
-317 Block935 0.01234317204          226.7388758             65.79472363
-    block_avg_len_invert block_avg_len_noninvert rev_comp inversion exp_reg
-312                23936                   23938        1         1      up
-313                23936                   23938        1         1      up
-314                23936                   23938        1         1      up
-315                23936                   23938        1         1      up
-316                23936                   23938        1         1      up
-317                23936                   23938        1         1      up
-    len_reg      new.col
-312   short 0.2901783975
-313   short 0.2901783975
-314   short 0.2901783975
-315   short 0.2901783975
-316   short 0.2901783975
-317   short 0.2901783975
-      Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
-0.01168498 0.10630820 0.32081820 0.34230790 0.54334440 0.78699770 
+      block        pvalue block_avg_exp_invert block_avg_exp_noninvert
+11 Block935 0.01234317204          226.7388758             65.79472363
+12 Block935 0.01234317204          226.7388758             65.79472363
+13 Block935 0.01234317204          226.7388758             65.79472363
+14 Block935 0.01234317204          226.7388758             65.79472363
+15 Block935 0.01234317204          226.7388758             65.79472363
+16 Block935 0.01234317204          226.7388758             65.79472363
+   block_avg_len_invert block_avg_len_noninvert rev_comp inversion exp_reg
+11                23936                   23938        1         1      up
+12                23936                   23938        1         1      up
+13                23936                   23938        1         1      up
+14                23936                   23938        1         1      up
+15                23936                   23938        1         1      up
+16                23936                   23938        1         1      up
+   len_reg     new.col
+11   short 3.446155912
+12   short 3.446155912
+13   short 3.446155912
+14   short 3.446155912
+15   short 3.446155912
+16   short 3.446155912
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+ 1.270652  1.842739  3.123147 11.749370  9.407354 85.579960 
 [1] "number of SIG blocks with inversion gene exp < noninversions gene exp"
 [1] 8
 [1] "percent of SIG blocks with inversions exp < noninversion exp"
@@ -41564,41 +41567,41 @@ null device
  3rd Qu.:0.032765738                                                           
  Max.   :0.047619048                                                           
                                                                                
-       block   start     end  midpoint gbk_start gbk_end gbk_midpoint
-263 Block950  980233  982886 2186582.5    980846  981055      2185973
-264 Block950  980233  982886 2186582.5    981066  981653      2186382
-265 Block950  980233  982886 2186582.5    981653  982801      2187250
-305 Block938 1037383 1045391 2246410.0   1037989 1039596      2243815
-306 Block938 1037383 1045391 2246410.0   1039658 1039885      2244794
-307 Block938 1037383 1045391 2246410.0   1039903 1040922      2245435
-         block_t_stat  block_t_confinf1  block_t_confinf2 block_avg_exp_invert
-263 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
-264 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
-265 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
-305 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
-306 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
-307 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
-    block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
-263             107.2911900                 2653                    2655
-264             107.2911900                 2653                    2655
-265             107.2911900                 2653                    2655
-305             455.8090163                 8008                    8009
-306             455.8090163                 8008                    8009
-307             455.8090163                 8008                    8009
-    inversion rev_comp strain           test         pvalue allSig sig  class
-263         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-264         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-265         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-305         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-306         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-307         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-    exp_reg
-263    down
-264    down
-265    down
-305    down
-306    down
-307    down
+     block   start     end  midpoint gbk_start gbk_end gbk_midpoint
+1 Block950  980233  982886 2186582.5    980846  981055      2185973
+2 Block950  980233  982886 2186582.5    981066  981653      2186382
+3 Block950  980233  982886 2186582.5    981653  982801      2187250
+4 Block938 1037383 1045391 2246410.0   1037989 1039596      2243815
+5 Block938 1037383 1045391 2246410.0   1039658 1039885      2244794
+6 Block938 1037383 1045391 2246410.0   1039903 1040922      2245435
+       block_t_stat  block_t_confinf1  block_t_confinf2 block_avg_exp_invert
+1 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
+2 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
+3 -3.62312665036473 -120.574660998906 -28.3784333427305          32.81464286
+4 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
+5 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
+6 -1.66683301041188 -993.134273665136  116.424138602891          17.45394873
+  block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+1             107.2911900                 2653                    2655
+2             107.2911900                 2653                    2655
+3             107.2911900                 2653                    2655
+4             455.8090163                 8008                    8009
+5             455.8090163                 8008                    8009
+6             455.8090163                 8008                    8009
+  inversion rev_comp strain           test         pvalue allSig sig  class
+1         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
+2         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
+3         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
+4         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
+5         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
+6         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
+  exp_reg
+1    down
+2    down
+3    down
+4    down
+5    down
+6    down
 null device 
           1 
 [1] "###################"

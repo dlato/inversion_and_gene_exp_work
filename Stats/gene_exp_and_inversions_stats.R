@@ -1,7 +1,7 @@
 #test script for inversions and gene expression analysis
 #library(tidyverse)
-library(dplyr)
 library(plyr)
+library(dplyr)
 library(tidyr)
 library("stringr")
 #library(broom)
@@ -609,13 +609,16 @@ df <- df %>%
 print("####################")
 print("GENE EXP UP/DOWN INFO")
 print("####################")
+print("range of fold difference in exp for ALL SIG blocks")
+fc <- transform(df, new.col = block_avg_exp_invert / block_avg_exp_noninvert)
+summary(unique(fc$new.col))
 print("number of SIG blocks with inversion gene exp > noninversions gene exp")
 up <- df[which(df$exp_reg == "up"),]
 length(unique(up$block))
 print("percent of SIG blocks with inversions exp > noninversion exp")
 (length(unique(up$block)) / length(unique(df$block))) *100
 print("range of fold difference in exp for inversions exp > noninversion exp")
-up_r <- transform(up, new.col = block_avg_exp_noninvert / block_avg_exp_invert)
+up_r <- transform(up, new.col = block_avg_exp_invert / block_avg_exp_noninvert)
 head(up_r)
 summary(unique(up_r$new.col))
 print("number of SIG blocks with inversion gene exp < noninversions gene exp")
