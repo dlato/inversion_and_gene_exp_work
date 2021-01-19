@@ -193,7 +193,7 @@ if (bac_name == "Streptomyces") {
 }
 
 
-gei_dat$gbk_strand <- new_strand
+gei_dat$midpoint_strand <- new_strand
 
 gei_dat$midpoint <- tmp_pos
 #gei_dat <- as.data.frame(cbind(gei_dat$block, gei_dat$gene, gei_dat$sec, tmp_pos, gei_dat$dS, gei_dat$dN, gei_dat$omega, gei_dat$sec_len))
@@ -681,6 +681,26 @@ print("average non-inverted exp")
 td <- mg_d %>% filter(rev_comp == 0)
 summary(td$norm_exp)
 
+print("#####################")
+print("# Gene Orientation and Inversions Correlation")
+print("# leading strand = 0")
+print("# lagging strand = 1")
+print("#####################")
+print("#ALL STRAINS")
+head(gei_dat)
+summary(gei_dat)
+print("# correlation test btwn orientation and inversion")
+cor.test(gei_dat$inversion, gei_dat$gbk_strand, method = "pearson")
+
+print("#K-12DH")
+go_dat <- gei_dat %>% filter(strain == "K12DH")
+print("# correlation test btwn orientation and rev_comp")
+cor.test(go_dat$rev_comp, go_dat$gbk_strand, method = "pearson")
+print("#ATCC")
+go_dat <- gei_dat %>% filter(strain == "ATCC")
+print("# correlation test btwn orientation and rev_comp")
+cor.test(go_dat$rev_comp, go_dat$gbk_strand, method = "pearson")
+#
 print("#####################")
 print("# Variance in Expression Analysis")
 print("#####################")
