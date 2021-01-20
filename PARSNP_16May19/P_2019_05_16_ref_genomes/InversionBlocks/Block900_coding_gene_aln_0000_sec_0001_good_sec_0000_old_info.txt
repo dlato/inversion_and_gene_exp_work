@@ -1,4 +1,0 @@
-Block900_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	1222172	1223500	1	1
-Block900_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	3527893	3529221	1	1
-Block900_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	3630301	3631629	1	1
-Block900_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	3534534	3535862	1	1

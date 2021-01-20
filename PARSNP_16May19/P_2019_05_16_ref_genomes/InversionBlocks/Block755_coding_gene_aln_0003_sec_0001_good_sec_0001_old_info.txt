@@ -1,4 +1,0 @@
-Block755_coding_gene_aln_0003_sec_0001_good_sec_0001	CP009072	2075597	2076679	1	1
-Block755_coding_gene_aln_0003_sec_0001_good_sec_0001	CP009273	2817850	2818932	1	1
-Block755_coding_gene_aln_0003_sec_0001_good_sec_0001	NC_010473	2915055	2916137	1	1
-Block755_coding_gene_aln_0003_sec_0001_good_sec_0001	U00096000	2824491	2825573	1	1

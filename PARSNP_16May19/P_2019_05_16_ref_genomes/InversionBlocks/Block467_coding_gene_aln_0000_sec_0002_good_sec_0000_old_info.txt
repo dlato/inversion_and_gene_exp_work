@@ -1,4 +1,0 @@
-Block467_coding_gene_aln_0000_sec_0002_good_sec_0000	CP009072	3459007	3459315	1	1
-Block467_coding_gene_aln_0000_sec_0002_good_sec_0000	CP009273	1665633	1665941	0	1
-Block467_coding_gene_aln_0000_sec_0002_good_sec_0000	NC_010473	1760361	1760669	0	1
-Block467_coding_gene_aln_0000_sec_0002_good_sec_0000	U00096000	1671376	1671684	0	1

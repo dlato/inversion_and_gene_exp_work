@@ -1,4 +1,0 @@
-Block787_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	1814649	1815059	1	1
-Block787_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	3067632	3068042	1	1
-Block787_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	3166165	3166575	1	1
-Block787_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	3074273	3074683	1	1

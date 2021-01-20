@@ -1,4 +1,0 @@
-Block768_coding_gene_aln_0010_sec_0002_good_sec_0000	CP009072	1965641	1965868	1	1
-Block768_coding_gene_aln_0010_sec_0002_good_sec_0000	CP009273	2936277	2936504	1	1
-Block768_coding_gene_aln_0010_sec_0002_good_sec_0000	NC_010473	3034810	3035037	1	1
-Block768_coding_gene_aln_0010_sec_0002_good_sec_0000	U00096000	2942918	2943145	1	1

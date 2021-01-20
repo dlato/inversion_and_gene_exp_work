@@ -1,4 +1,0 @@
-Block778_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	1866356	1867684	1	1
-Block778_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	3012520	3013848	0	1
-Block778_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	3111053	3112381	0	1
-Block778_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	3019161	3020489	0	1

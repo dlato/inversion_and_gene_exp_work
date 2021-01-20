@@ -1,4 +1,0 @@
-Block495_coding_gene_aln_0003_sec_0001_good_sec_0000	CP009072	3264012	3265295	1	1
-Block495_coding_gene_aln_0003_sec_0001_good_sec_0000	CP009273	1863212	1864495	0	1
-Block495_coding_gene_aln_0003_sec_0001_good_sec_0000	NC_010473	1957550	1958833	0	1
-Block495_coding_gene_aln_0003_sec_0001_good_sec_0000	U00096000	1868955	1870238	0	1

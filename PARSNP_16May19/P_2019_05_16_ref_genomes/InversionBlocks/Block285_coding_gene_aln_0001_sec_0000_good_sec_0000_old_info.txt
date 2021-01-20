@@ -1,4 +1,0 @@
-Block285_coding_gene_aln_0001_sec_0000_good_sec_0000	CP009072	4070135	4070509	1	1
-Block285_coding_gene_aln_0001_sec_0000_good_sec_0000	CP009273	1109263	1109637	1	1
-Block285_coding_gene_aln_0001_sec_0000_good_sec_0000	NC_010473	1168475	1168849	1	1
-Block285_coding_gene_aln_0001_sec_0000_good_sec_0000	U00096000	1113807	1114181	1	1

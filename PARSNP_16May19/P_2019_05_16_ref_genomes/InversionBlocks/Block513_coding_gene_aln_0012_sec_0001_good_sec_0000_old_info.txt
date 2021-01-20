@@ -1,4 +1,0 @@
-Block513_coding_gene_aln_0012_sec_0001_good_sec_0000	CP009072	3106947	3107312	1	1
-Block513_coding_gene_aln_0012_sec_0001_good_sec_0000	CP009273	2026600	2026965	1	1
-Block513_coding_gene_aln_0012_sec_0001_good_sec_0000	NC_010473	2122151	2122516	1	1
-Block513_coding_gene_aln_0012_sec_0001_good_sec_0000	U00096000	2033119	2033484	1	1

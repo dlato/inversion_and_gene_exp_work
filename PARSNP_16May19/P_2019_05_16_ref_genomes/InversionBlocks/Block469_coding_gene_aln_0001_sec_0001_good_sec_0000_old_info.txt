@@ -1,4 +1,0 @@
-Block469_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	3431685	3432713	1	1
-Block469_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	1692409	1693437	1	1
-Block469_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	1787137	1788165	1	1
-Block469_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	1698152	1699180	1	1

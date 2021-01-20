@@ -1,4 +1,0 @@
-Block221_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	4425896	4428160	1	1
-Block221_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	834723	836987	1	1
-Block221_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	892418	894682	1	1
-Block221_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	839267	841531	1	1

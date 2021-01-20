@@ -1,4 +1,0 @@
-Block764_coding_gene_aln_0000_sec_0002_good_sec_0000	CP009072	2005343	2006014	1	1
-Block764_coding_gene_aln_0000_sec_0002_good_sec_0000	CP009273	2898106	2898777	1	1
-Block764_coding_gene_aln_0000_sec_0002_good_sec_0000	NC_010473	2995311	2995982	1	1
-Block764_coding_gene_aln_0000_sec_0002_good_sec_0000	U00096000	2904747	2905418	1	1

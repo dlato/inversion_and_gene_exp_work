@@ -1,4 +1,0 @@
-Block184_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	4527459	4527911	1	1
-Block184_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	716731	717183	1	1
-Block184_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	773090	773542	1	1
-Block184_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	721275	721727	1	1

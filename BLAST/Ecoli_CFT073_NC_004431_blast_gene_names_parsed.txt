@@ -1,4 +1,3 @@
-Gene names  (primary ) Gene names  (ordered locus )
 zwf c2265
 zupT c3789
 zraP c4959

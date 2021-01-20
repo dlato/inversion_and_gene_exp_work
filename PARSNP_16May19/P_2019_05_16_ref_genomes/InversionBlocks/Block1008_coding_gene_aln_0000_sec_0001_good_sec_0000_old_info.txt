@@ -1,4 +1,0 @@
-Block1008_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	667214	667708	1	1
-Block1008_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	4034278	4034772	1	1
-Block1008_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	4137861	4138355	1	1
-Block1008_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	4040918	4041412	1	1

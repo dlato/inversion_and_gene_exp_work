@@ -1,4 +1,0 @@
-Block296_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	3942763	3944091	1	1
-Block296_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	1186114	1187442	1	1
-Block296_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	1245326	1246654	1	1
-Block296_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	1190658	1191986	1	1

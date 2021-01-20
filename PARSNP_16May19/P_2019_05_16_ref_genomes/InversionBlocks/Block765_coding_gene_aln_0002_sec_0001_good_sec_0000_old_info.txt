@@ -1,4 +1,0 @@
-Block765_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	1997512	1998303	1	1
-Block765_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	2903253	2904044	1	1
-Block765_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	3000458	3001249	1	1
-Block765_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	2909894	2910685	1	1
