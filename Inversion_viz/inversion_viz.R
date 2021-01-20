@@ -126,7 +126,7 @@ ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + scale_x_discrete(expand = c(0,0))
 )
 #pdf("Inversion_viz/parallel_sets_maual_revcomp.pdf", width = 15, height = 7)
-pdf("Inversion_viz/parallel_sets_all_colour.pdf", width = 15, height = 7)
+pdf("Inversion_viz/parallel_sets_all_colour_TEST.pdf", width = 15, height = 7)
 #pdf("Inversion_viz/parallel_sets_all_ATCC_revcomp.pdf", width = 15, height = 7)
 ps
 dev.off()
