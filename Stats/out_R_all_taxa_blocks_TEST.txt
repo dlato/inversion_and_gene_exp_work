@@ -53500,22 +53500,22 @@ Warning messages:
                                                                      
                                                                      
                                                                      
-   inversion            rev_comp             strain                 test      
- Min.   :0.0000000   Min.   :0.0000000   ATCC   :6090   block_w_pvalue:11818  
- 1st Qu.:0.0000000   1st Qu.:0.0000000   BW25113:5872   block_t_pvalue:11818  
- Median :1.0000000   Median :0.0000000   K12DH  :5854                         
- Mean   :0.6955492   Mean   :0.1792181   K12MG  :5820                         
- 3rd Qu.:1.0000000   3rd Qu.:0.0000000                                        
- Max.   :1.0000000   Max.   :1.0000000                                        
-                                                                              
-     pvalue        
- Min.   :0.000129  
- 1st Qu.:0.196674  
- Median :0.450903  
- Mean   :0.467019  
- 3rd Qu.:0.717831  
- Max.   :1.000000  
- NA's   :7477      
+   inversion            rev_comp             strain       gbk_strand       
+ Min.   :0.0000000   Min.   :0.0000000   ATCC   :6090   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   BW25113:5872   1st Qu.:0.0000000  
+ Median :1.0000000   Median :0.0000000   K12DH  :5854   Median :0.0000000  
+ Mean   :0.6955492   Mean   :0.1792181   K12MG  :5820   Mean   :0.4543916  
+ 3rd Qu.:1.0000000   3rd Qu.:0.0000000                  3rd Qu.:1.0000000  
+ Max.   :1.0000000   Max.   :1.0000000                  Max.   :1.0000000  
+                                                                           
+             test           pvalue        
+ block_w_pvalue:11818   Min.   :0.000129  
+ block_t_pvalue:11818   1st Qu.:0.196674  
+                        Median :0.450903  
+                        Mean   :0.467019  
+                        3rd Qu.:0.717831  
+                        Max.   :1.000000  
+                        NA's   :7477      
 [1] "non zero pvals"
       block           start              end             midpoint      
  Block499:  306   Min.   : 213551   Min.   : 220048   Min.   :    345  
@@ -53549,22 +53549,22 @@ Warning messages:
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp             strain                 test     
- Min.   :1   Min.   :0.0000000   ATCC   :4164   block_w_pvalue:8220  
- 1st Qu.:1   1st Qu.:0.0000000   BW25113:4023   block_t_pvalue:7939  
- Median :1   Median :0.0000000   K12DH  :3993                        
- Mean   :1   Mean   :0.2579368   K12MG  :3979                        
- 3rd Qu.:1   3rd Qu.:1.0000000                                       
- Max.   :1   Max.   :1.0000000                                       
-                                                                     
-     pvalue           
- Min.   :0.000128999  
- 1st Qu.:0.196673912  
- Median :0.450902875  
- Mean   :0.467019000  
- 3rd Qu.:0.717830657  
- Max.   :1.000000000  
-                      
+   inversion    rev_comp             strain       gbk_strand       
+ Min.   :1   Min.   :0.0000000   ATCC   :4164   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0.0000000   BW25113:4023   1st Qu.:0.0000000  
+ Median :1   Median :0.0000000   K12DH  :3993   Median :0.0000000  
+ Mean   :1   Mean   :0.2579368   K12MG  :3979   Mean   :0.4552262  
+ 3rd Qu.:1   3rd Qu.:1.0000000                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :1.0000000                  Max.   :1.0000000  
+                                                                   
+             test          pvalue           
+ block_w_pvalue:8220   Min.   :0.000128999  
+ block_t_pvalue:7939   1st Qu.:0.196673912  
+                       Median :0.450902875  
+                       Mean   :0.467019000  
+                       3rd Qu.:0.717830657  
+                       Max.   :1.000000000  
+                                            
       block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block1034 535405 540728 1743089.5    535427  536284      1740878
 2 Block1034 535405 540728 1743089.5    536229  538073      1742174
@@ -53586,13 +53586,13 @@ Warning messages:
 4        157.864520266454                 5323                    5323
 5        157.864520266454                 5323                    5323
 6        345.268235429689                 2608                    2608
-  inversion rev_comp strain           test       pvalue
-1         1        1   ATCC block_w_pvalue 0.9327915377
-2         1        1   ATCC block_w_pvalue 0.9327915377
-3         1        1   ATCC block_w_pvalue 0.9327915377
-4         1        1   ATCC block_w_pvalue 0.9327915377
-5         1        1   ATCC block_w_pvalue 0.9327915377
-6         1        1   ATCC block_w_pvalue 0.1428571429
+  inversion rev_comp strain gbk_strand           test       pvalue
+1         1        1   ATCC          1 block_w_pvalue 0.9327915377
+2         1        1   ATCC          1 block_w_pvalue 0.9327915377
+3         1        1   ATCC          0 block_w_pvalue 0.9327915377
+4         1        1   ATCC          1 block_w_pvalue 0.9327915377
+5         1        1   ATCC          1 block_w_pvalue 0.9327915377
+6         1        1   ATCC          0 block_w_pvalue 0.1428571429
 [1] "SAVED complete DATA TO FILE"
 [1] Var1 Freq
 <0 rows> (or 0-length row.names)
@@ -53601,8 +53601,8 @@ Warning messages:
  [7] gbk_midpoint            block_t_stat            block_t_confinf1       
 [10] block_t_confinf2        block_avg_exp_invert    block_avg_exp_noninvert
 [13] block_avg_len_invert    block_avg_len_noninvert inversion              
-[16] rev_comp                strain                  test                   
-[19] pvalue                 
+[16] rev_comp                strain                  gbk_strand             
+[19] test                    pvalue                 
 <0 rows> (or 0-length row.names)
 [1] "TEST mult sig"
 [1] "number of SIG blocks with all sig"
@@ -53629,13 +53629,13 @@ Warning messages:
 4        157.864520266454                 5323                    5323
 5        157.864520266454                 5323                    5323
 6        345.268235429689                 2608                    2608
-  inversion rev_comp strain           test       pvalue allSig
-1         1        1   ATCC block_w_pvalue 0.9327915377     no
-2         1        1   ATCC block_w_pvalue 0.9327915377     no
-3         1        1   ATCC block_w_pvalue 0.9327915377     no
-4         1        1   ATCC block_w_pvalue 0.9327915377     no
-5         1        1   ATCC block_w_pvalue 0.9327915377     no
-6         1        1   ATCC block_w_pvalue 0.1428571429     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        1   ATCC          1 block_w_pvalue 0.9327915377     no
+2         1        1   ATCC          1 block_w_pvalue 0.9327915377     no
+3         1        1   ATCC          0 block_w_pvalue 0.9327915377     no
+4         1        1   ATCC          1 block_w_pvalue 0.9327915377     no
+5         1        1   ATCC          1 block_w_pvalue 0.9327915377     no
+6         1        1   ATCC          0 block_w_pvalue 0.1428571429     no
       block          start              end             midpoint      
  Block499: 153   Min.   : 213551   Min.   : 220048   Min.   :    345  
  Block889: 124   1st Qu.:1263454   1st Qu.:1282024   1st Qu.: 482209  
@@ -53668,22 +53668,30 @@ Warning messages:
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp             strain                 test     
- Min.   :1   Min.   :0.0000000   ATCC   :2116   block_w_pvalue:8220  
- 1st Qu.:1   1st Qu.:0.0000000   BW25113:2047   block_t_pvalue:   0  
- Median :1   Median :0.0000000   K12DH  :2032                        
- Mean   :1   Mean   :0.2576642   K12MG  :2025                        
- 3rd Qu.:1   3rd Qu.:1.0000000                                       
- Max.   :1   Max.   :1.0000000                                       
-                                                                     
-     pvalue               allSig          non_bidir_midpoint 
- Min.   :0.000128999   Length:8220        Min.   : 214683.5  
- 1st Qu.:0.168697912   Class :character   1st Qu.:1271279.1  
- Median :0.446153846   Mode  :character   Median :2082698.5  
- Mean   :0.466030598                      Mean   :2419191.2  
- 3rd Qu.:0.787854432                      3rd Qu.:3526229.1  
- Max.   :1.000000000                      Max.   :4939927.5  
-                                                             
+   inversion    rev_comp             strain       gbk_strand       
+ Min.   :1   Min.   :0.0000000   ATCC   :2116   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0.0000000   BW25113:2047   1st Qu.:0.0000000  
+ Median :1   Median :0.0000000   K12DH  :2032   Median :0.0000000  
+ Mean   :1   Mean   :0.2576642   K12MG  :2025   Mean   :0.4560827  
+ 3rd Qu.:1   3rd Qu.:1.0000000                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :1.0000000                  Max.   :1.0000000  
+                                                                   
+             test          pvalue               allSig         
+ block_w_pvalue:8220   Min.   :0.000128999   Length:8220       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466030598                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint 
+ Min.   : 214683.5  
+ 1st Qu.:1271279.1  
+ Median :2082698.5  
+ Mean   :2419191.2  
+ 3rd Qu.:3526229.1  
+ Max.   :4939927.5  
+                    
 null device 
           1 
 [1] "########################"
@@ -54202,13 +54210,20 @@ null device
 305        455.809016263526                 8008                    8009
 306        455.809016263526                 8008                    8009
 307        455.809016263526                 8008                    8009
-    inversion rev_comp strain           test         pvalue allSig sig  class
-263         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-264         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-265         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-305         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-306         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-307         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
+    inversion rev_comp strain gbk_strand           test         pvalue allSig
+263         1        1   ATCC          0 block_w_pvalue 0.018181818182    yes
+264         1        1   ATCC          1 block_w_pvalue 0.018181818182    yes
+265         1        1   ATCC          1 block_w_pvalue 0.018181818182    yes
+305         1        1   ATCC          0 block_w_pvalue 0.003028916164    yes
+306         1        1   ATCC          1 block_w_pvalue 0.003028916164    yes
+307         1        1   ATCC          0 block_w_pvalue 0.003028916164    yes
+    sig  class
+263 yes BlockX
+264 yes BlockX
+265 yes BlockX
+305 yes BlockX
+306 yes BlockX
+307 yes BlockX
       block         start              end             midpoint      
  Block778: 84   Min.   : 511850   Min.   : 513024   Min.   :   6934  
  Block763: 55   1st Qu.:1651855   1st Qu.:1665153   1st Qu.: 662697  
@@ -54241,22 +54256,30 @@ null device
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp             strain                test     
- Min.   :1   Min.   :0.0000000   ATCC   :270   block_w_pvalue:1053  
- 1st Qu.:1   1st Qu.:0.0000000   BW25113:265   block_t_pvalue:   0  
- Median :1   Median :0.0000000   K12DH  :258                        
- Mean   :1   Mean   :0.2564103   K12MG  :260                        
- 3rd Qu.:1   3rd Qu.:1.0000000                                      
- Max.   :1   Max.   :1.0000000                                      
-                                                                    
-     pvalue               allSig              sig               class          
- Min.   :0.000128999   Length:1053        Length:1053        Length:1053       
- 1st Qu.:0.003028916   Class :character   Class :character   Class :character  
- Median :0.018181818   Mode  :character   Mode  :character   Mode  :character  
- Mean   :0.017591265                                                           
- 3rd Qu.:0.032765738                                                           
- Max.   :0.047619048                                                           
-                                                                               
+   inversion    rev_comp             strain      gbk_strand       
+ Min.   :1   Min.   :0.0000000   ATCC   :270   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0.0000000   BW25113:265   1st Qu.:0.0000000  
+ Median :1   Median :0.0000000   K12DH  :258   Median :0.0000000  
+ Mean   :1   Mean   :0.2564103   K12MG  :260   Mean   :0.4472934  
+ 3rd Qu.:1   3rd Qu.:1.0000000                 3rd Qu.:1.0000000  
+ Max.   :1   Max.   :1.0000000                 Max.   :1.0000000  
+                                                                  
+             test          pvalue               allSig         
+ block_w_pvalue:1053   Min.   :0.000128999   Length:1053       
+ block_t_pvalue:   0   1st Qu.:0.003028916   Class :character  
+                       Median :0.018181818   Mode  :character  
+                       Mean   :0.017591265                     
+                       3rd Qu.:0.032765738                     
+                       Max.   :0.047619048                     
+                                                               
+     sig               class          
+ Length:1053        Length:1053       
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+                                      
+                                      
+                                      
+                                      
      block   start     end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block950  980233  982886 2186582.5    980846  981055      2185973
 2 Block950  980233  982886 2186582.5    981066  981653      2186382
@@ -54278,20 +54301,20 @@ null device
 4             455.8090163                 8008                    8009
 5             455.8090163                 8008                    8009
 6             455.8090163                 8008                    8009
-  inversion rev_comp strain           test         pvalue allSig sig  class
-1         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-2         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-3         1        1   ATCC block_w_pvalue 0.018181818182    yes yes BlockX
-4         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-5         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-6         1        1   ATCC block_w_pvalue 0.003028916164    yes yes BlockX
-  exp_reg
-1    down
-2    down
-3    down
-4    down
-5    down
-6    down
+  inversion rev_comp strain gbk_strand           test         pvalue allSig sig
+1         1        1   ATCC          0 block_w_pvalue 0.018181818182    yes yes
+2         1        1   ATCC          1 block_w_pvalue 0.018181818182    yes yes
+3         1        1   ATCC          1 block_w_pvalue 0.018181818182    yes yes
+4         1        1   ATCC          0 block_w_pvalue 0.003028916164    yes yes
+5         1        1   ATCC          1 block_w_pvalue 0.003028916164    yes yes
+6         1        1   ATCC          0 block_w_pvalue 0.003028916164    yes yes
+   class exp_reg
+1 BlockX    down
+2 BlockX    down
+3 BlockX    down
+4 BlockX    down
+5 BlockX    down
+6 BlockX    down
 null device 
           1 
 [1] "###################"
@@ -54311,20 +54334,20 @@ null device
 4 0.720085166986352  -158.36415207118 277.192745947071                 6496
 5 0.720085166986352  -158.36415207118 277.192745947071                 6496
 6 0.502231451227166 -1330.67278886447 1770.15866002198                 4220
-  block_avg_len_noninvert inversion rev_comp strain           test       pvalue
-1                    6497         1        0  K12MG block_w_pvalue 0.6115841073
-2                    6497         1        0  K12MG block_w_pvalue 0.6115841073
-3                    6497         1        0  K12MG block_w_pvalue 0.6115841073
-4                    6497         1        0  K12MG block_w_pvalue 0.6115841073
-5                    6497         1        0  K12MG block_w_pvalue 0.6115841073
-6                    4220         1        0  K12MG block_w_pvalue 0.6303030303
-  allSig sig                class     avg_exp
-1     no  no block_avg_exp_invert 188.2043577
-2     no  no block_avg_exp_invert 188.2043577
-3     no  no block_avg_exp_invert 188.2043577
-4     no  no block_avg_exp_invert 188.2043577
-5     no  no block_avg_exp_invert 188.2043577
-6     no  no block_avg_exp_invert 530.7857756
+  block_avg_len_noninvert inversion rev_comp strain gbk_strand           test
+1                    6497         1        0  K12MG          0 block_w_pvalue
+2                    6497         1        0  K12MG          1 block_w_pvalue
+3                    6497         1        0  K12MG          0 block_w_pvalue
+4                    6497         1        0  K12MG          0 block_w_pvalue
+5                    6497         1        0  K12MG          1 block_w_pvalue
+6                    4220         1        0  K12MG          1 block_w_pvalue
+        pvalue allSig sig                class     avg_exp
+1 0.6115841073     no  no block_avg_exp_invert 188.2043577
+2 0.6115841073     no  no block_avg_exp_invert 188.2043577
+3 0.6115841073     no  no block_avg_exp_invert 188.2043577
+4 0.6115841073     no  no block_avg_exp_invert 188.2043577
+5 0.6115841073     no  no block_avg_exp_invert 188.2043577
+6 0.6303030303     no  no block_avg_exp_invert 530.7857756
       block          start              end             midpoint      
  Block499:  76   Min.   : 239447   Min.   : 245944   Min.   :   1509  
  Block889:  62   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
@@ -54357,22 +54380,30 @@ null device
                          3rd Qu.:1   3rd Qu.:0                 
                          Max.   :1   Max.   :0                 
                                                                
-             test          pvalue               allSig         
- block_w_pvalue:4050   Min.   :0.000128999   Length:4050       
- block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
-                       Median :0.446153846   Mode  :character  
-                       Mean   :0.466057741                     
-                       3rd Qu.:0.787854432                     
-                       Max.   :1.000000000                     
-                                                               
-     sig                                class         avg_exp           
- Length:4050        block_avg_exp_invert   :2025   Min.   :   0.305236  
- Class :character   block_avg_exp_noninvert:2025   1st Qu.:  50.857355  
- Mode  :character                                  Median : 121.585225  
-                                                   Mean   : 225.016789  
-                                                   3rd Qu.: 226.738876  
-                                                   Max.   :6451.203880  
-                                                                        
+   gbk_strand                    test          pvalue           
+ Min.   :0.0000000   block_w_pvalue:4050   Min.   :0.000128999  
+ 1st Qu.:0.0000000   block_t_pvalue:   0   1st Qu.:0.168697912  
+ Median :0.0000000                         Median :0.446153846  
+ Mean   :0.4325926                         Mean   :0.466057741  
+ 3rd Qu.:1.0000000                         3rd Qu.:0.787854432  
+ Max.   :1.0000000                         Max.   :1.000000000  
+                                                                
+    allSig              sig                                class     
+ Length:4050        Length:4050        block_avg_exp_invert   :2025  
+ Class :character   Class :character   block_avg_exp_noninvert:2025  
+ Mode  :character   Mode  :character                                 
+                                                                     
+                                                                     
+                                                                     
+                                                                     
+    avg_exp           
+ Min.   :   0.305236  
+ 1st Qu.:  50.857355  
+ Median : 121.585225  
+ Mean   : 225.016789  
+ 3rd Qu.: 226.738876  
+ Max.   :6451.203880  
+                      
 [1] "###################"
 [1] "2 data pts per block"
 [1] "###################"
@@ -54438,13 +54469,20 @@ null device
 4        157.864520266454                 5323                    5323
 5        157.864520266454                 5323                    5323
 6        345.268235429689                 2608                    2608
-  inversion rev_comp strain           test       pvalue allSig sig  class
-1         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-2         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-3         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-4         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-5         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-6         1        1   ATCC block_w_pvalue 0.1428571429     no  no BlockX
+  inversion rev_comp strain gbk_strand           test       pvalue allSig sig
+1         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+2         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+3         1        1   ATCC          0 block_w_pvalue 0.9327915377     no  no
+4         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+5         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+6         1        1   ATCC          0 block_w_pvalue 0.1428571429     no  no
+   class
+1 BlockX
+2 BlockX
+3 BlockX
+4 BlockX
+5 BlockX
+6 BlockX
       block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block1034 535405 540728 1743089.5    535427  536284      1740878
 2 Block1034 535405 540728 1743089.5    536229  538073      1742174
@@ -54466,20 +54504,20 @@ null device
 4        157.864520266454                 5323                    5323
 5        157.864520266454                 5323                    5323
 6        345.268235429689                 2608                    2608
-  inversion rev_comp strain           test       pvalue allSig sig  class
-1         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-2         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-3         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-4         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-5         1        1   ATCC block_w_pvalue 0.9327915377     no  no BlockX
-6         1        1   ATCC block_w_pvalue 0.1428571429     no  no BlockX
-  length
-1   5323
-2   5323
-3   5323
-4   5323
-5   5323
-6   2608
+  inversion rev_comp strain gbk_strand           test       pvalue allSig sig
+1         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+2         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+3         1        1   ATCC          0 block_w_pvalue 0.9327915377     no  no
+4         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+5         1        1   ATCC          1 block_w_pvalue 0.9327915377     no  no
+6         1        1   ATCC          0 block_w_pvalue 0.1428571429     no  no
+   class length
+1 BlockX   5323
+2 BlockX   5323
+3 BlockX   5323
+4 BlockX   5323
+5 BlockX   5323
+6 BlockX   2608
 [1] "diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?"
 
 	Wilcoxon rank sum test with continuity correction
@@ -54743,30 +54781,30 @@ Number of Fisher Scoring iterations: 4
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp             strain                 test     
- Min.   :1   Min.   :0.0000000   ATCC   :2116   block_w_pvalue:8220  
- 1st Qu.:1   1st Qu.:0.0000000   BW25113:2047   block_t_pvalue:   0  
- Median :1   Median :0.0000000   K12DH  :2032                        
- Mean   :1   Mean   :0.2576642   K12MG  :2025                        
- 3rd Qu.:1   3rd Qu.:1.0000000                                       
- Max.   :1   Max.   :1.0000000                                       
-                                                                     
-     pvalue               allSig               sig           
- Min.   :0.000128999   Length:8220        Min.   :0.0000000  
- 1st Qu.:0.168697912   Class :character   1st Qu.:0.0000000  
- Median :0.446153846   Mode  :character   Median :0.0000000  
- Mean   :0.466030598                      Mean   :0.1281022  
- 3rd Qu.:0.787854432                      3rd Qu.:0.0000000  
- Max.   :1.000000000                      Max.   :1.0000000  
-                                                             
-    class               length        
- Length:8220        Min.   :  285.00  
- Class :character   1st Qu.: 5563.00  
- Mode  :character   Median : 9954.00  
-                    Mean   :11408.54  
-                    3rd Qu.:14887.00  
-                    Max.   :38569.00  
-                                      
+   inversion    rev_comp             strain       gbk_strand       
+ Min.   :1   Min.   :0.0000000   ATCC   :2116   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0.0000000   BW25113:2047   1st Qu.:0.0000000  
+ Median :1   Median :0.0000000   K12DH  :2032   Median :0.0000000  
+ Mean   :1   Mean   :0.2576642   K12MG  :2025   Mean   :0.4560827  
+ 3rd Qu.:1   3rd Qu.:1.0000000                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :1.0000000                  Max.   :1.0000000  
+                                                                   
+             test          pvalue               allSig         
+ block_w_pvalue:8220   Min.   :0.000128999   Length:8220       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466030598                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+      sig               class               length        
+ Min.   :0.0000000   Length:8220        Min.   :  285.00  
+ 1st Qu.:0.0000000   Class :character   1st Qu.: 5563.00  
+ Median :0.0000000   Mode  :character   Median : 9954.00  
+ Mean   :0.1281022                      Mean   :11408.54  
+ 3rd Qu.:0.0000000                      3rd Qu.:14887.00  
+ Max.   :1.0000000                      Max.   :38569.00  
+                                                          
 
 Call:
 glm(formula = sig ~ gbk_midpoint, family = binomial, data = sig_df, 
@@ -56103,13 +56141,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig
 1           240579.5   0
 2           242081.0   0
@@ -56149,30 +56187,30 @@ sample estimates:
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp     strain                 test     
- Min.   :1   Min.   :0   ATCC   :   0   block_w_pvalue:2025  
- 1st Qu.:1   1st Qu.:0   BW25113:   0   block_t_pvalue:   0  
- Median :1   Median :0   K12DH  :   0                        
- Mean   :1   Mean   :0   K12MG  :2025                        
- 3rd Qu.:1   3rd Qu.:0                                       
- Max.   :1   Max.   :0                                       
-                                                             
-     pvalue               allSig          non_bidir_midpoint 
- Min.   :0.000128999   Length:2025        Min.   : 240579.5  
- 1st Qu.:0.168697912   Class :character   1st Qu.:1231820.0  
- Median :0.446153846   Mode  :character   Median :1995930.0  
- Mean   :0.466057741                      Mean   :2308567.6  
- 3rd Qu.:0.787854432                      3rd Qu.:3421876.5  
- Max.   :1.000000000                      Max.   :4165856.5  
-                                                             
-      sig           
- Min.   :0.0000000  
- 1st Qu.:0.0000000  
- Median :0.0000000  
- Mean   :0.1283951  
- 3rd Qu.:0.0000000  
- Max.   :1.0000000  
-                    
+   inversion    rev_comp     strain       gbk_strand       
+ Min.   :1   Min.   :0   ATCC   :   0   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0   BW25113:   0   1st Qu.:0.0000000  
+ Median :1   Median :0   K12DH  :   0   Median :0.0000000  
+ Mean   :1   Mean   :0   K12MG  :2025   Mean   :0.4325926  
+ 3rd Qu.:1   3rd Qu.:0                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :0                  Max.   :1.0000000  
+                                                           
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig           
+ Min.   : 240579.5   Min.   :0.0000000  
+ 1st Qu.:1231820.0   1st Qu.:0.0000000  
+ Median :1995930.0   Median :0.0000000  
+ Mean   :2308567.6   Mean   :0.1283951  
+ 3rd Qu.:3421876.5   3rd Qu.:0.0000000  
+ Max.   :4165856.5   Max.   :1.0000000  
+                                        
       block  start    end midpoint gbk_start gbk_end gbk_midpoint
 13 Block123 383921 388551  1591259    384059  384616      1589360
 14 Block123 383921 388551  1591259    385232  386194      1590736
@@ -56188,11 +56226,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding
 13           384337.5   0         FALSE
 14           385713.0   0         FALSE
@@ -56219,13 +56257,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding
 1           240579.5   0             0
 2           242081.0   0             0
@@ -56254,20 +56292,20 @@ sample estimates:
 2023     651.160489821333        128.474194777443                27234
 2024     840.726325659811        671.509430753205                24282
 2025     57.9555586486249        85.0548804749771                 2856
-     block_avg_len_noninvert inversion rev_comp strain           test
-2020                    4692         1        0  K12MG block_w_pvalue
-2021                   14177         1        0  K12MG block_w_pvalue
-2022                   14177         1        0  K12MG block_w_pvalue
-2023                   27235         1        0  K12MG block_w_pvalue
-2024                   24284         1        0  K12MG block_w_pvalue
-2025                    2856         1        0  K12MG block_w_pvalue
-              pvalue allSig non_bidir_midpoint sig G_HNS_binding
-2020 0.2672121480171     no          3950532.0   0             0
-2021 0.2798536831841     no          1878911.0   0             0
-2022 0.2798536831841     no          1878822.0   0             0
-2023 0.0002229557365    yes          3032879.5   1             0
-2024 0.2555487713597     no          3307893.0   0             0
-2025 0.8333333333333     no          4053702.0   0             0
+     block_avg_len_noninvert inversion rev_comp strain gbk_strand
+2020                    4692         1        0  K12MG          0
+2021                   14177         1        0  K12MG          1
+2022                   14177         1        0  K12MG          1
+2023                   27235         1        0  K12MG          1
+2024                   24284         1        0  K12MG          0
+2025                    2856         1        0  K12MG          1
+               test          pvalue allSig non_bidir_midpoint sig G_HNS_binding
+2020 block_w_pvalue 0.2672121480171     no          3950532.0   0             0
+2021 block_w_pvalue 0.2798536831841     no          1878911.0   0             0
+2022 block_w_pvalue 0.2798536831841     no          1878822.0   0             0
+2023 block_w_pvalue 0.0002229557365    yes          3032879.5   1             0
+2024 block_w_pvalue 0.2555487713597     no          3307893.0   0             0
+2025 block_w_pvalue 0.8333333333333     no          4053702.0   0             0
       block          start              end             midpoint      
  Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
  Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
@@ -56300,30 +56338,30 @@ sample estimates:
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp     strain                 test     
- Min.   :1   Min.   :0   ATCC   :   0   block_w_pvalue:2025  
- 1st Qu.:1   1st Qu.:0   BW25113:   0   block_t_pvalue:   0  
- Median :1   Median :0   K12DH  :   0                        
- Mean   :1   Mean   :0   K12MG  :2025                        
- 3rd Qu.:1   3rd Qu.:0                                       
- Max.   :1   Max.   :0                                       
+   inversion    rev_comp     strain       gbk_strand       
+ Min.   :1   Min.   :0   ATCC   :   0   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0   BW25113:   0   1st Qu.:0.0000000  
+ Median :1   Median :0   K12DH  :   0   Median :0.0000000  
+ Mean   :1   Mean   :0   K12MG  :2025   Mean   :0.4325926  
+ 3rd Qu.:1   3rd Qu.:0                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :0                  Max.   :1.0000000  
+                                                           
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig            G_HNS_binding       
+ Min.   : 240579.5   Min.   :0.0000000   Min.   :0.00000000  
+ 1st Qu.:1231820.0   1st Qu.:0.0000000   1st Qu.:0.00000000  
+ Median :1995930.0   Median :0.0000000   Median :0.00000000  
+ Mean   :2308567.6   Mean   :0.1283951   Mean   :0.02222222  
+ 3rd Qu.:3421876.5   3rd Qu.:0.0000000   3rd Qu.:0.00000000  
+ Max.   :4165856.5   Max.   :1.0000000   Max.   :1.00000000  
                                                              
-     pvalue               allSig          non_bidir_midpoint 
- Min.   :0.000128999   Length:2025        Min.   : 240579.5  
- 1st Qu.:0.168697912   Class :character   1st Qu.:1231820.0  
- Median :0.446153846   Mode  :character   Median :1995930.0  
- Mean   :0.466057741                      Mean   :2308567.6  
- 3rd Qu.:0.787854432                      3rd Qu.:3421876.5  
- Max.   :1.000000000                      Max.   :4165856.5  
-                                                             
-      sig            G_HNS_binding       
- Min.   :0.0000000   Min.   :0.00000000  
- 1st Qu.:0.0000000   1st Qu.:0.00000000  
- Median :0.0000000   Median :0.00000000  
- Mean   :0.1283951   Mean   :0.02222222  
- 3rd Qu.:0.0000000   3rd Qu.:0.00000000  
- Max.   :1.0000000   Max.   :1.00000000  
-                                         
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS"
 [1] "################################################################################"
@@ -56436,13 +56474,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding
 1           240579.5   0             0
 2           242081.0   0             0
@@ -56465,11 +56503,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding
 13           384337.5   0             0          TRUE
 14           385713.0   0             0         FALSE
@@ -56496,13 +56534,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding
 1           240579.5   0             0             0
 2           242081.0   0             0             0
@@ -56629,13 +56667,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding
 1           240579.5   0             0             0
 2           242081.0   0             0             0
@@ -56658,11 +56696,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1          FALSE
 14           385713.0   0             0             0          FALSE
@@ -56689,13 +56727,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -56815,13 +56853,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -56844,11 +56882,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -56880,13 +56918,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57015,13 +57053,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57051,11 +57089,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -57087,13 +57125,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57222,13 +57260,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57258,11 +57296,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -57294,13 +57332,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57436,13 +57474,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57472,11 +57510,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -57508,13 +57546,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57657,13 +57695,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57693,11 +57731,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -57734,13 +57772,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57885,13 +57923,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -57928,11 +57966,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -57969,13 +58007,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -58127,13 +58165,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -58170,11 +58208,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -58211,13 +58249,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -58268,6 +58306,105 @@ alternative hypothesis: true correlation is not equal to 0
 sample estimates:
 cor 
  NA 
+
+[1] "#####################"
+[1] "# Gene Orientation and HNS Correlation"
+[1] "# leading strand = 0"
+[1] "# lagging strand = 1"
+[1] "# based on K-12 MG ONLY"
+[1] "#####################"
+      block          start              end             midpoint      
+ Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
+ Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
+ Block893:  27   Median :1988582   Median :2002288   Median :1639674  
+ Block869:  26   Mean   :2302853   Mean   :2314265   Mean   :1375220  
+ Block485:  25   3rd Qu.:3419108   3rd Qu.:3423266   3rd Qu.:2160175  
+ Block475:  23   Max.   :4160982   Max.   :4166305   Max.   :2792216  
+ (Other) :1855                                                        
+   gbk_start          gbk_end         gbk_midpoint     block_t_stat      
+ Min.   : 240343   Min.   : 240816   Min.   :    489   Length:2025       
+ 1st Qu.:1231186   1st Qu.:1232454   1st Qu.: 503868   Class :character  
+ Median :1995818   Median :1996042   Median :1641145   Mode  :character  
+ Mean   :2308101   Mean   :2309034   Mean   :1375295                     
+ 3rd Qu.:3421325   3rd Qu.:3422428   3rd Qu.:2158587                     
+ Max.   :4165428   Max.   :4166285   Max.   :2792300                     
+                                                                         
+ block_t_confinf1   block_t_confinf2   block_avg_exp_invert
+ Length:2025        Length:2025        Length:2025         
+ Class :character   Class :character   Class :character    
+ Mode  :character   Mode  :character   Mode  :character    
+                                                           
+                                                           
+                                                           
+                                                           
+ block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+ Length:2025             Length:2025          Length:2025            
+ Class :character        Class :character     Class :character       
+ Mode  :character        Mode  :character     Mode  :character       
+                                                                     
+                                                                     
+                                                                     
+                                                                     
+   inversion    rev_comp     strain       gbk_strand       
+ Min.   :1   Min.   :0   ATCC   :   0   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0   BW25113:   0   1st Qu.:0.0000000  
+ Median :1   Median :0   K12DH  :   0   Median :0.0000000  
+ Mean   :1   Mean   :0   K12MG  :2025   Mean   :0.4325926  
+ 3rd Qu.:1   3rd Qu.:0                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :0                  Max.   :1.0000000  
+                                                           
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig            G_HNS_binding       
+ Min.   : 240579.5   Min.   :0.0000000   Min.   :0.00000000  
+ 1st Qu.:1231820.0   1st Qu.:0.0000000   1st Qu.:0.00000000  
+ Median :1995930.0   Median :0.0000000   Median :0.00000000  
+ Mean   :2308567.6   Mean   :0.1283951   Mean   :0.02222222  
+ 3rd Qu.:3421876.5   3rd Qu.:0.0000000   3rd Qu.:0.00000000  
+ Max.   :4165856.5   Max.   :1.0000000   Max.   :1.00000000  
+                                                             
+ U_HNS_binding        H1_HNS_binding      H1nc1_HNS_binding  
+ Min.   :0.00000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.00000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.09283951   Mean   :0.1377778   Mean   :0.1293827  
+ 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.00000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                             
+ H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.1293827   Mean   :0.1293827   Mean   :0.1283951  
+ 3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ H3_HNS_binding      L_HNS_binding        O_HNS_binding      
+ Min.   :0.0000000   Min.   :0.00000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.00000000   Median :0.0000000  
+ Mean   :0.1283951   Mean   :0.04691358   Mean   :0.2390123  
+ 3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.00000000   Max.   :1.0000000  
+                                                             
+[1] "# correlation test btwn orientation and inversion"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$H1_HNS_binding and cor_dat$gbk_strand
+t = 2.2539524, df = 2023, p-value = 0.02430579
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.006504487974 0.093405614093
+sample estimates:
+          cor 
+0.05004977943 
 
 [1] "checking overlap between HNS binding sites in all datasets"
 [1] "total HNS binding sites for each dataset"
@@ -58779,13 +58916,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1          0.2405795   0             0             0              0
 2          0.2420810   0             0             0              0
@@ -58839,54 +58976,62 @@ sample estimates:
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp     strain                 test     
- Min.   :1   Min.   :0   ATCC   :   0   block_w_pvalue:2025  
- 1st Qu.:1   1st Qu.:0   BW25113:   0   block_t_pvalue:   0  
- Median :1   Median :0   K12DH  :   0                        
- Mean   :1   Mean   :0   K12MG  :2025                        
- 3rd Qu.:1   3rd Qu.:0                                       
- Max.   :1   Max.   :0                                       
+   inversion    rev_comp     strain       gbk_strand       
+ Min.   :1   Min.   :0   ATCC   :   0   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0   BW25113:   0   1st Qu.:0.0000000  
+ Median :1   Median :0   K12DH  :   0   Median :0.0000000  
+ Mean   :1   Mean   :0   K12MG  :2025   Mean   :0.4325926  
+ 3rd Qu.:1   3rd Qu.:0                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :0                  Max.   :1.0000000  
+                                                           
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig            G_HNS_binding       
+ Min.   :0.2405795   Min.   :0.0000000   Min.   :0.00000000  
+ 1st Qu.:1.2318200   1st Qu.:0.0000000   1st Qu.:0.00000000  
+ Median :1.9959300   Median :0.0000000   Median :0.00000000  
+ Mean   :2.3085676   Mean   :0.1283951   Mean   :0.02222222  
+ 3rd Qu.:3.4218765   3rd Qu.:0.0000000   3rd Qu.:0.00000000  
+ Max.   :4.1658565   Max.   :1.0000000   Max.   :1.00000000  
                                                              
-     pvalue               allSig          non_bidir_midpoint 
- Min.   :0.000128999   Length:2025        Min.   :0.2405795  
- 1st Qu.:0.168697912   Class :character   1st Qu.:1.2318200  
- Median :0.446153846   Mode  :character   Median :1.9959300  
- Mean   :0.466057741                      Mean   :2.3085676  
- 3rd Qu.:0.787854432                      3rd Qu.:3.4218765  
- Max.   :1.000000000                      Max.   :4.1658565  
+ U_HNS_binding        H1_HNS_binding      H1nc1_HNS_binding  
+ Min.   :0.00000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.00000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.09283951   Mean   :0.1377778   Mean   :0.1293827  
+ 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.00000000   Max.   :1.0000000   Max.   :1.0000000  
                                                              
-      sig            G_HNS_binding        U_HNS_binding       
- Min.   :0.0000000   Min.   :0.00000000   Min.   :0.00000000  
- 1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.00000000  
- Median :0.0000000   Median :0.00000000   Median :0.00000000  
- Mean   :0.1283951   Mean   :0.02222222   Mean   :0.09283951  
- 3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.00000000  
- Max.   :1.0000000   Max.   :1.00000000   Max.   :1.00000000  
-                                                              
- H1_HNS_binding      H1nc1_HNS_binding   H1nc2_HNS_binding  
+ H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     
  Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
  1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
  Median :0.0000000   Median :0.0000000   Median :0.0000000  
- Mean   :0.1377778   Mean   :0.1293827   Mean   :0.1293827  
+ Mean   :0.1293827   Mean   :0.1293827   Mean   :0.1283951  
  3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
  Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
                                                             
- H1nc3_HNS_binding   H2_HNS_binding      H3_HNS_binding     
- Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
- 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
- Median :0.0000000   Median :0.0000000   Median :0.0000000  
- Mean   :0.1293827   Mean   :0.1283951   Mean   :0.1283951  
- 3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
- Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
-                                                            
- L_HNS_binding        O_HNS_binding          fake_val    fake_val2   
- Min.   :0.00000000   Min.   :0.0000000   Min.   :10   Min.   :9.95  
- 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:10   1st Qu.:9.95  
- Median :0.00000000   Median :0.0000000   Median :10   Median :9.95  
- Mean   :0.04691358   Mean   :0.2390123   Mean   :10   Mean   :9.95  
- 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:10   3rd Qu.:9.95  
- Max.   :1.00000000   Max.   :1.0000000   Max.   :10   Max.   :9.95  
-                                                                     
+ H3_HNS_binding      L_HNS_binding        O_HNS_binding          fake_val 
+ Min.   :0.0000000   Min.   :0.00000000   Min.   :0.0000000   Min.   :10  
+ 1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:10  
+ Median :0.0000000   Median :0.00000000   Median :0.0000000   Median :10  
+ Mean   :0.1283951   Mean   :0.04691358   Mean   :0.2390123   Mean   :10  
+ 3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:10  
+ Max.   :1.0000000   Max.   :1.00000000   Max.   :1.0000000   Max.   :10  
+                                                                          
+   fake_val2   
+ Min.   :9.95  
+ 1st Qu.:9.95  
+ Median :9.95  
+ Mean   :9.95  
+ 3rd Qu.:9.95  
+ Max.   :9.95  
+               
 [1] "hns_sig"
      block   start     end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block164  573295  574469 1778905.0    573371  573733      1778575
@@ -58909,13 +59054,13 @@ sample estimates:
 4        48.2799344631685                 2588                    2589
 5        96.1023195360237                 9547                    9547
 6        96.1023195360237                 9547                    9547
-  inversion rev_comp strain           test         pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.015858766989    yes
-2         1        0  K12MG block_w_pvalue 0.015858766989    yes
-3         1        0  K12MG block_w_pvalue 0.047619047619    yes
-4         1        0  K12MG block_w_pvalue 0.047619047619    yes
-5         1        0  K12MG block_w_pvalue 0.006110880274    yes
-6         1        0  K12MG block_w_pvalue 0.006110880274    yes
+  inversion rev_comp strain gbk_strand           test         pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.015858766989    yes
+2         1        0  K12MG          0 block_w_pvalue 0.015858766989    yes
+3         1        0  K12MG          0 block_w_pvalue 0.047619047619    yes
+4         1        0  K12MG          0 block_w_pvalue 0.047619047619    yes
+5         1        0  K12MG          1 block_w_pvalue 0.006110880274    yes
+6         1        0  K12MG          1 block_w_pvalue 0.006110880274    yes
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1          0.5735520   1             0             1              0
 2          0.5741475   1             0             0              0
@@ -59682,11 +59827,11 @@ sample estimates:
 14        1.95247291632585                 4622                    4630
 15        1.95247291632585                 4622                    4630
 16        1.95247291632585                 4622                    4630
-   inversion rev_comp strain           test       pvalue allSig
-13         1        0  K12MG block_w_pvalue 0.2615384615     no
-14         1        0  K12MG block_w_pvalue 0.2615384615     no
-15         1        0  K12MG block_w_pvalue 0.2615384615     no
-16         1        0  K12MG block_w_pvalue 0.2615384615     no
+   inversion rev_comp strain gbk_strand           test       pvalue allSig
+13         1        0  K12MG          1 block_w_pvalue 0.2615384615     no
+14         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+15         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
+16         1        0  K12MG          0 block_w_pvalue 0.2615384615     no
    non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 13           384337.5   0             0             1              0
 14           385713.0   0             0             0              0
@@ -59723,13 +59868,13 @@ sample estimates:
 4        128.790060735123                 6496                    6497
 5        128.790060735123                 6496                    6497
 6         311.04284002945                 4220                    4220
-  inversion rev_comp strain           test       pvalue allSig
-1         1        0  K12MG block_w_pvalue 0.6115841073     no
-2         1        0  K12MG block_w_pvalue 0.6115841073     no
-3         1        0  K12MG block_w_pvalue 0.6115841073     no
-4         1        0  K12MG block_w_pvalue 0.6115841073     no
-5         1        0  K12MG block_w_pvalue 0.6115841073     no
-6         1        0  K12MG block_w_pvalue 0.6303030303     no
+  inversion rev_comp strain gbk_strand           test       pvalue allSig
+1         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+2         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+3         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+4         1        0  K12MG          0 block_w_pvalue 0.6115841073     no
+5         1        0  K12MG          1 block_w_pvalue 0.6115841073     no
+6         1        0  K12MG          1 block_w_pvalue 0.6303030303     no
   non_bidir_midpoint sig G_HNS_binding U_HNS_binding H1_HNS_binding
 1           240579.5   0             0             0              0
 2           242081.0   0             0             0              0
@@ -59772,34 +59917,41 @@ sample estimates:
 2023     651.160489821333        128.474194777443                27234
 2024     840.726325659811        671.509430753205                24282
 2025     57.9555586486249        85.0548804749771                 2856
-     block_avg_len_noninvert inversion rev_comp strain           test
-2020                    4692         1        0  K12MG block_w_pvalue
-2021                   14177         1        0  K12MG block_w_pvalue
-2022                   14177         1        0  K12MG block_w_pvalue
-2023                   27235         1        0  K12MG block_w_pvalue
-2024                   24284         1        0  K12MG block_w_pvalue
-2025                    2856         1        0  K12MG block_w_pvalue
-              pvalue allSig non_bidir_midpoint sig G_HNS_binding U_HNS_binding
-2020 0.2672121480171     no          3950532.0   0             0             0
-2021 0.2798536831841     no          1878911.0   0             0             0
-2022 0.2798536831841     no          1878822.0   0             0             0
-2023 0.0002229557365    yes          3032879.5   1             0             0
-2024 0.2555487713597     no          3307893.0   0             0             0
-2025 0.8333333333333     no          4053702.0   0             0             0
-     H1_HNS_binding H1nc1_HNS_binding H1nc2_HNS_binding H1nc3_HNS_binding
-2020              0                 0                 0                 0
-2021              0                 0                 0                 0
-2022              0                 0                 0                 0
-2023              0                 0                 0                 0
-2024              0                 0                 0                 0
-2025              0                 0                 0                 0
-     H2_HNS_binding H3_HNS_binding L_HNS_binding O_HNS_binding G_Fis_binding
-2020              0              0             0             0             0
-2021              0              0             0             1             0
-2022              0              0             0             1             0
-2023              0              0             0             0             0
-2024              0              0             0             0             0
-2025              0              0             0             0             0
+     block_avg_len_noninvert inversion rev_comp strain gbk_strand
+2020                    4692         1        0  K12MG          0
+2021                   14177         1        0  K12MG          1
+2022                   14177         1        0  K12MG          1
+2023                   27235         1        0  K12MG          1
+2024                   24284         1        0  K12MG          0
+2025                    2856         1        0  K12MG          1
+               test          pvalue allSig non_bidir_midpoint sig G_HNS_binding
+2020 block_w_pvalue 0.2672121480171     no          3950532.0   0             0
+2021 block_w_pvalue 0.2798536831841     no          1878911.0   0             0
+2022 block_w_pvalue 0.2798536831841     no          1878822.0   0             0
+2023 block_w_pvalue 0.0002229557365    yes          3032879.5   1             0
+2024 block_w_pvalue 0.2555487713597     no          3307893.0   0             0
+2025 block_w_pvalue 0.8333333333333     no          4053702.0   0             0
+     U_HNS_binding H1_HNS_binding H1nc1_HNS_binding H1nc2_HNS_binding
+2020             0              0                 0                 0
+2021             0              0                 0                 0
+2022             0              0                 0                 0
+2023             0              0                 0                 0
+2024             0              0                 0                 0
+2025             0              0                 0                 0
+     H1nc3_HNS_binding H2_HNS_binding H3_HNS_binding L_HNS_binding
+2020                 0              0              0             0
+2021                 0              0              0             0
+2022                 0              0              0             0
+2023                 0              0              0             0
+2024                 0              0              0             0
+2025                 0              0              0             0
+     O_HNS_binding G_Fis_binding
+2020             0             0
+2021             1             0
+2022             1             0
+2023             0             0
+2024             0             0
+2025             0             0
       block          start              end             midpoint      
  Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
  Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
@@ -59832,54 +59984,62 @@ sample estimates:
                                                                      
                                                                      
                                                                      
-   inversion    rev_comp     strain                 test     
- Min.   :1   Min.   :0   ATCC   :   0   block_w_pvalue:2025  
- 1st Qu.:1   1st Qu.:0   BW25113:   0   block_t_pvalue:   0  
- Median :1   Median :0   K12DH  :   0                        
- Mean   :1   Mean   :0   K12MG  :2025                        
- 3rd Qu.:1   3rd Qu.:0                                       
- Max.   :1   Max.   :0                                       
+   inversion    rev_comp     strain       gbk_strand       
+ Min.   :1   Min.   :0   ATCC   :   0   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0   BW25113:   0   1st Qu.:0.0000000  
+ Median :1   Median :0   K12DH  :   0   Median :0.0000000  
+ Mean   :1   Mean   :0   K12MG  :2025   Mean   :0.4325926  
+ 3rd Qu.:1   3rd Qu.:0                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :0                  Max.   :1.0000000  
+                                                           
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig            G_HNS_binding       
+ Min.   : 240579.5   Min.   :0.0000000   Min.   :0.00000000  
+ 1st Qu.:1231820.0   1st Qu.:0.0000000   1st Qu.:0.00000000  
+ Median :1995930.0   Median :0.0000000   Median :0.00000000  
+ Mean   :2308567.6   Mean   :0.1283951   Mean   :0.02222222  
+ 3rd Qu.:3421876.5   3rd Qu.:0.0000000   3rd Qu.:0.00000000  
+ Max.   :4165856.5   Max.   :1.0000000   Max.   :1.00000000  
                                                              
-     pvalue               allSig          non_bidir_midpoint 
- Min.   :0.000128999   Length:2025        Min.   : 240579.5  
- 1st Qu.:0.168697912   Class :character   1st Qu.:1231820.0  
- Median :0.446153846   Mode  :character   Median :1995930.0  
- Mean   :0.466057741                      Mean   :2308567.6  
- 3rd Qu.:0.787854432                      3rd Qu.:3421876.5  
- Max.   :1.000000000                      Max.   :4165856.5  
+ U_HNS_binding        H1_HNS_binding      H1nc1_HNS_binding  
+ Min.   :0.00000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.00000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.09283951   Mean   :0.1377778   Mean   :0.1293827  
+ 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.00000000   Max.   :1.0000000   Max.   :1.0000000  
                                                              
-      sig            G_HNS_binding        U_HNS_binding       
- Min.   :0.0000000   Min.   :0.00000000   Min.   :0.00000000  
- 1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.00000000  
- Median :0.0000000   Median :0.00000000   Median :0.00000000  
- Mean   :0.1283951   Mean   :0.02222222   Mean   :0.09283951  
- 3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.00000000  
- Max.   :1.0000000   Max.   :1.00000000   Max.   :1.00000000  
-                                                              
- H1_HNS_binding      H1nc1_HNS_binding   H1nc2_HNS_binding  
+ H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     
  Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
  1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
  Median :0.0000000   Median :0.0000000   Median :0.0000000  
- Mean   :0.1377778   Mean   :0.1293827   Mean   :0.1293827  
+ Mean   :0.1293827   Mean   :0.1293827   Mean   :0.1283951  
  3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
  Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
                                                             
- H1nc3_HNS_binding   H2_HNS_binding      H3_HNS_binding     
- Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
- 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
- Median :0.0000000   Median :0.0000000   Median :0.0000000  
- Mean   :0.1293827   Mean   :0.1283951   Mean   :0.1283951  
- 3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
- Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
-                                                            
- L_HNS_binding        O_HNS_binding       G_Fis_binding       
- Min.   :0.00000000   Min.   :0.0000000   Min.   :0.00000000  
- 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:0.00000000  
- Median :0.00000000   Median :0.0000000   Median :0.00000000  
- Mean   :0.04691358   Mean   :0.2390123   Mean   :0.07604938  
- 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:0.00000000  
- Max.   :1.00000000   Max.   :1.0000000   Max.   :1.00000000  
-                                                              
+ H3_HNS_binding      L_HNS_binding        O_HNS_binding      
+ Min.   :0.0000000   Min.   :0.00000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.00000000   Median :0.0000000  
+ Mean   :0.1283951   Mean   :0.04691358   Mean   :0.2390123  
+ 3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.00000000   Max.   :1.0000000  
+                                                             
+ G_Fis_binding       
+ Min.   :0.00000000  
+ 1st Qu.:0.00000000  
+ Median :0.00000000  
+ Mean   :0.07604938  
+ 3rd Qu.:0.00000000  
+ Max.   :1.00000000  
+                     
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and fis binding ALL BLOCKS"
 [1] "################################################################################"

@@ -452,7 +452,7 @@ bp_dat <- gei_dat
 inver_dat_bidir <- gei_dat
 
 print("make df with just block info")
-block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_start","gbk_end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp","strain"))
+block_df <- subset(gei_dat,select = c("block","start","end","midpoint","gbk_start","gbk_end","gbk_midpoint","block_w_pvalue","block_t_pvalue","block_t_stat","block_t_confinf1","block_t_confinf2", "block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp","strain","gbk_strand"))
 #block_df_uniq <- unique(block_df)
 block_df_uniq <- block_df
 
@@ -460,7 +460,7 @@ block_df_uniq <- block_df
 block_df_w <- melt(block_df_uniq,
         # ID variables - all the variables to keep but not split apart
         # on
-    id.vars=c("block", "start", "end","midpoint","gbk_start","gbk_end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp", "strain"),
+    id.vars=c("block", "start", "end","midpoint","gbk_start","gbk_end","gbk_midpoint","block_t_stat","block_t_confinf1","block_t_confinf2","block_avg_exp_invert", "block_avg_exp_noninvert","block_avg_len_invert", "block_avg_len_noninvert","inversion","rev_comp", "strain","gbk_strand"),
         # The source columns
     measure.vars=c("block_w_pvalue", "block_t_pvalue"),
         # Name of the destination column that will identify the
@@ -2518,7 +2518,17 @@ print("#########################################################################
 cor.test(cor_dat$inversion, cor_dat$O_HNS_binding,
          method = "pearson")
 
-
+print("#####################")
+print("# Gene Orientation and HNS Correlation")
+print("# leading strand = 0")
+print("# lagging strand = 1")
+print("# based on K-12 MG ONLY")
+print("#####################")
+summary(cor_dat)
+print("###########################################################")
+print("# correlation test btwn orientation and inversion")
+print("###########################################################")
+cor.test(cor_dat$H1_HNS_binding, cor_dat$gbk_strand, method = "pearson")
 
 
 
