@@ -2526,7 +2526,7 @@ print("# based on K-12 MG ONLY")
 print("#####################")
 summary(cor_dat)
 print("###########################################################")
-print("# correlation test btwn orientation and inversion")
+print("# correlation test btwn orientation and HNS")
 print("###########################################################")
 cor.test(cor_dat$H1_HNS_binding, cor_dat$gbk_strand, method = "pearson")
 
@@ -3062,6 +3062,19 @@ print("correlation test btwn sig inversion/non-inversion and fis binding ALL BLO
 print("################################################################################")
 cor.test(cor_dat$sig, cor_dat$G_Fis_binding,
          method = "pearson")
+
+print("#####################")
+print("# Gene Orientation and Fis Correlation")
+print("# leading strand = 0")
+print("# lagging strand = 1")
+print("# based on K-12 MG ONLY")
+print("#####################")
+summary(cor_dat)
+print("###########################################################")
+print("# correlation test btwn orientation and Fis")
+print("###########################################################")
+cor.test(cor_dat$G_Fis_binding, cor_dat$gbk_strand, method = "pearson")
+
 
 print("checking overlap between Fis binding sites in all datasets")
 print("total Fis binding sites for each dataset")

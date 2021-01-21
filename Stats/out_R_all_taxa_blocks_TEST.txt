@@ -58393,7 +58393,9 @@ cor
  3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.0000000  
  Max.   :1.0000000   Max.   :1.00000000   Max.   :1.0000000  
                                                              
-[1] "# correlation test btwn orientation and inversion"
+[1] "###########################################################"
+[1] "# correlation test btwn orientation and HNS"
+[1] "###########################################################"
 
 	Pearson's product-moment correlation
 
@@ -60054,6 +60056,115 @@ alternative hypothesis: true correlation is not equal to 0
 sample estimates:
           cor 
 0.06809172827 
+
+[1] "#####################"
+[1] "# Gene Orientation and Fis Correlation"
+[1] "# leading strand = 0"
+[1] "# lagging strand = 1"
+[1] "# based on K-12 MG ONLY"
+[1] "#####################"
+      block          start              end             midpoint      
+ Block499:  38   Min.   : 239447   Min.   : 245944   Min.   :   1509  
+ Block889:  31   1st Qu.:1230643   1st Qu.:1234853   1st Qu.: 504557  
+ Block893:  27   Median :1988582   Median :2002288   Median :1639674  
+ Block869:  26   Mean   :2302853   Mean   :2314265   Mean   :1375220  
+ Block485:  25   3rd Qu.:3419108   3rd Qu.:3423266   3rd Qu.:2160175  
+ Block475:  23   Max.   :4160982   Max.   :4166305   Max.   :2792216  
+ (Other) :1855                                                        
+   gbk_start          gbk_end         gbk_midpoint     block_t_stat      
+ Min.   : 240343   Min.   : 240816   Min.   :    489   Length:2025       
+ 1st Qu.:1231186   1st Qu.:1232454   1st Qu.: 503868   Class :character  
+ Median :1995818   Median :1996042   Median :1641145   Mode  :character  
+ Mean   :2308101   Mean   :2309034   Mean   :1375295                     
+ 3rd Qu.:3421325   3rd Qu.:3422428   3rd Qu.:2158587                     
+ Max.   :4165428   Max.   :4166285   Max.   :2792300                     
+                                                                         
+ block_t_confinf1   block_t_confinf2   block_avg_exp_invert
+ Length:2025        Length:2025        Length:2025         
+ Class :character   Class :character   Class :character    
+ Mode  :character   Mode  :character   Mode  :character    
+                                                           
+                                                           
+                                                           
+                                                           
+ block_avg_exp_noninvert block_avg_len_invert block_avg_len_noninvert
+ Length:2025             Length:2025          Length:2025            
+ Class :character        Class :character     Class :character       
+ Mode  :character        Mode  :character     Mode  :character       
+                                                                     
+                                                                     
+                                                                     
+                                                                     
+   inversion    rev_comp     strain       gbk_strand       
+ Min.   :1   Min.   :0   ATCC   :   0   Min.   :0.0000000  
+ 1st Qu.:1   1st Qu.:0   BW25113:   0   1st Qu.:0.0000000  
+ Median :1   Median :0   K12DH  :   0   Median :0.0000000  
+ Mean   :1   Mean   :0   K12MG  :2025   Mean   :0.4325926  
+ 3rd Qu.:1   3rd Qu.:0                  3rd Qu.:1.0000000  
+ Max.   :1   Max.   :0                  Max.   :1.0000000  
+                                                           
+             test          pvalue               allSig         
+ block_w_pvalue:2025   Min.   :0.000128999   Length:2025       
+ block_t_pvalue:   0   1st Qu.:0.168697912   Class :character  
+                       Median :0.446153846   Mode  :character  
+                       Mean   :0.466057741                     
+                       3rd Qu.:0.787854432                     
+                       Max.   :1.000000000                     
+                                                               
+ non_bidir_midpoint       sig            G_HNS_binding       
+ Min.   : 240579.5   Min.   :0.0000000   Min.   :0.00000000  
+ 1st Qu.:1231820.0   1st Qu.:0.0000000   1st Qu.:0.00000000  
+ Median :1995930.0   Median :0.0000000   Median :0.00000000  
+ Mean   :2308567.6   Mean   :0.1283951   Mean   :0.02222222  
+ 3rd Qu.:3421876.5   3rd Qu.:0.0000000   3rd Qu.:0.00000000  
+ Max.   :4165856.5   Max.   :1.0000000   Max.   :1.00000000  
+                                                             
+ U_HNS_binding        H1_HNS_binding      H1nc1_HNS_binding  
+ Min.   :0.00000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.00000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.00000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.09283951   Mean   :0.1377778   Mean   :0.1293827  
+ 3rd Qu.:0.00000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.00000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                             
+ H1nc2_HNS_binding   H1nc3_HNS_binding   H2_HNS_binding     
+ Min.   :0.0000000   Min.   :0.0000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.0000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.0000000   Median :0.0000000  
+ Mean   :0.1293827   Mean   :0.1293827   Mean   :0.1283951  
+ 3rd Qu.:0.0000000   3rd Qu.:0.0000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.0000000   Max.   :1.0000000  
+                                                            
+ H3_HNS_binding      L_HNS_binding        O_HNS_binding      
+ Min.   :0.0000000   Min.   :0.00000000   Min.   :0.0000000  
+ 1st Qu.:0.0000000   1st Qu.:0.00000000   1st Qu.:0.0000000  
+ Median :0.0000000   Median :0.00000000   Median :0.0000000  
+ Mean   :0.1283951   Mean   :0.04691358   Mean   :0.2390123  
+ 3rd Qu.:0.0000000   3rd Qu.:0.00000000   3rd Qu.:0.0000000  
+ Max.   :1.0000000   Max.   :1.00000000   Max.   :1.0000000  
+                                                             
+ G_Fis_binding       
+ Min.   :0.00000000  
+ 1st Qu.:0.00000000  
+ Median :0.00000000  
+ Mean   :0.07604938  
+ 3rd Qu.:0.00000000  
+ Max.   :1.00000000  
+                     
+[1] "###########################################################"
+[1] "# correlation test btwn orientation and Fis"
+[1] "###########################################################"
+
+	Pearson's product-moment correlation
+
+data:  cor_dat$G_Fis_binding and cor_dat$gbk_strand
+t = -1.967012, df = 2023, p-value = 0.04931831
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.0870849526298 -0.0001319966694
+sample estimates:
+           cor 
+-0.04369121762 
 
 [1] "checking overlap between Fis binding sites in all datasets"
 [1] "total Fis binding sites for each dataset"
