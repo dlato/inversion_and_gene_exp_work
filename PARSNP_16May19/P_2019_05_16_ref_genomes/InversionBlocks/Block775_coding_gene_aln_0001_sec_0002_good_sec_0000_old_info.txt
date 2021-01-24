@@ -1,4 +1,0 @@
-Block775_coding_gene_aln_0001_sec_0002_good_sec_0000	CP009072	1884064	1886322	1	1
-Block775_coding_gene_aln_0001_sec_0002_good_sec_0000	CP009273	2993704	2995962	0	1
-Block775_coding_gene_aln_0001_sec_0002_good_sec_0000	NC_010473	3092237	3094495	0	1
-Block775_coding_gene_aln_0001_sec_0002_good_sec_0000	U00096000	3000345	3002603	0	1

@@ -1,4 +1,0 @@
-Block512_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009072	3122505	3123875	1	1
-Block512_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009273	2010038	2011408	0	1
-Block512_coding_gene_aln_0004_sec_0001_good_sec_0000	NC_010473	2105589	2106959	0	1
-Block512_coding_gene_aln_0004_sec_0001_good_sec_0000	U00096000	2016557	2017927	0	1

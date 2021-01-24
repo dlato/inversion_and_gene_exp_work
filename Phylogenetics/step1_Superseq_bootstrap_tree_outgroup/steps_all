@@ -1,0 +1,85 @@
+#run PARSNP WITH the outgroup
+parsnp -g ../../Genomes/ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ../../Genomes/Genomes_with_outgroup/ -c
+
+# cut the alignment into blocks
+grep "[=>]" *.xmfa > ecoli_ref_genomes.txt
+
+#commands to cut blocks
+~/CODE/cut_blocks.pl > run_samtools
+sh run_samtools
+#edit the revcomp files names
+foreach x (*rev_comp_Ecoli_ATCC_25922_NZ_CP009072.fasta)
+perl -p -i.bak -e "s/>/>CP009072 /g" $x
+end
+foreach x (*rev_comp_Ecoli_BW25113_NZ_CP009273.fasta)
+perl -p -i.bak -e "s/>/>CP009273 /g" $x
+end
+foreach x (*rev_comp_Ecoli_K12_DH10B_NC_010473.fasta)
+perl -p -i.bak -e "s/>/>NC_010473 /g" $x
+end
+foreach x (*rev_comp_Ecoli_K12_MG1655_chrom_U00096.fasta)
+perl -p -i.bak -e "s/>/>U00096 /g" $x
+end
+
+#move the duplicated rev comp stuff
+mkdir Duplicated_rev_comp/
+#get below into the format:
+#mv Block*rev_comp*.fasta Duplicated_rev_comp/
+l -1 Block*rev_comp*.fasta > rev_comp_move
+parallel -j 10 < rev_comp_move
+mv *.bak Duplicated_rev_comp/
+
+#get below in the format: (remove the rev_comp)
+#mv Block*rev_comp*.fasta Block*.fasta
+l -1 Block*rev_comp*.fasta > rev_comp_switch
+parallel -j 10 < rev_comp_switch
+
+#combine all the taxa blocks into one
+#cat tax1 tax2 tax3 tax4 > Block*
+l -1 Block*.fasta > cat_blocks
+parallel -j 10 < cat_blocks
+
+#check if all taxa are present in each block
+mkdir BadBlocks/
+touch mv_good_blocks
+foreach x (Block*.fasta)
+if (`grep ">" $x | wc -l` != 4) then
+echo $x >> mv_good_blocks
+endif
+end
+#get mv_good_blocks in format
+#mv * BadBlocks/
+parallel -j 10 < mv_good_blocks
+
+#run MAFFT on each block
+l -1 Block*.fasta > mafft_commands
+#get in format:
+#~wilson/bin/mafft --auto Block86.fasta  > `basename Block86.fasta  .fasta`.mafft
+parallel -j 10 < mafft_commands
+
+
+#get taxIDs into 10char format
+foreach x (*.mafft)
+perl -p -i.bak -e "s/NZ_//g" $x
+perl -p -i.bak -e "s/:/ /g" $x
+end
+
+l -1 B*.mafft > sep_files
+#get into format: awk '/^>/{close("Block501.mafft"f);f++}{print $0 > "Block501.mafft"f}' Block501.mafft
+parallel -j 10 < sep_files
+
+#cat individual mafft seqs
+ls -1 | egrep '*.mafft[0-9][0-9]|*.mafft[0-9]|*.mafft[0-9][0-9][0-9]' > mafft_individ_seqs.txt
+~/CODE/cat_mafft_seqs.py mafft_individ_seqs.txt > cat_mafft_commands
+sh cat_mafft_commands
+foreach x (*.maf)
+perl -p -i.bak -e "s/\n//g" $x
+end
+grep ">" Block465.mafft > mafft_seq_ids
+~/CODE/cat_mafft_seqs_final_seq.py mafft_seq_ids > chrom_all_blocks.mafft
+
+fasta2phyI chrom_all_blocks.mafft > chrom_all_blocks.phyI
+
+(/usr/local/bin/raxmlHPC-PTHREADS-SSE3 -T 20 -f a -x 12345 -o CP020567 -s chrom_all_blocks.phyI  -n raxml_out_outgroup -N 100 -p 12345 -m GTRGAMMA) >& raxml.err
+
+cp RAxML_bestTree* ../step2_Branchlengths_and_Bootstrap_ref_tree/

@@ -1,4 +1,0 @@
-Block1017_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	629382	630305	1	1
-Block1017_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	4073659	4074582	1	1
-Block1017_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	4178019	4178942	1	1
-Block1017_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	4080299	4081222	1	1

@@ -1,4 +1,0 @@
-Block425_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	3575945	3578740	1	1
-Block425_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	1566664	1569459	1	1
-Block425_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	1661026	1663821	1	1
-Block425_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	1572407	1575202	1	1

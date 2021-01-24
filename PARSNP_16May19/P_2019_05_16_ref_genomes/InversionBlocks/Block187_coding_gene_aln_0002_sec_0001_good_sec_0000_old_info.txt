@@ -1,4 +1,0 @@
-Block187_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	4507692	4508027	1	1
-Block187_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	751025	751360	0	1
-Block187_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	807384	807719	0	1
-Block187_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	755569	755904	0	1

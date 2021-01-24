@@ -1,4 +1,0 @@
-Block433_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	3551433	3552293	1	1
-Block433_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	1602368	1603228	1	1
-Block433_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	1695760	1696620	1	1
-Block433_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	1608111	1608971	1	1

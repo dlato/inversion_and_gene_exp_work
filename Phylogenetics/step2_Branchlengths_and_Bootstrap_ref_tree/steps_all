@@ -1,0 +1,67 @@
+cp ../../PARSNP_16May19/P_2019_05_16_ref_genomes/InversionBlocks/B*.mafft .
+cp ../../PARSNP_16May19/P_2019_05_16_ref_genomes/NonInversionBlocks/B*.mafft .
+#get taxIDs into 10char format
+foreach x (*.mafft)
+perl -p -i.bak -e "s/NZ_//g" $x
+perl -p -i.bak -e "s/:/ /g" $x
+end
+
+l -1 B*.mafft > sep_files
+#get into format: awk '/^>/{close("Block501.mafft"f);f++}{print $0 >"Block501.mafft"f}' Block501.mafft
+parallel -j 10 < sep_files
+
+#cat individual mafft seqs
+ls -1 | egrep '*.mafft[0-9][0-9]|*.mafft[0-9]|*.mafft[0-9][0-9][0-9]|*.mafft[0-9][0-9][0-9][0-9]' > mafft_individ_seqs.txt
+~/CODE/cat_mafft_seqs.py mafft_individ_seqs.txt > cat_mafft_commands
+sh cat_mafft_commands
+foreach x (*.maf)
+perl -p -i.bak -e "s/\n//g" $x
+end
+grep ">" Block8.mafft > mafft_seq_ids
+~/CODE/cat_mafft_seqs_final_seq.py mafft_seq_ids > chrom_all_blocks.mafft
+
+fasta2phyI chrom_all_blocks.mafft > chrom_all_blocks.phyI
+
+#run RAxML BS + ML analysis on ingroup (no outgroup)
+(/usr/local/bin/raxmlHPC -f a -x 12345 -p 12345 -# 1000 -m GTRGAMMA -s chrom_all_blocks.phyI -n ingroup ) >& raxml_ingroup.err
+
+cp ../step1_Superseq_bootstrap_tree_outgroup/RAxML_bestTree.raxml_out_outgroup .
+Rscript ~/CODE/remove_outgroup.R RAxML_bestTree.raxml_out_outgroup  NC_011740
+#optimize tree
+(/usr/local/bin/raxmlHPC -f T -t outgroup_tree_topology -p 12345 -m GTRGAMMA -s chrom_all_blocks.phyI -n optimize ) >& raxml_optimize.err
+
+#use ingroup bootstraps to create bs values
+raxmlHPC -f b -t RAxML_bestTree.optimize -z RAxML_bootstrap.ingroup -m GTRGAMMA -n ref_bs_values
+
+cp RAxML_bestTree.optimize ../step3_Block_tree_vs_Overall_Tree_SH_Test/SH_Test
+cp *.mafft ../step3_Block_tree_vs_Overall_Tree_SH_Test/
+
+
+
+
+#(/usr/local/bin/raxmlHPC-PTHREADS-SSE3 -T 20 -f a -x 12345 -s chrom_all_blocks.phyI  -n optimize -N 100 -p 12345 -m GTRGAMMA) >& raxml_optimize.err
+#
+#
+##run RAxML using constraint tree from outgroup analysis
+#(/usr/local/bin/raxmlHPC -g outgroup_tree_topology -p 12345 -m GTRGAMMA -s chrom_all_blocks.phyI -n constraint ) >& raxml_constraint.err
+##bootstrap values for optimized tree
+##https://cme.h-its.org/exelixis/web/software/raxml/
+#( perl bsBranchLengths.pl chrom_all_blocks.phyI RAxML_bestTree.optimize 100 ) > & test.err
+#raxmlHPC -f b -t RAxML_bestTree.optimize -z bsTrees -m GTRGAMMA -n ref_bs_values
+#
+#(/usr/local/bin/raxmlHPC-PTHREADS-SSE3 -T 20 -f e -s chrom_all_blocks.phyI -t outgroup_tree_topology  -n raxml_out_ref -N 100 -p 12345 -m GTRGAMMA) >& raxml.err
+#
+#(/usr/local/bin/raxmlHPC-PTHREADS-SSE3 -T 20 -f x -s chrom_all_blocks.phyI -t outgroup_tree_topology  -n raxml_out_ref -N 100 -p 12345 -m GTRGAMMA) >& raxml.err
+#
+#
+#
+#
+##https://cme.h-its.org/exelixis/web/software/raxml/
+#( perl bsBranchLengths.pl chrom_all_blocks.phyI outgroup_tree_topology 100 ) > & test.err
+#cp bsTrees intree
+#consense < in_comms_consense
+#mv outfile sinoC_ref_tree_outfile
+#mv outtree sinoC_ref_tree_outtree
+#
+#
+#bsBranchLengths.pl chrom_all_blocks.phyI outgroup_tree_topology 100

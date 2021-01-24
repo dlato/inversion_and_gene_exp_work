@@ -1,4 +1,0 @@
-Block256_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	4286924	4288099	1	1
-Block256_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	979975	981150	1	1
-Block256_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	1037670	1038845	1	1
-Block256_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	984519	985694	1	1

@@ -1,4 +1,0 @@
-Block464_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009072	3473222	3473932	1	1
-Block464_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009273	1651004	1651714	1	1
-Block464_coding_gene_aln_0005_sec_0001_good_sec_0000	NC_010473	1745732	1746442	1	1
-Block464_coding_gene_aln_0005_sec_0001_good_sec_0000	U00096000	1656747	1657457	1	1

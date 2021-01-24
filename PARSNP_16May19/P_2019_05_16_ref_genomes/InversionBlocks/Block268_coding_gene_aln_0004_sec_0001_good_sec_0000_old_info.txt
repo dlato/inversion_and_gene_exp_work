@@ -1,4 +1,0 @@
-Block268_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009072	4235303	4236376	1	1
-Block268_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009273	1047745	1048818	1	1
-Block268_coding_gene_aln_0004_sec_0001_good_sec_0000	NC_010473	1105440	1106513	1	1
-Block268_coding_gene_aln_0004_sec_0001_good_sec_0000	U00096000	1052289	1053362	1	1

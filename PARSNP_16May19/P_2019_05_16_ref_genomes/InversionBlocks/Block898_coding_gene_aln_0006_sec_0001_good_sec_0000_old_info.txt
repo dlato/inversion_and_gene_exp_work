@@ -1,4 +1,0 @@
-Block898_coding_gene_aln_0006_sec_0001_good_sec_0000	CP009072	1239782	1240303	1	1
-Block898_coding_gene_aln_0006_sec_0001_good_sec_0000	CP009273	3511902	3512423	1	1
-Block898_coding_gene_aln_0006_sec_0001_good_sec_0000	NC_010473	3614310	3614831	1	1
-Block898_coding_gene_aln_0006_sec_0001_good_sec_0000	U00096000	3518543	3519064	1	1

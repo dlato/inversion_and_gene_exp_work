@@ -1,4 +1,0 @@
-Block437_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009072	3541362	3541796	1	1
-Block437_coding_gene_aln_0002_sec_0001_good_sec_0000	CP009273	1613377	1613811	0	1
-Block437_coding_gene_aln_0002_sec_0001_good_sec_0000	NC_010473	1706769	1707203	0	1
-Block437_coding_gene_aln_0002_sec_0001_good_sec_0000	U00096000	1619120	1619554	0	1

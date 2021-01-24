@@ -1,4 +1,0 @@
-Block156_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009072	4662472	4663338	1	1
-Block156_coding_gene_aln_0004_sec_0001_good_sec_0000	CP009273	552331	553197	1	1
-Block156_coding_gene_aln_0004_sec_0001_good_sec_0000	NC_010473	495430	496296	1	1
-Block156_coding_gene_aln_0004_sec_0001_good_sec_0000	U00096000	556875	557741	1	1

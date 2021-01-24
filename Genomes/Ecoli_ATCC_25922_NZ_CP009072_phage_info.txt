@@ -1,0 +1,3 @@
+gbk_start	gbk_end	gbk_midpoint	gbk_gene_id	gbk_locus_tag	gbk_old_locus_tag	gbk_strand
+1650678	1652027	1651352	NA	DR76_RS07940	DR76_1532	0
+3976568	3976888	3976728	NA	DR76_RS19695	NA	0

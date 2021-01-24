@@ -1,4 +1,0 @@
-Block767_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009072	1984723	1985049	1	1
-Block767_coding_gene_aln_0007_sec_0001_good_sec_0000	CP009273	2917146	2917472	1	1
-Block767_coding_gene_aln_0007_sec_0001_good_sec_0000	NC_010473	3015687	3016013	1	1
-Block767_coding_gene_aln_0007_sec_0001_good_sec_0000	U00096000	2923787	2924113	1	1

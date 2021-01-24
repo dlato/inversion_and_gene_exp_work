@@ -1,4 +1,0 @@
-Block760_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009072	2039002	2040144	1	1
-Block760_coding_gene_aln_0005_sec_0001_good_sec_0000	CP009273	2855700	2856842	0	1
-Block760_coding_gene_aln_0005_sec_0001_good_sec_0000	NC_010473	2952905	2954047	0	1
-Block760_coding_gene_aln_0005_sec_0001_good_sec_0000	U00096000	2862341	2863483	0	1

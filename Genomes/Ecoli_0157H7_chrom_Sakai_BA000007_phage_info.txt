@@ -1,0 +1,1 @@
+gbk_start	gbk_end	gbk_midpoint	gbk_gene_id	gbk_locus_tag	gbk_old_locus_tag	gbk_strand

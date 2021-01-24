@@ -1,4 +1,0 @@
-Block860_coding_gene_aln_0000_sec_0003_good_sec_0000	CP009072	1462052	1463206	1	1
-Block860_coding_gene_aln_0000_sec_0003_good_sec_0000	CP009273	3275335	3276489	0	1
-Block860_coding_gene_aln_0000_sec_0003_good_sec_0000	NC_010473	3377743	3378897	0	1
-Block860_coding_gene_aln_0000_sec_0003_good_sec_0000	U00096000	3281976	3283130	0	1

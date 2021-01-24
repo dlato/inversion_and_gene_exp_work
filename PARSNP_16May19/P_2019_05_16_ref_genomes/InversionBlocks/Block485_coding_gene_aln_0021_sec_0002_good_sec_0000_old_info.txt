@@ -1,4 +1,0 @@
-Block485_coding_gene_aln_0021_sec_0002_good_sec_0000	CP009072	3335766	3336122	1	1
-Block485_coding_gene_aln_0021_sec_0002_good_sec_0000	CP009273	1793650	1794006	1	1
-Block485_coding_gene_aln_0021_sec_0002_good_sec_0000	NC_010473	1887988	1888344	1	1
-Block485_coding_gene_aln_0021_sec_0002_good_sec_0000	U00096000	1799393	1799749	1	1

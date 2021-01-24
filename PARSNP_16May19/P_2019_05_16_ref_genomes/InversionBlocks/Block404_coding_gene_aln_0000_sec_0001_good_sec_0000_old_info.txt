@@ -1,4 +1,0 @@
-Block404_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	3625182	3627170	1	1
-Block404_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	1515247	1517235	1	1
-Block404_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	1609609	1611597	1	1
-Block404_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	1520990	1522978	1	1

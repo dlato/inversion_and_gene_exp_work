@@ -1,4 +1,0 @@
-Block829_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009072	1538894	1539511	1	1
-Block829_coding_gene_aln_0001_sec_0001_good_sec_0000	CP009273	3198053	3198670	0	1
-Block829_coding_gene_aln_0001_sec_0001_good_sec_0000	NC_010473	3300461	3301078	0	1
-Block829_coding_gene_aln_0001_sec_0001_good_sec_0000	U00096000	3204694	3205311	0	1

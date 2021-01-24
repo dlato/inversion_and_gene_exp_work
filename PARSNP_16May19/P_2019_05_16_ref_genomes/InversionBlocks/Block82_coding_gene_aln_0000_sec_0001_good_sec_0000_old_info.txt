@@ -1,4 +1,0 @@
-Block82_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	4910404	4910727	1	1
-Block82_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	299570	299893	1	1
-Block82_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	278633	278956	1	1
-Block82_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	303859	304182	1	1

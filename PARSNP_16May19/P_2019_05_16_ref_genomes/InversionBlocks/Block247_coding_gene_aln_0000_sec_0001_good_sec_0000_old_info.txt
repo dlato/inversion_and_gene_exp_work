@@ -1,4 +1,0 @@
-Block247_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009072	4333743	4334747	1	1
-Block247_coding_gene_aln_0000_sec_0001_good_sec_0000	CP009273	929946	930950	0	1
-Block247_coding_gene_aln_0000_sec_0001_good_sec_0000	NC_010473	987641	988645	0	1
-Block247_coding_gene_aln_0000_sec_0001_good_sec_0000	U00096000	934490	935494	0	1
