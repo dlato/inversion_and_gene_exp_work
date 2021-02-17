@@ -46,6 +46,11 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
 #                  legend.position="none")
                   legend.position="top")
 )
+##############
+# SET SEED
+##############
+set.seed(925)
+
 
 
 #read in the data
