@@ -920,17 +920,41 @@ summarySEwithin <- function(data=NULL, measurevar, betweenvars=NULL, withinvars=
 dfwc <- summarySEwithin(all_bs, measurevar="norm_exp", withinvars="inversion", idvar="strain", na.rm=FALSE, conf.interval=.95)
 
 dfwc
+levels(dfwc$inversion) <- c("No Inversion","Inversion")
 
 # Make the graph with the 95% confidence interval
 p <- (ggplot(dfwc, aes(x=inversion, y=norm_exp, group=1))
     + geom_line()
     + geom_errorbar(width=.1, aes(ymin=norm_exp-ci, ymax=norm_exp+ci)) 
-    + geom_point(shape=21, size=3, fill="white") 
+    + geom_point(shape=21, size=3, fill="#788AA3") 
+  + ggtitle("All Strains")
+  + labs(x = "", y = "Mean Expression (CPM)")
 #    ylim(40,60)
 )
 pdf("all_inversions_mean_sd.pdf")
 p
 dev.off()
+
+print("mean and sd for ATCC inversions")
+atcc_bs <- all_bs %>% filter(strain == "ATCC")
+dfwc <- summarySEwithin(atcc_bs, measurevar="norm_exp", withinvars="rev_comp", idvar="strain", na.rm=FALSE, conf.interval=.95)
+
+dfwc
+levels(dfwc$rev_comp) <- c("No Inversion","Inversion")
+
+# Make the graph with the 95% confidence interval
+p <- (ggplot(dfwc, aes(x=rev_comp, y=norm_exp, group=1))
+    + geom_line()
+    + geom_errorbar(width=.1, aes(ymin=norm_exp-ci, ymax=norm_exp+ci)) 
+    + geom_point(shape=21, size=3, fill="#788AA3") 
+  + ggtitle(expression(paste(italic("E.coli"), "ATCC 25922")))
+  + labs(x = "", y = "Mean Expression (CPM)")
+#    ylim(40,60)
+)
+pdf("atcc_inversions_mean_sd.pdf")
+p
+dev.off()
+
 
 #no_na_exp <- all_bs$norm_exp
 #no_na_exp <- !is.na(no_na_exp)
