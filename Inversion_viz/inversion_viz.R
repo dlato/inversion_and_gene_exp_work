@@ -41,7 +41,7 @@ theme_set(theme_bw() + theme(strip.background =element_rect(fill="#e7e5e2")) +
                   #                  legend.key = element_blank(),
                   #                  legend.background=element_blank(),
                   #                  legend.position="none")
-                  legend.position="none")
+                  legend.position="top")
 )
 
 
@@ -55,6 +55,9 @@ file_name <- "inversion_block_info_all.txt"
 block_inf <- read.table(file_name,sep = "\t", header = FALSE)
 colnames(block_inf) <- c("block","strain","start","end","rev_comp","inversion")
 summary(block_inf)
+tail(block_inf)
+##### SUBSET below line
+#block_inf <- block_inf[c(1:16,1134:1150),]
 #block_inf$strain <- factor(block_inf$strain, c("U00096", "NC_010473", "NZ_CP009273", "NZ_CP009072"))
 block_inf$strain <- factor(block_inf$strain, c("U00096000", "NC_010473", "NZ_CP009273", "CP009072"))
 print("make column of midpoint of each block")
@@ -91,12 +94,13 @@ inver <- unique(block_inf %>% select(block, inversion))
 inversion <- inver$inversion
 head(inver)
 bi_dat <- block_inf %>% select(block,strain,midpoint)
+bi_dat
 bi_dat <-  spread(bi_dat, strain, midpoint)
 #adding inversion col to data for colouring (hopefully)
 bi_dat <- cbind(bi_dat, inversion)
 bi_dat$inversion <- as.factor(bi_dat$inversion)
+#levels(bi_dat$inversion) <- c("No Inversion","Inversion")
 head(bi_dat)
-#bi_dat <- bi_dat[c(1:10,1140:1150),]
 bi_dat <- bi_dat[order(bi_dat[,5],decreasing = FALSE),]
 bi_dat
 summary(bi_dat)
@@ -124,9 +128,10 @@ ps <- (ggplot(data =ps_dat, aes(x, id = id, split = y, value = 1))
   + ylab("Genomic Position")
   + coord_flip()
   + scale_x_discrete(expand = c(0,0))
++ theme(legend.title=element_blank())
 )
 #pdf("Inversion_viz/parallel_sets_maual_revcomp.pdf", width = 15, height = 7)
-pdf("Inversion_viz/parallel_sets_all_colour_TEST.pdf", width = 15, height = 7)
+pdf("Inversion_viz/parallel_sets_all_colour_legend.pdf", width = 15, height = 7)
 #pdf("Inversion_viz/parallel_sets_all_ATCC_revcomp.pdf", width = 15, height = 7)
 ps
 dev.off()
