@@ -1,0 +1,429 @@
+[1] "make column of length of each block"
+[1] "make column of midpoint of each block"
+  locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1           DR76_RS00005         1    1278          639            
+2           DR76_RS00010      1275    2279         1777            
+3           DR76_RS00015      2276    3241         2758            
+4           DR76_RS00020      3215    3961         3588            
+5           DR76_RS00025      4013    4831         4422            
+6           DR76_RS00030      4896    5696         5296            
+  gbk_locus_tag gbk_strand  norm_exp    block     taxa start   end rev_comp
+1                        0  6.407149 Block611 CP009072     0 19237        0
+2                        0  9.374275 Block611 CP009072     0 19237        0
+3                        0 12.994059 Block611 CP009072     0 19237        0
+4                        1 36.333188 Block611 CP009072     0 19237        0
+5                        1  8.955027 Block611 CP009072     0 19237        0
+6                        1 54.367770 Block611 CP009072     0 19237        0
+  inversion strain gbk_old_locus_tag block_len midpoint
+1         0   ATCC            DR76_1     19237   9618.5
+2         0   ATCC            DR76_2     19237   9618.5
+3         0   ATCC            DR76_4     19237   9618.5
+4         0   ATCC            DR76_3     19237   9618.5
+5         0   ATCC            DR76_5     19237   9618.5
+6         0   ATCC            DR76_6     19237   9618.5
+[1] "summary of block lengths:"
+[1] "non-inversion"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    138    5517    9375   11270   14030   32610 
+[1] "inversion"
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     96    5367    9662   11270   14180   38570 
+[1] "summary of gei_dat"
+   locus_tag       gene_id       gbk_start          gbk_end       
+        :3112          :2971   Min.   :      1   Min.   :    255  
+ b0001  :   2   asnC   :   3   1st Qu.:1267551   1st Qu.:1268104  
+ b0002  :   2   aaeA   :   2   Median :2403896   Median :2404952  
+ b0003  :   2   aaeR   :   2   Mean   :2414366   Mean   :2415307  
+ b0004  :   2   aaeX   :   2   3rd Qu.:3537421   3rd Qu.:3538118  
+ b0007  :   2   aas    :   2   Max.   :5129459   Max.   :5130511  
+ (Other):8864   (Other):9004                                      
+  gbk_midpoint      gbk_gene_id           gbk_locus_tag    gbk_strand    
+ Min.   :    222          :6841                  :6026   Min.   :0.0000  
+ 1st Qu.:1267761   rrf    :   6   BW25113_RS04685:   2   1st Qu.:0.0000  
+ Median :2404167   aceF   :   4   BW25113_RS00005:   1   Median :1.0000  
+ Mean   :2414836   asnB   :   4   BW25113_RS00010:   1   Mean   :0.5193  
+ 3rd Qu.:3537781   atpC   :   4   BW25113_RS00015:   1   3rd Qu.:1.0000  
+ Max.   :5129985   bcsA   :   4   BW25113_RS00020:   1   Max.   :1.0000  
+                   (Other):5123   (Other)        :5954                   
+    norm_exp             block                taxa          start        
+ Min.   :    0.00   Block499:  153   CP009072   :3112   Min.   :      0  
+ 1st Qu.:   10.87   Block889:  124   NC_010473  :2989   1st Qu.:1256733  
+ Median :   47.43   Block656:  115   NZ_CP009273:2971   Median :2390012  
+ Mean   :  207.70   Block893:  109   U00096000  :2914   Mean   :2409180  
+ 3rd Qu.:  148.22   Block869:  102                      3rd Qu.:3534124  
+ Max.   :20648.30   Block485:   97                      Max.   :5129412  
+                    (Other) :11286                                       
+      end             rev_comp        inversion          strain    
+ Min.   :   5468   Min.   :0.0000   Min.   :0.0000   ATCC   :3112  
+ 1st Qu.:1274804   1st Qu.:0.0000   1st Qu.:0.0000   BW25113:2971  
+ Median :2416100   Median :0.0000   Median :1.0000   K12DH  :2989  
+ Mean   :2420451   Mean   :0.1815   Mean   :0.6977   K12MG  :2914  
+ 3rd Qu.:3543201   3rd Qu.:0.0000   3rd Qu.:1.0000                 
+ Max.   :5130766   Max.   :1.0000   Max.   :1.0000                 
+                                                                   
+    gbk_old_locus_tag   block_len        midpoint      
+             :6021    Min.   :   96   Min.   :   2734  
+ BW25113_0903:   2    1st Qu.: 5468   1st Qu.:1268178  
+ BW25113_0001:   1    Median : 9662   Median :2400442  
+ BW25113_0002:   1    Mean   :11270   Mean   :2414815  
+ BW25113_0003:   1    3rd Qu.:14177   3rd Qu.:3541031  
+ BW25113_0004:   1    Max.   :38569   Max.   :5130089  
+ (Other)     :5959                                     
+[1] "K12MG"
+ [1] locus_tag         gene_id           gbk_start         gbk_end          
+ [5] gbk_midpoint      gbk_gene_id       gbk_locus_tag     gbk_strand       
+ [9] norm_exp          block             taxa              start            
+[13] end               rev_comp          inversion         strain           
+[17] gbk_old_locus_tag block_len         midpoint         
+<0 rows> (or 0-length row.names)
+[1] "K12DH"
+     locus_tag gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1 ECDH10B_3147    yqgA   3208037 3208744      3208390            
+2 ECDH10B_3148    speC   3209142 3211277      3210209            
+    gbk_locus_tag gbk_strand  norm_exp    block      taxa   start     end
+1 ECDH10B_RS15975          1  59.84755 Block800 NC_010473 3207876 3209123
+2 ECDH10B_RS15980          0 151.32284 Block799 NC_010473 3209132 3211917
+  rev_comp inversion strain gbk_old_locus_tag block_len midpoint
+1        1         1  K12DH                        1247  3208500
+2        1         1  K12DH                        2785  3210524
+[1] "-------------------------------------------------------"
+     locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1              DR76_RS08645   1777697 1778404      1778050            
+2        b2966                3102912 3103619      3103265            
+3 ECDH10B_3147         yqgA   3208037 3208744      3208390            
+4        b2966         yqgA   3109553 3110260      3109906        yqgA
+    gbk_locus_tag gbk_strand norm_exp    block        taxa   start     end
+1                          1 83.32431 Block800    CP009072 1777536 1778783
+2 BW25113_RS15405          0 11.25101 Block800 NZ_CP009273 3102531 3103778
+3 ECDH10B_RS15975          1 59.84755 Block800   NC_010473 3207876 3209123
+4                          0 64.06302 Block800   U00096000 3109172 3110419
+  rev_comp inversion  strain gbk_old_locus_tag block_len midpoint
+1        1         1    ATCC         DR76_1656      1247  1778160
+2        0         1 BW25113      BW25113_2966      1247  3103154
+3        1         1   K12DH                        1247  3208500
+4        0         1   K12MG                        1247  3109796
+[1] "-------------------------------------------------------"
+     locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1              DR76_RS08650   1778803 1780938      1779870            
+2        b2965                3100379 3102514      3101446            
+3 ECDH10B_3148         speC   3209142 3211277      3210209            
+4        b2965         speC   3107020 3109155      3108087        speC
+    gbk_locus_tag gbk_strand  norm_exp    block        taxa   start     end
+1                          0  68.14738 Block799    CP009072 1778793 1781577
+2 BW25113_RS15400          1  10.82146 Block799 NZ_CP009273 3099737 3102522
+3 ECDH10B_RS15980          0 151.32284 Block799   NC_010473 3209132 3211917
+4                          1 149.14309 Block799   U00096000 3106378 3109163
+  rev_comp inversion  strain gbk_old_locus_tag block_len midpoint
+1        1         1    ATCC         DR76_1657      2784  1780185
+2        0         1 BW25113      BW25113_2965      2785  3101130
+3        1         1   K12DH                        2785  3210524
+4        0         1   K12MG                        2785  3107770
+[1] "-------------------------------------------------------"
+[1] "BW25113"
+ [1] locus_tag         gene_id           gbk_start         gbk_end          
+ [5] gbk_midpoint      gbk_gene_id       gbk_locus_tag     gbk_strand       
+ [9] norm_exp          block             taxa              start            
+[13] end               rev_comp          inversion         strain           
+[17] gbk_old_locus_tag block_len         midpoint         
+<0 rows> (or 0-length row.names)
+[1] "summary of gei_dat k12 only"
+   locus_tag       gene_id       gbk_start          gbk_end       
+ b0001  :   1   aaeA   :   1   Min.   :    190   Min.   :    255  
+ b0002  :   1   aaeB   :   1   1st Qu.:1324260   1st Qu.:1325199  
+ b0003  :   1   aaeR   :   1   Median :2408212   Median :2409120  
+ b0004  :   1   aaeX   :   1   Mean   :2402786   Mean   :2403738  
+ b0007  :   1   aas    :   1   3rd Qu.:3474019   3rd Qu.:3474434  
+ b0009  :   1   aat    :   1   Max.   :4640942   Max.   :4641628  
+ (Other):2908   (Other):2908                                      
+  gbk_midpoint      gbk_gene_id           gbk_locus_tag    gbk_strand    
+ Min.   :    222   aaeA   :   1                  :2914   Min.   :0.0000  
+ 1st Qu.:1324729   aaeB   :   1   BW25113_RS00005:   0   1st Qu.:0.0000  
+ Median :2408665   aaeR   :   1   BW25113_RS00010:   0   Median :1.0000  
+ Mean   :2403262   aaeX   :   1   BW25113_RS00015:   0   Mean   :0.5213  
+ 3rd Qu.:3474226   aas    :   1   BW25113_RS00020:   0   3rd Qu.:1.0000  
+ Max.   :4641285   aat    :   1   BW25113_RS00040:   0   Max.   :1.0000  
+                   (Other):2908   (Other)        :   0                   
+    norm_exp            block               taxa          start        
+ Min.   :   0.00   Block499:  38   CP009072   :   0   Min.   :      0  
+ 1st Qu.:  22.80   Block889:  31   NC_010473  :   0   1st Qu.:1316060  
+ Median :  72.14   Block656:  29   NZ_CP009273:   0   Median :2390012  
+ Mean   : 196.64   Block893:  27   U00096000  :2914   Mean   :2397544  
+ 3rd Qu.: 168.77   Block869:  26                      3rd Qu.:3471484  
+ Max.   :7366.75   Block485:  25                      Max.   :4633235  
+                   (Other) :2738                                       
+      end             rev_comp   inversion          strain    
+ Min.   :   5468   Min.   :0   Min.   :0.0000   ATCC   :   0  
+ 1st Qu.:1326712   1st Qu.:0   1st Qu.:0.0000   BW25113:   0  
+ Median :2422621   Median :0   Median :1.0000   K12DH  :   0  
+ Mean   :2408921   Mean   :0   Mean   :0.6963   K12MG  :2914  
+ 3rd Qu.:3499176   3rd Qu.:0   3rd Qu.:1.0000                 
+ Max.   :4641644   Max.   :0   Max.   :1.0000                 
+                                                              
+    gbk_old_locus_tag   block_len        midpoint      
+             :2914    Min.   :  175   Min.   :   2734  
+ BW25113_0001:   0    1st Qu.: 5545   1st Qu.:1321386  
+ BW25113_0002:   0    Median : 9804   Median :2406316  
+ BW25113_0003:   0    Mean   :11377   Mean   :2403232  
+ BW25113_0004:   0    3rd Qu.:14710   3rd Qu.:3485330  
+ BW25113_0007:   0    Max.   :38569   Max.   :4637440  
+ (Other)     :   0                                     
+[1] "################################################################################"
+[1] "#ORIGIN SCALING AND BIDIRECTIONALITY MIDPOINT                                            "
+[1] "################################################################################"
+[1] "max_pos"
+[1] 5130767
+[1] "oriC"
+[1] 3925744
+[1] "ter"
+[1] 1588773
+[1] "MIN POS"
+[1] 2734
+[1] "shifted ter"
+[1] 2793796
+[1] "max tmp_pos"
+[1] 2792216.5
+  locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1           DR76_RS00005         1    1278          639            
+2           DR76_RS00010      1275    2279         1777            
+3           DR76_RS00015      2276    3241         2758            
+4           DR76_RS00020      3215    3961         3588            
+5           DR76_RS00025      4013    4831         4422            
+6           DR76_RS00030      4896    5696         5296            
+  gbk_locus_tag gbk_strand     norm_exp    block     taxa start   end rev_comp
+1                        0  6.407148557 Block611 CP009072     0 19237        0
+2                        0  9.374275240 Block611 CP009072     0 19237        0
+3                        0 12.994059477 Block611 CP009072     0 19237        0
+4                        1 36.333187983 Block611 CP009072     0 19237        0
+5                        1  8.955027464 Block611 CP009072     0 19237        0
+6                        1 54.367769580 Block611 CP009072     0 19237        0
+  inversion strain gbk_old_locus_tag block_len  midpoint midpoint_strand
+1         0   ATCC            DR76_1     19237 1214641.5               0
+2         0   ATCC            DR76_2     19237 1214641.5               0
+3         0   ATCC            DR76_4     19237 1214641.5               0
+4         0   ATCC            DR76_3     19237 1214641.5               1
+5         0   ATCC            DR76_5     19237 1214641.5               1
+6         0   ATCC            DR76_6     19237 1214641.5               1
+[1] 2792216.5
+[1] 345
+[1] "################################################################################"
+[1] "#ORIGIN SCALING AND BIDIRECTIONALITY gbk_midpoint                                            "
+[1] "################################################################################"
+[1] "max_pos"
+[1] 5130767
+[1] "oriC"
+[1] 3925744
+[1] "ter"
+[1] 1588773
+[1] "MIN POS"
+[1] 222
+[1] "shifted ter"
+[1] 2793796
+[1] "now for bidir"
+[1] "max tmp_pos"
+[1] 2793601
+  locus_tag      gene_id gbk_start gbk_end gbk_midpoint gbk_gene_id
+1           DR76_RS00005         1    1278      1205662            
+2           DR76_RS00010      1275    2279      1206800            
+3           DR76_RS00015      2276    3241      1207781            
+4           DR76_RS00020      3215    3961      1208611            
+5           DR76_RS00025      4013    4831      1209445            
+6           DR76_RS00030      4896    5696      1210319            
+  gbk_locus_tag gbk_strand     norm_exp    block     taxa start   end rev_comp
+1                        0  6.407148557 Block611 CP009072     0 19237        0
+2                        0  9.374275240 Block611 CP009072     0 19237        0
+3                        0 12.994059477 Block611 CP009072     0 19237        0
+4                        1 36.333187983 Block611 CP009072     0 19237        0
+5                        1  8.955027464 Block611 CP009072     0 19237        0
+6                        1 54.367769580 Block611 CP009072     0 19237        0
+  inversion strain gbk_old_locus_tag block_len  midpoint midpoint_strand
+1         0   ATCC            DR76_1     19237 1214641.5               0
+2         0   ATCC            DR76_2     19237 1214641.5               0
+3         0   ATCC            DR76_4     19237 1214641.5               0
+4         0   ATCC            DR76_3     19237 1214641.5               1
+5         0   ATCC            DR76_5     19237 1214641.5               1
+6         0   ATCC            DR76_6     19237 1214641.5               1
+   locus_tag       gene_id       gbk_start          gbk_end       
+        :3112          :2971   Min.   :      1   Min.   :    255  
+ b0001  :   2   asnC   :   3   1st Qu.:1267551   1st Qu.:1268104  
+ b0002  :   2   aaeA   :   2   Median :2403896   Median :2404952  
+ b0003  :   2   aaeR   :   2   Mean   :2414366   Mean   :2415307  
+ b0004  :   2   aaeX   :   2   3rd Qu.:3537421   3rd Qu.:3538118  
+ b0007  :   2   aas    :   2   Max.   :5129459   Max.   :5130511  
+ (Other):8864   (Other):9004                                      
+  gbk_midpoint        gbk_gene_id           gbk_locus_tag    gbk_strand       
+ Min.   :    134.0          :6841                  :6026   Min.   :0.0000000  
+ 1st Qu.: 563197.5   rrf    :   6   BW25113_RS04685:   2   1st Qu.:0.0000000  
+ Median :1359594.5   aceF   :   4   BW25113_RS00005:   1   Median :0.0000000  
+ Mean   :1306097.4   asnB   :   4   BW25113_RS00010:   1   Mean   :0.4552812  
+ 3rd Qu.:1990163.5   atpC   :   4   BW25113_RS00015:   1   3rd Qu.:1.0000000  
+ Max.   :2793601.0   bcsA   :   4   BW25113_RS00020:   1   Max.   :1.0000000  
+                     (Other):5123   (Other)        :5954                      
+    norm_exp                block                taxa          start        
+ Min.   :    0.00000   Block499:  153   CP009072   :3112   Min.   :      0  
+ 1st Qu.:   10.87214   Block889:  124   NC_010473  :2989   1st Qu.:1256733  
+ Median :   47.42725   Block656:  115   NZ_CP009273:2971   Median :2390012  
+ Mean   :  207.69959   Block893:  109   U00096000  :2914   Mean   :2409180  
+ 3rd Qu.:  148.21953   Block869:  102                      3rd Qu.:3534124  
+ Max.   :20648.29736   Block485:   97                      Max.   :5129412  
+                       (Other) :11286                                       
+      end             rev_comp           inversion             strain    
+ Min.   :   5468   Min.   :0.0000000   Min.   :0.0000000   ATCC   :3112  
+ 1st Qu.:1274804   1st Qu.:0.0000000   1st Qu.:0.0000000   BW25113:2971  
+ Median :2416100   Median :0.0000000   Median :1.0000000   K12DH  :2989  
+ Mean   :2420451   Mean   :0.1814617   Mean   :0.6977307   K12MG  :2914  
+ 3rd Qu.:3543201   3rd Qu.:0.0000000   3rd Qu.:1.0000000                 
+ Max.   :5130766   Max.   :1.0000000   Max.   :1.0000000                 
+                                                                         
+    gbk_old_locus_tag   block_len           midpoint        
+             :6021    Min.   :   96.00   Min.   :    345.0  
+ BW25113_0903:   2    1st Qu.: 5468.00   1st Qu.: 562410.5  
+ BW25113_0001:   1    Median : 9662.00   Median :1360843.5  
+ BW25113_0002:   1    Mean   :11270.39   Mean   :1306083.4  
+ BW25113_0003:   1    3rd Qu.:14177.00   3rd Qu.:1988839.5  
+ BW25113_0004:   1    Max.   :38569.00   Max.   :2792216.5  
+ (Other)     :5959                                          
+ midpoint_strand    
+ Min.   :0.0000000  
+ 1st Qu.:0.0000000  
+ Median :0.0000000  
+ Mean   :0.4565326  
+ 3rd Qu.:1.0000000  
+ Max.   :1.0000000  
+                    
+[1] 2793601
+[1] 134
+[1] "############    "
+[1] "# ALL inversions=1"
+[1] "############    "
+[1] "#Wilcox signed-rank test                                                                     "
+[1] "# to see if there is a difference btwn inversions and non-inverted segments                  "
+[1] "#null hyp = there is no difference in gene expression btwn inverted and non-inverted segments"
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  gei_dat$norm_exp[gei_dat$inversion == 1] and gei_dat$norm_exp[gei_dat$inversion == 0]
+W = 15682115, p-value = 0.002205514
+alternative hypothesis: true location shift is not equal to 0
+
+
+	Welch Two Sample t-test
+
+data:  gei_dat$norm_exp[gei_dat$inversion == 1] and gei_dat$norm_exp[gei_dat$inversion == 0]
+t = 0.16923894, df = 6654.5051, p-value = 0.8656138
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -25.01176688  29.73848053
+sample estimates:
+  mean of x   mean of y 
+208.4139573 206.0506005 
+
+Warning message:
+replacing previous import by ‘RSQLite::Id’ when loading ‘AnnotationDbi’
+[1] "############    "
+[1] "# ALL rev_comp=1"
+[1] "############    "
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  gei_dat$norm_exp[gei_dat$rev_comp == 1] and gei_dat$norm_exp[gei_dat$rev_comp == 0]
+W = 11782352, p-value = 0.00000000000002486791
+alternative hypothesis: true location shift is not equal to 0
+
+
+	Welch Two Sample t-test
+
+data:  gei_dat$norm_exp[gei_dat$rev_comp == 1] and gei_dat$norm_exp[gei_dat$rev_comp == 0]
+t = 2.2819772, df = 2906.6784, p-value = 0.02256265
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  5.843592406 77.189286695
+sample estimates:
+  mean of x   mean of y 
+241.6823827 200.1659432 
+
+Warning message:
+replacing previous import by ‘RSQLite::Id’ when loading ‘AnnotationDbi’
+[1] "############    "
+[1] "# diff in exp btwn all strains and ATCC"
+[1] "############    "
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  tmpgei$norm_exp[tmpgei$tmp == "A"] and tmpgei$norm_exp[tmpgei$tmp == "B"]
+W = 15102497, p-value = 0.000000000000006477993
+alternative hypothesis: true location shift is not equal to 0
+
+
+	Welch Two Sample t-test
+
+data:  tmpgei$norm_exp[tmpgei$tmp == "A"] and tmpgei$norm_exp[tmpgei$tmp == "B"]
+t = 2.1204561, df = 4677.1694, p-value = 0.03402009
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  2.527600128 64.474568802
+sample estimates:
+  mean of x   mean of y 
+232.5025759 199.0014914 
+
+[1] "############    "
+[1] "# diff in exp btwn all strains non-inver and ATCC non-inver"
+[1] "############    "
+   locus_tag       gene_id       gbk_start          gbk_end       
+        : 939          : 891   Min.   :      1   Min.   :    255  
+ b0001  :   2   accA   :   2   1st Qu.:2082818   1st Qu.:2083070  
+ b0002  :   2   accD   :   2   Median :2438945   Median :2440021  
+ b0003  :   2   aceA   :   2   Mean   :2414486   Mean   :2415468  
+ b0004  :   2   aceB   :   2   3rd Qu.:4179438   3rd Qu.:4180038  
+ b0007  :   2   aceE   :   2   Max.   :5129459   Max.   :5130511  
+ (Other):2674   (Other):2722                                      
+  gbk_midpoint      gbk_gene_id           gbk_locus_tag    gbk_strand       
+ Min.   :  61331          :2055                  :1824   Min.   :0.0000000  
+ 1st Qu.:1041845   rrf    :   6   BW25113_RS00005:   1   1st Qu.:0.0000000  
+ Median :1337936   aceF   :   4   BW25113_RS00010:   1   Median :0.0000000  
+ Mean   :1213380   cadB   :   4   BW25113_RS00015:   1   Mean   :0.4507314  
+ 3rd Qu.:1541964   carB   :   4   BW25113_RS00020:   1   3rd Qu.:1.0000000  
+ Max.   :2725822   cbl    :   4   BW25113_RS00040:   1   Max.   :1.0000000  
+                   (Other):1546   (Other)        :1794                      
+    norm_exp                  block               taxa         start        
+ Min.   :    0.000000   Block656 : 115   CP009072   :939   Min.   :      0  
+ 1st Qu.:    8.713323   Block652 :  96   NC_010473  :908   1st Qu.:2079188  
+ Median :   43.413534   Block50  :  88   NZ_CP009273:891   Median :2436368  
+ Mean   :  206.050600   Block627 :  82   U00096000  :885   Mean   :2409272  
+ 3rd Qu.:  150.445948   Block1094:  80                     3rd Qu.:4178156  
+ Max.   :20648.297358   Block18  :  77                     Max.   :5129412  
+                        (Other)  :3085                                      
+      end             rev_comp inversion     strain       gbk_old_locus_tag
+ Min.   :   5468   Min.   :0   0:3623    ATCC   :939               :1824   
+ 1st Qu.:2090707   1st Qu.:0   1:   0    BW25113:891   BW25113_0001:   1   
+ Median :2444100   Median :0             K12DH  :908   BW25113_0002:   1   
+ Mean   :2420539   Mean   :0             K12MG  :885   BW25113_0003:   1   
+ 3rd Qu.:4184627   3rd Qu.:0                           BW25113_0004:   1   
+ Max.   :5130766   Max.   :0                           BW25113_0007:   1   
+                                                       (Other)     :1794   
+   block_len           midpoint         midpoint_strand     tmp     
+ Min.   :  138.00   Min.   :  61334.5   Min.   :0.0000000   A: 939  
+ 1st Qu.: 5517.00   1st Qu.:1040896.0   1st Qu.:0.0000000   B:2684  
+ Median : 9375.00   Median :1338230.0   Median :0.0000000           
+ Mean   :11266.94   Mean   :1213341.5   Mean   :0.4507314           
+ 3rd Qu.:14027.00   3rd Qu.:1538867.0   3rd Qu.:1.0000000           
+ Max.   :32609.00   Max.   :2725926.5   Max.   :1.0000000           
+                                                                    
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  tmpgei$norm_exp[tmpgei$tmp == "A"] and tmpgei$norm_exp[tmpgei$tmp == "B"]
+W = 1356611.5, p-value = 0.0004707603
+alternative hypothesis: true location shift is not equal to 0
+
+
+	Welch Two Sample t-test
+
+data:  tmpgei$norm_exp[tmpgei$tmp == "A"] and tmpgei$norm_exp[tmpgei$tmp == "B"]
+t = 0.2273831, df = 1432.1895, p-value = 0.8201583
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -50.63734731  63.91588506
+sample estimates:
+  mean of x   mean of y 
+210.9691204 204.3298515 
+

@@ -333,6 +333,26 @@ wilcox.test(gei_dat$norm_exp[gei_dat$rev_comp == 1], gei_dat$norm_exp[gei_dat$re
 t.test(gei_dat$norm_exp[gei_dat$rev_comp == 1], gei_dat$norm_exp[gei_dat$rev_comp == 0])
 warnings()
 
+#checking difference between all strains and ATCC
+print("############    ")
+print("# diff in exp btwn all strains and ATCC")
+print("############    ")
+tmpgei <- gei_dat %>% 
+	mutate(tmp = ifelse(strain == "ATCC", "A", "B")) 
+tmpgei$tmp <- as.factor(tmpgei$tmp)
+wilcox.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
+t.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
+print("############    ")
+print("# diff in exp btwn all strains non-inver and ATCC non-inver")
+print("############    ")
+tmpgei$inversion <- as.factor(tmpgei$inversion)
+tmpgei <- tmpgei %>% filter(inversion == 0)
+summary(tmpgei)
+wilcox.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
+t.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
+
+
+
 print("############         ")
 print("# by block inversions")
 print("#Wilcox signed-rank test                                                                     ")
