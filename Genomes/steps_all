@@ -26,3 +26,15 @@ python3 /home/dlato/CODE/get_gene_pos_name_inversions_phage.py Ecoli_CFT073_AE01
 
 cat Ecoli_BW25113_NZ_CP009273_phage_info.txt Ecoli_K12_DH10B_NC_010473_phage_info.txt Ecoli_K12_MG1655_chrom_U00096_phage_info.txt Ecoli_ATCC_25922_NZ_CP009072_phage_info.txt > phage_info_ecoli.txt
 
+#GET RNA INFO FOR EACH STRAIN
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_ATCC_25922_NZ_CP009072.gbk Ecoli_ATCC_25922_NZ_CP009072_rna_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_BW25113_NZ_CP009273.gbk Ecoli_BW25113_NZ_CP009273_rna_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_K12_DH10B_NC_010473.gbk Ecoli_K12_DH10B_NC_010473_rna_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_K12_MG1655_chrom_U00096.gbk Ecoli_K12_MG1655_chrom_U00096_rna_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_0157H7_chrom_Sakai_BA000007.gbk Ecoli_0157H7_chrom_Sakai_BA000007_rna_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_K12_W3110_NC_007779.gbk Ecoli_K12_W3110_NC_007779_rna_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_CFT073_NC_004431.gbk Ecoli_CFT073_NC_004431_rna_info.txt
+python3 /home/dlato/CODE/get_gene_pos_name_remove_RNA.py Ecoli_CFT073_AE014075.gbk Ecoli_CFT073_AE014075_rna_info.txt
+
+cat Ecoli_BW25113_NZ_CP009273_rna_info.txt Ecoli_K12_DH10B_NC_010473_rna_info.txt Ecoli_K12_MG1655_chrom_U00096_rna_info.txt Ecoli_ATCC_25922_NZ_CP009072_rna_info.txt > rna_info_ecoli.txt
+
