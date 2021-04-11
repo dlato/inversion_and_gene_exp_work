@@ -9,12 +9,12 @@ python3 ~/CODE/remove_phages.py ../Genomes/phage_info_ecoli.txt ../new_dataframe
 
 #REMOVE RNA GENES (anything with format *RNA)
 echo(if anything is printed, then RNAs need to be removed)
-python3 ~/CODE/remove_rna.py ../Genomes/rna_info_ecoli.txt ../Strains_df/all_strains.csv
-python3 ~/CODE/remove_rna.py ../Genomes/rna_info_ecoli.txt ../new_dataframes/raw_exp.csv
-python3 ~/CODE/remove_rna.py ../Genomes/rna_info_ecoli.txt ../Sample_final_df.csv
-python3 ~/CODE/remove_rna.py ../Genomes/rna_info_ecoli.txt ../new_dataframes/raw_exp.csv
-python3 ~/CODE/remove_rna.py ../Genomes/rna_info_ecoli.txt ../Gene_Maps/ATCC_CFT073_K12MG_K12DH_BW_gene_map.txt
-python3 ~/CODE/remove_rna.py ../Genomes/rna_info_ecoli.txt ../new_dataframes/raw_rev_comp.csv
+python3 ~/CODE/remove_phages.py ../Genomes/rna_info_ecoli.txt ../Strains_df/all_strains.csv
+python3 ~/CODE/remove_phages.py ../Genomes/rna_info_ecoli.txt ../new_dataframes/raw_exp.csv
+python3 ~/CODE/remove_phages.py ../Genomes/rna_info_ecoli.txt ../Sample_final_df.csv
+python3 ~/CODE/remove_phages.py ../Genomes/rna_info_ecoli.txt ../new_dataframes/raw_exp.csv
+python3 ~/CODE/remove_phages.py ../Genomes/rna_info_ecoli.txt ../Gene_Maps/ATCC_CFT073_K12MG_K12DH_BW_gene_map.txt
+python3 ~/CODE/remove_phages.py ../Genomes/rna_info_ecoli.txt ../new_dataframes/raw_rev_comp.csv
 
 
 
