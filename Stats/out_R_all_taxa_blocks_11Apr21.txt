@@ -56209,6 +56209,12 @@ sample estimates:
             cor 
 -0.004655248311 
 
+        dat_set         pval
+1 G_HNS_binding 0.8018001014
+[1] "bonferroni corrected pvalue"
+[1] 0.8018001014
+[1] "TEST BONFERR"
+[1] 1.000 0.022
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -56467,6 +56473,8 @@ sample estimates:
            cor 
 0.002225433559 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.9202785912
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -56482,6 +56490,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR UEDA 2013 cutoff DATA"
 [1] "################################################################################"
@@ -56530,6 +56540,9 @@ cor
 [1] "################################################################################"
 [1] "correlation test btwn inversion/non-inversion and hns binding"
 [1] "################################################################################"
+        dat_set              pval
+1 G_HNS_binding   0.8018001014121
+2          <NA> 0.643019947331385
 
 	Pearson's product-moment correlation
 
@@ -56542,6 +56555,8 @@ sample estimates:
             cor 
 -0.008595351362 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.6430199473
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -56653,6 +56668,8 @@ sample estimates:
           cor 
 0.02472994718 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.2659960362
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -56668,6 +56685,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding DATA"
 [1] "################################################################################"
@@ -56735,6 +56754,8 @@ sample estimates:
           cor 
 0.04665279365 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.01183766747
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -56846,6 +56867,8 @@ sample estimates:
           cor 
 0.02217610068 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.3185553482
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -56861,6 +56884,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING DATA"
 [1] "################################################################################"
@@ -56921,6 +56946,8 @@ sample estimates:
           cor 
 0.05400994106 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.003563613013
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -57044,6 +57071,8 @@ sample estimates:
           cor 
 0.02797564011 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.208256978
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -57059,6 +57088,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 2 DATA"
 [1] "################################################################################"
@@ -57121,6 +57152,8 @@ sample estimates:
           cor 
 0.05400994106 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.003563613013
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -57251,6 +57284,8 @@ sample estimates:
           cor 
 0.02797564011 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.208256978
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -57266,6 +57301,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 3 DATA"
 [1] "################################################################################"
@@ -57328,6 +57365,8 @@ sample estimates:
           cor 
 0.05400994106 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.003563613013
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -57458,6 +57497,8 @@ sample estimates:
           cor 
 0.02797564011 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.208256978
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -57473,6 +57514,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Higashi 2016 criteria 2: HNS cutoff DATA"
 [1] "################################################################################"
@@ -57542,6 +57585,8 @@ sample estimates:
           cor 
 0.05441980016 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.003318754971
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -57672,6 +57717,8 @@ sample estimates:
           cor 
 0.02478753541 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.2648839978
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -57687,6 +57734,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Higashi 2016 criteria 3: HNS transcript DATA"
 [1] "################################################################################"
@@ -57763,6 +57812,8 @@ sample estimates:
           cor 
 0.05441980016 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.003318754971
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -57905,6 +57956,8 @@ sample estimates:
           cor 
 0.02478753541 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.2648839978
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -57920,6 +57973,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Lang 2007: composite data"
 [1] "################################################################################"
@@ -57991,6 +58046,8 @@ sample estimates:
           cor 
 0.05741342036 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.001945958142
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -58140,6 +58197,8 @@ sample estimates:
           cor 
 0.03352664717 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.1315055134
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -58155,6 +58214,8 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
 [1] "################################################################################"
 [1] "CORRELATION TESTS FOR Oshima 2006: composite data"
 [1] "################################################################################"
@@ -58233,6 +58294,8 @@ sample estimates:
           cor 
 0.03904988989 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.03516772467
 [1] "get new df with hns binding + inversions + sig block info"
     block  start    end  midpoint gbk_start gbk_end gbk_midpoint
 1 Block62 239447 245944 1447718.5    240343  240816      1445602
@@ -58382,6 +58445,8 @@ sample estimates:
           cor 
 0.02373355827 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.2857456504
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS"
 [1] "################################################################################"
@@ -58397,6 +58462,35 @@ sample estimates:
 cor 
  NA 
 
+[1] "bonferroni corrected pvalue"
+[1] NA
+[1] "################################################################################"
+[1] "Bonferroni correction for HNS and inversions correlations"
+[1] "################################################################################"
+[1] "all inversions"
+         dat_set           pval          bcor
+1  G_HNS_binding 0.801800101412 1.00000000000
+2           <NA> 0.643019947331 1.00000000000
+3           <NA> 0.011837667467 0.11837667467
+4           <NA> 0.003563613013 0.03563613013
+5           <NA> 0.003563613013 0.03563613013
+6           <NA> 0.003563613013 0.03563613013
+7           <NA> 0.003318754971 0.03318754971
+8           <NA> 0.003318754971 0.03318754971
+9           <NA> 0.001945958142 0.01945958142
+10          <NA> 0.035167724668 0.35167724668
+[1] "sig inversions"
+         dat_set              pval bcor
+1  G_HNS_binding  0.92027859122026    1
+2           <NA> 0.265996036195703    1
+3           <NA> 0.318555348239239    1
+4           <NA> 0.208256977999356    1
+5           <NA> 0.208256977999356    1
+6           <NA> 0.208256977999356    1
+7           <NA>  0.26488399775379    1
+8           <NA>  0.26488399775379    1
+9           <NA> 0.131505513376033    1
+10          <NA> 0.285745650420407    1
 [1] "#####################"
 [1] "# Gene Orientation and HNS Correlation"
 [1] "# leading strand = 0"
@@ -58755,6 +58849,8 @@ sample estimates:
           cor 
 0.03168636535 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.0874514692
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-sig inversion and HGT"
 [1] "################################################################################"
@@ -58770,6 +58866,8 @@ sample estimates:
           cor 
 0.03417710567 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.1241784365
 [1] "*****filtering HGT data to include all categories of HGT "
 [1] "Oshima HGT"
     X locus_tag gene lengthnt  start    end strand                   product
@@ -58915,6 +59013,8 @@ sample estimates:
           cor 
 0.03192591072 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.08508336156
 [1] "################################################################################"
 [1] "correlation test btwn sig inversion/non-sig inversion and HGT"
 [1] "################################################################################"
@@ -58930,6 +59030,8 @@ sample estimates:
            cor 
 0.009560112313 
 
+[1] "bonferroni corrected pvalue"
+[1] 0.6672325625
 [1] "HNS binding and inversions viz"
 [1] "Using Higashi criteria 1 for HNS binding"
 [1] "inver_cor_d"

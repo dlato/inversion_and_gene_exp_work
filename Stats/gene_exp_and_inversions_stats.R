@@ -323,13 +323,13 @@ print("############    ")
 print("#Wilcox signed-rank test                                                                     ")
 print("# to see if there is a difference btwn inversions and non-inverted segments                  ")
 print("#null hyp = there is no difference in gene expression btwn inverted and non-inverted segments")
-wilcox.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$inversion == 0])
+wilcox.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$inversion == 0], paired = FALSE)
 t.test(gei_dat$norm_exp[gei_dat$inversion == 1], gei_dat$norm_exp[gei_dat$inversion == 0])
 warnings()
 print("############    ")
 print("# ALL rev_comp=1")
 print("############    ")
-wilcox.test(gei_dat$norm_exp[gei_dat$rev_comp == 1], gei_dat$norm_exp[gei_dat$rev_comp == 0])
+wilcox.test(gei_dat$norm_exp[gei_dat$rev_comp == 1], gei_dat$norm_exp[gei_dat$rev_comp == 0], paired = FALSE)
 t.test(gei_dat$norm_exp[gei_dat$rev_comp == 1], gei_dat$norm_exp[gei_dat$rev_comp == 0])
 warnings()
 
@@ -340,7 +340,7 @@ print("############    ")
 tmpgei <- gei_dat %>% 
 	mutate(tmp = ifelse(strain == "ATCC", "A", "B")) 
 tmpgei$tmp <- as.factor(tmpgei$tmp)
-wilcox.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
+wilcox.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"], paired = FALSE)
 t.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
 print("############    ")
 print("# diff in exp btwn all strains non-inver and ATCC non-inver")
@@ -348,7 +348,7 @@ print("############    ")
 tmpgei$inversion <- as.factor(tmpgei$inversion)
 tmpgei <- tmpgei %>% filter(inversion == 0)
 summary(tmpgei)
-wilcox.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
+wilcox.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"], paired = FALSE)
 t.test(tmpgei$norm_exp[tmpgei$tmp == "A"], tmpgei$norm_exp[tmpgei$tmp == "B"])
 
 
@@ -396,7 +396,7 @@ print(tnum)
     uniq_avg_len_noninvert <- c(uniq_avg_len_noninvert,ni_len)
     uniq_block_tax_num <- c(uniq_block_tax_num,tnum)
     #wilcox test
-    wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0])
+    wilcox_test <- wilcox.test(tmp_df$norm_exp[tmp_df$rev_comp == 1], tmp_df$norm_exp[tmp_df$rev_comp == 0], paired = FALSE)
     uniq_block_w_pvalue <- c(uniq_block_w_pvalue,wilcox_test$p.value)
     #t test
     if (length(which(tmp_df$rev_comp == 1)) > 1 && length(which(tmp_df$rev_comp == 0)) > 1){
@@ -676,29 +676,29 @@ print("K12 MG")
 print("################")
 mg_d <- gei_dat %>% filter(strain == "K12MG")
 print("INVERSIONS col")
-wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0], paired = FALSE)
 print("################")
 print("BW")
 print("################")
 mg_d <- gei_dat %>% filter(strain == "BW25113")
 print("INVERSIONS col")
-wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0], paired = FALSE)
 print("################")
 print("K12 DH")
 print("################")
 mg_d <- gei_dat %>% filter(strain == "K12DH")
 print("INVERSIONS col")
-wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0], paired = FALSE)
 print("REVCOMP col")
-wilcox.test(mg_d$norm_exp[mg_d$rev_comp == 1], mg_d$norm_exp[mg_d$rev_comp == 0])
+wilcox.test(mg_d$norm_exp[mg_d$rev_comp == 1], mg_d$norm_exp[mg_d$rev_comp == 0], paired = FALSE)
 print("################")
 print("ATCC")
 print("################")
 mg_d <- gei_dat %>% filter(strain == "ATCC")
 print("INVERSIONS col")
-wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0])
+wilcox.test(mg_d$norm_exp[mg_d$inversion == 1], mg_d$norm_exp[mg_d$inversion == 0], paired = FALSE)
 print("REVCOMP col")
-wilcox.test(mg_d$norm_exp[mg_d$rev_comp == 1], mg_d$norm_exp[mg_d$rev_comp == 0])
+wilcox.test(mg_d$norm_exp[mg_d$rev_comp == 1], mg_d$norm_exp[mg_d$rev_comp == 0], paired = FALSE)
 print("average inverted exp")
 td <- mg_d %>% filter(rev_comp == 1)
 summary(td$norm_exp)
@@ -1126,19 +1126,19 @@ head(blocks_new)
 blocks_new$length <- blocks_new$end - blocks_new$start
 head(blocks_new)
 print("diff btwn BLOCK LENGTH of inversions that have sig gene exp or not?")
-wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"])
+wilcox.test(blocks_new$length[blocks_new$sig == "yes"], blocks_new$length[blocks_new$sig == "no"], paired = FALSE)
 print("mean block length: sig blocks")
 summary(blocks_new$length[blocks_new$sig == "yes"])
 print("mean block length: non-sig blocks")
 summary(blocks_new$length[blocks_new$sig == "no"])
 print("diff btwn POSITION of inversions that have sig gene exp or not?")
-wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"])
+wilcox.test(blocks_new$midpoint[blocks_new$sig == "yes"], blocks_new$midpoint[blocks_new$sig == "no"], paired = FALSE)
 sub_blocks_new <- subset(blocks_new, select = c("sig","length","block","midpoint"))
 sub_blocks_new <- unique(sub_blocks_new)
 print("unique df")
 head(sub_blocks_new)
 tail(sub_blocks_new)
-wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"])
+wilcox.test(sub_blocks_new$length[sub_blocks_new$sig == "yes"], sub_blocks_new$length[sub_blocks_new$sig == "no"], paired = FALSE)
 
 
 print("###################")
@@ -1888,8 +1888,19 @@ inver_cor_d[which(inver_cor_d$start1 == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$G_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$G_HNS_binding,
          method = "pearson")
+cort
+cor_test_tab_all <- data.frame (dat_set = c("G_HNS_binding"),
+                  pval = c(cort$p.value)
+                  )
+cor_test_tab_all
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
+
+print("TEST BONFERR")
+ps <- c(cort$p.value, 0.011)
+p.adjust(ps, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 #filter by K12 strain and ensure that we are only looking at the wilcoxon test results
@@ -1913,17 +1924,26 @@ summary(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$G_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$G_HNS_binding,
          method = "pearson")
 
+cor_test_tab_sig <- data.frame (dat_set = c("G_HNS_binding"),
+                  pval = c(cort$p.value)
+                  )
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$G_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$G_HNS_binding,
          method = "pearson")
 
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 print("################################################################################")
 print("CORRELATION TESTS FOR UEDA 2013 cutoff DATA")
 print("################################################################################")
@@ -1962,8 +1982,14 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$U_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$U_HNS_binding,
          method = "pearson")
+tmp_row <- as.character(c("U_HNS_binding",cort$p.value))
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+cor_test_tab_all
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -1982,16 +2008,24 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$U_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$U_HNS_binding,
          method = "pearson")
+tmp_row <- c("U_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$U_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$U_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding DATA")
@@ -2032,8 +2066,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$H1_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H1_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2052,16 +2091,24 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$H1_HNS_binding,
          method = "pearson")
+tmp_row <- c("H1_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$H1_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING DATA")
@@ -2109,8 +2156,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc1_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc1_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H1nc1_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2129,16 +2181,24 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1nc1_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$H1nc1_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H1nc1_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1nc1_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$H1nc1_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 2 DATA")
@@ -2186,8 +2246,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc2_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc2_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H1nc2_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2206,16 +2271,24 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1nc2_HNS_binding,
+cort <-cor.test(cor_dat$sig, cor_dat$H1nc2_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H1nc2_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1nc2_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$H1nc2_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Higashi 2016 criteria 1: HNS binding WITH NON-CODING 3 DATA")
@@ -2263,8 +2336,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc3_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$H1nc3_HNS_binding,
          method = "pearson")
+tmp_row <- c("H1nc3_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2283,16 +2361,24 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H1nc3_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$H1nc3_HNS_binding,
          method = "pearson")
+tmp_row <- c("H1nc3_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H1nc3_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$H1nc3_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Higashi 2016 criteria 2: HNS cutoff DATA")
@@ -2332,8 +2418,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H2_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$H2_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H2_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2352,16 +2443,24 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H2_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$H2_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H2_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H2_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$H2_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Higashi 2016 criteria 3: HNS transcript DATA")
@@ -2401,8 +2500,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$H3_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$H3_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H3_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2421,16 +2525,24 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$H3_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$H3_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("H3_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$H3_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$H3_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Lang 2007: composite data")
@@ -2469,8 +2581,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$L_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$L_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("L_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2489,16 +2606,25 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$L_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$L_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("L_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$L_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$L_HNS_binding,
          method = "pearson")
+
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("################################################################################")
 print("CORRELATION TESTS FOR Oshima 2006: composite data")
@@ -2536,8 +2662,13 @@ inver_cor_d[which(inver_cor_d$start == 383921),]
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and hns binding")
 print("################################################################################")
-cor.test(inver_cor_d$Inversion, inver_cor_d$O_HNS_binding,
+cort <- cor.test(inver_cor_d$Inversion, inver_cor_d$O_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("O_HNS_binding",cort$p.value)
+cor_test_tab_all <- rbind(cor_test_tab_all,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 print("get new df with hns binding + inversions + sig block info")
 cor_dat <- cor_dat %>% filter(strain == "K12MG")
@@ -2556,16 +2687,39 @@ head(cor_dat)
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ALL BLOCKS")
 print("################################################################################")
-cor.test(cor_dat$sig, cor_dat$O_HNS_binding,
+cort <- cor.test(cor_dat$sig, cor_dat$O_HNS_binding,
          method = "pearson")
+cort
+tmp_row <- c("O_HNS_binding",cort$p.value)
+cor_test_tab_sig <- rbind(cor_test_tab_sig,tmp_row) 
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 print("################################################################################")
 print("correlation test btwn sig inversion/non-inversion and hns binding ONLY INVERSION BLOCKS")
 print("################################################################################")
 #cor_dat <- cor_dat %>% filter(inversion == 1)
-cor.test(cor_dat$inversion, cor_dat$O_HNS_binding,
+cort <- cor.test(cor_dat$inversion, cor_dat$O_HNS_binding,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
+
+
+print("################################################################################")
+print("Bonferroni correction for HNS and inversions correlations")
+print("################################################################################")
+print("all inversions")
+cor_test_tab_all$pval <- as.numeric(cor_test_tab_all$pval)
+bcor <- p.adjust(cor_test_tab_all$pval, "bonferroni")
+cor_test_tab_all <- cbind(cor_test_tab_all, bcor)
+cor_test_tab_all
+
+print("sig inversions")
+bcor <- p.adjust(cor_test_tab_sig$pval, "bonferroni")
+cor_test_tab_sig <- cbind(cor_test_tab_sig, bcor)
+cor_test_tab_sig
 
 print("#####################")
 print("# Gene Orientation and HNS Correlation")
@@ -2622,7 +2776,7 @@ identical(g_l, l_h_blocks)
 
 
 print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound inversions and HNS bound non-inversions")
-wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
+wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0], paired = FALSE)
 
 print("Avg inver exp with HNS binding")
 mean(l_h_dat$norm_exp[l_h_dat$inversion == 1])
@@ -2634,14 +2788,14 @@ print("wilcoxon sign ranked test to see if there is a diff in exp btwn sig HNS b
 sig_gei <- l_h_dat %>%
     mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
 head(sig_gei)
-wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
+wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0], paired = FALSE)
 
 
 print("create column with HNS binding and non-binding")
 gei_dat_hns <- gei_dat %>%
                mutate(HNS = ifelse(block %in% l_h_blocks, 1, 0))
 print("wilcoxon sign ranked test to see if there is a diff in exp btwn HNS bound and HNS un-bound blocks")
-wilcox.test(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1], gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0])
+wilcox.test(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1], gei_dat_hns$norm_exp[gei_dat_hns$HNS == 0], paired = FALSE)
 print("Avg exp with HNS binding")
 mean(gei_dat_hns$norm_exp[gei_dat_hns$HNS == 1])
 print("Avg exp WITHOUT HNS binding")
@@ -2670,13 +2824,21 @@ summary(hgt_inver)
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and HGT")
 print("################################################################################")
-cor.test(hgt_inver$inversion, hgt_inver$HGT,
+cort <- cor.test(hgt_inver$inversion, hgt_inver$HGT,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 print("################################################################################")
 print("correlation test btwn sig inversion/non-sig inversion and HGT")
 print("################################################################################")
 tmp_hgt <- filter(hgt_inver, inversion ==1)
-cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+cort <- cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
+
+
 
 print("*****filtering HGT data to include all categories of HGT ")
 print("Oshima HGT")
@@ -2694,13 +2856,19 @@ summary(hgt_inver)
 print("################################################################################")
 print("correlation test btwn inversion/non-inversion and HGT")
 print("################################################################################")
-cor.test(hgt_inver$inversion, hgt_inver$HGT,
+cort <- cor.test(hgt_inver$inversion, hgt_inver$HGT,
          method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 print("################################################################################")
 print("correlation test btwn sig inversion/non-sig inversion and HGT")
 print("################################################################################")
 tmp_hgt <- filter(hgt_inver, inversion ==1)
-cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+cort <- cor.test(tmp_hgt$sig, tmp_hgt$HGT, method = "pearson")
+cort
+print("bonferroni corrected pvalue")
+p.adjust(cort$p.value, "bonferroni")
 
 
 
@@ -3151,7 +3319,7 @@ print("check if all Fis blocks were grabbed")
 identical(g_l, g_blocks)
 
 print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound inversions and Fis bound non-inversions")
-wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0])
+wilcox.test(l_h_dat$norm_exp[l_h_dat$inversion == 1], l_h_dat$norm_exp[l_h_dat$inversion == 0], paired = FALSE)
 
 print("Avg inver exp with Fis binding")
 mean(g_dat$norm_exp[g_dat$inversion == 1])
@@ -3165,7 +3333,7 @@ g_dat$norm_exp <- as.numeric(g_dat$norm_exp)
 sig_gei <- g_dat %>%
     mutate(sig = if_else(block_w_pvalue <= 0.05, 1, 0))
 head(sig_gei)
-wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0])
+wilcox.test(sig_gei$norm_exp[sig_gei$sig == 1], sig_gei$norm_exp[sig_gei$sig == 0], paired = FALSE)
 print("Avg exp with Fis binding (sig)")
 flt_sig <- sig_gei %>% filter(sig != "NA")
 mean(flt_sig$norm_exp[flt_sig$sig == 1])
@@ -3176,7 +3344,7 @@ print("create column with Fis binding and non-binding")
 gei_dat_fis <- gei_dat %>%
                mutate(Fis = ifelse(block %in% g_blocks, 1, 0))
 print("wilcoxon sign ranked test to see if there is a diff in exp btwn Fis bound and Fis un-bound blocks")
-wilcox.test(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1], gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0])
+wilcox.test(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1], gei_dat_fis$norm_exp[gei_dat_fis$Fis == 0], paired = FALSE)
 print("Avg exp with Fis binding")
 mean(gei_dat_fis$norm_exp[gei_dat_fis$Fis == 1])
 print("Avg exp WITHOUT Fis binding")
