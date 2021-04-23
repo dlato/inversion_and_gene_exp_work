@@ -1454,57 +1454,58 @@ head(raw_deseqW)
 all(colnames(raw_deseqW) == rownames(sampleData))
 print("Order the treatments so that it is sensible: non-inversion (control) -> inversion")
 sampleData$treatment <- factor(sampleData$treatment, levels=c("0", "1"))
-print("#############                 ")
-print("## DESeq analysis accounting for experiment effect")
-print("#############                 ")
-print("Create the DEseq2DataSet object")
-#sampleData <- sampleData[c(1,3,4,7),]
-#raw_deseqW <- raw_deseqW %>% 
-#              select(ATCC_GSE94978_1,BW25113_GSE73673_6,BW25113_GSE73673_7,K12DH_GSE98890_1)
-head(raw_deseqW)
-head(sampleData)
-print("DE btwn strains")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
-deseq_results <- DESeq(deseq2Data)
-print("done deseq")
-deseq_results2 <- results(deseq_results, alpha=0.05)
-# alpha = 0.05 is the  "cut-off" for significance (not really - I will
-# discuss).
-print("summary")
-summary(deseq_results2)
-print("DE btwn experiments")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  expID)
-deseq_results <- DESeq(deseq2Data)
-print("done deseq")
-deseq_results2 <- results(deseq_results,alpha=0.05)
-# alpha = 0.05 is the  "cut-off" for significance (not really - I will
-# discuss).
-print("summary")
-summary(deseq_results2)
-print("DE btwn treatments")
-deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  treatment)
-deseq_results <- DESeq(deseq2Data)
-print("done deseq")
-str(deseq_results)
-deseq_results2 <- results(deseq_results, contrast = c("treatment", 1,0),  alpha=0.05)
-# alpha = 0.05 is the  "cut-off" for significance (not really - I will
-# discuss).
-deseq_results2 <- deseq_results2[order(deseq_results2$pvalue),]
-print("summary")
-summary(deseq_results2)
-print("check PCA")
-for_pca <- rlog(deseq_results, 
-                blind = TRUE)
-pdf("DESeq_all_tax_2Nov20.pdf")
-plotPCA(for_pca, 
-        intgroup=c("expID"),
-        ntop = 10000) 
-dev.off()
-print("check pvalue dist")
-pdf("DESeqtreatment_pval_dist.pdf")
-ggplot(data = as.data.frame(deseq_results2), aes(x = pvalue)) + 
-  geom_histogram(bins = 100)
-dev.off()
+#print("#############                 ")
+#print("## DESeq analysis accounting for experiment effect")
+#print("#############                 ")
+#print("Create the DEseq2DataSet object")
+##sampleData <- sampleData[c(1,3,4,7),]
+##raw_deseqW <- raw_deseqW %>% 
+##              select(ATCC_GSE94978_1,BW25113_GSE73673_6,BW25113_GSE73673_7,K12DH_GSE98890_1)
+#head(raw_deseqW)
+#head(sampleData)
+#print("DE btwn strains")
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain)
+#deseq_results <- DESeq(deseq2Data)
+#print("done deseq")
+#deseq_results2 <- results(deseq_results, alpha=0.05)
+## alpha = 0.05 is the  "cut-off" for significance (not really - I will
+## discuss).
+#print("summary")
+#summary(deseq_results2)
+#print("DE btwn experiments")
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  expID)
+#deseq_results <- DESeq(deseq2Data)
+#print("done deseq")
+#deseq_results2 <- results(deseq_results,alpha=0.05)
+## alpha = 0.05 is the  "cut-off" for significance (not really - I will
+## discuss).
+#print("summary")
+#summary(deseq_results2)
+#print("DE btwn treatments")
+#deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~  treatment)
+#deseq_results <- DESeq(deseq2Data)
+#print("done deseq")
+#str(deseq_results)
+#deseq_results2 <- results(deseq_results, contrast = c("treatment", 1,0),  alpha=0.05)
+## alpha = 0.05 is the  "cut-off" for significance (not really - I will
+## discuss).
+#deseq_results2 <- deseq_results2[order(deseq_results2$pvalue),]
+#print("summary")
+#summary(deseq_results2)
+#print("check PCA")
+#for_pca <- rlog(deseq_results, 
+#                blind = TRUE)
+#pdf("DESeq_all_tax_2Nov20.pdf")
+#plotPCA(for_pca, 
+#        intgroup=c("expID"),
+#        ntop = 10000) 
+#dev.off()
+#print("check pvalue dist")
+#pdf("DESeqtreatment_pval_dist.pdf")
+#ggplot(data = as.data.frame(deseq_results2), aes(x = pvalue)) + 
+#  geom_histogram(bins = 100)
+#dev.off()
+
 ##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ strain + treatment)
 ##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=sampleData, design= ~ expID + expID:ind.n + expID:treatment)
 ##deseq2Data <- DESeqDataSetFromMatrix(countData=raw_deseqW, colData=m1, design= ~ expIDGSE94978:treatment1 + expIDGSE98890:treatment1)
@@ -1786,6 +1787,18 @@ colnames(gene_inf) <- c("gbk_strand","gene_name")
 head(gene_inf)
 #sub_g_dat <- merge(sub_g_dat,gene_inf, by = "gene_name")
 head(sub_g_dat)
+print("num rows")
+nrow(sub_g_dat)
+
+#prepping data for new all HNS df
+data_set <- rep("G",length(sub_g_dat$start))
+hns_all_dat_comb <- data.frame(data_set,sub_g_dat$start,sub_g_dat$end)
+colnames(hns_all_dat_comb) <- c("data_set","start","end")
+hns_all_dat_comb$start <- as.numeric(as.character(hns_all_dat_comb$start))
+hns_all_dat_comb$end <- as.numeric(as.character(hns_all_dat_comb$end))
+summary(hns_all_dat_comb)
+print("num rows")
+nrow(hns_all_dat_comb)
 
 #below has to be combined with gene info file for K12MG
 # W3
@@ -1806,12 +1819,96 @@ colnames(gene_inf) <- c("start","end","gbk_midpoint","gene_name")
 sub_h_df <- merge(sub_h_dat,gene_inf, by = "gene_name")
 hns_viz_h1 <- sub_h_df
 head(sub_h_df)
+print("num rows")
+nrow(sub_h_dat)
+
+#prepping data for new all HNS df
+tmp_h_df <- sub_h_df %>% filter(HNS_binding == TRUE) %>%
+            select(start,end)
+data_set <- rep("H1",length(tmp_h_df$start))
+h_comb <- data.frame(data_set,tmp_h_df$start,tmp_h_df$end)
+colnames(h_comb) <- c("data_set","start","end")
+summary(h_comb)
+hns_all_dat_comb <- rbind(hns_all_dat_comb,h_comb)
+summary(hns_all_dat_comb)
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+print("num rows")
+nrow(hns_all_dat_comb)
+
+#prepping data for new all HNS df
+tmp_h_df <- sub_h_df %>% filter(HNS_cutoff == TRUE) %>%
+            select(start,end)
+data_set <- rep("H2",length(tmp_h_df$start))
+h_comb <- data.frame(data_set,tmp_h_df$start,tmp_h_df$end)
+colnames(h_comb) <- c("data_set","start","end")
+summary(h_comb)
+hns_all_dat_comb <- rbind(hns_all_dat_comb,h_comb)
+summary(hns_all_dat_comb)
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+print("num rows")
+nrow(hns_all_dat_comb)
+
+#prepping data for new all HNS df
+tmp_h_df <- sub_h_df %>% filter(HNS_transcript == TRUE) %>%
+            select(start,end)
+data_set <- rep("H3",length(tmp_h_df$start))
+h_comb <- data.frame(data_set,tmp_h_df$start,tmp_h_df$end)
+colnames(h_comb) <- c("data_set","start","end")
+summary(h_comb)
+hns_all_dat_comb <- rbind(hns_all_dat_comb,h_comb)
+summary(hns_all_dat_comb)
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+print("num rows")
+nrow(hns_all_dat_comb)
+
 #non-coding Higashi
 print("Higashi 2016 non-coding")
 file <- "../HNS_protein/raw_data_files/higashi_nc_dat.csv"
 higashi_nc_dat <- read.csv(file, header = TRUE)
 sub_hnc_dat <- higashi_nc_dat[,c(6,7,8,10,11)]
 head(sub_hnc_dat)
+
+#prepping data for new all HNS df
+tmp_hnc_dat <- sub_hnc_dat %>% filter(HNS == "True") %>%
+            select(start,end)
+data_set <- rep("H4",length(tmp_hnc_dat$start))
+h_comb <- data.frame(data_set,tmp_hnc_dat$start,tmp_hnc_dat$end)
+colnames(h_comb) <- c("data_set","start","end")
+summary(h_comb)
+hns_all_dat_comb <- rbind(hns_all_dat_comb,h_comb)
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+summary(hns_all_dat_comb)
+print("num rows")
+nrow(hns_all_dat_comb)
+
+#prepping data for new all HNS df
+tmp_hnc_dat <- sub_hnc_dat %>% filter(TtoT == "True") %>%
+            select(start,end)
+data_set <- rep("H5",length(tmp_hnc_dat$start))
+h_comb <- data.frame(data_set,tmp_hnc_dat$start,tmp_hnc_dat$end)
+colnames(h_comb) <- c("data_set","start","end")
+summary(h_comb)
+rm_na <- which(!complete.cases(h_comb))
+h_comb <- h_comb[-rm_na,]
+hns_all_dat_comb <- rbind(hns_all_dat_comb,h_comb)
+summary(hns_all_dat_comb)
+print("num rows")
+nrow(hns_all_dat_comb)
+
+#prepping data for new all HNS df
+tmp_hnc_dat <- sub_hnc_dat %>% filter(known_promoter == "True") %>%
+            select(start,end)
+data_set <- rep("H6",length(tmp_hnc_dat$start))
+h_comb <- data.frame(data_set,tmp_hnc_dat$start,tmp_hnc_dat$end)
+colnames(h_comb) <- c("data_set","start","end")
+summary(h_comb)
+rm_na <- which(!complete.cases(h_comb))
+h_comb <- h_comb[-rm_na,]
+hns_all_dat_comb <- rbind(hns_all_dat_comb,h_comb)
+summary(hns_all_dat_comb)
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+print("num rows")
+nrow(hns_all_dat_comb)
 
 # W3
 print("Ueda 2013")
@@ -1820,13 +1917,39 @@ sub_u_dat <- ueda_dat[,c(1,2)]
 colnames(sub_u_dat) <- c("start","end")
 sub_u_dat <- na.omit(sub_u_dat)
 head(sub_u_dat)
+summary(sub_u_dat)
 
+#prepping data for new all HNS df
+data_set <- rep("U",length(sub_u_dat$start))
+u_comb <- data.frame(data_set,sub_u_dat$start,sub_u_dat$end)
+colnames(u_comb) <- c("data_set","start","end")
+summary(u_comb)
+head(u_comb)
+u_comb$start <- as.numeric(as.character(u_comb$start))
+u_comb$end <- as.numeric(as.character(u_comb$end))
+head(u_comb)
+hns_all_dat_comb <- rbind(hns_all_dat_comb,u_comb)
+summary(hns_all_dat_comb)
+hns_all_dat_comb$start <- as.numeric(as.character(hns_all_dat_comb$start))
+hns_all_dat_comb$end <- as.numeric(as.character(hns_all_dat_comb$end))
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+print("num rows")
+nrow(hns_all_dat_comb)
 
 print("Lang 2007")
 print("all data is an HNS binding site")
 lang_dat <- read.csv("../HNS_protein/raw_data_files/Lang_2007_HNS_binding.csv", header = TRUE)
 sub_l_df <- na.omit(lang_dat)
 head(sub_l_df)
+#prepping data for new all HNS df
+data_set <- rep("L",length(sub_l_df$start))
+l_comb <- data.frame(data_set,sub_l_df$start,sub_l_df$end)
+colnames(l_comb) <- c("data_set","start","end")
+hns_all_dat_comb <- rbind(hns_all_dat_comb,l_comb)
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+summary(hns_all_dat_comb)
+print("num rows")
+nrow(hns_all_dat_comb)
 
 print("Oshima 2006")
 oshima_dat <- read.csv("../HNS_protein/raw_data_files/Oshima_2006_HGT_HNS.csv", header = TRUE)
@@ -1836,6 +1959,23 @@ oshima_dat$hns[is.na(oshima_dat$hns)] <- 0
 oshima_dat <- oshima_dat %>% drop_na(start)
 sub_o_df <- filter(oshima_dat, hns == 1)
 head(sub_o_df)
+
+#prepping data for new all HNS df
+tmp_o_df <- sub_o_df %>% filter(hns == 1) %>%
+            select(start,end)
+data_set <- rep("O",length(tmp_o_df$start))
+o_comb <- data.frame(data_set,tmp_o_df$start,tmp_o_df$end)
+colnames(o_comb) <- c("data_set","start","end")
+hns_all_dat_comb <- rbind(hns_all_dat_comb,o_comb)
+#hns_all_dat_comb[rowSums(is.na(hns_all_dat_comb)) > 0, ] 
+hns_all_dat_comb$start <- as.numeric(as.character(hns_all_dat_comb$start))
+hns_all_dat_comb$end <- as.numeric(as.character(hns_all_dat_comb$end))
+hns_all_dat_comb <- na.omit(hns_all_dat_comb) 
+summary(hns_all_dat_comb)
+print("num rows")
+nrow(hns_all_dat_comb)
+rownames(hns_all_dat_comb) <- NULL
+write.table(hns_all_dat_comb, 'hns_binding_all_datasets.csv', sep = "\t")
 
 print("combine HNS binary info to inversion df")
 print("THIS IS NOT BIDIRECTIONAL BC IT IS THE START AND ENDS AND NOT THE MIDPOINT!")
