@@ -2,7 +2,8 @@
 
 library(regioneR)
 library(dplyr)
-
+library(stringr)
+set.seed(369)
 #######
 # HNS
 #######
@@ -146,40 +147,90 @@ summary(pt)
 
 #permutation tests with sig inversions
 print("HNS_ALL")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_ALL, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_ALL, verbose=FALSE)
 summary(pt)
 
 print("HNS_G")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_g, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_g, verbose=FALSE)
 summary(pt)
 
 print("HNS_H1")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h1, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h1, verbose=FALSE)
 summary(pt)
 print("HNS_H2")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h2, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h2, verbose=FALSE)
 summary(pt)
 print("HNS_H3")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h3, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h3, verbose=FALSE)
 summary(pt)
 print("HNS_H4")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h4, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h4, verbose=FALSE)
 summary(pt)
 print("HNS_H5")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h5, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h5, verbose=FALSE)
 summary(pt)
 print("HNS_H6")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h6, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_h6, verbose=FALSE)
 summary(pt)
 
 print("HNS_L")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_l, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_l, verbose=FALSE)
 summary(pt)
 
 print("HNS_O")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_o, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_o, verbose=FALSE)
 summary(pt)
 
 print("HNS_U")
-pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_u, verbose=FALSE)
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=hnsR_u, verbose=FALSE)
+summary(pt)
+
+
+#############
+# Fis
+#############
+
+
+#read in data
+g_dat <- read.csv("./fis_binding/Grainger_2006_fis_binding.csv")
+sub_g_dat <- g_dat %>%
+        select(Gene_name,Coordinates)
+colnames(sub_g_dat) <- c("gene_name","Coords")
+coords <- str_split_fixed(sub_g_dat$Coords, "-", 2)
+colnames(coords) <- c("start","end")
+sub_g_dat <- cbind(sub_g_dat,coords)
+sub_g_dat <- sub_g_dat %>%
+        select(gene_name,start,end) %>%
+        filter(gene_name != "Between convergent ORFs") %>%
+        filter(start != "N/A")
+
+head(sub_g_dat)
+
+#make proper bed file format
+chrom <- rep("chr1", length(nrow(sub_g_dat)))
+fis_d <- cbind(chrom,sub_g_dat)
+head(fis_d)
+summary(fis_d)
+
+fis_d <- fis_d %>%
+         select(c("chrom","start","end"))
+fis_d$start <- as.numeric(as.character(fis_d$start))
+fis_d$end <- as.numeric(as.character(fis_d$end))
+head(fis_d)
+summary(fis_d)
+
+#convert to proper object
+fisR <- toGRanges(fis_d)
+head(fisR)
+
+#permutation tests
+#fis and inversions (all)
+print("Fis_G")
+pt <- permTest(A=inverR_a, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=fisR, verbose=FALSE)
+summary(pt)
+
+
+#fis and sig inversions
+print("Fis_G")
+pt <- permTest(A=inverR_s, ntimes=iterations, randomize.function=resampleRegions, universe=uniR, evaluate.function=numOverlaps, B=fisR, verbose=FALSE)
 summary(pt)
