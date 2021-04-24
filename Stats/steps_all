@@ -30,6 +30,8 @@ Rscript gene_exp_and_inversions_stats.R ../Sample_final_df.csv 5130767 3925744 1
 #remove quotes " from hns binding data frame
 perl -p -i.bak -e 's/\"//g' hns_binding_all_datasets.csv 
 
+#remove quotes " from inversion data frame
+perl -p -i.bak -e 's/\"//g' inver_cor_data.csv 
 
 #
 #analysis with old data (not excluding blast and aln mismatches)
