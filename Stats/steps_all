@@ -33,6 +33,8 @@ perl -p -i.bak -e 's/\"//g' hns_binding_all_datasets.csv
 #remove quotes " from inversion data frame
 perl -p -i.bak -e 's/\"//g' inver_cor_data.csv 
 
+#remove quotes " from sig inversion data frame
+perl -p -i.bak -e 's/\"//g' sig_inversion_dat.csv 
 #
 #analysis with old data (not excluding blast and aln mismatches)
 #Rscript gene_exp_and_inversions_stats.R ../Strains_df/all_strains.csv 5130767 3925744 1588773 E.coli Chromosome ../Sample_final_df_RawExp.csv ../Gene_Maps/ATCC_K12MG_K12DH_BW_gene_map.txt ../inversion_block_info_all.txt --save > out_R_all_taxa_blocks.txt

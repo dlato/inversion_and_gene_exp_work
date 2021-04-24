@@ -2059,6 +2059,7 @@ cor_dat$inversion <- as.integer(cor_dat$inversion)
 head(cor_dat)
 tail(cor_dat)
 summary(cor_dat)
+write.table(cor_dat, 'sig_inversion_dat.csv', sep = "\t")
 
 
 print("################################################################################")
