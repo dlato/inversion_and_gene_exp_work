@@ -1,0 +1,17 @@
+#get file with info on ancestor inversion and other strains
+perl ~/CODE/ancestral_inversions.pl ecoli_* > ancestor_strain_info.txt
+
+echo "total number of blocks"
+grep "Block" ancestor_strain_info.txt | wc -l
+
+echo "total number of blocks where outgroup = MG = ATCC"
+grep "both" ancestor_strain_info.txt | wc -l
+
+echo "total number of blocks where outgroup = MG"
+grep "MG" ancestor_strain_info.txt | wc -l
+
+echo "total number of blocks where outgroup = ATCC"
+grep "ATCC" ancestor_strain_info.txt | wc -l
+
+echo "total number of blocks where outgroup is diff"
+grep "diff" ancestor_strain_info.txt | wc -l

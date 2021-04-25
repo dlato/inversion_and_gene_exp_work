@@ -1,0 +1,3319 @@
+Block1:
++++++
+outgroup = both
+Block2:
+++++-
+outgroup = K-12 MG
+Block3:
++++++
+outgroup = both
+Block4:
++++++
+outgroup = both
+Block5:
++++++
+outgroup = both
+Block6:
++++++
+outgroup = both
+Block7:
++++++
+outgroup = both
+Block8:
++++++
+outgroup = both
+Block9:
++++++
+outgroup = both
+Block10:
++++++
+outgroup = both
+Block11:
++++++
+outgroup = both
+Block12:
++++++
+outgroup = both
+Block13:
++++++
+outgroup = both
+Block14:
++++++
+outgroup = both
+Block15:
++++++
+outgroup = both
+Block16:
++++++
+outgroup = both
+Block17:
++++++
+outgroup = both
+Block18:
++++++
+outgroup = both
+Block19:
++--++
+outgroup = both
+Block20:
++++++
+outgroup = both
+Block21:
++++--
+outgroup = ATCC
+Block22:
++++++
+outgroup = both
+Block23:
++++++
+outgroup = both
+Block24:
++++++
+outgroup = both
+Block25:
++++++
+outgroup = both
+Block26:
++++++
+outgroup = both
+Block27:
++++-+
+outgroup = diff
+Block28:
++++++
+outgroup = both
+Block29:
++++++
+outgroup = both
+Block30:
++++++
+outgroup = both
+Block31:
++++++
+outgroup = both
+Block32:
++++++
+outgroup = both
+Block33:
++++++
+outgroup = both
+Block34:
++++++
+outgroup = both
+Block35:
++++++
+outgroup = both
+Block36:
++++++
+outgroup = both
+Block37:
++++++
+outgroup = both
+Block38:
++++++
+outgroup = both
+Block39:
++++++
+outgroup = both
+Block40:
++++++
+outgroup = both
+Block41:
++++++
+outgroup = both
+Block42:
++++++
+outgroup = both
+Block43:
++++-+
+outgroup = diff
+Block44:
++++++
+outgroup = both
+Block45:
++++++
+outgroup = both
+Block46:
++++++
+outgroup = both
+Block47:
++++++
+outgroup = both
+Block48:
++++++
+outgroup = both
+Block49:
++++-+
+outgroup = diff
+Block50:
++++-+
+outgroup = diff
+Block51:
++++-+
+outgroup = diff
+Block52:
++++-+
+outgroup = diff
+Block53:
++++-+
+outgroup = diff
+Block54:
++++++
+outgroup = both
+Block55:
++++++
+outgroup = both
+Block56:
++++++
+outgroup = both
+Block57:
++++++
+outgroup = both
+Block58:
++++++
+outgroup = both
+Block59:
++++-+
+outgroup = diff
+Block60:
++++-+
+outgroup = diff
+Block61:
++++--
+outgroup = ATCC
+Block62:
++++--
+outgroup = ATCC
+Block63:
++++--
+outgroup = ATCC
+Block64:
++++-+
+outgroup = diff
+Block65:
++++--
+outgroup = ATCC
+Block66:
++++--
+outgroup = ATCC
+Block67:
++++-+
+outgroup = diff
+Block68:
++++--
+outgroup = ATCC
+Block69:
++++--
+outgroup = ATCC
+Block70:
++++--
+outgroup = ATCC
+Block71:
++++--
+outgroup = ATCC
+Block72:
++++++
+outgroup = both
+Block73:
++++++
+outgroup = both
+Block74:
++++--
+outgroup = ATCC
+Block75:
++++--
+outgroup = ATCC
+Block76:
++++--
+outgroup = ATCC
+Block77:
++++--
+outgroup = ATCC
+Block78:
++++--
+outgroup = ATCC
+Block79:
++++--
+outgroup = ATCC
+Block80:
++++--
+outgroup = ATCC
+Block81:
++++--
+outgroup = ATCC
+Block82:
++++--
+outgroup = ATCC
+Block83:
++++--
+outgroup = ATCC
+Block84:
++++--
+outgroup = ATCC
+Block85:
++++--
+outgroup = ATCC
+Block86:
++++--
+outgroup = ATCC
+Block87:
++++--
+outgroup = ATCC
+Block88:
++++--
+outgroup = ATCC
+Block89:
++++--
+outgroup = ATCC
+Block90:
++++--
+outgroup = ATCC
+Block91:
++++--
+outgroup = ATCC
+Block92:
++++--
+outgroup = ATCC
+Block93:
++++--
+outgroup = ATCC
+Block94:
++---+
+outgroup = diff
+Block95:
++++--
+outgroup = ATCC
+Block96:
++++--
+outgroup = ATCC
+Block97:
++++--
+outgroup = ATCC
+Block98:
++++--
+outgroup = ATCC
+Block99:
++++++
+outgroup = both
+Block100:
++++-+
+outgroup = diff
+Block101:
++++++
+outgroup = both
+Block102:
++++--
+outgroup = ATCC
+Block103:
++++-+
+outgroup = diff
+Block104:
++++--
+outgroup = ATCC
+Block105:
++++++
+outgroup = both
+Block106:
+++++-
+outgroup = K-12 MG
+Block107:
++++--
+outgroup = ATCC
+Block108:
+++++-
+outgroup = K-12 MG
+Block109:
++++--
+outgroup = ATCC
+Block110:
++++++
+outgroup = both
+Block111:
++++--
+outgroup = ATCC
+Block112:
++++++
+outgroup = both
+Block113:
++++-+
+outgroup = diff
+Block114:
++++--
+outgroup = ATCC
+Block115:
++++++
+outgroup = both
+Block116:
++++--
+outgroup = ATCC
+Block117:
+++++-
+outgroup = K-12 MG
+Block118:
++++--
+outgroup = ATCC
+Block119:
++++++
+outgroup = both
+Block120:
++++--
+outgroup = ATCC
+Block121:
++++--
+outgroup = ATCC
+Block122:
++++--
+outgroup = ATCC
+Block123:
++++--
+outgroup = ATCC
+Block124:
++++--
+outgroup = ATCC
+Block125:
++++--
+outgroup = ATCC
+Block126:
++++--
+outgroup = ATCC
+Block127:
++++--
+outgroup = ATCC
+Block128:
++++--
+outgroup = ATCC
+Block129:
++++--
+outgroup = ATCC
+Block130:
++++--
+outgroup = ATCC
+Block131:
++++--
+outgroup = ATCC
+Block132:
+++++-
+outgroup = K-12 MG
+Block133:
++++--
+outgroup = ATCC
+Block134:
++++--
+outgroup = ATCC
+Block135:
++++--
+outgroup = ATCC
+Block136:
+++++-
+outgroup = K-12 MG
+Block137:
++++--
+outgroup = ATCC
+Block138:
++++--
+outgroup = ATCC
+Block139:
++++--
+outgroup = ATCC
+Block140:
++++--
+outgroup = ATCC
+Block141:
++++--
+outgroup = ATCC
+Block142:
++++--
+outgroup = ATCC
+Block143:
++++--
+outgroup = ATCC
+Block144:
++++--
+outgroup = ATCC
+Block145:
++++--
+outgroup = ATCC
+Block146:
++++--
+outgroup = ATCC
+Block147:
++++-+
+outgroup = diff
+Block148:
++++--
+outgroup = ATCC
+Block149:
++++--
+outgroup = ATCC
+Block150:
+++++-
+outgroup = K-12 MG
+Block151:
++++++
+outgroup = both
+Block152:
+++++-
+outgroup = K-12 MG
+Block153:
+++++-
+outgroup = K-12 MG
+Block154:
+++++-
+outgroup = K-12 MG
+Block155:
+++++-
+outgroup = K-12 MG
+Block156:
+++++-
+outgroup = K-12 MG
+Block157:
+++++-
+outgroup = K-12 MG
+Block158:
++++--
+outgroup = ATCC
+Block159:
+++++-
+outgroup = K-12 MG
+Block160:
+++++-
+outgroup = K-12 MG
+Block161:
+++++-
+outgroup = K-12 MG
+Block162:
+++++-
+outgroup = K-12 MG
+Block163:
+++++-
+outgroup = K-12 MG
+Block164:
++++--
+outgroup = ATCC
+Block165:
+++++-
+outgroup = K-12 MG
+Block166:
+++++-
+outgroup = K-12 MG
+Block167:
++++--
+outgroup = ATCC
+Block168:
+++++-
+outgroup = K-12 MG
+Block169:
+++++-
+outgroup = K-12 MG
+Block170:
+++++-
+outgroup = K-12 MG
+Block171:
+++++-
+outgroup = K-12 MG
+Block172:
+++++-
+outgroup = K-12 MG
+Block173:
+++++-
+outgroup = K-12 MG
+Block174:
+++++-
+outgroup = K-12 MG
+Block175:
+++++-
+outgroup = K-12 MG
+Block176:
++++--
+outgroup = ATCC
+Block177:
+++++-
+outgroup = K-12 MG
+Block178:
+++++-
+outgroup = K-12 MG
+Block179:
+++++-
+outgroup = K-12 MG
+Block180:
+++++-
+outgroup = K-12 MG
+Block181:
+++++-
+outgroup = K-12 MG
+Block182:
+++++-
+outgroup = K-12 MG
+Block183:
+++++-
+outgroup = K-12 MG
+Block184:
+++++-
+outgroup = K-12 MG
+Block185:
+++++-
+outgroup = K-12 MG
+Block186:
+++++-
+outgroup = K-12 MG
+Block187:
++++++
+outgroup = both
+Block188:
+++++-
+outgroup = K-12 MG
+Block189:
+++++-
+outgroup = K-12 MG
+Block190:
+++++-
+outgroup = K-12 MG
+Block191:
++++-+
+outgroup = diff
+Block192:
+++++-
+outgroup = K-12 MG
+Block193:
+++++-
+outgroup = K-12 MG
+Block194:
+++++-
+outgroup = K-12 MG
+Block195:
+++++-
+outgroup = K-12 MG
+Block196:
+++++-
+outgroup = K-12 MG
+Block197:
++++++
+outgroup = both
+Block198:
+++++-
+outgroup = K-12 MG
+Block199:
+++++-
+outgroup = K-12 MG
+Block200:
+++++-
+outgroup = K-12 MG
+Block201:
++++++
+outgroup = both
+Block202:
+++++-
+outgroup = K-12 MG
+Block203:
++++-+
+outgroup = diff
+Block204:
+++++-
+outgroup = K-12 MG
+Block205:
+++++-
+outgroup = K-12 MG
+Block206:
+++++-
+outgroup = K-12 MG
+Block207:
++++--
+outgroup = ATCC
+Block208:
++++-+
+outgroup = diff
+Block209:
+++++-
+outgroup = K-12 MG
+Block210:
+++++-
+outgroup = K-12 MG
+Block211:
+++++-
+outgroup = K-12 MG
+Block212:
++++++
+outgroup = both
+Block213:
+++++-
+outgroup = K-12 MG
+Block214:
+++++-
+outgroup = K-12 MG
+Block215:
+++++-
+outgroup = K-12 MG
+Block216:
+++++-
+outgroup = K-12 MG
+Block217:
+++++-
+outgroup = K-12 MG
+Block218:
+++++-
+outgroup = K-12 MG
+Block219:
++++++
+outgroup = both
+Block220:
+++++-
+outgroup = K-12 MG
+Block221:
+++++-
+outgroup = K-12 MG
+Block222:
+++++-
+outgroup = K-12 MG
+Block223:
+++++-
+outgroup = K-12 MG
+Block224:
++++--
+outgroup = ATCC
+Block225:
++++--
+outgroup = ATCC
+Block226:
+++++-
+outgroup = K-12 MG
+Block227:
++++++
+outgroup = both
+Block228:
++++--
+outgroup = ATCC
+Block229:
++++--
+outgroup = ATCC
+Block230:
++++--
+outgroup = ATCC
+Block231:
++++--
+outgroup = ATCC
+Block232:
++++--
+outgroup = ATCC
+Block233:
++++--
+outgroup = ATCC
+Block234:
++++--
+outgroup = ATCC
+Block235:
++++--
+outgroup = ATCC
+Block236:
++++--
+outgroup = ATCC
+Block237:
++++--
+outgroup = ATCC
+Block238:
++++--
+outgroup = ATCC
+Block239:
++++--
+outgroup = ATCC
+Block240:
++++--
+outgroup = ATCC
+Block241:
++++--
+outgroup = ATCC
+Block242:
++++--
+outgroup = ATCC
+Block243:
++++--
+outgroup = ATCC
+Block244:
++++--
+outgroup = ATCC
+Block245:
++++--
+outgroup = ATCC
+Block246:
++++--
+outgroup = ATCC
+Block247:
++++--
+outgroup = ATCC
+Block248:
++++--
+outgroup = ATCC
+Block249:
++++--
+outgroup = ATCC
+Block250:
++++--
+outgroup = ATCC
+Block251:
++++--
+outgroup = ATCC
+Block252:
++++--
+outgroup = ATCC
+Block253:
++++--
+outgroup = ATCC
+Block254:
++++--
+outgroup = ATCC
+Block255:
++++--
+outgroup = ATCC
+Block256:
++++--
+outgroup = ATCC
+Block257:
++++--
+outgroup = ATCC
+Block258:
++++--
+outgroup = ATCC
+Block259:
++++--
+outgroup = ATCC
+Block260:
+++++-
+outgroup = K-12 MG
+Block261:
++++--
+outgroup = ATCC
+Block262:
++++--
+outgroup = ATCC
+Block263:
++++--
+outgroup = ATCC
+Block264:
++++--
+outgroup = ATCC
+Block265:
++++--
+outgroup = ATCC
+Block266:
++++--
+outgroup = ATCC
+Block267:
++++--
+outgroup = ATCC
+Block268:
++++--
+outgroup = ATCC
+Block269:
++++--
+outgroup = ATCC
+Block270:
++++--
+outgroup = ATCC
+Block271:
++++--
+outgroup = ATCC
+Block272:
++++--
+outgroup = ATCC
+Block273:
++++--
+outgroup = ATCC
+Block274:
++++--
+outgroup = ATCC
+Block275:
++++--
+outgroup = ATCC
+Block276:
++++--
+outgroup = ATCC
+Block277:
++++--
+outgroup = ATCC
+Block278:
++++--
+outgroup = ATCC
+Block279:
++++--
+outgroup = ATCC
+Block280:
++++--
+outgroup = ATCC
+Block281:
++++--
+outgroup = ATCC
+Block282:
++++--
+outgroup = ATCC
+Block283:
++++--
+outgroup = ATCC
+Block284:
++++--
+outgroup = ATCC
+Block285:
++++--
+outgroup = ATCC
+Block286:
++++--
+outgroup = ATCC
+Block287:
++++--
+outgroup = ATCC
+Block288:
++++--
+outgroup = ATCC
+Block289:
++++--
+outgroup = ATCC
+Block290:
++++--
+outgroup = ATCC
+Block291:
++++--
+outgroup = ATCC
+Block292:
++++--
+outgroup = ATCC
+Block293:
++++--
+outgroup = ATCC
+Block294:
++++--
+outgroup = ATCC
+Block295:
++++--
+outgroup = ATCC
+Block296:
++++--
+outgroup = ATCC
+Block297:
++++--
+outgroup = ATCC
+Block298:
++++--
+outgroup = ATCC
+Block299:
++++--
+outgroup = ATCC
+Block300:
++++--
+outgroup = ATCC
+Block301:
++++--
+outgroup = ATCC
+Block302:
++++--
+outgroup = ATCC
+Block303:
++++--
+outgroup = ATCC
+Block304:
++++--
+outgroup = ATCC
+Block305:
++++--
+outgroup = ATCC
+Block306:
++++--
+outgroup = ATCC
+Block307:
++++--
+outgroup = ATCC
+Block308:
++++--
+outgroup = ATCC
+Block309:
++++--
+outgroup = ATCC
+Block310:
++++--
+outgroup = ATCC
+Block311:
++++--
+outgroup = ATCC
+Block312:
++++--
+outgroup = ATCC
+Block313:
+++++-
+outgroup = K-12 MG
+Block314:
+++++-
+outgroup = K-12 MG
+Block315:
+++++-
+outgroup = K-12 MG
+Block316:
+++++-
+outgroup = K-12 MG
+Block317:
+++++-
+outgroup = K-12 MG
+Block318:
+++++-
+outgroup = K-12 MG
+Block319:
+++++-
+outgroup = K-12 MG
+Block320:
+++++-
+outgroup = K-12 MG
+Block321:
++++--
+outgroup = ATCC
+Block322:
+++++-
+outgroup = K-12 MG
+Block323:
+++++-
+outgroup = K-12 MG
+Block324:
+++++-
+outgroup = K-12 MG
+Block325:
+++++-
+outgroup = K-12 MG
+Block326:
+++++-
+outgroup = K-12 MG
+Block327:
+++++-
+outgroup = K-12 MG
+Block328:
+++++-
+outgroup = K-12 MG
+Block329:
+++++-
+outgroup = K-12 MG
+Block330:
+++++-
+outgroup = K-12 MG
+Block331:
+++++-
+outgroup = K-12 MG
+Block332:
+++++-
+outgroup = K-12 MG
+Block333:
+++++-
+outgroup = K-12 MG
+Block334:
+++++-
+outgroup = K-12 MG
+Block335:
+++++-
+outgroup = K-12 MG
+Block336:
+++++-
+outgroup = K-12 MG
+Block337:
+++++-
+outgroup = K-12 MG
+Block338:
+++++-
+outgroup = K-12 MG
+Block339:
+++++-
+outgroup = K-12 MG
+Block340:
++++-+
+outgroup = diff
+Block341:
+++++-
+outgroup = K-12 MG
+Block342:
+++++-
+outgroup = K-12 MG
+Block343:
+++++-
+outgroup = K-12 MG
+Block344:
++++--
+outgroup = ATCC
+Block345:
+++++-
+outgroup = K-12 MG
+Block346:
+++++-
+outgroup = K-12 MG
+Block347:
+++++-
+outgroup = K-12 MG
+Block348:
+++++-
+outgroup = K-12 MG
+Block349:
+++++-
+outgroup = K-12 MG
+Block350:
+++++-
+outgroup = K-12 MG
+Block351:
+++++-
+outgroup = K-12 MG
+Block352:
+++++-
+outgroup = K-12 MG
+Block353:
++++-+
+outgroup = diff
+Block354:
+++++-
+outgroup = K-12 MG
+Block355:
++++++
+outgroup = both
+Block356:
++++++
+outgroup = both
+Block357:
+++++-
+outgroup = K-12 MG
+Block358:
++++-+
+outgroup = diff
+Block359:
++---+
+outgroup = diff
+Block360:
++++-+
+outgroup = diff
+Block361:
+++++-
+outgroup = K-12 MG
+Block362:
+++++-
+outgroup = K-12 MG
+Block363:
+++++-
+outgroup = K-12 MG
+Block364:
+++++-
+outgroup = K-12 MG
+Block365:
+++++-
+outgroup = K-12 MG
+Block366:
+++++-
+outgroup = K-12 MG
+Block367:
++++++
+outgroup = both
+Block368:
+++++-
+outgroup = K-12 MG
+Block369:
+++++-
+outgroup = K-12 MG
+Block370:
+++++-
+outgroup = K-12 MG
+Block371:
+++++-
+outgroup = K-12 MG
+Block372:
++++++
+outgroup = both
+Block373:
+++++-
+outgroup = K-12 MG
+Block374:
+++++-
+outgroup = K-12 MG
+Block375:
+++++-
+outgroup = K-12 MG
+Block376:
+++++-
+outgroup = K-12 MG
+Block377:
+++++-
+outgroup = K-12 MG
+Block378:
+++++-
+outgroup = K-12 MG
+Block379:
+++++-
+outgroup = K-12 MG
+Block380:
+++++-
+outgroup = K-12 MG
+Block381:
+++++-
+outgroup = K-12 MG
+Block382:
+++++-
+outgroup = K-12 MG
+Block383:
+++++-
+outgroup = K-12 MG
+Block384:
+++++-
+outgroup = K-12 MG
+Block385:
+++++-
+outgroup = K-12 MG
+Block386:
+++++-
+outgroup = K-12 MG
+Block387:
+++++-
+outgroup = K-12 MG
+Block388:
+++++-
+outgroup = K-12 MG
+Block389:
+++++-
+outgroup = K-12 MG
+Block390:
+++++-
+outgroup = K-12 MG
+Block391:
+++++-
+outgroup = K-12 MG
+Block392:
+++++-
+outgroup = K-12 MG
+Block393:
+++++-
+outgroup = K-12 MG
+Block394:
+++++-
+outgroup = K-12 MG
+Block395:
+++++-
+outgroup = K-12 MG
+Block396:
+++++-
+outgroup = K-12 MG
+Block397:
+++++-
+outgroup = K-12 MG
+Block398:
+++++-
+outgroup = K-12 MG
+Block399:
+++++-
+outgroup = K-12 MG
+Block400:
++++-+
+outgroup = diff
+Block401:
++++--
+outgroup = ATCC
+Block402:
++++--
+outgroup = ATCC
+Block403:
++++--
+outgroup = ATCC
+Block404:
++++--
+outgroup = ATCC
+Block405:
++++--
+outgroup = ATCC
+Block406:
++++--
+outgroup = ATCC
+Block407:
++++--
+outgroup = ATCC
+Block408:
++++--
+outgroup = ATCC
+Block409:
++++--
+outgroup = ATCC
+Block410:
++++--
+outgroup = ATCC
+Block411:
++++--
+outgroup = ATCC
+Block412:
++++--
+outgroup = ATCC
+Block413:
++++--
+outgroup = ATCC
+Block414:
++++-+
+outgroup = diff
+Block415:
++++--
+outgroup = ATCC
+Block416:
++++--
+outgroup = ATCC
+Block417:
++++--
+outgroup = ATCC
+Block418:
++++--
+outgroup = ATCC
+Block419:
++++--
+outgroup = ATCC
+Block420:
++++--
+outgroup = ATCC
+Block421:
++++--
+outgroup = ATCC
+Block422:
++++--
+outgroup = ATCC
+Block423:
++++--
+outgroup = ATCC
+Block424:
++++--
+outgroup = ATCC
+Block425:
++++--
+outgroup = ATCC
+Block426:
++++--
+outgroup = ATCC
+Block427:
++++--
+outgroup = ATCC
+Block428:
++++--
+outgroup = ATCC
+Block429:
++++--
+outgroup = ATCC
+Block430:
++++--
+outgroup = ATCC
+Block431:
++++--
+outgroup = ATCC
+Block432:
++++--
+outgroup = ATCC
+Block433:
++++--
+outgroup = ATCC
+Block434:
++++--
+outgroup = ATCC
+Block435:
++++--
+outgroup = ATCC
+Block436:
++++--
+outgroup = ATCC
+Block437:
++++--
+outgroup = ATCC
+Block438:
++++--
+outgroup = ATCC
+Block439:
++++--
+outgroup = ATCC
+Block440:
++++--
+outgroup = ATCC
+Block441:
++++--
+outgroup = ATCC
+Block442:
++++--
+outgroup = ATCC
+Block443:
++++--
+outgroup = ATCC
+Block444:
++++--
+outgroup = ATCC
+Block445:
++++--
+outgroup = ATCC
+Block446:
++++--
+outgroup = ATCC
+Block447:
++++--
+outgroup = ATCC
+Block448:
++++--
+outgroup = ATCC
+Block449:
++++--
+outgroup = ATCC
+Block450:
++++--
+outgroup = ATCC
+Block451:
++++--
+outgroup = ATCC
+Block452:
++++--
+outgroup = ATCC
+Block453:
++++--
+outgroup = ATCC
+Block454:
++++--
+outgroup = ATCC
+Block455:
++++--
+outgroup = ATCC
+Block456:
++++--
+outgroup = ATCC
+Block457:
++++--
+outgroup = ATCC
+Block458:
++++--
+outgroup = ATCC
+Block459:
++++--
+outgroup = ATCC
+Block460:
++++--
+outgroup = ATCC
+Block461:
++++--
+outgroup = ATCC
+Block462:
++++--
+outgroup = ATCC
+Block463:
++++--
+outgroup = ATCC
+Block464:
++++--
+outgroup = ATCC
+Block465:
++++--
+outgroup = ATCC
+Block466:
++++--
+outgroup = ATCC
+Block467:
++++--
+outgroup = ATCC
+Block468:
++++--
+outgroup = ATCC
+Block469:
++++--
+outgroup = ATCC
+Block470:
++++--
+outgroup = ATCC
+Block471:
++++--
+outgroup = ATCC
+Block472:
++++--
+outgroup = ATCC
+Block473:
++++--
+outgroup = ATCC
+Block474:
++++--
+outgroup = ATCC
+Block475:
++++--
+outgroup = ATCC
+Block476:
++++--
+outgroup = ATCC
+Block477:
++++--
+outgroup = ATCC
+Block478:
++++--
+outgroup = ATCC
+Block479:
++++--
+outgroup = ATCC
+Block480:
++++--
+outgroup = ATCC
+Block481:
++++--
+outgroup = ATCC
+Block482:
++++--
+outgroup = ATCC
+Block483:
++++--
+outgroup = ATCC
+Block484:
++++--
+outgroup = ATCC
+Block485:
++++--
+outgroup = ATCC
+Block486:
++++--
+outgroup = ATCC
+Block487:
++++--
+outgroup = ATCC
+Block488:
++++--
+outgroup = ATCC
+Block489:
++++--
+outgroup = ATCC
+Block490:
++++--
+outgroup = ATCC
+Block491:
++++--
+outgroup = ATCC
+Block492:
++++--
+outgroup = ATCC
+Block493:
++++-+
+outgroup = diff
+Block494:
++++--
+outgroup = ATCC
+Block495:
++++--
+outgroup = ATCC
+Block496:
++++--
+outgroup = ATCC
+Block497:
++++--
+outgroup = ATCC
+Block498:
++++--
+outgroup = ATCC
+Block499:
++++--
+outgroup = ATCC
+Block500:
++++-+
+outgroup = diff
+Block501:
++++-+
+outgroup = diff
+Block502:
++++-+
+outgroup = diff
+Block503:
++++-+
+outgroup = diff
+Block504:
++++-+
+outgroup = diff
+Block505:
++++--
+outgroup = ATCC
+Block506:
++++-+
+outgroup = diff
+Block507:
++++--
+outgroup = ATCC
+Block508:
++++-+
+outgroup = diff
+Block509:
++++--
+outgroup = ATCC
+Block510:
++++-+
+outgroup = diff
+Block511:
++++-+
+outgroup = diff
+Block512:
++++-+
+outgroup = diff
+Block513:
++++-+
+outgroup = diff
+Block514:
++++-+
+outgroup = diff
+Block515:
++++-+
+outgroup = diff
+Block516:
++++-+
+outgroup = diff
+Block517:
++++++
+outgroup = both
+Block518:
++++-+
+outgroup = diff
+Block519:
++++-+
+outgroup = diff
+Block520:
++++-+
+outgroup = diff
+Block521:
++++-+
+outgroup = diff
+Block522:
++++-+
+outgroup = diff
+Block523:
++++-+
+outgroup = diff
+Block524:
++++-+
+outgroup = diff
+Block525:
++++-+
+outgroup = diff
+Block526:
++++-+
+outgroup = diff
+Block527:
++++-+
+outgroup = diff
+Block528:
++++-+
+outgroup = diff
+Block529:
++++-+
+outgroup = diff
+Block530:
++++-+
+outgroup = diff
+Block531:
++++-+
+outgroup = diff
+Block532:
++++-+
+outgroup = diff
+Block533:
++++-+
+outgroup = diff
+Block534:
++++-+
+outgroup = diff
+Block535:
++++-+
+outgroup = diff
+Block536:
++++-+
+outgroup = diff
+Block537:
++++-+
+outgroup = diff
+Block538:
++++-+
+outgroup = diff
+Block539:
++++-+
+outgroup = diff
+Block540:
++++-+
+outgroup = diff
+Block541:
++++-+
+outgroup = diff
+Block542:
++++-+
+outgroup = diff
+Block543:
++++-+
+outgroup = diff
+Block544:
++++-+
+outgroup = diff
+Block545:
++++-+
+outgroup = diff
+Block546:
++++-+
+outgroup = diff
+Block547:
++++-+
+outgroup = diff
+Block548:
++++-+
+outgroup = diff
+Block549:
++++-+
+outgroup = diff
+Block550:
++++-+
+outgroup = diff
+Block551:
++++-+
+outgroup = diff
+Block552:
++++-+
+outgroup = diff
+Block553:
++++-+
+outgroup = diff
+Block554:
++++-+
+outgroup = diff
+Block555:
++++-+
+outgroup = diff
+Block556:
++++++
+outgroup = both
+Block557:
++++++
+outgroup = both
+Block558:
++++++
+outgroup = both
+Block559:
++++++
+outgroup = both
+Block560:
++++++
+outgroup = both
+Block561:
++++++
+outgroup = both
+Block562:
++++++
+outgroup = both
+Block563:
++++++
+outgroup = both
+Block564:
++++++
+outgroup = both
+Block565:
++++++
+outgroup = both
+Block566:
++++++
+outgroup = both
+Block567:
++++++
+outgroup = both
+Block568:
++++++
+outgroup = both
+Block569:
++++++
+outgroup = both
+Block570:
++++++
+outgroup = both
+Block571:
++++++
+outgroup = both
+Block572:
++++++
+outgroup = both
+Block573:
++++++
+outgroup = both
+Block574:
++++++
+outgroup = both
+Block575:
++++++
+outgroup = both
+Block576:
++++++
+outgroup = both
+Block577:
++++++
+outgroup = both
+Block578:
++++++
+outgroup = both
+Block579:
++++++
+outgroup = both
+Block580:
++++++
+outgroup = both
+Block581:
++++++
+outgroup = both
+Block582:
++++++
+outgroup = both
+Block583:
++++++
+outgroup = both
+Block584:
++++++
+outgroup = both
+Block585:
++++++
+outgroup = both
+Block586:
++++++
+outgroup = both
+Block587:
++++++
+outgroup = both
+Block588:
++++++
+outgroup = both
+Block589:
++++++
+outgroup = both
+Block590:
++++++
+outgroup = both
+Block591:
++++++
+outgroup = both
+Block592:
++++++
+outgroup = both
+Block593:
++++++
+outgroup = both
+Block594:
++++++
+outgroup = both
+Block595:
++++++
+outgroup = both
+Block596:
++++++
+outgroup = both
+Block597:
++++++
+outgroup = both
+Block598:
++++++
+outgroup = both
+Block599:
++++--
+outgroup = ATCC
+Block600:
++++++
+outgroup = both
+Block601:
++++++
+outgroup = both
+Block602:
++++++
+outgroup = both
+Block603:
++++++
+outgroup = both
+Block604:
++++++
+outgroup = both
+Block605:
++++++
+outgroup = both
+Block606:
++++++
+outgroup = both
+Block607:
++++++
+outgroup = both
+Block608:
++++++
+outgroup = both
+Block609:
++++++
+outgroup = both
+Block610:
++++++
+outgroup = both
+Block611:
++++++
+outgroup = both
+Block612:
++++++
+outgroup = both
+Block613:
++++++
+outgroup = both
+Block614:
++++++
+outgroup = both
+Block615:
++++++
+outgroup = both
+Block616:
++++++
+outgroup = both
+Block617:
++++++
+outgroup = both
+Block618:
++++++
+outgroup = both
+Block619:
++++++
+outgroup = both
+Block620:
++++++
+outgroup = both
+Block621:
++++++
+outgroup = both
+Block622:
++++++
+outgroup = both
+Block623:
++++++
+outgroup = both
+Block624:
++++++
+outgroup = both
+Block625:
++++++
+outgroup = both
+Block626:
++++++
+outgroup = both
+Block627:
++++++
+outgroup = both
+Block628:
++++++
+outgroup = both
+Block629:
++++++
+outgroup = both
+Block630:
++++++
+outgroup = both
+Block631:
++++++
+outgroup = both
+Block632:
++++++
+outgroup = both
+Block633:
++++++
+outgroup = both
+Block634:
++++++
+outgroup = both
+Block635:
++++++
+outgroup = both
+Block636:
++++++
+outgroup = both
+Block637:
++++++
+outgroup = both
+Block638:
++++--
+outgroup = ATCC
+Block639:
++++++
+outgroup = both
+Block640:
+++++-
+outgroup = K-12 MG
+Block641:
++++++
+outgroup = both
+Block642:
++++++
+outgroup = both
+Block643:
++++++
+outgroup = both
+Block644:
++++++
+outgroup = both
+Block645:
++++++
+outgroup = both
+Block646:
++++++
+outgroup = both
+Block647:
++++++
+outgroup = both
+Block648:
++++++
+outgroup = both
+Block649:
++++--
+outgroup = ATCC
+Block650:
++++++
+outgroup = both
+Block651:
++++++
+outgroup = both
+Block652:
++++++
+outgroup = both
+Block653:
++++-+
+outgroup = diff
+Block654:
++++++
+outgroup = both
+Block655:
++++++
+outgroup = both
+Block656:
++++++
+outgroup = both
+Block657:
++++++
+outgroup = both
+Block658:
++++++
+outgroup = both
+Block659:
++++++
+outgroup = both
+Block660:
++++++
+outgroup = both
+Block661:
++++++
+outgroup = both
+Block662:
++++++
+outgroup = both
+Block663:
++++++
+outgroup = both
+Block664:
++++++
+outgroup = both
+Block665:
++++++
+outgroup = both
+Block666:
++++++
+outgroup = both
+Block667:
++++++
+outgroup = both
+Block668:
++++--
+outgroup = ATCC
+Block669:
++++++
+outgroup = both
+Block670:
++++--
+outgroup = ATCC
+Block671:
++++++
+outgroup = both
+Block672:
++++++
+outgroup = both
+Block673:
++++++
+outgroup = both
+Block674:
++++++
+outgroup = both
+Block675:
++++++
+outgroup = both
+Block676:
++++++
+outgroup = both
+Block677:
++++++
+outgroup = both
+Block678:
+++++-
+outgroup = K-12 MG
+Block679:
++++++
+outgroup = both
+Block680:
++++++
+outgroup = both
+Block681:
++++++
+outgroup = both
+Block682:
++++++
+outgroup = both
+Block683:
++++++
+outgroup = both
+Block684:
++++++
+outgroup = both
+Block685:
+++++-
+outgroup = K-12 MG
+Block686:
+++++-
+outgroup = K-12 MG
+Block687:
+++++-
+outgroup = K-12 MG
+Block688:
++++-+
+outgroup = diff
+Block689:
++++-+
+outgroup = diff
+Block690:
++++-+
+outgroup = diff
+Block691:
+++++-
+outgroup = K-12 MG
+Block692:
++++++
+outgroup = both
+Block693:
++++-+
+outgroup = diff
+Block694:
+++++-
+outgroup = K-12 MG
+Block695:
+++++-
+outgroup = K-12 MG
+Block696:
+++++-
+outgroup = K-12 MG
+Block697:
+++++-
+outgroup = K-12 MG
+Block698:
+++++-
+outgroup = K-12 MG
+Block699:
+++++-
+outgroup = K-12 MG
+Block700:
+++++-
+outgroup = K-12 MG
+Block701:
+++++-
+outgroup = K-12 MG
+Block702:
+++++-
+outgroup = K-12 MG
+Block703:
+++++-
+outgroup = K-12 MG
+Block704:
+++++-
+outgroup = K-12 MG
+Block705:
+++++-
+outgroup = K-12 MG
+Block706:
+++++-
+outgroup = K-12 MG
+Block707:
+++++-
+outgroup = K-12 MG
+Block708:
+++++-
+outgroup = K-12 MG
+Block709:
+++++-
+outgroup = K-12 MG
+Block710:
+++++-
+outgroup = K-12 MG
+Block711:
+++++-
+outgroup = K-12 MG
+Block712:
+++++-
+outgroup = K-12 MG
+Block713:
+++++-
+outgroup = K-12 MG
+Block714:
+++++-
+outgroup = K-12 MG
+Block715:
+++++-
+outgroup = K-12 MG
+Block716:
+++++-
+outgroup = K-12 MG
+Block717:
+++++-
+outgroup = K-12 MG
+Block718:
+++++-
+outgroup = K-12 MG
+Block719:
+++++-
+outgroup = K-12 MG
+Block720:
+++++-
+outgroup = K-12 MG
+Block721:
+++++-
+outgroup = K-12 MG
+Block722:
+++++-
+outgroup = K-12 MG
+Block723:
+++++-
+outgroup = K-12 MG
+Block724:
+++++-
+outgroup = K-12 MG
+Block725:
+++++-
+outgroup = K-12 MG
+Block726:
+++++-
+outgroup = K-12 MG
+Block727:
+++++-
+outgroup = K-12 MG
+Block728:
+++++-
+outgroup = K-12 MG
+Block729:
+++++-
+outgroup = K-12 MG
+Block730:
+++++-
+outgroup = K-12 MG
+Block731:
+++++-
+outgroup = K-12 MG
+Block732:
+++++-
+outgroup = K-12 MG
+Block733:
+++++-
+outgroup = K-12 MG
+Block734:
+++++-
+outgroup = K-12 MG
+Block735:
+++++-
+outgroup = K-12 MG
+Block736:
+++++-
+outgroup = K-12 MG
+Block737:
+++++-
+outgroup = K-12 MG
+Block738:
+++++-
+outgroup = K-12 MG
+Block739:
+++++-
+outgroup = K-12 MG
+Block740:
+++++-
+outgroup = K-12 MG
+Block741:
+++++-
+outgroup = K-12 MG
+Block742:
++++--
+outgroup = ATCC
+Block743:
+++++-
+outgroup = K-12 MG
+Block744:
+++++-
+outgroup = K-12 MG
+Block745:
+++++-
+outgroup = K-12 MG
+Block746:
+++++-
+outgroup = K-12 MG
+Block747:
+++++-
+outgroup = K-12 MG
+Block748:
+++++-
+outgroup = K-12 MG
+Block749:
++++-+
+outgroup = diff
+Block750:
+++++-
+outgroup = K-12 MG
+Block751:
++-++-
+outgroup = K-12 MG
+Block752:
++-++-
+outgroup = K-12 MG
+Block753:
++-++-
+outgroup = K-12 MG
+Block754:
+++++-
+outgroup = K-12 MG
+Block755:
++++++
+outgroup = both
+Block756:
+++++-
+outgroup = K-12 MG
+Block757:
+++++-
+outgroup = K-12 MG
+Block758:
+++++-
+outgroup = K-12 MG
+Block759:
++++-+
+outgroup = diff
+Block760:
+++++-
+outgroup = K-12 MG
+Block761:
++++--
+outgroup = ATCC
+Block762:
++++++
+outgroup = both
+Block763:
+++++-
+outgroup = K-12 MG
+Block764:
++++++
+outgroup = both
+Block765:
+++++-
+outgroup = K-12 MG
+Block766:
+++++-
+outgroup = K-12 MG
+Block767:
+++++-
+outgroup = K-12 MG
+Block768:
+++++-
+outgroup = K-12 MG
+Block769:
+++++-
+outgroup = K-12 MG
+Block770:
+++++-
+outgroup = K-12 MG
+Block771:
+++++-
+outgroup = K-12 MG
+Block772:
+++++-
+outgroup = K-12 MG
+Block773:
+++++-
+outgroup = K-12 MG
+Block774:
+++++-
+outgroup = K-12 MG
+Block775:
+++++-
+outgroup = K-12 MG
+Block776:
+++++-
+outgroup = K-12 MG
+Block777:
+++++-
+outgroup = K-12 MG
+Block778:
+++++-
+outgroup = K-12 MG
+Block779:
+++++-
+outgroup = K-12 MG
+Block780:
+++++-
+outgroup = K-12 MG
+Block781:
++++++
+outgroup = both
+Block782:
+++++-
+outgroup = K-12 MG
+Block783:
+++++-
+outgroup = K-12 MG
+Block784:
+++++-
+outgroup = K-12 MG
+Block785:
+++++-
+outgroup = K-12 MG
+Block786:
+++++-
+outgroup = K-12 MG
+Block787:
+++++-
+outgroup = K-12 MG
+Block788:
+++++-
+outgroup = K-12 MG
+Block789:
+++++-
+outgroup = K-12 MG
+Block790:
++++++
+outgroup = both
+Block791:
+++++-
+outgroup = K-12 MG
+Block792:
+++++-
+outgroup = K-12 MG
+Block793:
+++++-
+outgroup = K-12 MG
+Block794:
+++++-
+outgroup = K-12 MG
+Block795:
+++++-
+outgroup = K-12 MG
+Block796:
+++++-
+outgroup = K-12 MG
+Block797:
+++++-
+outgroup = K-12 MG
+Block798:
+++++-
+outgroup = K-12 MG
+Block799:
++++++
+outgroup = both
+Block800:
+++++-
+outgroup = K-12 MG
+Block801:
+++++-
+outgroup = K-12 MG
+Block802:
+++++-
+outgroup = K-12 MG
+Block803:
+++++-
+outgroup = K-12 MG
+Block804:
+++++-
+outgroup = K-12 MG
+Block805:
++++++
+outgroup = both
+Block806:
+++++-
+outgroup = K-12 MG
+Block807:
++++++
+outgroup = both
+Block808:
+++++-
+outgroup = K-12 MG
+Block809:
++++++
+outgroup = both
+Block810:
+++++-
+outgroup = K-12 MG
+Block811:
++++++
+outgroup = both
+Block812:
+++++-
+outgroup = K-12 MG
+Block813:
++++++
+outgroup = both
+Block814:
+++++-
+outgroup = K-12 MG
+Block815:
+++++-
+outgroup = K-12 MG
+Block816:
+++++-
+outgroup = K-12 MG
+Block817:
+++++-
+outgroup = K-12 MG
+Block818:
+++++-
+outgroup = K-12 MG
+Block819:
+++++-
+outgroup = K-12 MG
+Block820:
+++++-
+outgroup = K-12 MG
+Block821:
+++++-
+outgroup = K-12 MG
+Block822:
++++-+
+outgroup = diff
+Block823:
+++++-
+outgroup = K-12 MG
+Block824:
+++++-
+outgroup = K-12 MG
+Block825:
+++++-
+outgroup = K-12 MG
+Block826:
+++++-
+outgroup = K-12 MG
+Block827:
+++++-
+outgroup = K-12 MG
+Block828:
+++++-
+outgroup = K-12 MG
+Block829:
+++++-
+outgroup = K-12 MG
+Block830:
+++++-
+outgroup = K-12 MG
+Block831:
++++-+
+outgroup = diff
+Block832:
+++++-
+outgroup = K-12 MG
+Block833:
+++++-
+outgroup = K-12 MG
+Block834:
+++++-
+outgroup = K-12 MG
+Block835:
+++++-
+outgroup = K-12 MG
+Block836:
+++++-
+outgroup = K-12 MG
+Block837:
+++++-
+outgroup = K-12 MG
+Block838:
++++++
+outgroup = both
+Block839:
+++++-
+outgroup = K-12 MG
+Block840:
+++++-
+outgroup = K-12 MG
+Block841:
+++++-
+outgroup = K-12 MG
+Block842:
+++++-
+outgroup = K-12 MG
+Block843:
+++++-
+outgroup = K-12 MG
+Block844:
++++--
+outgroup = ATCC
+Block845:
++++--
+outgroup = ATCC
+Block846:
+++++-
+outgroup = K-12 MG
+Block847:
+++++-
+outgroup = K-12 MG
+Block848:
++++--
+outgroup = ATCC
+Block849:
+++++-
+outgroup = K-12 MG
+Block850:
+++++-
+outgroup = K-12 MG
+Block851:
+++++-
+outgroup = K-12 MG
+Block852:
+++++-
+outgroup = K-12 MG
+Block853:
+++++-
+outgroup = K-12 MG
+Block854:
+++++-
+outgroup = K-12 MG
+Block855:
+++++-
+outgroup = K-12 MG
+Block856:
+++++-
+outgroup = K-12 MG
+Block857:
+++++-
+outgroup = K-12 MG
+Block858:
+++++-
+outgroup = K-12 MG
+Block859:
+++++-
+outgroup = K-12 MG
+Block860:
+++++-
+outgroup = K-12 MG
+Block861:
+++++-
+outgroup = K-12 MG
+Block862:
+++++-
+outgroup = K-12 MG
+Block863:
+++++-
+outgroup = K-12 MG
+Block864:
+++++-
+outgroup = K-12 MG
+Block865:
+++++-
+outgroup = K-12 MG
+Block866:
+++++-
+outgroup = K-12 MG
+Block867:
+++++-
+outgroup = K-12 MG
+Block868:
+++++-
+outgroup = K-12 MG
+Block869:
+++++-
+outgroup = K-12 MG
+Block870:
+++++-
+outgroup = K-12 MG
+Block871:
+++++-
+outgroup = K-12 MG
+Block872:
+++++-
+outgroup = K-12 MG
+Block873:
+++++-
+outgroup = K-12 MG
+Block874:
+++++-
+outgroup = K-12 MG
+Block875:
+++++-
+outgroup = K-12 MG
+Block876:
+++++-
+outgroup = K-12 MG
+Block877:
+++++-
+outgroup = K-12 MG
+Block878:
+++++-
+outgroup = K-12 MG
+Block879:
+++++-
+outgroup = K-12 MG
+Block880:
+++++-
+outgroup = K-12 MG
+Block881:
+++++-
+outgroup = K-12 MG
+Block882:
+++++-
+outgroup = K-12 MG
+Block883:
+++++-
+outgroup = K-12 MG
+Block884:
+++++-
+outgroup = K-12 MG
+Block885:
+++++-
+outgroup = K-12 MG
+Block886:
+++++-
+outgroup = K-12 MG
+Block887:
+++++-
+outgroup = K-12 MG
+Block888:
+++++-
+outgroup = K-12 MG
+Block889:
+++++-
+outgroup = K-12 MG
+Block890:
+++++-
+outgroup = K-12 MG
+Block891:
+++++-
+outgroup = K-12 MG
+Block892:
+++++-
+outgroup = K-12 MG
+Block893:
+++++-
+outgroup = K-12 MG
+Block894:
+++++-
+outgroup = K-12 MG
+Block895:
+++++-
+outgroup = K-12 MG
+Block896:
+++++-
+outgroup = K-12 MG
+Block897:
+++++-
+outgroup = K-12 MG
+Block898:
+++++-
+outgroup = K-12 MG
+Block899:
+++++-
+outgroup = K-12 MG
+Block900:
+++++-
+outgroup = K-12 MG
+Block901:
+++++-
+outgroup = K-12 MG
+Block902:
+++++-
+outgroup = K-12 MG
+Block903:
+++++-
+outgroup = K-12 MG
+Block904:
+++++-
+outgroup = K-12 MG
+Block905:
+++++-
+outgroup = K-12 MG
+Block906:
+++++-
+outgroup = K-12 MG
+Block907:
+++++-
+outgroup = K-12 MG
+Block908:
+++++-
+outgroup = K-12 MG
+Block909:
+++++-
+outgroup = K-12 MG
+Block910:
+++++-
+outgroup = K-12 MG
+Block911:
+++++-
+outgroup = K-12 MG
+Block912:
+++++-
+outgroup = K-12 MG
+Block913:
+++++-
+outgroup = K-12 MG
+Block914:
+++++-
+outgroup = K-12 MG
+Block915:
+++++-
+outgroup = K-12 MG
+Block916:
+++++-
+outgroup = K-12 MG
+Block917:
+++++-
+outgroup = K-12 MG
+Block918:
+++++-
+outgroup = K-12 MG
+Block919:
+++++-
+outgroup = K-12 MG
+Block920:
+++++-
+outgroup = K-12 MG
+Block921:
+++++-
+outgroup = K-12 MG
+Block922:
++++--
+outgroup = ATCC
+Block923:
+++++-
+outgroup = K-12 MG
+Block924:
+++++-
+outgroup = K-12 MG
+Block925:
+++++-
+outgroup = K-12 MG
+Block926:
+++++-
+outgroup = K-12 MG
+Block927:
+++++-
+outgroup = K-12 MG
+Block928:
+++++-
+outgroup = K-12 MG
+Block929:
++++-+
+outgroup = diff
+Block930:
+++++-
+outgroup = K-12 MG
+Block931:
+++++-
+outgroup = K-12 MG
+Block932:
+++++-
+outgroup = K-12 MG
+Block933:
+++++-
+outgroup = K-12 MG
+Block934:
+++++-
+outgroup = K-12 MG
+Block935:
+++++-
+outgroup = K-12 MG
+Block936:
+++++-
+outgroup = K-12 MG
+Block937:
+++++-
+outgroup = K-12 MG
+Block938:
++++--
+outgroup = ATCC
+Block939:
++++--
+outgroup = ATCC
+Block940:
++++--
+outgroup = ATCC
+Block941:
++++--
+outgroup = ATCC
+Block942:
++++--
+outgroup = ATCC
+Block943:
++++--
+outgroup = ATCC
+Block944:
++++--
+outgroup = ATCC
+Block945:
++++--
+outgroup = ATCC
+Block946:
++++--
+outgroup = ATCC
+Block947:
++++--
+outgroup = ATCC
+Block948:
++++--
+outgroup = ATCC
+Block949:
++++--
+outgroup = ATCC
+Block950:
++++--
+outgroup = ATCC
+Block951:
++++--
+outgroup = ATCC
+Block952:
++++--
+outgroup = ATCC
+Block953:
++++--
+outgroup = ATCC
+Block954:
++++--
+outgroup = ATCC
+Block955:
++++--
+outgroup = ATCC
+Block956:
++++++
+outgroup = both
+Block957:
++++--
+outgroup = ATCC
+Block958:
++++--
+outgroup = ATCC
+Block959:
++++--
+outgroup = ATCC
+Block960:
++++--
+outgroup = ATCC
+Block961:
++++--
+outgroup = ATCC
+Block962:
++++--
+outgroup = ATCC
+Block963:
++++--
+outgroup = ATCC
+Block964:
++++--
+outgroup = ATCC
+Block965:
++++--
+outgroup = ATCC
+Block966:
++++--
+outgroup = ATCC
+Block967:
++++--
+outgroup = ATCC
+Block968:
++++--
+outgroup = ATCC
+Block969:
++++--
+outgroup = ATCC
+Block970:
++++--
+outgroup = ATCC
+Block971:
++++--
+outgroup = ATCC
+Block972:
++++--
+outgroup = ATCC
+Block973:
++++--
+outgroup = ATCC
+Block974:
++++--
+outgroup = ATCC
+Block975:
++++--
+outgroup = ATCC
+Block976:
++++--
+outgroup = ATCC
+Block977:
++++--
+outgroup = ATCC
+Block978:
++++--
+outgroup = ATCC
+Block979:
++++--
+outgroup = ATCC
+Block980:
++++--
+outgroup = ATCC
+Block981:
++++--
+outgroup = ATCC
+Block982:
++++--
+outgroup = ATCC
+Block983:
++++--
+outgroup = ATCC
+Block984:
++++--
+outgroup = ATCC
+Block985:
++++--
+outgroup = ATCC
+Block986:
++++++
+outgroup = both
+Block987:
++++++
+outgroup = both
+Block988:
++++++
+outgroup = both
+Block989:
++++++
+outgroup = both
+Block990:
++++++
+outgroup = both
+Block991:
++++++
+outgroup = both
+Block992:
++++++
+outgroup = both
+Block993:
++++++
+outgroup = both
+Block994:
++++++
+outgroup = both
+Block995:
++++++
+outgroup = both
+Block996:
++++++
+outgroup = both
+Block997:
++++++
+outgroup = both
+Block998:
++++++
+outgroup = both
+Block999:
++++++
+outgroup = both
+Block1000:
++++++
+outgroup = both
+Block1001:
++++--
+outgroup = ATCC
+Block1002:
++++++
+outgroup = both
+Block1003:
++++++
+outgroup = both
+Block1004:
++++++
+outgroup = both
+Block1005:
++++++
+outgroup = both
+Block1006:
++++-+
+outgroup = diff
+Block1007:
++++++
+outgroup = both
+Block1008:
++++++
+outgroup = both
+Block1009:
++++++
+outgroup = both
+Block1010:
++++++
+outgroup = both
+Block1011:
++++++
+outgroup = both
+Block1012:
++++++
+outgroup = both
+Block1013:
++++++
+outgroup = both
+Block1014:
++++++
+outgroup = both
+Block1015:
++++++
+outgroup = both
+Block1016:
++++++
+outgroup = both
+Block1017:
++++++
+outgroup = both
+Block1018:
++++++
+outgroup = both
+Block1019:
++++++
+outgroup = both
+Block1020:
++++++
+outgroup = both
+Block1021:
++++++
+outgroup = both
+Block1022:
++++++
+outgroup = both
+Block1023:
++++++
+outgroup = both
+Block1024:
++++++
+outgroup = both
+Block1025:
++++++
+outgroup = both
+Block1026:
++++++
+outgroup = both
+Block1027:
++++++
+outgroup = both
+Block1028:
++++++
+outgroup = both
+Block1029:
++++++
+outgroup = both
+Block1030:
++++++
+outgroup = both
+Block1031:
++++++
+outgroup = both
+Block1032:
++++++
+outgroup = both
+Block1033:
++++++
+outgroup = both
+Block1034:
++++--
+outgroup = ATCC
+Block1035:
++++++
+outgroup = both
+Block1036:
++++++
+outgroup = both
+Block1037:
++++++
+outgroup = both
+Block1038:
++++++
+outgroup = both
+Block1039:
++++++
+outgroup = both
+Block1040:
++++++
+outgroup = both
+Block1041:
++++++
+outgroup = both
+Block1042:
++++++
+outgroup = both
+Block1043:
++++++
+outgroup = both
+Block1044:
++++++
+outgroup = both
+Block1045:
++++++
+outgroup = both
+Block1046:
++++++
+outgroup = both
+Block1047:
++++++
+outgroup = both
+Block1048:
++++++
+outgroup = both
+Block1049:
++++++
+outgroup = both
+Block1050:
++++++
+outgroup = both
+Block1051:
++++++
+outgroup = both
+Block1052:
++++++
+outgroup = both
+Block1053:
++++++
+outgroup = both
+Block1054:
++++++
+outgroup = both
+Block1055:
++++++
+outgroup = both
+Block1056:
++++++
+outgroup = both
+Block1057:
++++++
+outgroup = both
+Block1058:
++++++
+outgroup = both
+Block1059:
++++++
+outgroup = both
+Block1060:
++++++
+outgroup = both
+Block1061:
++++++
+outgroup = both
+Block1062:
++++++
+outgroup = both
+Block1063:
++++++
+outgroup = both
+Block1064:
++++++
+outgroup = both
+Block1065:
++++++
+outgroup = both
+Block1066:
++++++
+outgroup = both
+Block1067:
++++++
+outgroup = both
+Block1068:
++++++
+outgroup = both
+Block1069:
++++++
+outgroup = both
+Block1070:
++++++
+outgroup = both
+Block1071:
++++++
+outgroup = both
+Block1072:
++++++
+outgroup = both
+Block1073:
++++++
+outgroup = both
+Block1074:
++++++
+outgroup = both
+Block1075:
++++++
+outgroup = both
+Block1076:
++++++
+outgroup = both
+Block1077:
++++++
+outgroup = both
+Block1078:
++++++
+outgroup = both
+Block1079:
++++--
+outgroup = ATCC
+Block1080:
+++++-
+outgroup = K-12 MG
+Block1081:
++++--
+outgroup = ATCC
+Block1082:
+++++-
+outgroup = K-12 MG
+Block1083:
++++--
+outgroup = ATCC
+Block1084:
+++++-
+outgroup = K-12 MG
+Block1085:
++++++
+outgroup = both
+Block1086:
++++++
+outgroup = both
+Block1087:
++++++
+outgroup = both
+Block1088:
++++++
+outgroup = both
+Block1089:
++++++
+outgroup = both
+Block1090:
++++++
+outgroup = both
+Block1091:
++++++
+outgroup = both
+Block1092:
++++++
+outgroup = both
+Block1093:
++++++
+outgroup = both
+Block1094:
+++++-
+outgroup = K-12 MG
+Block1095:
++++++
+outgroup = both
+Block1096:
++++++
+outgroup = both
+Block1097:
++++++
+outgroup = both
+Block1098:
++++++
+outgroup = both
+Block1099:
++++++
+outgroup = both
+Block1100:
++++++
+outgroup = both
+Block1101:
++++++
+outgroup = both
+Block1102:
++++++
+outgroup = both
+Block1103:
++++++
+outgroup = both
+Block1104:
++++-+
+outgroup = diff
+Block1105:
++++++
+outgroup = both
+Block1106:
++++++
+outgroup = both
+Block1107:

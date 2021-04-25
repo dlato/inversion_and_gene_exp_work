@@ -1,0 +1,4 @@
+grep "[=>]" *.xmfa > ecoli_efergisonii_outgroup.txt
+
+cp ecoli*  ../../Ancestral_inversions/
+
