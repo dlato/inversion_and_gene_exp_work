@@ -3716,6 +3716,7 @@ perm_dat <- gei_dat
 ###########################
 print("# data frame with block and number of genes in each block")
 blDf <- perm_dat
+summary(perm_dat)
 blDf$permID <- paste(blDf$block, blDf$strain, sep="_")
 head(blDf)
 blDf <- blDf %>%
@@ -3724,4 +3725,41 @@ blDf <- blDf %>%
         summarise(n = n())
 summary(blDf)
 
+#add expression information to homologous gene info
+#new df with only gene name and exp value
+exp_df <- perm_dat %>%
+          select("gene_id", "norm_exp") %>%
+          distinct()
+summary(exp_df)
+#read in gene mapping file to tell us which genes are homologous
+gmap_file <- as.character(args[8])
+gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
+colnames(gmap) <- c("ATCC_s","ATCC_g","BW_s","BW_g","DH_s","DH_g","MG_s","MG_g")
+summary(gmap)
+head(gmap)
 
+#add ATCC exp
+gmap$ATCC_e <- rep(NA,length(gmap$ATCC_g))
+for (i in exp_df$gene_id) {
+   print(exp_df[i,])
+#  if(gmap$ATCC_g == i) {
+#       gmap[which(gmap$ATCC_g == i),2] <- exp_df[i,2]
+#  }
+}
+
+
+summary(gmap)
+head(gmap)
+
+#gmap$ATCC_e <- ifelse(gmap$ATCC_g == perm_dat$gene_id,perm_dat$norm_exp, NA)
+#head(gmap)
+#
+#
+##colnames(gmap)[colnames(gmap) == "ATCC_g"] <- "gene_id"
+##m2 <- left_join(gmap, perm_dat[,c("gene_id", "norm_exp")])
+##head(m2)
+##
+####find exp value in select columns:
+###df %>% filter_at(vars(col1, col2), any_vars(. %in% c('M017', 'M018'))) 
+##
+##
