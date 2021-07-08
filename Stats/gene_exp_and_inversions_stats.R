@@ -3728,38 +3728,36 @@ summary(blDf)
 #add expression information to homologous gene info
 #new df with only gene name and exp value
 exp_df <- perm_dat %>%
-          select("gene_id", "norm_exp") %>%
+          select("gene_id", "norm_exp","gbk_gene_id","gbk_locus_tag","locus_tag") %>%
           distinct()
 summary(exp_df)
+head(exp_df)
 #read in gene mapping file to tell us which genes are homologous
 gmap_file <- as.character(args[8])
 gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
 colnames(gmap) <- c("ATCC_s","ATCC_g","BW_s","BW_g","DH_s","DH_g","MG_s","MG_g")
-summary(gmap)
-head(gmap)
 
 #add ATCC exp
 gmap$ATCC_e <- rep(NA,length(gmap$ATCC_g))
-for (i in exp_df$gene_id) {
-   print(exp_df[i,])
-#  if(gmap$ATCC_g == i) {
-#       gmap[which(gmap$ATCC_g == i),2] <- exp_df[i,2]
-#  }
-}
+gmap$ATCC_e <- exp_df$norm_exp[match(gmap$ATCC_g, exp_df$gene_id)]
+#add BW exp
+gmap$BW_e <- rep(NA,length(gmap$BW_g))
+gmap$BW_e <- exp_df$norm_exp[match(gmap$BW_g, exp_df$gbk_locus_tag)]
+#add DH exp
+gmap$DH_e <- rep(NA,length(gmap$DH_g))
+gmap$DH_e <- exp_df$norm_exp[match(gmap$DH_g, exp_df$gbk_locus_tag)]
+#add MG exp
+gmap$MG_e <- rep(NA,length(gmap$MG_g))
+gmap$MG_e <- exp_df$norm_exp[match(gmap$MG_g, exp_df$locus_tag)]
 
-
+#remove random NA column
+gmap <- gmap[,-9]
+#removing NAs
+gmap <- na.omit(gmap)
 summary(gmap)
 head(gmap)
 
-#gmap$ATCC_e <- ifelse(gmap$ATCC_g == perm_dat$gene_id,perm_dat$norm_exp, NA)
-#head(gmap)
-#
-#
-##colnames(gmap)[colnames(gmap) == "ATCC_g"] <- "gene_id"
-##m2 <- left_join(gmap, perm_dat[,c("gene_id", "norm_exp")])
-##head(m2)
-##
-####find exp value in select columns:
-###df %>% filter_at(vars(col1, col2), any_vars(. %in% c('M017', 'M018'))) 
-##
-##
+print("# dataframe with just expression values of homologous genes")
+permExp <- gmap %>%
+           select("ATCC_e","BW_e","DH_e","MG_e")
+head(permExp)
