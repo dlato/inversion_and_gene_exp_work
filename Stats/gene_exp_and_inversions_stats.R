@@ -3724,8 +3724,9 @@ blDf <- blDf %>%
         group_by(permID) %>%
         summarise(n = n())
 summary(blDf)
+head(blDf)
 
-#add expression information to homologous gene info
+print("#add expression information to homologous gene info")
 #new df with only gene name and exp value
 exp_df <- perm_dat %>%
           select("gene_id", "norm_exp","gbk_gene_id","gbk_locus_tag","locus_tag") %>%
@@ -3757,7 +3758,29 @@ gmap <- na.omit(gmap)
 summary(gmap)
 head(gmap)
 
+print("#remove genes homologous to multiple other genes (duplicates)")
+gmap <- gmap[!duplicated(gmap$ATCC_g),]
+gmap <- gmap[!duplicated(gmap$BW_g),]
+gmap <- gmap[!duplicated(gmap$DH_g),]
+gmap <- gmap[!duplicated(gmap$MG_g),]
+
 print("# dataframe with just expression values of homologous genes")
 permExp <- gmap %>%
            select("ATCC_e","BW_e","DH_e","MG_e")
 head(permExp)
+
+print("# permutation test")
+##############
+# SET SEED
+##############
+set.seed(925)
+gn =4
+univ = seq(1,length(permExp$ATCC_e),1)
+prows <- sample(univ, gn, replace=F)
+prows
+p_df <- permExp[prows,]
+p_df
+nonI <- c(p_df$BW_e,p_df$DH_e,p_df$MG_e)
+nonI
+
+wilcox.test(p_df$ATCC_e, nonI, paired = FALSE,exact=FALSE)
