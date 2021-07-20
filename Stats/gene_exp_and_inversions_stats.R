@@ -3776,11 +3776,68 @@ print("# permutation test")
 set.seed(925)
 gn =4
 univ = seq(1,length(permExp$ATCC_e),1)
-prows <- sample(univ, gn, replace=F)
-prows
-p_df <- permExp[prows,]
-p_df
-nonI <- c(p_df$BW_e,p_df$DH_e,p_df$MG_e)
-nonI
-
-wilcox.test(p_df$ATCC_e, nonI, paired = FALSE,exact=FALSE)
+#set up empty df
+ATCC_perm <- data.frame(pval=integer(),
+                        Wstat=integer(),
+                 stringsAsFactors=FALSE)
+#for each block length (length = unique number of genes in each block)
+uniq_block_gene_len <- unique(blDf$n)
+uniq_block_gene_len
+################
+# ATCC permutation
+################
+#initilize empty list of df for each permuted block gene length
+ATCC_perm_list <- list()
+for (i in 1:length(uniq_block_gene_len)){
+    gn = uniq_block_gene_len[i]
+    #repeat permutation
+    for (i in 1:1000){
+        #select rows from universe
+        prows <- sample(univ, gn, replace=F)
+        #select expression values based on rows
+        p_df <- permExp[prows,]
+        #non-inverted expression
+        nonI <- c(p_df$BW_e,p_df$DH_e,p_df$MG_e)
+        #Wilcox test
+        results <- wilcox.test(p_df$ATCC_e, nonI, paired = FALSE,exact=FALSE)
+        res_v <- c(results$p.value, results$statistic)
+        ATCC_perm[nrow(ATCC_perm) + 1, ] <- res_v
+    }
+    #append block gene perm test to list
+    ATCC_perm_list <- c(ATCC_perm_list,list(ATCC_perm))
+    #reset perm df
+    ATCC_perm <- data.frame(pval=integer(),
+                            Wstat=integer(),
+                     stringsAsFactors=FALSE)
+}
+################
+# DH permutation
+################
+#initilize empty df
+DH_perm <- data.frame(pval=integer(),
+                        Wstat=integer(),
+                 stringsAsFactors=FALSE)
+#initilize empty list of df for each permuted block gene length
+DH_perm_list <- list()
+for (i in 1:length(uniq_block_gene_len)){
+    gn = uniq_block_gene_len[i]
+    #repeat permutation
+    for (i in 1:1000){
+        #select rows from universe
+        prows <- sample(univ, gn, replace=F)
+        #select expression values based on rows
+        p_df <- permExp[prows,]
+        #non-inverted expression
+        nonI <- c(p_df$BW_e,p_df$ATCC_e,p_df$MG_e)
+        #Wilcox test
+        results <- wilcox.test(p_df$DH_e, nonI, paired = FALSE,exact=FALSE)
+        res_v <- c(results$p.value, results$statistic)
+        DH_perm[nrow(DH_perm) + 1, ] <- res_v
+    }
+    #append block gene perm test to list
+    DH_perm_list <- c(DH_perm_list,list(DH_perm))
+    #reset perm df
+    DH_perm <- data.frame(pval=integer(),
+                            Wstat=integer(),
+                     stringsAsFactors=FALSE)
+}
