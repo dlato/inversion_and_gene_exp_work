@@ -3829,8 +3829,9 @@ for (i in 1:length(uniq_block_gene_len)){
         p_df <- permExp[prows,]
         #non-inverted expression
         nonI <- c(p_df$BW_e,p_df$ATCC_e,p_df$MG_e)
+        I <- c(p_df$ATCC_e,p_df$DH_e)
         #Wilcox test
-        results <- wilcox.test(p_df$DH_e, nonI, paired = FALSE,exact=FALSE)
+        results <- wilcox.test(I, nonI, paired = FALSE,exact=FALSE)
         res_v <- c(results$p.value, results$statistic)
         DH_perm[nrow(DH_perm) + 1, ] <- res_v
     }
