@@ -469,11 +469,10 @@ for (b in unique(gei_dat$block)) {
   count <- count + 1
 }
 gei_dat['block_tax_num'] <- block_tax_num
-gei_dat['block_w_pvalue'] <- block_w_pvalue
+gei_dat['block_w_pvalue'] <- as.numeric(as.character(block_w_pvalue))
 gei_dat['block_t_pvalue'] <- block_t_pvalue
 gei_dat['block_t_stat'] <- block_t_stat
 gei_dat['block_t_confinf1'] <- block_t_coninf1
-gei_dat['block_t_confinf2'] <- block_t_coninf2
 gei_dat['block_t_confinf2'] <- block_t_coninf2
 gei_dat['block_avg_exp_invert'] <- block_avg_exp_invert
 gei_dat['block_avg_exp_noninvert'] <- block_avg_exp_noninvert
@@ -481,6 +480,7 @@ gei_dat['block_avg_len_invert'] <- block_avg_len_invert
 gei_dat['block_avg_len_noninvert'] <- block_avg_len_noninvert
 
 head(gei_dat)
+summary(gei_dat)
 print("#####################")
 print("ONLY USING BLOCKS WITH ALL 4 TAXA")
 print("#####################")
@@ -3742,132 +3742,165 @@ obs_df <- perm_dat
 summary(perm_dat)
 levels(perm_dat$block)
 obs_df <- obs_df %>% filter(block %in% blDf$permID)
+obs_df[which(obs_df$block == "Block1008"),]
 summary(obs_df)
 
 
-#print("#add expression information to homologous gene info")
-##new df with only gene name and exp value
-#exp_df <- perm_dat %>%
-#          select("gene_id", "norm_exp","gbk_gene_id","gbk_locus_tag","locus_tag") %>%
-#          distinct()
-#summary(exp_df)
-#head(exp_df)
-##read in gene mapping file to tell us which genes are homologous
-#gmap_file <- as.character(args[8])
-#gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
-#colnames(gmap) <- c("ATCC_s","ATCC_g","BW_s","BW_g","DH_s","DH_g","MG_s","MG_g")
-#
-##add ATCC exp
-#gmap$ATCC_e <- rep(NA,length(gmap$ATCC_g))
-#gmap$ATCC_e <- exp_df$norm_exp[match(gmap$ATCC_g, exp_df$gene_id)]
-##add BW exp
-#gmap$BW_e <- rep(NA,length(gmap$BW_g))
-#gmap$BW_e <- exp_df$norm_exp[match(gmap$BW_g, exp_df$gbk_locus_tag)]
-##add DH exp
-#gmap$DH_e <- rep(NA,length(gmap$DH_g))
-#gmap$DH_e <- exp_df$norm_exp[match(gmap$DH_g, exp_df$gbk_locus_tag)]
-##add MG exp
-#gmap$MG_e <- rep(NA,length(gmap$MG_g))
-#gmap$MG_e <- exp_df$norm_exp[match(gmap$MG_g, exp_df$locus_tag)]
-#
-##remove random NA column
-#gmap <- gmap[,-9]
-##removing NAs
-#gmap <- na.omit(gmap)
-#summary(gmap)
-#head(gmap)
-#
-#print("#remove genes homologous to multiple other genes (duplicates)")
-#gmap <- gmap[!duplicated(gmap$ATCC_g),]
-#gmap <- gmap[!duplicated(gmap$BW_g),]
-#gmap <- gmap[!duplicated(gmap$DH_g),]
-#gmap <- gmap[!duplicated(gmap$MG_g),]
-#
-#print("# dataframe with just expression values of homologous genes")
-#permExp <- gmap %>%
-#           select("ATCC_e","BW_e","DH_e","MG_e")
-#head(permExp)
-#
-#print("# permutation test")
-###############
-## SET SEED
-###############
-#set.seed(925)
-#gn =4
-#univ = seq(1,length(permExp$ATCC_e),1)
-##set up empty df
-#ATCC_perm <- data.frame(pval=integer(),
-#                        Wstat=integer(),
-#                 stringsAsFactors=FALSE)
-##for each block length (length = unique number of genes in each block)
-#uniq_block_gene_len <- unique(blDf$n)
-##only blocks with length minimum of 2
-#uniq_block_gene_len <- uniq_block_gene_len[uniq_block_gene_len > "1"]
-#uniq_block_gene_len
-#################
-## ATCC permutation
-#################
-##initilize empty list of df for each permuted block gene length
-#ATCC_perm_list <- list()
-#for (i in 1:length(uniq_block_gene_len)){
-#    gn = uniq_block_gene_len[i]
-#    #repeat permutation
-#    for (i in 1:1000){
-#        #select rows from universe
-#        prows <- sample(univ, gn, replace=F)
-#        #select expression values based on rows
-#        p_df <- permExp[prows,]
-#        #non-inverted expression
-#        nonI <- c(p_df$BW_e,p_df$DH_e,p_df$MG_e)
-#        #Wilcox test
-#        results <- wilcox.test(p_df$ATCC_e, nonI, paired = FALSE,exact=FALSE)
-#        res_v <- c(results$p.value, results$statistic)
-#        ATCC_perm[nrow(ATCC_perm) + 1, ] <- res_v
-#    }
-#    #FDR correction
-#    pval_adj <- p.adjust(ATCC_perm$pval, method="fdr", n=length(ATCC_perm$pval))
-#    ATCC_perm$p_adj <- pval_adj
-#    print(ATCC_perm)
-#    #append block gene perm test to list
-#    ATCC_perm_list <- c(ATCC_perm_list,list(ATCC_perm))
-#    #reset perm df
-#    ATCC_perm <- data.frame(pval=integer(),
-#                            Wstat=integer(),
-#                     stringsAsFactors=FALSE)
-#}
-#################
-## DH + ATCC permutation
-#################
-##initilize empty df
-#DH_perm <- data.frame(pval=integer(),
-#                        Wstat=integer(),
-#                 stringsAsFactors=FALSE)
-##initilize empty list of df for each permuted block gene length
-#DH_perm_list <- list()
-#for (i in 1:length(uniq_block_gene_len)){
-#    gn = uniq_block_gene_len[i]
-#    #repeat permutation
-#    for (i in 1:1000){
-#        #select rows from universe
-#        prows <- sample(univ, gn, replace=F)
-#        #select expression values based on rows
-#        p_df <- permExp[prows,]
-#        #non-inverted expression
-#        nonI <- c(p_df$BW_e,p_df$ATCC_e,p_df$MG_e)
-#        I <- c(p_df$ATCC_e,p_df$DH_e)
-#        #Wilcox test
-#        results <- wilcox.test(I, nonI, paired = FALSE,exact=FALSE)
-#        res_v <- c(results$p.value, results$statistic)
-#        DH_perm[nrow(DH_perm) + 1, ] <- res_v
-#    }
-#    #FDR correction
-#    pval_adj <- p.adjust(DH_perm$pval, method="fdr", n=length(DH_perm$pval))
-#    DH_perm$p_adj <- pval_adj
-#    #append block gene perm test to list
-#    DH_perm_list <- c(DH_perm_list,list(DH_perm))
-#    #reset perm df
-#    DH_perm <- data.frame(pval=integer(),
-#                            Wstat=integer(),
-#                     stringsAsFactors=FALSE)
-#}
-#
+print("#add expression information to homologous gene info")
+#new df with only gene name and exp value
+exp_df <- perm_dat %>%
+          select("gene_id", "norm_exp","gbk_gene_id","gbk_locus_tag","locus_tag") %>%
+          distinct()
+summary(exp_df)
+head(exp_df)
+#read in gene mapping file to tell us which genes are homologous
+gmap_file <- as.character(args[8])
+gmap <- read.table(gmap_file, sep = "\t", header = FALSE)
+colnames(gmap) <- c("ATCC_s","ATCC_g","BW_s","BW_g","DH_s","DH_g","MG_s","MG_g")
+
+#add ATCC exp
+gmap$ATCC_e <- rep(NA,length(gmap$ATCC_g))
+gmap$ATCC_e <- exp_df$norm_exp[match(gmap$ATCC_g, exp_df$gene_id)]
+#add BW exp
+gmap$BW_e <- rep(NA,length(gmap$BW_g))
+gmap$BW_e <- exp_df$norm_exp[match(gmap$BW_g, exp_df$gbk_locus_tag)]
+#add DH exp
+gmap$DH_e <- rep(NA,length(gmap$DH_g))
+gmap$DH_e <- exp_df$norm_exp[match(gmap$DH_g, exp_df$gbk_locus_tag)]
+#add MG exp
+gmap$MG_e <- rep(NA,length(gmap$MG_g))
+gmap$MG_e <- exp_df$norm_exp[match(gmap$MG_g, exp_df$locus_tag)]
+
+#remove random NA column
+gmap <- gmap[,-9]
+#removing NAs
+gmap <- na.omit(gmap)
+summary(gmap)
+head(gmap)
+
+print("#remove genes homologous to multiple other genes (duplicates)")
+gmap <- gmap[!duplicated(gmap$ATCC_g),]
+gmap <- gmap[!duplicated(gmap$BW_g),]
+gmap <- gmap[!duplicated(gmap$DH_g),]
+gmap <- gmap[!duplicated(gmap$MG_g),]
+
+print("# dataframe with just expression values of homologous genes")
+permExp <- gmap %>%
+           select("ATCC_e","BW_e","DH_e","MG_e")
+head(permExp)
+
+print("# permutation test")
+##############
+# SET SEED
+##############
+set.seed(925)
+gn =4
+univ = seq(1,length(permExp$ATCC_e),1)
+#set up empty df
+ATCC_perm <- data.frame(pval=integer(),
+                        Wstat=integer(),
+                 stringsAsFactors=FALSE)
+#for each block length (length = unique number of genes in each block)
+uniq_block_gene_len <- unique(blDf$n)
+#only blocks with length minimum of 2
+uniq_block_gene_len <- uniq_block_gene_len[uniq_block_gene_len > "1"]
+uniq_block_gene_len
+################
+# ATCC permutation
+################
+#initilize empty list of df for each permuted block gene length
+ATCC_perm_list <- list()
+for (i in 1:length(uniq_block_gene_len)){
+    gn = uniq_block_gene_len[i]
+    #repeat permutation
+    for (i in 1:10){
+        #select rows from universe
+        prows <- sample(univ, gn, replace=F)
+        #select expression values based on rows
+        p_df <- permExp[prows,]
+        #non-inverted expression
+        nonI <- c(p_df$BW_e,p_df$DH_e,p_df$MG_e)
+        #Wilcox test
+        results <- wilcox.test(p_df$ATCC_e, nonI, paired = FALSE,exact=FALSE)
+        res_v <- c(results$p.value, results$statistic)
+        ATCC_perm[nrow(ATCC_perm) + 1, ] <- res_v
+    }
+    #FDR correction
+    pval_adj <- p.adjust(ATCC_perm$pval, method="fdr", n=length(ATCC_perm$pval))
+    ATCC_perm$p_adj <- pval_adj
+    print(ATCC_perm)
+    #append block gene perm test to list
+    ATCC_perm_list <- c(ATCC_perm_list,list(ATCC_perm))
+    #reset perm df
+    ATCC_perm <- data.frame(pval=integer(),
+                            Wstat=integer(),
+                     stringsAsFactors=FALSE)
+}
+################
+# DH + ATCC permutation
+################
+#initilize empty df
+DH_perm <- data.frame(pval=integer(),
+                        Wstat=integer(),
+                 stringsAsFactors=FALSE)
+#initilize empty list of df for each permuted block gene length
+DH_perm_list <- list()
+for (i in 1:length(uniq_block_gene_len)){
+    gn = uniq_block_gene_len[i]
+    #repeat permutation
+    for (i in 1:10){
+        #select rows from universe
+        prows <- sample(univ, gn, replace=F)
+        #select expression values based on rows
+        p_df <- permExp[prows,]
+        #non-inverted expression
+        nonI <- c(p_df$BW_e,p_df$ATCC_e,p_df$MG_e)
+        I <- c(p_df$ATCC_e,p_df$DH_e)
+        #Wilcox test
+        results <- wilcox.test(I, nonI, paired = FALSE,exact=FALSE)
+        res_v <- c(results$p.value, results$statistic)
+        DH_perm[nrow(DH_perm) + 1, ] <- res_v
+    }
+    #FDR correction
+    pval_adj <- p.adjust(DH_perm$pval, method="fdr", n=length(DH_perm$pval))
+    DH_perm$p_adj <- pval_adj
+    #append block gene perm test to list
+    DH_perm_list <- c(DH_perm_list,list(DH_perm))
+    #reset perm df
+    DH_perm <- data.frame(pval=integer(),
+                            Wstat=integer(),
+                     stringsAsFactors=FALSE)
+}
+
+print("#go through each block and see where the wilcoxon test falls within the permuted distribution")
+summary(obs_df)
+#remove rows where the wilcoxon test pvalue is NA
+obs_df <- obs_df[!is.na(obs_df$block_w_pvalue),]
+obs_df[which(obs_df$block == "Block614"),]
+summary(obs_df)
+#loop through each block
+for (i in unique(obs_df$block)){
+    tmpD <- obs_df %>% filter(block == i)
+    print(tmpD)
+    ATCC <- tmpD %>% filter(strain == "ATCC") %>% select(rev_comp,strain) %>% distinct()
+    DH <- tmpD %>% filter(strain == "K12DH") %>% select(rev_comp,strain) %>% distinct()
+    print(ATCC)
+    print(DH)
+    print(ATCC$rev_comp[1])
+    wpval <- unique(tmpD$block_w_pvalue)
+    block_gene_len <- blDf %>% filter(permID == i) %>% select(n)
+    print(blDf %>% filter(permID == i))
+    print(which(as.data.frame(uniq_block_gene_len) == block_gene_len[1]))
+    print(as.numeric(uniq_block_gene_len[which(uniq_block_gene_len==block_gene_len[1])]))
+    print(block_gene_len) 
+    if (ATCC$rev_comp[1] == 1 & DH$rev_comp[1] == 1) { 
+        #search perm where both ATCC and DH are inverted
+        #perm pval
+        Ppval <- DH_perm_list
+    } else {
+        #search perm where only ATCC is inverted
+    }
+}
+
+
+
