@@ -3734,6 +3734,7 @@ bl_df <- bl_df[!(duplicated(bl_df$permID) | duplicated(bl_df$permID, fromLast = 
 bl_df[duplicated(bl_df$permID),]
 bl_df[which(bl_df$permID == "Block1008"),]
 blDf <- bl_df
+blDf <- blDf %>% filter(n != 1)
 summary(blDf)
 head(blDf)
 
@@ -3873,11 +3874,15 @@ for (i in 1:length(uniq_block_gene_len)){
 }
 
 print("#go through each block and see where the wilcoxon test falls within the permuted distribution")
-summary(obs_df)
 #remove rows where the wilcoxon test pvalue is NA
 obs_df <- obs_df[!is.na(obs_df$block_w_pvalue),]
 obs_df[which(obs_df$block == "Block614"),]
 summary(obs_df)
+#create empty df to fill
+obs_perm_df <- data.frame(block=character(),
+                       Wpval=integer(),
+                       Ppval=integer(),
+                stringsAsFactors=FALSE)
 #loop through each block
 for (i in unique(obs_df$block)){
     tmpD <- obs_df %>% filter(block == i)
@@ -3890,17 +3895,47 @@ for (i in unique(obs_df$block)){
     wpval <- unique(tmpD$block_w_pvalue)
     block_gene_len <- blDf %>% filter(permID == i) %>% select(n)
     print(blDf %>% filter(permID == i))
-    print(which(as.data.frame(uniq_block_gene_len) == block_gene_len[1]))
-    print(as.numeric(uniq_block_gene_len[which(uniq_block_gene_len==block_gene_len[1])]))
-    print(block_gene_len) 
+    print("block len")
+    print(uniq_block_gene_len)
+    bl <- as.numeric(which(uniq_block_gene_len == as.numeric(block_gene_len[1])))
+    print(bl) 
     if (ATCC$rev_comp[1] == 1 & DH$rev_comp[1] == 1) { 
         #search perm where both ATCC and DH are inverted
-        #perm pval
-        Ppval <- DH_perm_list
+        print("#perm pval")
+        permDist <- DH_perm_list[[bl]]
+        print(permDist)
+        #permuted pvals <= observed pval
+        PDist_above <- permDist %>% filter(pval <= wpval)
+        print(wpval)
+        print(PDist_above)
+        # calculate permutation pval
+        Ppval <- length(PDist_above$pval) / 1000
+        print(Ppval)
+        #append info to df
+        df_row <- c(i,as.numeric(wpval),as.numeric(Ppval))
+        print(df_row)
+        obs_perm_df[nrow(obs_perm_df) + 1, ] <- df_row
     } else {
         #search perm where only ATCC is inverted
+        print("#perm pval")
+        permDist <- ATCC_perm_list[[bl]]
+        print(permDist)
+        #permuted pvals <= observed pval
+        PDist_above <- permDist %>% filter(pval <= wpval)
+        print(wpval)
+        print(PDist_above)
+        # calculate permutation pval
+        Ppval <- length(PDist_above$pval) / 1000
+        print(Ppval)
+        #append info to df
+        df_row <- c(i,as.numeric(wpval),as.numeric(Ppval))
+        print(df_row)
+        obs_perm_df[nrow(obs_perm_df) + 1, ] <- df_row
     }
 }
-
+#FDR correction on permutation pvals
+pval_adj <- p.adjust(obs_perm_df$Ppval, method="fdr", n=length(obs_perm_df$Ppval))
+obs_perm_df$Pp_adj <- pval_adj
+print(obs_perm_df)
 
 
