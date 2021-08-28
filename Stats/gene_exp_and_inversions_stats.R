@@ -485,10 +485,16 @@ print("#####################")
 print("ONLY USING BLOCKS WITH ALL 4 TAXA")
 print("#####################")
 gei_dat <- gei_dat %>% filter(block_tax_num == 4)
-print("SAVED DATA TO FILE")
-write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
-bp_dat <- gei_dat
-inver_dat_bidir <- gei_dat
+##copying the block_w_pvalue column and making it the new permutation pvalues, moving the old block_w_pvalue column to block_w_pvalueOld
+#complete_block_df$pvalueOld <- complete_block_df$pvalue
+#complete_block_df$pvalue <- rep(1,length(complete_block_df$pvalue))
+#complete_block_df$pvalue <- as.numeric(sig_perm$Ppval[match(complete_block_df$block, sig_perm$block)])
+#head(complete_block_df)
+#complete_block_df %>% filter(block == "Block950")
+#print("SAVED DATA TO FILE")
+#write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
+#bp_dat <- gei_dat
+#inver_dat_bidir <- gei_dat
 perm_dat <- gei_dat
 
 
@@ -711,6 +717,18 @@ sig_perm <- obs_perm_df %>% filter(Ppval <= 0.05)
 head(sig_perm)
 (length(sig_perm$block)/length(obs_perm_df$block))*100
 
+#making dfs for later in the code
+#copying the block_w_pvalue column and making it the new permutation pvalues, moving the old block_w_pvalue column to block_w_pvalueOld
+gei_dat$block_w_pvalueOld <- gei_dat$block_w_pvalue
+gei_dat$block_w_pvalue <- rep(1,length(gei_dat$block_w_pvalue))
+gei_dat$block_w_pvalue <- as.numeric(sig_perm$Ppval[match(gei_dat$block, sig_perm$block)])
+gei_dat$block_w_pvalue[is.na(gei_dat$block_w_pvalue)] <- 1
+head(gei_dat)
+gei_dat %>% filter(block == "Block950")
+print("SAVED DATA TO FILE")
+write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
+bp_dat <- gei_dat
+inver_dat_bidir <- gei_dat
 
 
 print("#########################")
@@ -773,9 +791,9 @@ for (b in unique(complete_block_df$block)) {
 }#for
 complete_block_df['allSig'] <- allSig
 
-print("number of SIG blocks with all sig")
-td <- complete_block_df[which(complete_block_df$allSig == "yes"),]
-length(unique(td$block))
+#print("number of SIG blocks with all sig")
+#td <- complete_block_df[which(complete_block_df$allSig == "yes"),]
+#length(unique(td$block))
 
 
 #split_block <- split(complete_block_df, complete_block_df$block)
@@ -793,7 +811,13 @@ length(unique(td$block))
 
 
 print("complete HEAD")
+#copying the pvalue column and making it the new permutation pvalues, moving the old pvalue column to pvalueOld
+complete_block_df$pvalueOld <- complete_block_df$pvalue
+complete_block_df$pvalue <- rep(1,length(complete_block_df$pvalue))
+complete_block_df$pvalue <- as.numeric(sig_perm$Ppval[match(complete_block_df$block, sig_perm$block)])
+complete_block_df$pvalue[is.na(complete_block_df$pvalue)] <- 1
 head(complete_block_df)
+complete_block_df %>% filter(block == "Block950")
 cor_dat <- complete_block_df
 cor_dat <- within(cor_dat, non_bidir_midpoint <- (gbk_end + gbk_start) /2)
 summary(cor_dat)
@@ -1015,47 +1039,47 @@ sd(atcc_bs$norm_exp[which(atcc_bs$rev_comp== 1)]) / mean(atcc_bs$norm_exp[which(
 print("Variance of non-inver ATCC blocks")
 sd(atcc_bs$norm_exp[which(atcc_bs$rev_comp == 0)]) / mean(atcc_bs$norm_exp[which(atcc_bs$rev_comp == 0)])
 
-print("#############")
-print("Fligner-Killeen test")
-print("#############")
-#tests for homogeneity of variances, non-parametric
-all_bs$inversion <- as.factor(all_bs$inversion)
-all_bs$rev_comp <- as.factor(all_bs$rev_comp)
-sig_bs$sig <- as.factor(sig_bs$sig)
-atcc_bs$rev_comp <- as.factor(atcc_bs$rev_comp)
-print("test varaiances btwn inversions and non-inversions")
-fligner.test(norm_exp ~ inversion, data = all_bs)
-print("test varaiances btwn rev_comp non-rev_comp")
-fligner.test(norm_exp ~ rev_comp, data = all_bs)
-print("test varaiances btwn sig invers and non-sig invers")
-fligner.test(norm_exp ~ sig, data = sig_bs)
-print("test varaiances btwn ATCC invers and ATCC non-invers")
-fligner.test(norm_exp ~ rev_comp, data = atcc_bs)
+#print("#############")
+#print("Fligner-Killeen test")
+#print("#############")
+##tests for homogeneity of variances, non-parametric
+#all_bs$inversion <- as.factor(all_bs$inversion)
+#all_bs$rev_comp <- as.factor(all_bs$rev_comp)
+#sig_bs$sig <- as.factor(sig_bs$sig)
+#atcc_bs$rev_comp <- as.factor(atcc_bs$rev_comp)
+#print("test varaiances btwn inversions and non-inversions")
+#fligner.test(norm_exp ~ inversion, data = all_bs)
+#print("test varaiances btwn rev_comp non-rev_comp")
+#fligner.test(norm_exp ~ rev_comp, data = all_bs)
+#print("test varaiances btwn sig invers and non-sig invers")
+#fligner.test(norm_exp ~ sig, data = sig_bs)
+#print("test varaiances btwn ATCC invers and ATCC non-invers")
+#fligner.test(norm_exp ~ rev_comp, data = atcc_bs)
 
 
-print("###########")
-print("# violin graph inversions")
-print("###########")
-set.seed(1738);
-p<-(ggplot(all_bs, aes(x=inversion, y=norm_exp, fill=inversion, color =inversion))
-  + geom_jitter(position=position_jitter(0.45), size = 2,alpha = 0.4)
-  + geom_violin(colour = "black", alpha = 0.5)
-#  + facet_wrap(~bac, labeller=label_pars)
-  #omega = 1 referene line
-  + xlab("")
-  + ylab("Value")
-  #proper colours for strip part of plot
-  + scale_color_manual(values=c("#6494AA","#C29979"),labels = c("Non-Inversion", "Inversion"))
-  + scale_fill_manual(values=c("#6494AA","#C29979"),labels = c("Non-Inversion", "Inversion"))
-  #log transform, remove trailing zeros, custom breaks
-  + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
-)
-
-pdf("all_inversions_violinplot.pdf")
-#p +
-p
-#     scale_x_discrete(breaks = c("1", "0"),labels = c("Inversion","Non-Inversion"))
-dev.off()
+#print("###########")
+#print("# violin graph inversions")
+#print("###########")
+#set.seed(1738);
+#p<-(ggplot(all_bs, aes(x=inversion, y=norm_exp, fill=inversion, color =inversion))
+#  + geom_jitter(position=position_jitter(0.45), size = 2,alpha = 0.4)
+#  + geom_violin(colour = "black", alpha = 0.5)
+##  + facet_wrap(~bac, labeller=label_pars)
+#  #omega = 1 referene line
+#  + xlab("")
+#  + ylab("Value")
+#  #proper colours for strip part of plot
+#  + scale_color_manual(values=c("#6494AA","#C29979"),labels = c("Non-Inversion", "Inversion"))
+#  + scale_fill_manual(values=c("#6494AA","#C29979"),labels = c("Non-Inversion", "Inversion"))
+#  #log transform, remove trailing zeros, custom breaks
+#  + scale_y_continuous(trans='log10',labels = function(x) ifelse(x ==0, "0", x),breaks=c(0.0001,0.001,0.01,0.1, 1, 10,100))
+#)
+#
+#pdf("all_inversions_violinplot.pdf")
+##p +
+#p
+##     scale_x_discrete(breaks = c("1", "0"),labels = c("Inversion","Non-Inversion"))
+#dev.off()
 
 print("###########")
 print("# mean and sd graph inversions")
@@ -1284,6 +1308,7 @@ k12_df <- unique(k12_df)
 head(k12_df)
 k12_df[which(k12_df$block == "Block62"),]
 k12_df_non_sig <- k12_df %>% filter(sig == "no")
+print("TEST k12_df_non_sig HEAD")
 head(k12_df_non_sig)
 k12_df_sig <- k12_df %>% filter(sig == "yes")
 head(k12_df_sig)
