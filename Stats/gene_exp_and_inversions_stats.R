@@ -716,6 +716,9 @@ print("# percent of blocks with SIG adjusted perm test p-val")
 sig_perm <- obs_perm_df %>% filter(Ppval <= 0.05)
 head(sig_perm)
 (length(sig_perm$block)/length(obs_perm_df$block))*100
+print("#saving permutation results to file")
+write.table(obs_perm_df, 'inversions_gene_exp_perm_results.csv', sep = "\t")
+
 
 #making dfs for later in the code
 #copying the block_w_pvalue column and making it the new permutation pvalues, moving the old block_w_pvalue column to block_w_pvalueOld
@@ -729,6 +732,33 @@ print("SAVED DATA TO FILE")
 write.table(gei_dat, 'inversions_gene_exp_wtest_data.csv', sep = "\t")
 bp_dat <- gei_dat
 inver_dat_bidir <- gei_dat
+
+print("#gene names in just significant blocks, saved to file")
+sigB <- unique(sig_perm$block)
+sigB
+gn_sigB <- gei_dat %>% filter(block %in% sigB)
+write.table(gn_sigB, 'inversions_gene_exp_sig_blocks_gene_names.csv', sep = "\t")
+print("# just ATCC genes from sig blocks")
+ATCC_siggenes <- gn_sigB %>% filter(strain == "ATCC") %>% select(gbk_old_locus_tag)
+write.table(ATCC_siggenes, 'inversions_gene_exp_sig_ATCC_gene_names.csv', sep = "\t",row.names = FALSE,col.names = FALSE)
+K12_siggenes <- gn_sigB %>% filter(strain == "K12MG") %>% select(locus_tag)
+write.table(K12_siggenes, 'inversions_gene_exp_sig_K12MG_gene_names.csv', sep = "\t",row.names = FALSE,col.names = FALSE)
+head(K12_siggenes)
+
+
+#read in COG info and filter for sig genes
+COGfile <- as.character(args[11])
+COGfile
+COG_dat <- read.csv(COGfile, header = TRUE)
+colnames(COG_dat) <- c("geneID", "org", "protID","protlen","COGpos","COGlen","COGID","reserved","COGclass","BLASTbit","BLASTeval","COGprof","Protpos")
+K12_COGs <- COG_dat %>% filter(org == "GCF_000005845.2") %>% select(geneID,COGID)
+K12_COGs %>% filter(geneID == "b0550")
+K12_sig_COGs <- K12_COGs %>% filter(geneID %in% K12_siggenes$locus_tag)
+K12_sig_COGs %>% filter(geneID == "b0550")
+unique(K12_sig_COGs %>% select(COGID))
+write.table(K12_sig_COGs, 'inversions_gene_exp_sig_K12MG_COGs.csv', sep = "\t",row.names = FALSE,col.names = FALSE)
+
+
 
 
 print("#########################")
