@@ -25,7 +25,7 @@ python3 non_cod_positions_Higashi_2016.py ../HNS_protein/raw_data_files/Higashi_
 
 
 #new data excluding blast and aln mismatches
-Rscript gene_exp_and_inversions_stats.R ../Sample_final_df.csv 5130767 3925744 1588773 E.coli Chromosome ../new_dataframes/raw_exp.csv ../Gene_Maps/ATCC_CFT073_K12MG_K12DH_BW_gene_map.txt ../inversion_block_info_all.txt 100000 --save > out_R_all_taxa_blocks.txt
+Rscript gene_exp_and_inversions_stats.R ../Sample_final_df.csv 5130767 3925744 1588773 E.coli Chromosome ../new_dataframes/raw_exp.csv ../Gene_Maps/ATCC_CFT073_K12MG_K12DH_BW_gene_map.txt ../inversion_block_info_all.txt 100000 /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/COG/cog_20.cog.csv --save > out_R_all_taxa_blocks.txt
 
 #remove quotes " from hns binding data frame
 perl -p -i.bak -e 's/\"//g' hns_binding_all_datasets.csv 
@@ -35,6 +35,17 @@ perl -p -i.bak -e 's/\"//g' inver_cor_data.csv
 
 #remove quotes " from sig inversion data frame
 perl -p -i.bak -e 's/\"//g' sig_inversion_dat.csv 
+
+#remove quotes " from sig inversion data frame
+perl -p -i.bak -e 's/\"//g' inversions_gene_exp_sig_ATCC_gene_names.csv 
+perl -p -i.bak -e 's/\"//g' inversions_gene_exp_sig_K12MG_gene_names.csv 
+
+#getting gene info from gbk file for ATCC sig block genes
+python3 ~/CODE/inverstions_gene_exp_sig_genes_gbk_info.py /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_ATCC_25922_NZ_CP009072.gbk inversions_gene_exp_sig_ATCC_gene_names.csv > ATCC_sig_block_gene_info.txt
+
+#getting gene info from gbk file for K12MG sig block genes
+python3 ~/CODE/inverstions_gene_exp_sig_genes_gbk_info.py /home/dlato/Documents/GoldingSummer14/inversion_and_gene_exp_work/Genomes/Ecoli_K12_MG1655_chrom_U00096.gbk inversions_gene_exp_sig_K12MG_gene_names.csv > K12MG_sig_block_gene_info.txt
+
 #
 #analysis with old data (not excluding blast and aln mismatches)
 #Rscript gene_exp_and_inversions_stats.R ../Strains_df/all_strains.csv 5130767 3925744 1588773 E.coli Chromosome ../Sample_final_df_RawExp.csv ../Gene_Maps/ATCC_K12MG_K12DH_BW_gene_map.txt ../inversion_block_info_all.txt --save > out_R_all_taxa_blocks.txt
