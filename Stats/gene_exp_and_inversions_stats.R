@@ -700,9 +700,9 @@ for (i in unique(obs_df$block)){
         obs_perm_df[nrow(obs_perm_df) + 1, ] <- df_row
     }
 }
-##FDR correction on permutation pvals
-#pval_adj <- p.adjust(obs_perm_df$Ppval, method="fdr", n=length(obs_perm_df$Ppval))
-#obs_perm_df$Pp_adj <- pval_adj
+print("##FDR correction on permutation pvals")
+pval_adj <- p.adjust(obs_perm_df$Ppval, method="fdr", n=length(obs_perm_df$Ppval))
+obs_perm_df$Pp_adj <- pval_adj
 head(obs_perm_df)
 summary(obs_perm_df)
 
@@ -711,10 +711,10 @@ print("# PERMUTATION RESULTS")
 print("#########################")
 print("# total blocks tested")
 length(obs_perm_df$block)
-#print("# percent of blocks with SIG adjusted perm test p-val")
-#sig_perm <- obs_perm_df %>% filter(Pp_adj <= 0.05)
-print("# percent of blocks with SIG perm test p-val")
-sig_perm <- obs_perm_df %>% filter(Ppval <= 0.05)
+print("# percent of blocks with SIG adjusted perm test p-val")
+sig_perm <- obs_perm_df %>% filter(Pp_adj <= 0.05)
+#print("# percent of blocks with SIG perm test p-val")
+#sig_perm <- obs_perm_df %>% filter(Ppval <= 0.05)
 head(sig_perm)
 (length(sig_perm$block)/length(obs_perm_df$block))*100
 print("# number of blocks with SIG perm test p-val")
@@ -722,12 +722,21 @@ length(sig_perm$block)
 print("#saving permutation results to file")
 write.table(obs_perm_df, 'inversions_gene_exp_perm_results.csv', sep = "\t")
 
+print("# number of genes represented in sig blocks")
+sigB <- unique(sig_perm$block)
+print("sigB")
+sigB
+numGsig_df <- blDf %>% filter(permID %in% sigB)
+print("numGsig_df")
+numGsig_df
+sum(numGsig_df$n)
 
 #making dfs for later in the code
 #copying the block_w_pvalue column and making it the new permutation pvalues, moving the old block_w_pvalue column to block_w_pvalueOld
 gei_dat$block_w_pvalueOld <- gei_dat$block_w_pvalue
 gei_dat$block_w_pvalue <- rep(1,length(gei_dat$block_w_pvalue))
-gei_dat$block_w_pvalue <- as.numeric(sig_perm$Ppval[match(gei_dat$block, sig_perm$block)])
+#gei_dat$block_w_pvalue <- as.numeric(sig_perm$Ppval[match(gei_dat$block, sig_perm$block)])
+gei_dat$block_w_pvalue <- as.numeric(sig_perm$Pp_adj[match(gei_dat$block, sig_perm$block)])
 gei_dat$block_w_pvalue[is.na(gei_dat$block_w_pvalue)] <- 1
 head(gei_dat)
 gei_dat %>% filter(block == "Block950")
@@ -847,7 +856,8 @@ print("complete HEAD")
 #copying the pvalue column and making it the new permutation pvalues, moving the old pvalue column to pvalueOld
 complete_block_df$pvalueOld <- complete_block_df$pvalue
 complete_block_df$pvalue <- rep(1,length(complete_block_df$pvalue))
-complete_block_df$pvalue <- as.numeric(sig_perm$Ppval[match(complete_block_df$block, sig_perm$block)])
+#complete_block_df$pvalue <- as.numeric(sig_perm$Ppval[match(complete_block_df$block, sig_perm$block)])
+complete_block_df$pvalue <- as.numeric(sig_perm$Pp_adj[match(complete_block_df$block, sig_perm$block)])
 complete_block_df$pvalue[is.na(complete_block_df$pvalue)] <- 1
 head(complete_block_df)
 complete_block_df %>% filter(block == "Block950")
