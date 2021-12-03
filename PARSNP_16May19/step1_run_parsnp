@@ -3,3 +3,21 @@ parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ./Genomes/ -c
 
 #run PARSNP WITH the outgroup
 parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ./Genomes_with_outgroup/ -c
+
+#run PARSNP WITH e.coli K5198 outgroup
+parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ../Genomes/Genomes_with_outgroup_K5198/ -c
+
+#run PARSNP WITH e.coli saki outgroup
+parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ../Genomes/Genomes_with_outgroup_saki/ -c
+
+#run PARSNP WITH e.coli TW outgroup
+parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ../Genomes/Genomes_with_outgroup_TW/ -c
+
+# November 28, 2021: Reviewer 1 comment
+#run PARSNP with all (except H) clades from paper PMID:32826992
+parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ./Genomes_reviewer_all_clades/ -c
+ 
+# Dec 2, 2021: Reviewer 2 comment
+#run PARSNP with K-12MG genome with different starting positions
+#(staggered at 1Mb) to see what PARSNP comes up with
+parsnp -g ./ref/Ecoli_K12_MG1655_chrom_U00096.gbk -d ./Genomes_reviewer_diff_start/ -c
