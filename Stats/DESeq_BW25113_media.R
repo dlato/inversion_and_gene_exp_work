@@ -59,7 +59,7 @@ deseq2Data <- DESeqDataSetFromMatrix(countData=bw_exp,
 deseq_results <- DESeq(deseq2Data)
 print("done deseq")
 #alpha cutoff of 0.05
-deseq_results2 <- results(deseq_results, alpha=0.05)
+deseq_results2 <- results(deseq_results, alpha=0.05, lfcThreshold = 2)
 print("summary")
 summary(deseq_results2)
 
